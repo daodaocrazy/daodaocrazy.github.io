@@ -21,7 +21,7 @@
 *Mac系统需要注意系统设置的sharing打开“Remote Login”，然后添加ssh登录（把公钥配置到`~/.ssh/known_hosts`这个文件里）*
 
 ```shell
-Exception in thread "main" java.lang.RuntimeException: java.net.ConnectException: Call From ashiamddeMBP/192.168.31.17 to localhost:9000 failed on connection exception: java.net.ConnectException: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused
+Exception in thread "main" java.lang.RuntimeException: java.net.ConnectException: Call From daodaocrazydeMBP/192.168.31.17 to localhost:9000 failed on connection exception: java.net.ConnectException: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused
 	at org.apache.hadoop.hive.ql.session.SessionState.start(SessionState.java:651)
 	at org.apache.hadoop.hive.ql.session.SessionState.beginStart(SessionState.java:591)
 	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:747)
@@ -32,7 +32,7 @@ Exception in thread "main" java.lang.RuntimeException: java.net.ConnectException
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at org.apache.hadoop.util.RunJar.run(RunJar.java:323)
 	at org.apache.hadoop.util.RunJar.main(RunJar.java:236)
-Caused by: java.net.ConnectException: Call From ashiamddeMBP/192.168.31.17 to localhost:9000 failed on connection exception: java.net.ConnectException: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused
+Caused by: java.net.ConnectException: Call From daodaocrazydeMBP/192.168.31.17 to localhost:9000 failed on connection exception: java.net.ConnectException: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)

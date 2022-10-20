@@ -360,5 +360,5 @@ duration = 5342706955
 
 ## 17. web基础
 
-> [Servlet、Tomcat、SpringMVC-整理-随笔](https://www.cnblogs.com/Ashiamd/p/15085668.html)
+> [Servlet、Tomcat、SpringMVC-整理-随笔](https://www.cnblogs.com/daodaocrazy/p/15085668.html)
 

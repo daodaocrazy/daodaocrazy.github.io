@@ -534,7 +534,7 @@ SpringCloud中使用Ribbon时，Ribbon的默认算法即轮询算法
 >
 > [F5负载均衡原理](https://blog.csdn.net/panxueji/article/details/42647193)
 >
-> [java.lang.IllegalStateException: No instances available for SPRINGCLOUDTEST-PROVIDER-DEPT解决](https://blog.csdn.net/Ashiamd/article/details/104096878)
+> [java.lang.IllegalStateException: No instances available for SPRINGCLOUDTEST-PROVIDER-DEPT解决](https://blog.csdn.net/daodaocrazy/article/details/104096878)
 
 ## 13. Feign：使用接口方式调用服务
 

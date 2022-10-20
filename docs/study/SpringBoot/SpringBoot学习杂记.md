@@ -13,8 +13,8 @@
 # 3. Spring事务
 
 > + [Spring中同一类@Transactional修饰方法相互调用的坑_前路无畏的博客-CSDN博客](https://blog.csdn.net/fsjwin/article/details/109211355)	<=	避坑推荐
-> + [Spring事务-随笔-Ashiamd - 博客园 (cnblogs.com)](https://www.cnblogs.com/Ashiamd/p/15085827.html)
-> + [Spring事务测试github项目](https://github.com/Ashiamd/SpringTransactionTest)
+> + [Spring事务-随笔-daodaocrazy - 博客园 (cnblogs.com)](https://www.cnblogs.com/daodaocrazy/p/15085827.html)
+> + [Spring事务测试github项目](https://github.com/daodaocrazy/SpringTransactionTest)
 
 1. @Transactional 由于serviceImp实现的service，所以AOP默认用的Spring AOP中的jdk动态代理。因此private、protected、包级、static的不能生效，但是不报错。另外由于AOP，同类下的其他方法上的@Transactional不生效，因为是类内部方法调用，动态代理不生效。
 
@@ -145,7 +145,7 @@
 
 # 4. 异常处理
 
-> [Spring的@ExceptionHandler和@RestControllerAdvice使用-随笔 - Ashiamd - 博客园 (cnblogs.com)](https://www.cnblogs.com/Ashiamd/p/15045197.html)
+> [Spring的@ExceptionHandler和@RestControllerAdvice使用-随笔 - daodaocrazy - 博客园 (cnblogs.com)](https://www.cnblogs.com/daodaocrazy/p/15045197.html)
 
 - 如果项目中Controller继承某个带有@ExceptionHandler注解方法的类，那么Controller抛出异常时，会优先走该@ExceptionHandler注解的方法。
 - 此时如果有另外带有@RestControllerAdvice注解的全局异常处理器，其只处理Controller继承的@ExceptionHandler范围外的异常。

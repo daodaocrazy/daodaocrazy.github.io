@@ -10,7 +10,7 @@
 
 # 1. RESTful API回顾
 
-​	回顾之前，需要先能跑起来ElasticSearch和Kibana，这里我自己是用docker跑的。[我自己的github](https://github.com/Ashiamd/ash-demos)里也有对应的docker-compose配置文件。
+​	回顾之前，需要先能跑起来ElasticSearch和Kibana，这里我自己是用docker跑的。[我自己的github](https://github.com/daodaocrazy/ash-demos)里也有对应的docker-compose配置文件。
 
 + 建议Chrome浏览器安装[ElasticSearch Head插件](https://chrome.google.com/webstore/detail/elasticsearch-head/ffmkiejjmecolpfloofpjologoblkegm?utm_source=chrome-ntp-icon)，方便查看ElasticSearch中已有的数据
 
@@ -657,20 +657,20 @@ POST /kibana_sample_data_logs/_search
 > **而text字段，在ES里会被默认拆分成多个分词，所以term大多数情况下无法直接根据整个text字段字匹配到结果。（如果text字段正好无法被分词就可以被匹配。）**
 >
 >
-> Avoid using the `term` query for [`text`](dfile:///Users/ashiamd/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/text.html) fields.
+> Avoid using the `term` query for [`text`](dfile:///Users/daodaocrazy/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/text.html) fields.
 >
-> By default, Elasticsearch changes the values of `text` fields as part of [analysis](dfile:///Users/ashiamd/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html). This can make finding exact matches for `text` field values difficult.
+> By default, Elasticsearch changes the values of `text` fields as part of [analysis](dfile:///Users/daodaocrazy/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html). This can make finding exact matches for `text` field values difficult.
 >
-> To search `text` field values, use the [`match`](dfile:///Users/ashiamd/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html) query instead.
+> To search `text` field values, use the [`match`](dfile:///Users/daodaocrazy/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html) query instead.
 >
 > ---
 >
 > #### Avoid using the `term` query for `text` fields
 >
-> By default, Elasticsearch changes the values of `text` fields during analysis. For example, the default [standard analyzer](dfile:///Users/ashiamd/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html)changes `text` field values as follows:
+> By default, Elasticsearch changes the values of `text` fields during analysis. For example, the default [standard analyzer](dfile:///Users/daodaocrazy/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html)changes `text` field values as follows:
 >
 > - Removes most punctuation
-> - Divides the remaining content into individual words, called [tokens](dfile:///Users/ashiamd/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenizers.html)
+> - Divides the remaining content into individual words, called [tokens](dfile:///Users/daodaocrazy/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenizers.html)
 > - Lowercases the tokens
 >
 > To better search `text` fields, the `match` query also analyzes your provided search term before performing a search. This means the `match` query can search `text` fields for analyzed tokens rather than an exact term.

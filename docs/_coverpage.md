@@ -1,4 +1,4 @@
-![logo](_media/icon.jpeg)
+<img src="_media/icon.jpeg" alt="logo" style="zoom: 25%;" />
 
 # Daodaocrazy的个人MD笔记
 

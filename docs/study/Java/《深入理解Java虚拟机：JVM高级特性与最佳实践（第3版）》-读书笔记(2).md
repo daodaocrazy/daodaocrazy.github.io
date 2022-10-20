@@ -635,7 +635,7 @@ for (Map.Entry<Thread, StackTraceElement[]> stackTrace : Thread.getAllStackTrace
 
 > [使用JHSDB分析Java对象的存储](https://blog.csdn.net/feixiang2039/article/details/109211568)	<=	网友的操作记录
 >
-> [《深入理解Java虚拟机》：JVM高级特性与最佳实践（第3 版）4.3.1 JHSDB：基于服务性代理的调试工具 (笔记随录)](https://www.cnblogs.com/Ashiamd/p/14054498.html)	<=	我自己的截图
+> [《深入理解Java虚拟机》：JVM高级特性与最佳实践（第3 版）4.3.1 JHSDB：基于服务性代理的调试工具 (笔记随录)](https://www.cnblogs.com/daodaocrazy/p/14054498.html)	<=	我自己的截图
 >
 > 这章节重点的内容即：
 >

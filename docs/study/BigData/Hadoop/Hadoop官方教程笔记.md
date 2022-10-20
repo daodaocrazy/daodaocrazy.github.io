@@ -246,7 +246,7 @@ The following instructions assume that 1. ~ 4. steps of [the above instructions]
 >vim ~/.bash_profile
 >
 ># hadoop-3.3.0 第一条是hadoop的解压目录
->export HADOOP_HOME=/Users/ashiamd/mydocs/dev-tools/hadoop/hadoop-3.3.0
+>export HADOOP_HOME=/Users/daodaocrazy/mydocs/dev-tools/hadoop/hadoop-3.3.0
 >export HADOOP_INSTALL=$HADOOP_HOME
 >export HADOOP_MAPRED_HOME=$HADOOP_HOME
 >export HADOOP_COMMON_HOME=$HADOOP_HOME

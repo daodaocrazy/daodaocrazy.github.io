@@ -172,7 +172,7 @@ Token
 
 ### OAuth2.0
 
-​	OAuth2.0的概念我这里不说了，文章不错的有很多，这里不细贴了。要是感兴趣又懒得找文章的，可以去我[github的笔记]([https://ashiamd.github.io/docsify-notes/#/study/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/OAuth/OAuth%E5%AD%A6%E4%B9%A0%E6%9D%82%E8%AE%B0](https://ashiamd.github.io/docsify-notes/#/study/网络安全/OAuth/OAuth学习杂记))看看。其实这篇文章我本地MD笔记也有，以后再上传到github的笔记上。
+​	OAuth2.0的概念我这里不说了，文章不错的有很多，这里不细贴了。要是感兴趣又懒得找文章的，可以去我[github的笔记]([https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/OAuth/OAuth%E5%AD%A6%E4%B9%A0%E6%9D%82%E8%AE%B0](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/网络安全/OAuth/OAuth学习杂记))看看。其实这篇文章我本地MD笔记也有，以后再上传到github的笔记上。
 
 ​	这里不细讲OAuth2.0的使用啥的。我就说说个人理解的OAuth2.0的使用场景和Token应用场景。
 

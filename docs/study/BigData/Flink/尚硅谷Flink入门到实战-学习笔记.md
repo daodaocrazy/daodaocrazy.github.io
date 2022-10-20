@@ -85,7 +85,7 @@ import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.util.Collector;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/1/29 10:46 PM
  * 批处理 wordcount
  */
@@ -164,7 +164,7 @@ import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/1/29 11:13 PM
  */
 public class StreamWordCount {
@@ -238,7 +238,7 @@ public class StreamWordCount {
    import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
    
    /**
-    * @author : Ashiamd email: ashiamd@foxmail.com
+    * @author : daodaocrazy email: daodaocrazy@outlook.com
     * @date : 2021/1/29 11:13 PM
     */
    public class StreamWordCount {
@@ -779,7 +779,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import java.util.Arrays;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/1/31 5:13 PM
  * 测试Flink从集合中获取数据
  */
@@ -844,7 +844,7 @@ import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/1/31 5:26 PM
  * Flink从文件中获取数据
  */
@@ -971,7 +971,7 @@ sensor_1,1547718212,37.1
    import java.util.Properties;
    
    /**
-    * @author : Ashiamd email: ashiamd@foxmail.com
+    * @author : daodaocrazy email: daodaocrazy@outlook.com
     * @date : 2021/1/31 5:44 PM
     */
    public class SourceTest3_Kafka {
@@ -1034,7 +1034,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/1/31 6:44 PM
  */
 public class SourceTest4_UDF {
@@ -1127,7 +1127,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.util.Collector;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/1/31 7:31 PM
  */
 public class TransformTest1_Base {
@@ -1268,7 +1268,7 @@ import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/1/31 9:51 PM
  * 滚动聚合，测试
  */
@@ -1354,7 +1354,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.kafka.common.metrics.stats.Max;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/1/31 10:14 PM
  * 复杂场景，除了获取最大温度的整个传感器信息以外，还要求时间戳更新成最新的
  */
@@ -1846,7 +1846,7 @@ import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/2/1 12:21 AM
  */
 public class TransformTest5_RichFunction {
@@ -1940,7 +1940,7 @@ import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/2/1 12:38 AM
  */
 public class TransformTest6_Partition {
@@ -2091,7 +2091,7 @@ stream.addSink(new MySink(xxxx))
    import java.util.Properties;
    
    /**
-    * @author : Ashiamd email: ashiamd@foxmail.com
+    * @author : daodaocrazy email: daodaocrazy@outlook.com
     * @date : 2021/2/1 1:11 AM
     */
    public class SinkTest1_Kafka {
@@ -2204,7 +2204,7 @@ stream.addSink(new MySink(xxxx))
    import org.apache.flink.streaming.connectors.redis.common.mapper.RedisMapper;
    
    /**
-    * @author : Ashiamd email: ashiamd@foxmail.com
+    * @author : daodaocrazy email: daodaocrazy@outlook.com
     * @date : 2021/2/1 1:47 AM
     */
    public class SinkTest2_Redis {
@@ -2312,7 +2312,7 @@ stream.addSink(new MySink(xxxx))
    import java.util.List;
    
    /**
-    * @author : Ashiamd email: ashiamd@foxmail.com
+    * @author : daodaocrazy email: daodaocrazy@outlook.com
     * @date : 2021/2/1 2:13 AM
     */
    public class SinkTest3_Es {
@@ -2517,7 +2517,7 @@ stream.addSink(new MySink(xxxx))
    import java.sql.PreparedStatement;
    
    /**
-    * @author : Ashiamd email: ashiamd@foxmail.com
+    * @author : daodaocrazy email: daodaocrazy@outlook.com
     * @date : 2021/2/1 2:48 AM
     */
    public class SinkTest4_Jdbc {
@@ -3019,7 +3019,7 @@ window function 定义了要对窗口中收集的数据做的计算操作，主�
      import org.apache.flink.streaming.api.windowing.time.Time;
      
      /**
-      * @author : Ashiamd email: ashiamd@foxmail.com
+      * @author : daodaocrazy email: daodaocrazy@outlook.com
       * @date : 2021/2/1 7:14 PM
       */
      public class WindowTest1_TimeWindow {
@@ -3147,7 +3147,7 @@ window function 定义了要对窗口中收集的数据做的计算操作，主�
      import org.apache.flink.util.Collector;
      
      /**
-      * @author : Ashiamd email: ashiamd@foxmail.com
+      * @author : daodaocrazy email: daodaocrazy@outlook.com
       * @date : 2021/2/1 7:14 PM
       */
      public class WindowTest1_TimeWindow {
@@ -3246,7 +3246,7 @@ window function 定义了要对窗口中收集的数据做的计算操作，主�
      import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
      
      /**
-      * @author : Ashiamd email: ashiamd@foxmail.com
+      * @author : daodaocrazy email: daodaocrazy@outlook.com
       * @date : 2021/2/1 11:03 PM
       */
      public class WindowTest2_CountWindow {
@@ -3881,7 +3881,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/2/2 4:05 AM
  */
 public class StateTest1_OperatorState {
@@ -3998,7 +3998,7 @@ sensor_1,1547718199,35.8
   import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/2 5:41 PM
    */
   public class StateTest2_KeyedState {
@@ -4101,7 +4101,7 @@ sensor_1,1547718199,35.8
   import org.apache.flink.util.Collector;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/2 6:37 PM
    */
   public class StateTest3_KeyedStateApplicationCase {
@@ -4299,7 +4299,7 @@ jobmanager.execution.failover-strategy: region
   import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/2 11:35 PM
    */
   public class StateTest4_FaultTolerance {
@@ -4372,7 +4372,7 @@ import org.apache.flink.streaming.api.functions.KeyedProcessFunction;
 import org.apache.flink.util.Collector;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/2/3 12:30 AM
  */
 public class ProcessTest1_KeyedProcessFunction {
@@ -4501,7 +4501,7 @@ sensor_1,1547718207,36.3
   import org.apache.flink.util.Collector;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/3 1:02 AM
    */
   public class ProcessTest2_ApplicationCase {
@@ -4650,7 +4650,7 @@ sensor_1,1547718207,36.3
   import org.apache.flink.util.OutputTag;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/3 2:07 AM
    */
   public class ProcessTest3_SideOuptCase {
@@ -4880,7 +4880,7 @@ sensor_1,1547718207,36.3
   import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/2 11:35 PM
    */
   public class StateTest4_FaultTolerance {
@@ -5113,7 +5113,7 @@ sensor_1,1547718207,36.3
   import org.apache.flink.types.Row;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/3 5:47 AM
    */
   public class TableTest1_Example {
@@ -5220,7 +5220,7 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.table.api.internal.TableEnvironmentImpl;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/2/3 3:56 PM
  */
 public class TableTest2_CommonApi {
@@ -5329,7 +5329,7 @@ public class TableTest2_CommonApi {
   import org.apache.flink.types.Row;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/3 3:56 PM
    */
   public class TableTest2_CommonApi {
@@ -5425,7 +5425,7 @@ public class TableTest2_CommonApi {
   import org.apache.flink.types.Row;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/3 3:56 PM
    */
   public class TableTest2_CommonApi {
@@ -5528,7 +5528,7 @@ public class TableTest2_CommonApi {
   import org.apache.flink.table.descriptors.Schema;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/3 5:53 PM
    */
   public class TableTest3_FileOutput {
@@ -5686,7 +5686,7 @@ public class TableTest2_CommonApi {
   	at akka.dispatch.Mailbox.run(Mailbox.scala:225)
   	at akka.dispatch.Mailbox.exec(Mailbox.scala:235)
   	... 4 more
-  Caused by: java.io.IOException: File or directory /Users/ashiamd/mydocs/docs/study/javadocument/javadocument/IDEA_project/Flink_Tutorial/src/main/resources/out.txt already exists. Existing files and directories are not overwritten in NO_OVERWRITE mode. Use OVERWRITE mode to overwrite existing files and directories.
+  Caused by: java.io.IOException: File or directory /Users/daodaocrazy/mydocs/docs/study/javadocument/javadocument/IDEA_project/Flink_Tutorial/src/main/resources/out.txt already exists. Existing files and directories are not overwritten in NO_OVERWRITE mode. Use OVERWRITE mode to overwrite existing files and directories.
   	at org.apache.flink.core.fs.FileSystem.initOutPathLocalFS(FileSystem.java:874)
   	at org.apache.flink.core.fs.SafetyNetWrapperFileSystem.initOutPathLocalFS(SafetyNetWrapperFileSystem.java:142)
   	at org.apache.flink.api.common.io.FileOutputFormat.open(FileOutputFormat.java:234)
@@ -5734,7 +5734,7 @@ Kafka作为消息队列，和文件系统类似的，只能往里追加数据，
   import org.apache.flink.table.descriptors.Schema;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/3 6:33 PM
    */
   public class TableTest4_KafkaPipeLine {
@@ -6139,7 +6139,7 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.types.Row;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/2/4 12:47 AM
  */
 public class TableTest5_TimeAndWindow {
@@ -6262,7 +6262,7 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.types.Row;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/2/4 12:47 AM
  */
 public class TableTest5_TimeAndWindow {
@@ -6437,7 +6437,7 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.types.Row;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/2/4 12:47 AM
  */
 public class TableTest5_TimeAndWindow {
@@ -6617,7 +6617,7 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.types.Row;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/2/4 12:47 AM
  */
 public class TableTest5_TimeAndWindow {
@@ -6767,7 +6767,7 @@ import org.apache.flink.table.functions.ScalarFunction;
 import org.apache.flink.types.Row;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/2/4 3:28 AM
  */
 public class UdfTest1_ScalarFunction {
@@ -6892,7 +6892,7 @@ import org.apache.flink.table.functions.TableFunction;
 import org.apache.flink.types.Row;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/2/4 3:58 AM
  */
 public class UdfTest2_TableFunction {
@@ -7026,7 +7026,7 @@ import org.apache.flink.table.functions.AggregateFunction;
 import org.apache.flink.types.Row;
 
 /**
- * @author : Ashiamd email: ashiamd@foxmail.com
+ * @author : daodaocrazy email: daodaocrazy@outlook.com
  * @date : 2021/2/4 4:24 AM
  */
 public class UdfTest3_AggregateFunction {
@@ -7523,7 +7523,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.concurrent.TimeUnit;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/4 6:07 PM
    */
   public class HotItems {
@@ -7792,7 +7792,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.Properties;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/4 11:53 PM
    */
   public class KafkaProducerUtil {
@@ -7855,7 +7855,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import static org.apache.flink.table.api.Expressions.lit;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/5 12:18 AM
    */
   public class HotItemsWithSql {
@@ -8015,7 +8015,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.regex.Pattern;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/5 1:27 AM
    */
   public class HotPages {
@@ -8212,7 +8212,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.regex.Pattern;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/5 1:27 AM
    */
   public class HotPages {
@@ -8466,7 +8466,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.regex.Pattern;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/5 1:27 AM
    */
   public class HotPages {
@@ -8719,7 +8719,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.concurrent.TimeUnit;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/5 3:11 AM
    */
   public class PageView {
@@ -8818,7 +8818,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.concurrent.TimeUnit;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/5 3:11 AM
    */
   public class PageView {
@@ -8987,7 +8987,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.concurrent.TimeUnit;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/5 3:51 AM
    */
   public class UniqueVisitor {
@@ -9092,7 +9092,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.concurrent.TimeUnit;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/5 4:03 AM
    */
   public class UvWithBloomFilter {
@@ -9286,7 +9286,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.Random;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/5 5:32 AM
    */
   public class AppMarketingByChannel {
@@ -9366,7 +9366,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/5 5:32 AM
    */
   public class AppMarketingByChannel {
@@ -9520,7 +9520,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.concurrent.TimeUnit;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/5 6:19 PM
    */
   public class AppMarketingStatistics {
@@ -9691,7 +9691,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.concurrent.TimeUnit;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/5 6:41 PM
    */
   public class AdStatisticsByProvince {
@@ -9815,7 +9815,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.concurrent.TimeUnit;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/5 6:41 PM
    */
   public class AdStatisticsByProvince {
@@ -10046,7 +10046,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.concurrent.TimeUnit;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/6 1:49 AM
    */
   public class LoginFail {
@@ -10180,7 +10180,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.concurrent.TimeUnit;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/6 1:49 AM
    */
   public class LoginFail {
@@ -10370,7 +10370,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.concurrent.TimeUnit;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/6 3:41 AM
    */
   public class LoginFailWithCep {
@@ -10468,7 +10468,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.concurrent.TimeUnit;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/6 3:41 AM
    */
   public class LoginFailWithCep {
@@ -10609,7 +10609,7 @@ case class MyAggTabTemp() extends TableAggregateFunction[(Double, Int), AggTabTe
   import java.util.concurrent.TimeUnit;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/6 5:50 AM
    */
   public class OrderPayTimeout {
@@ -10760,7 +10760,7 @@ ProcessFunction用来处理每个独立且靠状态就能联系的事件，灵�
   import java.util.concurrent.TimeUnit;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/6 4:59 PM
    */
   public class OrderTimeoutWithoutCep {
@@ -10973,7 +10973,7 @@ ProcessFunction用来处理每个独立且靠状态就能联系的事件，灵�
   import java.util.concurrent.TimeUnit;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/6 5:34 PM
    */
   public class TxPayMatch {
@@ -11169,7 +11169,7 @@ ProcessFunction用来处理每个独立且靠状态就能联系的事件，灵�
   import java.util.concurrent.TimeUnit;
   
   /**
-   * @author : Ashiamd email: ashiamd@foxmail.com
+   * @author : daodaocrazy email: daodaocrazy@outlook.com
    * @date : 2021/2/6 7:55 PM
    */
   public class TxPayMatchByJoin {
