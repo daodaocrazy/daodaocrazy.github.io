@@ -10,16 +10,16 @@
 
 ## 目录
 
-* [Android](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/Android/README.md)
+* [BigData](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/BigData/README.md)
+* [Java](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/Java/README.md)
+* [Python](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/Python/README.md)
+* [Scala](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/Scala/README.md)
 * [LeetCode](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/LeetCode_Study/README.md)
 * [React](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/React/README.md)
 * [Vue](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/Vue/README.md)
 * [GoLang](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/GoLang/README.md)
-* [Java](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/Java/README.md)
-* [Python](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/Python/README.md)
-* [Scala](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/Scala/README.md)
+* [Android](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/Android/README.md)
 * [Rust](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/Rust/README.md)
-* [BigData](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/BigData/README.md)
 * [SpringBoot](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/SpringBoot/README.md)
 * [SpringCloud](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/SpringCloud/README.md)
 * [MQ](https://daodaocrazy.github.io/daodaocrazy.github.io/#/study/MQ/README.md)
