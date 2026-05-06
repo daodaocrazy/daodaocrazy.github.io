@@ -6,5 +6,5 @@
 * 😶💻🕜🕝🕞🕟🕠🕡🕢🕣🕤🕥🕦🕧😪
 * 😪👀😎😟😤💪💪💪💻🌕🌗🌑🌞😪😴
 
-[开始阅读](README.md)
-[我的GitHub](https://github.com/daodaocrazy/daodaocrazy.github)
+[开始阅读](#/README)
+[我的GitHub](https://github.com/daodaocrazy)
