@@ -1,12 +1,12 @@
 # Elastic Stack（ELK）从入门到实践 - 学习笔记
 
-> [Elastic Stack（ELK）从入门到实践](https://www.bilibili.com/video/BV1iJ411c7Az) <== 视频链接
->
-> [Elasticsearch 的使用Demo](https://blog.csdn.net/u011580290/article/details/88226164)	<=	推荐文章
->
-> [gavin5033的博客--ELK专栏](https://blog.csdn.net/gavin5033/category_8070372.html)	<=	推荐ELK学习文章
->
-> [Elasticsearch 索引的映射配置详解 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/41929500)	<=	很清晰的概述文章
+&gt; [Elastic Stack（ELK）从入门到实践](https://www.bilibili.com/video/BV1iJ411c7Az) &lt;== 视频链接
+&gt;
+&gt; [Elasticsearch 的使用Demo](https://blog.csdn.net/u011580290/article/details/88226164)	&lt;=	推荐文章
+&gt;
+&gt; [gavin5033的博客--ELK专栏](https://blog.csdn.net/gavin5033/category_8070372.html)	&lt;=	推荐ELK学习文章
+&gt;
+&gt; [Elasticsearch 索引的映射配置详解 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/41929500)	&lt;=	很清晰的概述文章
 
 # 1. Elastic Stack简介
 
@@ -22,19 +22,19 @@
 
 + **Elasticsearch**
 
-  ​	Elasticsearch **基于java**，是个开源分布式搜索引擎，它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。
+  	Elasticsearch **基于java**，是个开源分布式搜索引擎，它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。
 
 + **Logstash**
 
-  ​	Logstash **基于java**，是一个开源的用于收集,**分析**和存储日志的工具。
+  	Logstash **基于java**，是一个开源的用于收集,**分析**和存储日志的工具。
 
 + **Kibana**
 
-  ​	Kibana **基于nodejs**，也是一个开源和免费的工具，Kibana可以为 Logstash 和 ElasticSearch 提供的日志分析友好的Web 界面，可以汇总、分析和搜索重要数据日志。
+  	Kibana **基于nodejs**，也是一个开源和免费的工具，Kibana可以为 Logstash 和 ElasticSearch 提供的日志分析友好的Web 界面，可以汇总、分析和搜索重要数据日志。
 
 + **Beats**
 
-  ​	Beats是elastic公司开源的一款**采集系统监控数据**的代理agent，是在被监控服务器上以客户端形式运行的数据收集器的统称，可以直接把数据发送给Elasticsearch或者通过Logstash发送给Elasticsearch，然后进行后续的数据分析活动。
+  	Beats是elastic公司开源的一款**采集系统监控数据**的代理agent，是在被监控服务器上以客户端形式运行的数据收集器的统称，可以直接把数据发送给Elasticsearch或者通过Logstash发送给Elasticsearch，然后进行后续的数据分析活动。
 
   Beats由如下组成：
 
@@ -51,9 +51,9 @@
 
 ## 2.1 简介
 
-​	ElasticSearch是一个基于[Lucene](https://baike.baidu.com/item/Lucene/6753302?fr=aladdin)的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于RESTFUL web接口。ElasticSearch用Java开发，并作为Apache许可条款下的开放源码发布，是当前流行的企业级搜索引擎。设计用于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。
+	ElasticSearch是一个基于[Lucene](https://baike.baidu.com/item/Lucene/6753302?fr=aladdin)的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于RESTFUL web接口。ElasticSearch用Java开发，并作为Apache许可条款下的开放源码发布，是当前流行的企业级搜索引擎。设计用于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。
 
-​	<small>零配置、多用户、云方案、JSON数据 => ElasticSearch</small>
+	&lt;small&gt;零配置、多用户、云方案、JSON数据 =&gt; ElasticSearch&lt;/small&gt;
 
 ## 2.2 基本概念
 
@@ -85,11 +85,11 @@
 
 ## 2.3 RESTful API
 
-​	在Elasticsearch中，提供了功能丰富的RESTful API的操作，包括基本的CRUD、创建索引、删除索引等操作。
+	在Elasticsearch中，提供了功能丰富的RESTful API的操作，包括基本的CRUD、创建索引、删除索引等操作。
 
 ### 2.3.1创建非结构化索引
 
-​	在Lucene中，创建索引是需要定义字段名称以及字段的类型的，在Elasticsearch中提供了非结构化的索引，就是不需要创建索引结构，即可写入数据到索引中，实际上在Elasticsearch底层会进行结构化操作，此操作对用户是透明的。
+	在Lucene中，创建索引是需要定义字段名称以及字段的类型的，在Elasticsearch中提供了非结构化的索引，就是不需要创建索引结构，即可写入数据到索引中，实际上在Elasticsearch底层会进行结构化操作，此操作对用户是透明的。
 
-​	创建空索引：
+	创建空索引：
 

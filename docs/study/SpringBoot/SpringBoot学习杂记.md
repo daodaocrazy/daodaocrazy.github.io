@@ -2,19 +2,19 @@
 
 ## 1. 依赖注入
 
-> [Spring学习（十八）Bean 的三种依赖注入方式介绍](https://www.cnblogs.com/lirunzhou/p/9843176.html)
->
-> [@Autowired的使用：推荐对构造函数进行注释](https://blog.csdn.net/qq_22873427/article/details/73718952)
+&gt; [Spring学习（十八）Bean 的三种依赖注入方式介绍](https://www.cnblogs.com/lirunzhou/p/9843176.html)
+&gt;
+&gt; [@Autowired的使用：推荐对构造函数进行注释](https://blog.csdn.net/qq_22873427/article/details/73718952)
 
 # 2. AOP
 
-> [Aspectj与Spring AOP比较 - 简书 (jianshu.com)](https://www.jianshu.com/p/872d3dbdc2ca) => 图文并茂，推荐阅读
+&gt; [Aspectj与Spring AOP比较 - 简书 (jianshu.com)](https://www.jianshu.com/p/872d3dbdc2ca) =&gt; 图文并茂，推荐阅读
 
 # 3. Spring事务
 
-> + [Spring中同一类@Transactional修饰方法相互调用的坑_前路无畏的博客-CSDN博客](https://blog.csdn.net/fsjwin/article/details/109211355)	<=	避坑推荐
-> + [Spring事务-随笔-daodaocrazy - 博客园 (cnblogs.com)](https://www.cnblogs.com/daodaocrazy/p/15085827.html)
-> + [Spring事务测试github项目](https://github.com/daodaocrazy/SpringTransactionTest)
+&gt; + [Spring中同一类@Transactional修饰方法相互调用的坑_前路无畏的博客-CSDN博客](https://blog.csdn.net/fsjwin/article/details/109211355)	&lt;=	避坑推荐
+&gt; + [Spring事务-随笔-daodaocrazy - 博客园 (cnblogs.com)](https://www.cnblogs.com/daodaocrazy/p/15085827.html)
+&gt; + [Spring事务测试github项目](https://github.com/daodaocrazy/SpringTransactionTest)
 
 1. @Transactional 由于serviceImp实现的service，所以AOP默认用的Spring AOP中的jdk动态代理。因此private、protected、包级、static的不能生效，但是不报错。另外由于AOP，同类下的其他方法上的@Transactional不生效，因为是类内部方法调用，动态代理不生效。
 
@@ -115,37 +115,37 @@
 
     *ps：如果我们自己用jdk动态代理的原始写法，其实可以setAccessible(true)访问private修饰的东西*
 
-> [spring事务传播级别](https://blog.csdn.net/qq_36094023/article/details/90544286)
-> 
-> [Spring五个事务隔离级别和七个事务传播行为](https://www.cnblogs.com/wj0816/p/8474743.html)
-> 
-> [transactionTemplate用法](https://blog.csdn.net/qq_20009015/article/details/84863295)
-> 
-> [Spring中Transactional放在类级别和方法级别上有什么不同？](https://zhidao.baidu.com/question/1500582510886123139.html)
-> 
-> [Spring @Transactional属性可以在私有方法上工作吗？](http://www.mianshigee.com/question/172320jjt/)
-> 
-> [Aspectj与Spring AOP比较](https://www.jianshu.com/p/872d3dbdc2ca)
-> 
-> [JDK动态代理](https://www.cnblogs.com/zuidongfeng/p/8735241.html)
-> 
-> [Spring ： REQUIRED和NESTED的区别](https://blog.csdn.net/qq_31967241/article/details/107764496)
-> 
-> [不同类的方法 事务问题_Spring 事务原理和使用，看完这一篇就足够了](https://blog.csdn.net/weixin_42367472/article/details/112636467)
-> 
-> [Spring中同一类@Transactional修饰方法相互调用的坑](https://blog.csdn.net/fsjwin/article/details/109211355)
-> 
-> [@Transactional同类方法调用不生效及解决方法](https://blog.csdn.net/weixin_38898423/article/details/113835501)
-> 
-> [Spring中事务的Propagation（传播性）的取值](https://blog.csdn.net/zhang_shufeng/article/details/38706725)
-> 
-> [spring+mybatis 手动开启和提交事务](https://www.cnblogs.com/xujishou/p/6210012.html)
-> 
-> [AopContext.currentProxy()](https://blog.csdn.net/qq_29860591/article/details/108728150)
+&gt; [spring事务传播级别](https://blog.csdn.net/qq_36094023/article/details/90544286)
+&gt; 
+&gt; [Spring五个事务隔离级别和七个事务传播行为](https://www.cnblogs.com/wj0816/p/8474743.html)
+&gt; 
+&gt; [transactionTemplate用法](https://blog.csdn.net/qq_20009015/article/details/84863295)
+&gt; 
+&gt; [Spring中Transactional放在类级别和方法级别上有什么不同？](https://zhidao.baidu.com/question/1500582510886123139.html)
+&gt; 
+&gt; [Spring @Transactional属性可以在私有方法上工作吗？](http://www.mianshigee.com/question/172320jjt/)
+&gt; 
+&gt; [Aspectj与Spring AOP比较](https://www.jianshu.com/p/872d3dbdc2ca)
+&gt; 
+&gt; [JDK动态代理](https://www.cnblogs.com/zuidongfeng/p/8735241.html)
+&gt; 
+&gt; [Spring ： REQUIRED和NESTED的区别](https://blog.csdn.net/qq_31967241/article/details/107764496)
+&gt; 
+&gt; [不同类的方法 事务问题_Spring 事务原理和使用，看完这一篇就足够了](https://blog.csdn.net/weixin_42367472/article/details/112636467)
+&gt; 
+&gt; [Spring中同一类@Transactional修饰方法相互调用的坑](https://blog.csdn.net/fsjwin/article/details/109211355)
+&gt; 
+&gt; [@Transactional同类方法调用不生效及解决方法](https://blog.csdn.net/weixin_38898423/article/details/113835501)
+&gt; 
+&gt; [Spring中事务的Propagation（传播性）的取值](https://blog.csdn.net/zhang_shufeng/article/details/38706725)
+&gt; 
+&gt; [spring+mybatis 手动开启和提交事务](https://www.cnblogs.com/xujishou/p/6210012.html)
+&gt; 
+&gt; [AopContext.currentProxy()](https://blog.csdn.net/qq_29860591/article/details/108728150)
 
 # 4. 异常处理
 
-> [Spring的@ExceptionHandler和@RestControllerAdvice使用-随笔 - daodaocrazy - 博客园 (cnblogs.com)](https://www.cnblogs.com/daodaocrazy/p/15045197.html)
+&gt; [Spring的@ExceptionHandler和@RestControllerAdvice使用-随笔 - daodaocrazy - 博客园 (cnblogs.com)](https://www.cnblogs.com/daodaocrazy/p/15045197.html)
 
 - 如果项目中Controller继承某个带有@ExceptionHandler注解方法的类，那么Controller抛出异常时，会优先走该@ExceptionHandler注解的方法。
 - 此时如果有另外带有@RestControllerAdvice注解的全局异常处理器，其只处理Controller继承的@ExceptionHandler范围外的异常。

@@ -1,10 +1,10 @@
 # 剑指Offer
 
-> [leetcode-LCOF](https://leetcode-cn.com/problemset/lcof/)
+&gt; [leetcode-LCOF](https://leetcode-cn.com/problemset/lcof/)
 
 ### 面试题57 - II. 和为s的连续正数序列
 
-> [面试题57 - II. 和为s的连续正数序列](https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/)
+&gt; [面试题57 - II. 和为s的连续正数序列](https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/)
 
 语言：java
 
@@ -69,7 +69,7 @@ class Solution {
 
 ### 面试题68 - I. 二叉搜索树的最近公共祖先
 
-> [面试题68 - I. 二叉搜索树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
+&gt; [面试题68 - I. 二叉搜索树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
 
 语言：java
 
@@ -119,7 +119,7 @@ class Solution {
 
 ### 面试题03. 数组中重复的数字
 
-> [面试题03. 数组中重复的数字](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/)
+&gt; [面试题03. 数组中重复的数字](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/)
 
 语言：java
 
@@ -144,7 +144,7 @@ class Solution {
 
 ### 面试题39. 数组中出现次数超过一半的数字
 
-> [面试题39. 数组中出现次数超过一半的数字](https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof/)
+&gt; [面试题39. 数组中出现次数超过一半的数字](https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof/)
 
 语言：java
 
@@ -177,7 +177,7 @@ class Solution {
 
 3. 返回值： 返回 众数x即可。
 
-> [面试题39. 数组中出现次数超过一半的数字（摩尔投票法，清晰图解](https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof/solution/mian-shi-ti-39-shu-zu-zhong-chu-xian-ci-shu-chao-3/)
+&gt; [面试题39. 数组中出现次数超过一半的数字（摩尔投票法，清晰图解](https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof/solution/mian-shi-ti-39-shu-zu-zhong-chu-xian-ci-shu-chao-3/)
 
 ```java
 class Solution {
@@ -221,7 +221,7 @@ class Solution {
 
 ### 面试题68 - II. 二叉树的最近公共祖先
 
-> [面试题68 - II. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
+&gt; [面试题68 - II. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
 
 语言：java
 
@@ -267,7 +267,7 @@ class Solution {
 
 ### 面试题57. 和为s的两个数字
 
-> [面试题57. 和为s的两个数字](https://leetcode-cn.com/problems/he-wei-sde-liang-ge-shu-zi-lcof/)
+&gt; [面试题57. 和为s的两个数字](https://leetcode-cn.com/problems/he-wei-sde-liang-ge-shu-zi-lcof/)
 
 语言：java
 
@@ -412,7 +412,7 @@ class Solution {
 
 ### 面试题21. 调整数组顺序使奇数位于偶数前面
 
-> [面试题21. 调整数组顺序使奇数位于偶数前面](https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/)
+&gt; [面试题21. 调整数组顺序使奇数位于偶数前面](https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/)
 
 语言：java
 
@@ -456,7 +456,7 @@ class Solution {
 
 + 重复上述操作，直到 fast 指向数组末尾 .
 
-> [快慢指针法](https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/solution/ti-jie-shou-wei-shuang-zhi-zhen-kuai-man-shuang-zh/)
+&gt; [快慢指针法](https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/solution/ti-jie-shou-wei-shuang-zhi-zhen-kuai-man-shuang-zh/)
 
 ```c++
 class Solution {
@@ -499,14 +499,14 @@ class Solution {
 
 ### 面试题52. 两个链表的第一个公共节点
 
-> [面试题52. 两个链表的第一个公共节点](https://leetcode-cn.com/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof/)
+&gt; [面试题52. 两个链表的第一个公共节点](https://leetcode-cn.com/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof/)
 
 语言：java
 
 思路：假设A和B的相交部分长度c，各自非相交的部分长度为a和b；也就是A自己走完就走B，而B自己走完就走A，如果是相交的，那么相同的时候，节点不为null，否则相遇的点就是null。
 
-+ 相交：c = c -> a+b+c = b+a+c
-+ 不相交：c=0 -> a+b = b+a
++ 相交：c = c -&gt; a+b+c = b+a+c
++ 不相交：c=0 -&gt; a+b = b+a
 
 代码（1ms，100%）：
 
@@ -525,7 +525,7 @@ public class Solution {
 
 ### 面试题62. 圆圈中最后剩下的数字
 
-> [面试题62. 圆圈中最后剩下的数字](https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/)
+&gt; [面试题62. 圆圈中最后剩下的数字](https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/)
 
 语言：java
 
@@ -547,11 +547,11 @@ class Solution {
 
 ### 面试题50. 第一个只出现一次的字符
 
-> [面试题50. 第一个只出现一次的字符](https://leetcode-cn.com/problems/di-yi-ge-zhi-chu-xian-yi-ci-de-zi-fu-lcof/)
+&gt; [面试题50. 第一个只出现一次的字符](https://leetcode-cn.com/problems/di-yi-ge-zhi-chu-xian-yi-ci-de-zi-fu-lcof/)
 
 语言：java
 
-思路：用LinkedHashMap来记录遍历过的字符，这里不能用单纯只HashMap->不保证插入顺序。
+思路：用LinkedHashMap来记录遍历过的字符，这里不能用单纯只HashMap-&gt;不保证插入顺序。
 
 代码 (40ms，34.56%)：
 
@@ -619,7 +619,7 @@ class Solution {
 
 参考代码3-1：LinkedHashMap的优化使用方法，毕竟只要知道是否重复，不需要知道具体数量
 
-> [面试题50. 第一个只出现一次的字符（哈希表 / 有序哈希表，清晰图解）](https://leetcode-cn.com/problems/di-yi-ge-zhi-chu-xian-yi-ci-de-zi-fu-lcof/solution/mian-shi-ti-50-di-yi-ge-zhi-chu-xian-yi-ci-de-zi-3/)
+&gt; [面试题50. 第一个只出现一次的字符（哈希表 / 有序哈希表，清晰图解）](https://leetcode-cn.com/problems/di-yi-ge-zhi-chu-xian-yi-ci-de-zi-fu-lcof/solution/mian-shi-ti-50-di-yi-ge-zhi-chu-xian-yi-ci-de-zi-3/)
 
 ```java
 class Solution {
@@ -684,7 +684,7 @@ class Solution {
 
 ### 面试题42. 连续子数组的最大和
 
-> [面试题42. 连续子数组的最大和](https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/)
+&gt; [面试题42. 连续子数组的最大和](https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/)
 
 语言：java
 
@@ -713,7 +713,7 @@ class Solution {
 
 参考代码：思路和我是一样的，这个用了更少的变量，不过需要修改原数组。这个看着更精简，意味着需要一定的理解能力。
 
-> [面试题42. 连续子数组的最大和（动态规划，清晰图解）](https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/solution/mian-shi-ti-42-lian-xu-zi-shu-zu-de-zui-da-he-do-2/)
+&gt; [面试题42. 连续子数组的最大和（动态规划，清晰图解）](https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/solution/mian-shi-ti-42-lian-xu-zi-shu-zu-de-zui-da-he-do-2/)
 
 ```java
 class Solution {
@@ -730,7 +730,7 @@ class Solution {
 
 ### 面试题40. 最小的k个数
 
-> [面试题40. 最小的k个数](https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/)
+&gt; [面试题40. 最小的k个数](https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/)
 
 语言：java
 
@@ -881,7 +881,7 @@ class Solution {
 
 参考代码3（二叉搜索树，这里同时是红黑树，34ms,18.85%）：同样巨慢
 
-> [4种解法秒杀TopK（快排/堆/二叉搜索树/计数排序）]([https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/3chong-jie-fa-miao-sha-topkkuai-pai-dui-er-cha-sou/#%E4%B8%89%E3%80%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B9%9F%E5%8F%AF%E4%BB%A5-%E8%A7%A3%E5%86%B3-topk-%E9%97%AE%E9%A2%98%E5%93%A6](https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/3chong-jie-fa-miao-sha-topkkuai-pai-dui-er-cha-sou/#三、二叉搜索树也可以-解决-topk-问题哦))
+&gt; [4种解法秒杀TopK（快排/堆/二叉搜索树/计数排序）]([https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/3chong-jie-fa-miao-sha-topkkuai-pai-dui-er-cha-sou/#%E4%B8%89%E3%80%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B9%9F%E5%8F%AF%E4%BB%A5-%E8%A7%A3%E5%86%B3-topk-%E9%97%AE%E9%A2%98%E5%93%A6](https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/3chong-jie-fa-miao-sha-topkkuai-pai-dui-er-cha-sou/#三、二叉搜索树也可以-解决-topk-问题哦))
 
 ```java
 class Solution {
@@ -931,7 +931,7 @@ class Solution {
 
 ### 面试题30. 包含min函数的栈
 
-> [面试题30. 包含min函数的栈](https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/)
+&gt; [面试题30. 包含min函数的栈](https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/)
 
 语言：java
 
@@ -1038,7 +1038,7 @@ class MinStack {
 
 ### 面试题55 - II. 平衡二叉树
 
-> [面试题55 - II. 平衡二叉树](https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/)
+&gt; [面试题55 - II. 平衡二叉树](https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/)
 
 语言：java
 
@@ -1095,7 +1095,7 @@ class Solution {
 }
 ```
 
-> [面试题55 - II. 平衡二叉树（从底至顶、从顶至底，清晰图解）](https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/solution/mian-shi-ti-55-ii-ping-heng-er-cha-shu-cong-di-zhi/)
+&gt; [面试题55 - II. 平衡二叉树（从底至顶、从顶至底，清晰图解）](https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/solution/mian-shi-ti-55-ii-ping-heng-er-cha-shu-cong-di-zhi/)
 
 参考剪枝操作后，重写（1ms,99.95%,果然LeetCode的Java测试用例少，判断时间机制也比较迷，哈哈）：
 
@@ -1133,9 +1133,9 @@ class Solution {
 
 ### 面试题66. 构建乘积数组
 
-> [面试题66. 构建乘积数组](https://leetcode-cn.com/problems/gou-jian-cheng-ji-shu-zu-lcof/)
->
-> [面试题66. 构建乘积数组（表格分区，清晰图解）](https://leetcode-cn.com/problems/gou-jian-cheng-ji-shu-zu-lcof/solution/mian-shi-ti-66-gou-jian-cheng-ji-shu-zu-biao-ge-fe/)
+&gt; [面试题66. 构建乘积数组](https://leetcode-cn.com/problems/gou-jian-cheng-ji-shu-zu-lcof/)
+&gt;
+&gt; [面试题66. 构建乘积数组（表格分区，清晰图解）](https://leetcode-cn.com/problems/gou-jian-cheng-ji-shu-zu-lcof/solution/mian-shi-ti-66-gou-jian-cheng-ji-shu-zu-biao-ge-fe/)
 
 语言：java
 
@@ -1163,7 +1163,7 @@ class Solution {
 }
 ```
 
-参考代码（1ms）：同样对称数组，更加简洁-->双100%
+参考代码（1ms）：同样对称数组，更加简洁--&gt;双100%
 
 ```java
 class Solution {
@@ -1181,9 +1181,9 @@ class Solution {
 
 ###  面试题28. 对称的二叉树
 
-> [面试题28. 对称的二叉树](https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/)
->
-> [面试题28. 对称的二叉树（递归，清晰图解）](https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/solution/mian-shi-ti-28-dui-cheng-de-er-cha-shu-di-gui-qing/)
+&gt; [面试题28. 对称的二叉树](https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/)
+&gt;
+&gt; [面试题28. 对称的二叉树（递归，清晰图解）](https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/solution/mian-shi-ti-28-dui-cheng-de-er-cha-shu-di-gui-qing/)
 
 语言：java
 
@@ -1209,7 +1209,7 @@ class Solution {
 
 这里直接复制网友的答题评论了，感觉说的很有道理
 
-> [面试题28. 对称的二叉树--评论区--Tai_Park网友评论](https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/comments/)
+&gt; [面试题28. 对称的二叉树--评论区--Tai_Park网友评论](https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/comments/)
 
 ```none
 做递归思考三步：
@@ -1232,7 +1232,7 @@ class Solution {
 
 ### 面试题65. 不用加减乘除做加法
 
-> [面试题65. 不用加减乘除做加法](https://leetcode-cn.com/problems/bu-yong-jia-jian-cheng-chu-zuo-jia-fa-lcof/)
+&gt; [面试题65. 不用加减乘除做加法](https://leetcode-cn.com/problems/bu-yong-jia-jian-cheng-chu-zuo-jia-fa-lcof/)
 
 语言：java
 
@@ -1240,13 +1240,13 @@ class Solution {
 
 1. 不需要进位的部分之和为 a^b
 
-2. 进位的部分：(a&b) << 1
+2. 进位的部分：(a&b) &lt;&lt; 1
 
-3. 不需要进位的部分和进位的部分再次求和：(a^b) ^ [(a&b)<<1]
+3. 不需要进位的部分和进位的部分再次求和：(a^b) ^ [(a&b)&lt;&lt;1]
 
 4. ....
 
-   把数字都视为32位二进制数字时，那么相加就只有01 10 00 11 四种情况，前三种不需要进位，a^b的结果都是0；最后11这种，需要进位变成100，即(a&b)<<1。重复操作，将未进位部分和进位部分相加，直到没有进位后，就结束加法运算了。这个算操作系统原理学过的知识吧。
+   把数字都视为32位二进制数字时，那么相加就只有01 10 00 11 四种情况，前三种不需要进位，a^b的结果都是0；最后11这种，需要进位变成100，即(a&b)&lt;&lt;1。重复操作，将未进位部分和进位部分相加，直到没有进位后，就结束加法运算了。这个算操作系统原理学过的知识吧。
 
 代码（0ms）：
 
@@ -1268,7 +1268,7 @@ class Solution {
 
 参考代码：更加精简的版本
 
-> [面试题65. 不用加减乘除做加法（位运算，清晰图解）](https://leetcode-cn.com/problems/bu-yong-jia-jian-cheng-chu-zuo-jia-fa-lcof/solution/mian-shi-ti-65-bu-yong-jia-jian-cheng-chu-zuo-ji-7/)
+&gt; [面试题65. 不用加减乘除做加法（位运算，清晰图解）](https://leetcode-cn.com/problems/bu-yong-jia-jian-cheng-chu-zuo-jia-fa-lcof/solution/mian-shi-ti-65-bu-yong-jia-jian-cheng-chu-zuo-ji-7/)
 
 ```java
 class Solution {
@@ -1285,9 +1285,9 @@ class Solution {
 
 ### 面试题60. n个骰子的点数
 
-> [面试题60. n个骰子的点数](https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/)
->
-> [【n个骰子的点数】：详解动态规划及其优化方式](https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/solution/nge-tou-zi-de-dian-shu-dong-tai-gui-hua-ji-qi-yo-3/)
+&gt; [面试题60. n个骰子的点数](https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/)
+&gt;
+&gt; [【n个骰子的点数】：详解动态规划及其优化方式](https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/solution/nge-tou-zi-de-dian-shu-dong-tai-gui-hua-ji-qi-yo-3/)
 
 语言：java
 
@@ -1352,13 +1352,13 @@ class Solution {
 
 ### 面试题53 - I. 在排序数组中查找数字 I
 
-> [面试题53 - I. 在排序数组中查找数字 I](https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/)
->
-> [面试题53 - I. 在排序数组中查找数字 I（二分法，清晰图解）](https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/solution/mian-shi-ti-53-i-zai-pai-xu-shu-zu-zhong-cha-zha-5/)
+&gt; [面试题53 - I. 在排序数组中查找数字 I](https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/)
+&gt;
+&gt; [面试题53 - I. 在排序数组中查找数字 I（二分法，清晰图解）](https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/solution/mian-shi-ti-53-i-zai-pai-xu-shu-zu-zhong-cha-zha-5/)
 
 语言：java
 
-思路：明显要二分查找。就是中间的<=、>=、<、>的选择，我没能把握好，可以说边界条件没把握好吧，多提交了几次，比较蛋疼。先一个循环找出目标数字群的右边第一个位置；然后第二个循环找出目标数字群的左边第一个位置。
+思路：明显要二分查找。就是中间的&lt;=、&gt;=、&lt;、&gt;的选择，我没能把握好，可以说边界条件没把握好吧，多提交了几次，比较蛋疼。先一个循环找出目标数字群的右边第一个位置；然后第二个循环找出目标数字群的左边第一个位置。
 
 代码（0ms）：
 
@@ -1444,14 +1444,14 @@ class Solution {
 
 ### 面试题11. 旋转数组的最小数字
 
-> [面试题11. 旋转数组的最小数字](https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/)
+&gt; [面试题11. 旋转数组的最小数字](https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/)
 
 语言：java
 
 思路：看着就是需要二分查找的样子。
 
-+ 右边界数值 > 中间；有边界修改成mid
-+ 右边界数值 < 中间；左边界++(这个其实应该改成左边界 = mid + 1，减少计算)
++ 右边界数值 &gt; 中间；有边界修改成mid
++ 右边界数值 &lt; 中间；左边界++(这个其实应该改成左边界 = mid + 1，减少计算)
 + 右边界 = 中间； 右边界--
 
 代码（1ms,50.41%）：
@@ -1476,9 +1476,9 @@ class Solution {
 }
 ```
 
-参考代码1（0ms）：同样是二分查找，但是`numbers[m] > numbers[j]`的处理更好
+参考代码1（0ms）：同样是二分查找，但是`numbers[m] &gt; numbers[j]`的处理更好
 
-> [面试题11. 旋转数组的最小数字（二分法，清晰图解）](https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/solution/mian-shi-ti-11-xuan-zhuan-shu-zu-de-zui-xiao-shu-3/)
+&gt; [面试题11. 旋转数组的最小数字（二分法，清晰图解）](https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/solution/mian-shi-ti-11-xuan-zhuan-shu-zu-de-zui-xiao-shu-3/)
 
 ```java
 class Solution {
@@ -1497,7 +1497,7 @@ class Solution {
 
 ### 面试题53 - II. 0～n-1中缺失的数字
 
-> [面试题53 - II. 0～n-1中缺失的数字](https://leetcode-cn.com/problems/que-shi-de-shu-zi-lcof/)
+&gt; [面试题53 - II. 0～n-1中缺失的数字](https://leetcode-cn.com/problems/que-shi-de-shu-zi-lcof/)
 
 语言：java
 
@@ -1533,7 +1533,7 @@ class Solution {
 
 参考代码：更加简洁了。同样也是二分法。
 
-> [面试题53 - II. 0～n-1 中缺失的数字（二分法，清晰图解）](https://leetcode-cn.com/problems/que-shi-de-shu-zi-lcof/solution/mian-shi-ti-53-ii-0n-1zhong-que-shi-de-shu-zi-er-f/)
+&gt; [面试题53 - II. 0～n-1 中缺失的数字（二分法，清晰图解）](https://leetcode-cn.com/problems/que-shi-de-shu-zi-lcof/solution/mian-shi-ti-53-ii-0n-1zhong-que-shi-de-shu-zi-er-f/)
 
 ```java
 class Solution {
@@ -1551,11 +1551,11 @@ class Solution {
 
 ### 面试题59 - I. 滑动窗口的最大值
 
-> [面试题59 - I. 滑动窗口的最大值](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/)
->
-> [面试题59 - I. 滑动窗口的最大值（单调栈，清晰图解）](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/)
->
-> [Java-单调双向队列-画图详解](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/java-dan-diao-shuang-xiang-lian-biao-hua-tu-xiang-/)
+&gt; [面试题59 - I. 滑动窗口的最大值](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/)
+&gt;
+&gt; [面试题59 - I. 滑动窗口的最大值（单调栈，清晰图解）](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/)
+&gt;
+&gt; [Java-单调双向队列-画图详解](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/java-dan-diao-shuang-xiang-lian-biao-hua-tu-xiang-/)
 
 语言：java
 
@@ -1597,7 +1597,7 @@ class Solution {
 
 参考代码1（19ms，44.51%）：
 
-> [面试题59 - I. 滑动窗口的最大值（单调栈，清晰图解）](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/)
+&gt; [面试题59 - I. 滑动窗口的最大值（单调栈，清晰图解）](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/)
 
 ```java
 class Solution {
@@ -1699,7 +1699,7 @@ class Solution {
 
 ### 面试题61. 扑克牌中的顺子
 
-> [面试题61. 扑克牌中的顺子](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/)
+&gt; [面试题61. 扑克牌中的顺子](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/)
 
 语言：java
 
@@ -1710,7 +1710,7 @@ class Solution {
 1. 统计鬼牌数量
 2. 判断是否顺子
    + 除去鬼牌后，剩余的牌，两辆之间相差的数值超过1的部分需要鬼牌去弥补。
-   + 如果鬼牌数量拿去弥补后，不够用了（<0）或者出现前后两张牌相同，则不是顺子
+   + 如果鬼牌数量拿去弥补后，不够用了（&lt;0）或者出现前后两张牌相同，则不是顺子
 
 代码（1ms，84.82%）：
 
@@ -1741,7 +1741,7 @@ class Solution {
 
 参考代码1（1ms，84.82%）:把问题转换成5张牌的最大值和最小值相差不能超过4且不能出现重复。而是否重复可以通过set来判断；最大最小值则是手动统计
 
-> [面试题61. 扑克牌中的顺子（集合 Set / 排序，清晰图解）](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/solution/mian-shi-ti-61-bu-ke-pai-zhong-de-shun-zi-ji-he-se/)
+&gt; [面试题61. 扑克牌中的顺子（集合 Set / 排序，清晰图解）](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/solution/mian-shi-ti-61-bu-ke-pai-zhong-de-shun-zi-ji-he-se/)
 
 ```java
 class Solution {
@@ -1762,7 +1762,7 @@ class Solution {
 
 参考代码2（1ms,84.82%）：先排序再判断除了鬼牌外是否出现重复，是否最大最小值之差小于5
 
-> [面试题61. 扑克牌中的顺子（集合 Set / 排序，清晰图解）](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/solution/mian-shi-ti-61-bu-ke-pai-zhong-de-shun-zi-ji-he-se/)
+&gt; [面试题61. 扑克牌中的顺子（集合 Set / 排序，清晰图解）](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/solution/mian-shi-ti-61-bu-ke-pai-zhong-de-shun-zi-ji-he-se/)
 
 ```java
 class Solution {
@@ -1780,7 +1780,7 @@ class Solution {
 
 ### 面试题29. 顺时针打印矩阵
 
-> [面试题29. 顺时针打印矩阵](https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/)
+&gt; [面试题29. 顺时针打印矩阵](https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/)
 
 语言：java
 
@@ -1863,7 +1863,7 @@ class Solution {
 
 ### 面试题10- II. 青蛙跳台阶问题
 
-> [面试题10- II. 青蛙跳台阶问题](https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/)
+&gt; [面试题10- II. 青蛙跳台阶问题](https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/)
 
 语言：java
 
@@ -1891,7 +1891,7 @@ class Solution {
 
 参加代码：直接用3个值来表示f(n)、f(n-1)、f(n-2)。常量级的空间。
 
-> [面试题10- II. 青蛙跳台阶问题（动态规划，清晰图解）](https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/solution/mian-shi-ti-10-ii-qing-wa-tiao-tai-jie-wen-ti-dong/)
+&gt; [面试题10- II. 青蛙跳台阶问题（动态规划，清晰图解）](https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/solution/mian-shi-ti-10-ii-qing-wa-tiao-tai-jie-wen-ti-dong/)
 
 ```java
 class Solution {
@@ -1909,7 +1909,7 @@ class Solution {
 
 ### 面试题58 - I. 翻转单词顺序
 
-> [面试题58 - I. 翻转单词顺序](https://leetcode-cn.com/problems/fan-zhuan-dan-ci-shun-xu-lcof/)
+&gt; [面试题58 - I. 翻转单词顺序](https://leetcode-cn.com/problems/fan-zhuan-dan-ci-shun-xu-lcof/)
 
 语言：java
 
@@ -1954,7 +1954,7 @@ public class Solution {
 
 ### 面试题04. 二维数组中的查找
 
-> [面试题04. 二维数组中的查找](https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/)
+&gt; [面试题04. 二维数组中的查找](https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/)
 
 语言：java
 
@@ -1990,7 +1990,7 @@ class Solution {
 
 参考代码：这个也是取左下角作为起点，然后查找target。同样是改变边界去查找
 
->[面试题04. 二维数组中的查找（左下角标志数法，清晰图解）](https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-zuo/)
+&gt;[面试题04. 二维数组中的查找（左下角标志数法，清晰图解）](https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-zuo/)
 
 ```java
 class Solution {
@@ -2009,7 +2009,7 @@ class Solution {
 
 ### 面试题10- I. 斐波那契数列
 
-> [面试题10- I. 斐波那契数列](https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/)
+&gt; [面试题10- I. 斐波那契数列](https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/)
 
 语言：java
 
@@ -2035,7 +2035,7 @@ class Solution {
 
 参考代码：用的retun a，更加精简了。
 
-> [面试题10- I. 斐波那契数列（动态规划，清晰图解）](https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/solution/mian-shi-ti-10-i-fei-bo-na-qi-shu-lie-dong-tai-gui/)
+&gt; [面试题10- I. 斐波那契数列（动态规划，清晰图解）](https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/solution/mian-shi-ti-10-i-fei-bo-na-qi-shu-lie-dong-tai-gui/)
 
 ```java
 class Solution {
@@ -2053,7 +2053,7 @@ class Solution {
 
 ### 面试题64. 求1+2+…+n
 
-> [面试题64. 求1+2+…+n](https://leetcode-cn.com/problems/qiu-12n-lcof/)
+&gt; [面试题64. 求1+2+…+n](https://leetcode-cn.com/problems/qiu-12n-lcof/)
 
 语言：java
 
@@ -2083,7 +2083,7 @@ class Solution {
 
 参考代码2：(1ms，61.83%)
 
-> [面试题64. 求 1 + 2 + … + n（逻辑符短路，清晰图解）](https://leetcode-cn.com/problems/qiu-12n-lcof/solution/mian-shi-ti-64-qiu-1-2-nluo-ji-fu-duan-lu-qing-xi-/)
+&gt; [面试题64. 求 1 + 2 + … + n（逻辑符短路，清晰图解）](https://leetcode-cn.com/problems/qiu-12n-lcof/solution/mian-shi-ti-64-qiu-1-2-nluo-ji-fu-duan-lu-qing-xi-/)
 
 ```java
 class Solution {
@@ -2096,7 +2096,7 @@ class Solution {
 
 参考代码3：(1ms，61.83%)
 
-> [面试题64. 求 1 + 2 + … + n（逻辑符短路，清晰图解）](https://leetcode-cn.com/problems/qiu-12n-lcof/solution/mian-shi-ti-64-qiu-1-2-nluo-ji-fu-duan-lu-qing-xi-/)
+&gt; [面试题64. 求 1 + 2 + … + n（逻辑符短路，清晰图解）](https://leetcode-cn.com/problems/qiu-12n-lcof/solution/mian-shi-ti-64-qiu-1-2-nluo-ji-fu-duan-lu-qing-xi-/)
 
 ```java
 class Solution {
@@ -2111,11 +2111,11 @@ class Solution {
 
 ### 面试题56 - II. 数组中数字出现的次数 II
 
-> [面试题56 - II. 数组中数字出现的次数 II](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/)
->
-> [面试题56 - II. 数组中数字出现的次数 II（位运算 + 有限状态自动机，清晰图解）](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/solution/mian-shi-ti-56-ii-shu-zu-zhong-shu-zi-chu-xian-d-4/)
->
-> [状态机解决此问题详解 （数字电路）](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/solution/zhuang-tai-ji-jie-jue-ci-wen-ti-xiang-jie-shu-zi-d/)
+&gt; [面试题56 - II. 数组中数字出现的次数 II](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/)
+&gt;
+&gt; [面试题56 - II. 数组中数字出现的次数 II（位运算 + 有限状态自动机，清晰图解）](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/solution/mian-shi-ti-56-ii-shu-zu-zhong-shu-zi-chu-xian-d-4/)
+&gt;
+&gt; [状态机解决此问题详解 （数字电路）](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/solution/zhuang-tai-ji-jie-jue-ci-wen-ti-xiang-jie-shu-zi-d/)
 
 语言：java
 
@@ -2160,9 +2160,9 @@ class Solution {
 
 ### 面试题56 - I. 数组中数字出现的次数
 
-> [面试题56 - I. 数组中数字出现的次数](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/)
->
-> [数组中数字出现的次数-官方解题](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/solution/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-by-leetcode/)
+&gt; [面试题56 - I. 数组中数字出现的次数](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/)
+&gt;
+&gt; [数组中数字出现的次数-官方解题](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/solution/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-by-leetcode/)
 
 语言：java
 
@@ -2212,9 +2212,9 @@ class Solution {
 
 ### 138. 复制带随机指针的链表
 
-> [138. 复制带随机指针的链表](https://leetcode-cn.com/problems/copy-list-with-random-pointer/)
->
-> [复制带随机指针的链表--官网解答](https://leetcode-cn.com/problems/copy-list-with-random-pointer/solution/fu-zhi-dai-sui-ji-zhi-zhen-de-lian-biao-by-leetcod/)
+&gt; [138. 复制带随机指针的链表](https://leetcode-cn.com/problems/copy-list-with-random-pointer/)
+&gt;
+&gt; [复制带随机指针的链表--官网解答](https://leetcode-cn.com/problems/copy-list-with-random-pointer/solution/fu-zhi-dai-sui-ji-zhi-zhen-de-lian-biao-by-leetcod/)
 
 语言：java
 
@@ -2267,9 +2267,9 @@ class Solution {
 
 ### 面试题07. 重建二叉树
 
-> [面试题07. 重建二叉树](https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/)
->
-> [面试题07. 重建二叉树--官方讲解](https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/solution/mian-shi-ti-07-zhong-jian-er-cha-shu-by-leetcode-s/)
+&gt; [面试题07. 重建二叉树](https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/)
+&gt;
+&gt; [面试题07. 重建二叉树--官方讲解](https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/solution/mian-shi-ti-07-zhong-jian-er-cha-shu-by-leetcode-s/)
 
 语言：java
 
@@ -2349,7 +2349,7 @@ class Solution {
 
 ### 面试题47. 礼物的最大价值
 
-> [面试题47. 礼物的最大价值](https://leetcode-cn.com/problems/li-wu-de-zui-da-jie-zhi-lcof/)
+&gt; [面试题47. 礼物的最大价值](https://leetcode-cn.com/problems/li-wu-de-zui-da-jie-zhi-lcof/)
 
 语言：java
 
@@ -2439,7 +2439,7 @@ class Solution {
 
 ### 面试题32 - I. 从上到下打印二叉树
 
-> [面试题32 - I. 从上到下打印二叉树](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/)
+&gt; [面试题32 - I. 从上到下打印二叉树](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/)
 
 语言：java
 
@@ -2510,7 +2510,7 @@ class Solution {
 
 参考代码2：
 
-> [面试题32 - I. 从上到下打印二叉树（层序遍历 BFS ，清晰图解）](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/solution/mian-shi-ti-32-i-cong-shang-dao-xia-da-yin-er-ch-4/)
+&gt; [面试题32 - I. 从上到下打印二叉树（层序遍历 BFS ，清晰图解）](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/solution/mian-shi-ti-32-i-cong-shang-dao-xia-da-yin-er-ch-4/)
 
 ```java
 class Solution {
@@ -2534,11 +2534,11 @@ class Solution {
 
 ### 面试题63. 股票的最大利润
 
-> [面试题63. 股票的最大利润](https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/)
+&gt; [面试题63. 股票的最大利润](https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/)
 
 语言：java
 
-思路：直接每次计算当前值与上一个的差值，然后累加到一个暂存值，要是 < 0就是亏了，重新用0计数，不然就累加。然后每次都计算当前累加值和最后返回的结果值，哪个大就用哪个
+思路：直接每次计算当前值与上一个的差值，然后累加到一个暂存值，要是 &lt; 0就是亏了，重新用0计数，不然就累加。然后每次都计算当前累加值和最后返回的结果值，哪个大就用哪个
 
 代码(2ms,63.77%)：
 
@@ -2559,7 +2559,7 @@ class Solution {
 
 参考代码1（2ms，63.77%）：思路差不多。不过这里用的统计最大值和最小值。
 
-> [面试题63. 股票的最大利润（动态规划，清晰图解）](https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/solution/mian-shi-ti-63-gu-piao-de-zui-da-li-run-dong-tai-2/)
+&gt; [面试题63. 股票的最大利润（动态规划，清晰图解）](https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/solution/mian-shi-ti-63-gu-piao-de-zui-da-li-run-dong-tai-2/)
 
 ```java
 class Solution {
@@ -2592,7 +2592,7 @@ class Solution {
 
 ### 面试题49. 丑数
 
-> [面试题49. 丑数](https://leetcode-cn.com/problems/chou-shu-lcof/)
+&gt; [面试题49. 丑数](https://leetcode-cn.com/problems/chou-shu-lcof/)
 
 语言：java
 
@@ -2659,7 +2659,7 @@ class Ugly {
 
 ### 面试题36. 二叉搜索树与双向链表
 
-> [面试题36. 二叉搜索树与双向链表](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/)
+&gt; [面试题36. 二叉搜索树与双向链表](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/)
 
 语言：java
 
@@ -2735,7 +2735,7 @@ class Solution {
 
 参考代码：递归的方法。
 
-> [面试题36. 二叉搜索树与双向链表（中序遍历，清晰图解）](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/solution/mian-shi-ti-36-er-cha-sou-suo-shu-yu-shuang-xian-5/)
+&gt; [面试题36. 二叉搜索树与双向链表（中序遍历，清晰图解）](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/solution/mian-shi-ti-36-er-cha-sou-suo-shu-yu-shuang-xian-5/)
 
 ```java
 class Solution {
@@ -2761,20 +2761,20 @@ class Solution {
 
 ### 面试题32 - III. 从上到下打印二叉树 III
 
-> [面试题32 - III. 从上到下打印二叉树 III](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/)
+&gt; [面试题32 - III. 从上到下打印二叉树 III](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/)
 
 语言：java
 
-思路：每层遍历的顺便要求变化，奇数回->从左到右，偶数回->从右到左；如果和以往层次遍历那样只用一个队列queue不太行。如果用一个dequeue也是可以的。
+思路：每层遍历的顺便要求变化，奇数回-&gt;从左到右，偶数回-&gt;从右到左；如果和以往层次遍历那样只用一个队列queue不太行。如果用一个dequeue也是可以的。
 
 1. dequeue（奇数回的"放"推理出偶数回的"取"；偶数回的"放"推理出奇数回的"取"）
 
-   ​	这里假设从1开始算回合数，根节点就是第1回合(奇数回)，根节点的左右节点就是第二回合(偶数回)。
+   	这里假设从1开始算回合数，根节点就是第1回合(奇数回)，根节点的左右节点就是第二回合(偶数回)。
 
-   ​	下面的“先后”，谁先就谁在前，谁后就谁在后，比如1-5都是先小后大，那么顺序就是 1 2 3 4 5 ，从后往前取就是5 4 3 2 1。
+   	下面的“先后”，谁先就谁在前，谁后就谁在后，比如1-5都是先小后大，那么顺序就是 1 2 3 4 5 ，从后往前取就是5 4 3 2 1。
 
-   + 奇数回，放节点到dequeue->先left后right；取节点出dequeue->从前往后;
-   + 偶数回，取节点出dequeue->从后往前；放节点到dequeue->先right后left;
+   + 奇数回，放节点到dequeue-&gt;先left后right；取节点出dequeue-&gt;从前往后;
+   + 偶数回，取节点出dequeue-&gt;从后往前；放节点到dequeue-&gt;先right后left;
 
 2. 双栈法，思路和上面单个dequeue其实没区别，就是改用两个Stack或者两个Dequeue。
 
@@ -2868,7 +2868,7 @@ class Solution {
 
 ### 面试题31. 栈的压入、弹出序列
 
-> [面试题31. 栈的压入、弹出序列](https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/)
+&gt; [面试题31. 栈的压入、弹出序列](https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/)
 
 语言：java
 
@@ -2951,7 +2951,7 @@ class Solution {
 
 参考代码3（3ms，84.17%）：
 
-> [面试题31. 栈的压入、弹出序列（模拟，清晰图解）](https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/solution/mian-shi-ti-31-zhan-de-ya-ru-dan-chu-xu-lie-mo-n-2/)
+&gt; [面试题31. 栈的压入、弹出序列（模拟，清晰图解）](https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/solution/mian-shi-ti-31-zhan-de-ya-ru-dan-chu-xu-lie-mo-n-2/)
 
 ```java
 class Solution {
@@ -2972,9 +2972,9 @@ class Solution {
 
 ### 面试题45. 把数组排成最小的数
 
-> [面试题45. 把数组排成最小的数](https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/)
->
-> [面试题45. 把数组排成最小的数（自定义排序，清晰图解）](https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/solution/mian-shi-ti-45-ba-shu-zu-pai-cheng-zui-xiao-de-s-4/)
+&gt; [面试题45. 把数组排成最小的数](https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/)
+&gt;
+&gt; [面试题45. 把数组排成最小的数（自定义排序，清晰图解）](https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/solution/mian-shi-ti-45-ba-shu-zu-pai-cheng-zui-xiao-de-s-4/)
 
 语言：java
 
@@ -3154,7 +3154,7 @@ class Solution {
 
 再者，不需要先存节点再转换成数字。（原本我是以为必须移除当前节点，看来只要移除最后一个节点就好了），毕竟移除最后一个，要是左子树行不通，还会走右子树，又是都不行，也会移除当前节点。（我之前的思路有点问题）
 
-> [面试题34. 二叉树中和为某一值的路径（回溯法，清晰图解）](https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/solution/mian-shi-ti-34-er-cha-shu-zhong-he-wei-mou-yi-zh-5/)
+&gt; [面试题34. 二叉树中和为某一值的路径（回溯法，清晰图解）](https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/solution/mian-shi-ti-34-er-cha-shu-zhong-he-wei-mou-yi-zh-5/)
 
 ```java
 class Solution {
@@ -3204,13 +3204,13 @@ class Solution{
 
 ### 面试题14- I. 剪绳子
 
-> [面试题14- I. 剪绳子](https://leetcode-cn.com/problems/jian-sheng-zi-lcof/)
->
-> [面试题14- I. 剪绳子（数学推导 / 贪心思想，清晰图解）](https://leetcode-cn.com/problems/jian-sheng-zi-lcof/solution/mian-shi-ti-14-i-jian-sheng-zi-tan-xin-si-xiang-by/)
->
-> [【剪绳子】动态规划](https://leetcode-cn.com/problems/jian-sheng-zi-lcof/solution/jian-sheng-zi-dong-tai-gui-hua-by-97wgl/)
->
-> [暴力搜索->记忆化搜索->动态规划](https://leetcode-cn.com/problems/integer-break/solution/bao-li-sou-suo-ji-yi-hua-sou-suo-dong-tai-gui-hua-/)
+&gt; [面试题14- I. 剪绳子](https://leetcode-cn.com/problems/jian-sheng-zi-lcof/)
+&gt;
+&gt; [面试题14- I. 剪绳子（数学推导 / 贪心思想，清晰图解）](https://leetcode-cn.com/problems/jian-sheng-zi-lcof/solution/mian-shi-ti-14-i-jian-sheng-zi-tan-xin-si-xiang-by/)
+&gt;
+&gt; [【剪绳子】动态规划](https://leetcode-cn.com/problems/jian-sheng-zi-lcof/solution/jian-sheng-zi-dong-tai-gui-hua-by-97wgl/)
+&gt;
+&gt; [暴力搜索-&gt;记忆化搜索-&gt;动态规划](https://leetcode-cn.com/problems/integer-break/solution/bao-li-sou-suo-ji-yi-hua-sou-suo-dong-tai-gui-hua-/)
 
 语言：java
 
@@ -3256,7 +3256,7 @@ class Solution {
 
 ### 面试题38. 字符串的排列
 
-> [面试题38. 字符串的排列](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/)
+&gt; [面试题38. 字符串的排列](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/)
 
 语言：java
 
@@ -3301,7 +3301,7 @@ class Solution {
 
 参考代码1（10ms，93.15%）：
 
-> [面试题38. 字符串的排列（回溯法，清晰图解）](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/mian-shi-ti-38-zi-fu-chuan-de-pai-lie-hui-su-fa-by/)
+&gt; [面试题38. 字符串的排列（回溯法，清晰图解）](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/mian-shi-ti-38-zi-fu-chuan-de-pai-lie-hui-su-fa-by/)
 
 ```java
 class Solution {
@@ -3422,11 +3422,11 @@ class Solution {
 
 ### 面试题46. 把数字翻译成字符串
 
-> [面试题46. 把数字翻译成字符串](https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/)
->
-> [面试题46. 把数字翻译成字符串（动态规划，清晰图解）](https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/solution/mian-shi-ti-46-ba-shu-zi-fan-yi-cheng-zi-fu-chua-6/)
->
-> [递归求解，双百](https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/solution/di-gui-qiu-jie-shuang-bai-by-xiang-shang-de-gua-ni/)
+&gt; [面试题46. 把数字翻译成字符串](https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/)
+&gt;
+&gt; [面试题46. 把数字翻译成字符串（动态规划，清晰图解）](https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/solution/mian-shi-ti-46-ba-shu-zi-fan-yi-cheng-zi-fu-chua-6/)
+&gt;
+&gt; [递归求解，双百](https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/solution/di-gui-qiu-jie-shuang-bai-by-xiang-shang-de-gua-ni/)
 
 语言：java
 
@@ -3468,7 +3468,7 @@ class Solution {
 
 ### 面试题33. 二叉搜索树的后序遍历序列
 
-> [面试题33. 二叉搜索树的后序遍历序列](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/)
+&gt; [面试题33. 二叉搜索树的后序遍历序列](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/)
 
 语言：java
 
@@ -3497,7 +3497,7 @@ class Solution {
 
 参考代码1（0ms）：递归，拆分左右子树判断
 
-> [面试题33. 二叉搜索树的后序遍历序列（递归分治 / 单调栈，清晰图解）](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/solution/mian-shi-ti-33-er-cha-sou-suo-shu-de-hou-xu-bian-6/)
+&gt; [面试题33. 二叉搜索树的后序遍历序列（递归分治 / 单调栈，清晰图解）](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/solution/mian-shi-ti-33-er-cha-sou-suo-shu-de-hou-xu-bian-6/)
 
 ```java
 class Solution {
@@ -3517,9 +3517,9 @@ class Solution {
 
 参考代码2（1ms，21.1%）：单调栈，神奇的思路
 
-> [单调递增栈辅助，逆向遍历数组](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/solution/dan-diao-di-zeng-zhan-by-shi-huo-de-xia-tian/)
->
-> [面试题33. 二叉搜索树的后序遍历序列（递归分治 / 单调栈，清晰图解）](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/solution/mian-shi-ti-33-er-cha-sou-suo-shu-de-hou-xu-bian-6/)
+&gt; [单调递增栈辅助，逆向遍历数组](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/solution/dan-diao-di-zeng-zhan-by-shi-huo-de-xia-tian/)
+&gt;
+&gt; [面试题33. 二叉搜索树的后序遍历序列（递归分治 / 单调栈，清晰图解）](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/solution/mian-shi-ti-33-er-cha-sou-suo-shu-de-hou-xu-bian-6/)
 
 ```java
 class Solution {
@@ -3539,7 +3539,7 @@ class Solution {
 
 ### 面试题59 - II. 队列的最大值
 
-> [面试题59 - II. 队列的最大值](https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/)
+&gt; [面试题59 - II. 队列的最大值](https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/)
 
 语言：java
 
@@ -3632,11 +3632,11 @@ class MaxQueue {
 
 ### 面试题13. 机器人的运动范围
 
-> [面试题13. 机器人的运动范围](https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/)
+&gt; [面试题13. 机器人的运动范围](https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/)
 
 语言：java
 
-思路：DFS。就简单地判断是否符合要求。这里需要注意的就是边界100是肯定不可能到达的，所以就不用考虑了。虽然m和n<=100，但是题目有明确说了顶多走到(m-1,n-1)，也就是撑死到（99，99）.
+思路：DFS。就简单地判断是否符合要求。这里需要注意的就是边界100是肯定不可能到达的，所以就不用考虑了。虽然m和n&lt;=100，但是题目有明确说了顶多走到(m-1,n-1)，也就是撑死到（99，99）.
 
 代码（0ms，100%）：
 
@@ -3659,7 +3659,7 @@ class Solution {
 
 参考代码1（7ms，21.10%）：BFS
 
-> [面试题13. 机器人的运动范围（ DFS / BFS ，清晰图解）](https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/solution/mian-shi-ti-13-ji-qi-ren-de-yun-dong-fan-wei-dfs-b/)
+&gt; [面试题13. 机器人的运动范围（ DFS / BFS ，清晰图解）](https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/solution/mian-shi-ti-13-ji-qi-ren-de-yun-dong-fan-wei-dfs-b/)
 
 ```java
 class Solution {
@@ -3684,7 +3684,7 @@ class Solution {
 
 ### 面试题26. 树的子结构
 
-> [面试题26. 树的子结构](https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/)
+&gt; [面试题26. 树的子结构](https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/)
 
 语言：java
 
@@ -3719,7 +3719,7 @@ class Solution {
 
 参考代码1（0ms）: 思路没区别。
 
->[面试题26. 树的子结构（先序遍历 + 包含判断，清晰图解）](https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/mian-shi-ti-26-shu-de-zi-jie-gou-xian-xu-bian-li-p/)
+&gt;[面试题26. 树的子结构（先序遍历 + 包含判断，清晰图解）](https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/mian-shi-ti-26-shu-de-zi-jie-gou-xian-xu-bian-li-p/)
 
 ```java
 class Solution {
@@ -3736,7 +3736,7 @@ class Solution {
 
 ### 面试题48. 最长不含重复字符的子字符串
 
-> [面试题48. 最长不含重复字符的子字符串](https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/)
+&gt; [面试题48. 最长不含重复字符的子字符串](https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/)
 
 语言：java
 
@@ -3831,7 +3831,7 @@ class Solution {
 
 参考代码3（8ms，72.35%）：
 
-> [面试题48. 最长不含重复字符的子字符串（动态规划 / 双指针 + 哈希表，清晰图解）](https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/)
+&gt; [面试题48. 最长不含重复字符的子字符串（动态规划 / 双指针 + 哈希表，清晰图解）](https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/)
 
 ```java
 class Solution {
@@ -3851,11 +3851,11 @@ class Solution {
 
 ### 面试题43. 1～n整数中1出现的次数
 
-> [面试题43. 1～n整数中1出现的次数](https://leetcode-cn.com/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/)
->
-> [面试题43. 1～n 整数中 1 出现的次数（清晰图解）](https://leetcode-cn.com/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/solution/mian-shi-ti-43-1n-zheng-shu-zhong-1-chu-xian-de-2/)
->
-> [java递归](https://leetcode-cn.com/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/solution/javadi-gui-by-xujunyi/)
+&gt; [面试题43. 1～n整数中1出现的次数](https://leetcode-cn.com/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/)
+&gt;
+&gt; [面试题43. 1～n 整数中 1 出现的次数（清晰图解）](https://leetcode-cn.com/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/solution/mian-shi-ti-43-1n-zheng-shu-zhong-1-chu-xian-de-2/)
+&gt;
+&gt; [java递归](https://leetcode-cn.com/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/solution/javadi-gui-by-xujunyi/)
 
 语言：java
 
@@ -3910,7 +3910,7 @@ class Solution {
 
 ### 面试题12. 矩阵中的路径
 
-> [面试题12. 矩阵中的路径](https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/)
+&gt; [面试题12. 矩阵中的路径](https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/)
 
 语言：java
 
@@ -3958,7 +3958,7 @@ class Solution {
 
 参考代码1（8ms，40.91%）：
 
-> [面试题12. 矩阵中的路径（深度优先搜索 DFS ，清晰图解）](https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/solution/mian-shi-ti-12-ju-zhen-zhong-de-lu-jing-shen-du-yo/)
+&gt; [面试题12. 矩阵中的路径（深度优先搜索 DFS ，清晰图解）](https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/solution/mian-shi-ti-12-ju-zhen-zhong-de-lu-jing-shen-du-yo/)
 
 ```java
 class Solution {
@@ -4028,11 +4028,11 @@ class Solution {
 
 ### 面试题44. 数字序列中某一位的数字
 
-> [面试题44. 数字序列中某一位的数字](https://leetcode-cn.com/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/)
->
-> [面试题44. 数字序列中某一位的数字（迭代 + 求整 / 求余，清晰图解）](https://leetcode-cn.com/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/solution/mian-shi-ti-44-shu-zi-xu-lie-zhong-mou-yi-wei-de-6/)
->
-> [详解 找规律](https://leetcode-cn.com/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/solution/zhe-shi-yi-dao-shu-xue-ti-ge-zhao-gui-lu-by-z1m/)
+&gt; [面试题44. 数字序列中某一位的数字](https://leetcode-cn.com/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/)
+&gt;
+&gt; [面试题44. 数字序列中某一位的数字（迭代 + 求整 / 求余，清晰图解）](https://leetcode-cn.com/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/solution/mian-shi-ti-44-shu-zi-xu-lie-zhong-mou-yi-wei-de-6/)
+&gt;
+&gt; [详解 找规律](https://leetcode-cn.com/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/solution/zhe-shi-yi-dao-shu-xue-ti-ge-zhao-gui-lu-by-z1m/)
 
 语言：java
 
@@ -4060,11 +4060,11 @@ class Solution {
 
 ### 面试题16. 数值的整数次方
 
-> [面试题16. 数值的整数次方](https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/)
->
-> [面试题16. 数值的整数次方（快速幂，清晰图解）](https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/solution/mian-shi-ti-16-shu-zhi-de-zheng-shu-ci-fang-kuai-s/)
->
-> [递归写法（分治思想）与非递归写法（将指数看成二进制数）](https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/solution/di-gui-xie-fa-fen-zhi-si-xiang-yu-fei-di-gui-xie-f/)
+&gt; [面试题16. 数值的整数次方](https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/)
+&gt;
+&gt; [面试题16. 数值的整数次方（快速幂，清晰图解）](https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/solution/mian-shi-ti-16-shu-zhi-de-zheng-shu-ci-fang-kuai-s/)
+&gt;
+&gt; [递归写法（分治思想）与非递归写法（将指数看成二进制数）](https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/solution/di-gui-xie-fa-fen-zhi-si-xiang-yu-fei-di-gui-xie-f/)
 
 语言：java
 
@@ -4112,9 +4112,9 @@ class Solution {
 
 ### 面试题14- II. 剪绳子 II
 
-> [面试题14- II. 剪绳子 II](https://leetcode-cn.com/problems/jian-sheng-zi-ii-lcof/)
->
-> [面试题14- II. 剪绳子 II（数学推导 / 贪心思想 + 快速幂求余，清晰图解）](https://leetcode-cn.com/problems/jian-sheng-zi-ii-lcof/solution/mian-shi-ti-14-ii-jian-sheng-zi-iitan-xin-er-fen-f/)
+&gt; [面试题14- II. 剪绳子 II](https://leetcode-cn.com/problems/jian-sheng-zi-ii-lcof/)
+&gt;
+&gt; [面试题14- II. 剪绳子 II（数学推导 / 贪心思想 + 快速幂求余，清晰图解）](https://leetcode-cn.com/problems/jian-sheng-zi-ii-lcof/solution/mian-shi-ti-14-ii-jian-sheng-zi-iitan-xin-er-fen-f/)
 
 语言：java
 
@@ -4140,7 +4140,7 @@ class Solution {
 
 ### 面试题67. 把字符串转换成整数
 
-> [面试题67. 把字符串转换成整数](https://leetcode-cn.com/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/)
+&gt; [面试题67. 把字符串转换成整数](https://leetcode-cn.com/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/)
 
 语言：java
 
@@ -4227,7 +4227,7 @@ class Solution {
 
 参考代码2（2ms，99.92%）：直接用long，更省事
 
-> [面试题67. 把字符串转换成整数（清晰图解）](https://leetcode-cn.com/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/solution/mian-shi-ti-67-ba-zi-fu-chuan-zhuan-huan-cheng-z-4/)
+&gt; [面试题67. 把字符串转换成整数（清晰图解）](https://leetcode-cn.com/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/solution/mian-shi-ti-67-ba-zi-fu-chuan-zhuan-huan-cheng-z-4/)
 
 ```java
 class Solution {
@@ -4250,11 +4250,11 @@ class Solution {
 
 ### 面试题20. 表示数值的字符串
 
-> [面试题20. 表示数值的字符串](https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/)
->
-> [Java版本题解，逻辑清晰。](https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/javaban-ben-ti-jie-luo-ji-qing-xi-by-yangshyu6/)
->
-> [确定有限自动机DFA](https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/que-ding-you-xian-zi-dong-ji-dfa-by-justyou/)
+&gt; [面试题20. 表示数值的字符串](https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/)
+&gt;
+&gt; [Java版本题解，逻辑清晰。](https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/javaban-ben-ti-jie-luo-ji-qing-xi-by-yangshyu6/)
+&gt;
+&gt; [确定有限自动机DFA](https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/que-ding-you-xian-zi-dong-ji-dfa-by-justyou/)
 
 语言：java
 
@@ -4305,13 +4305,13 @@ class Solution {
 
 ### 面试题41. 数据流中的中位数
 
-> [面试题41. 数据流中的中位数](https://leetcode-cn.com/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/)
->
-> [面试题41. 数据流中的中位数（优先队列 / 堆，清晰图解）](https://leetcode-cn.com/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/solution/mian-shi-ti-41-shu-ju-liu-zhong-de-zhong-wei-shu-y/)
->
-> [优先队列，无废话简单易懂](https://leetcode-cn.com/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/solution/you-xian-dui-lie-wu-fei-hua-jian-dan-yi-dong-by-je/)
->
-> [图解 排序+二分查找+优先队列](https://leetcode-cn.com/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/solution/you-xian-dui-lie-by-z1m/)
+&gt; [面试题41. 数据流中的中位数](https://leetcode-cn.com/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/)
+&gt;
+&gt; [面试题41. 数据流中的中位数（优先队列 / 堆，清晰图解）](https://leetcode-cn.com/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/solution/mian-shi-ti-41-shu-ju-liu-zhong-de-zhong-wei-shu-y/)
+&gt;
+&gt; [优先队列，无废话简单易懂](https://leetcode-cn.com/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/solution/you-xian-dui-lie-wu-fei-hua-jian-dan-yi-dong-by-je/)
+&gt;
+&gt; [图解 排序+二分查找+优先队列](https://leetcode-cn.com/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/solution/you-xian-dui-lie-by-z1m/)
 
 语言：java
 
@@ -4350,7 +4350,7 @@ class MedianFinder {
 
 ### 面试题37. 序列化二叉树
 
-> [面试题37. 序列化二叉树](https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/)
+&gt; [面试题37. 序列化二叉树](https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/)
 
 语言：java
 
@@ -4416,7 +4416,7 @@ public class Codec {
 
 参考代码1（25ms，55.75%）：也是层次遍历，不是很动为啥比我的慢，感觉看着没什么太大区别，可能是StringBuild的append夹杂String字符串连接操作的原因？
 
-> [面试题37. 序列化二叉树（层序遍历 BFS ，清晰图解）](https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/solution/mian-shi-ti-37-xu-lie-hua-er-cha-shu-ceng-xu-bian-/)
+&gt; [面试题37. 序列化二叉树（层序遍历 BFS ，清晰图解）](https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/solution/mian-shi-ti-37-xu-lie-hua-er-cha-shu-ceng-xu-bian-/)
 
 ```java
 public class Codec {
@@ -4564,9 +4564,9 @@ public class Codec {
 
 ### 面试题51. 数组中的逆序对
 
-> [面试题51. 数组中的逆序对](https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/)
->
-> [数组中的逆序对--官方讲解](https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/shu-zu-zhong-de-ni-xu-dui-by-leetcode-solution/)
+&gt; [面试题51. 数组中的逆序对](https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/)
+&gt;
+&gt; [数组中的逆序对--官方讲解](https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/shu-zu-zhong-de-ni-xu-dui-by-leetcode-solution/)
 
 语言：java
 
@@ -4662,13 +4662,13 @@ class Solution {
 
 ### 面试题19. 正则表达式匹配
 
-> [面试题19. 正则表达式匹配](https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/)
->
-> [逐行详细讲解，由浅入深，dp和递归两种思路](https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/solution/zhu-xing-xiang-xi-jiang-jie-you-qian-ru-shen-by-je/)
->
-> [动态规划超详细解答，由繁入简。](https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/solution/dong-tai-gui-hua-chao-xiang-xi-jie-da-you-fan-ru-j/)
->
-> [正则表达式匹配 - 递归求解](https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/solution/zheng-ze-biao-da-shi-pi-pei-di-gui-qiu-jie-by-jarv/)
+&gt; [面试题19. 正则表达式匹配](https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/)
+&gt;
+&gt; [逐行详细讲解，由浅入深，dp和递归两种思路](https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/solution/zhu-xing-xiang-xi-jiang-jie-you-qian-ru-shen-by-je/)
+&gt;
+&gt; [动态规划超详细解答，由繁入简。](https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/solution/dong-tai-gui-hua-chao-xiang-xi-jie-da-you-fan-ru-j/)
+&gt;
+&gt; [正则表达式匹配 - 递归求解](https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/solution/zheng-ze-biao-da-shi-pi-pei-di-gui-qiu-jie-by-jarv/)
 
 语言：java
 
@@ -4730,7 +4730,7 @@ class Solution {
 思路：
 
 1. 找基准base。
-2. 右边往左找 right < base的位置；然后左边向右找 left > base的位置；两者交换数字。直到left和right指针相遇，结束一轮快排。
+2. 右边往左找 right &lt; base的位置；然后左边向右找 left &gt; base的位置；两者交换数字。直到left和right指针相遇，结束一轮快排。
 3. 把基准和当前left的位置互换，然后对left位置的左半部分和右半部分，递归快排。
 
 ```java
@@ -4769,7 +4769,7 @@ public void DiGui(int[] arr,int left,int right){
 
 ### 1. 快速排序+快速选择(常用于筛选前N个最大or最小)-java
 
-​	后面又写了个快速排序和排序选择（快速选择）明确划分开的版本。（因为有些应用场景只要快速选择，不需要完整的快速排序）。可以根据需求选择快排需要的区间、升降序。
+	后面又写了个快速排序和排序选择（快速选择）明确划分开的版本。（因为有些应用场景只要快速选择，不需要完整的快速排序）。可以根据需求选择快排需要的区间、升降序。
 
 ```java
 public Test{
@@ -4890,7 +4890,7 @@ public Test{
 
 参考代码1：
 
-> [最小K个数](https://leetcode-cn.com/problems/smallest-k-lcci/)
+&gt; [最小K个数](https://leetcode-cn.com/problems/smallest-k-lcci/)
 
 ```java
 class Solution{
@@ -5128,7 +5128,7 @@ public class MergeSort{
 
 ### 4. KMP算法
 
-> 根据B站视频复习KMP算法，简单用Java实现了一下。
+&gt; 根据B站视频复习KMP算法，简单用Java实现了一下。
 
 ```java
 public class KMP {

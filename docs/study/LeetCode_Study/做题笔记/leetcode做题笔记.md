@@ -30,7 +30,7 @@ class Solution {
 
 参考代码1（3ms）：从后往前，外层for循环表示给每个res\[i]计算结果值，内层for循环表示寻找比res[i]大的值，运用了类似KMP算法的技巧，快速跳过绝对不可能出现匹配的位置。动态规划DP。
 
-> [评论区](https://leetcode-cn.com/problems/daily-temperatures/comments/)
+&gt; [评论区](https://leetcode-cn.com/problems/daily-temperatures/comments/)
 
 ```java
 /**
@@ -169,7 +169,7 @@ class Solution {
 
 参考代码3（9ms，31.30%）：
 
-> [栈](https://leetcode-cn.com/problems/simplify-path/solution/zhan-by-powcai/)
+&gt; [栈](https://leetcode-cn.com/problems/simplify-path/solution/zhan-by-powcai/)
 
 这个其实和前面的双向队列一个意思。
 
@@ -240,7 +240,7 @@ class Solution {
 
 参考代码1（1ms）：DFS
 
-> [复原IP地址--官方题解](https://leetcode-cn.com/problems/restore-ip-addresses/solution/fu-yuan-ipdi-zhi-by-leetcode-solution/)
+&gt; [复原IP地址--官方题解](https://leetcode-cn.com/problems/restore-ip-addresses/solution/fu-yuan-ipdi-zhi-by-leetcode-solution/)
 
 ```java
 class Solution {
@@ -298,7 +298,7 @@ class Solution {
 
 参考代码2（3ms）：回溯剪枝
 
-> [回溯算法（画图分析剪枝条件）](https://leetcode-cn.com/problems/restore-ip-addresses/solution/hui-su-suan-fa-hua-tu-fen-xi-jian-zhi-tiao-jian-by/)
+&gt; [回溯算法（画图分析剪枝条件）](https://leetcode-cn.com/problems/restore-ip-addresses/solution/hui-su-suan-fa-hua-tu-fen-xi-jian-zhi-tiao-jian-by/)
 
 ```java
 public class Solution {
@@ -480,10 +480,10 @@ class Solution {
 + 数字2是最无歧义的，所以表示数字2所在的数组下标的指针用`twoIdx`表示，且初值为`nums.length-1`，即最后一个元素的位置。（就算没有2也无所谓，反正一定会遍历到最后一个位置）,另外数字0和数字1下标从0开始，这两个数字不确定有谁，都是从第一个元素开始遍历。
 + 最外层循环条件，即表示数字0或者数字1的指针下标`zeroIdx`和`oneIdx`要小于`twoIdx`。这个没啥歧义，不管到底输入数组中有没有数字2，`twoIdx`反正充当右边界一般的存在。
 + 我们主要操作的指针就是`oneIdx`,这个正好夹在0和2之间的数字1的下标。（个人感觉方便判断）
-+ 循环内，注意先判断`nums[oneIdx]>1`的情况，后考虑`nums[oneIdx]<1`的情况。
-  + `nums[oneIdx]>1`时，和`nums[twoIdx]`对调后，此时`nums[oneIdx]`的数字是`<=2`的，就算还是2，之后下一轮循环还是可以替换。（而且`oneIdx`和`twoIdx`两个指针一个从左到右，一个从右到左，互不影响）
-  + `nuns[oneIdx]<1`时，同理和`nums[zeroIdx]`对调，由于`zeroIdx`和`oneIdx`都是从左往右，之后需要考虑怎么移动`oneIdx`。
-+ 题目要求"000...11..2222"这种形式，那么`oneIdx`应该尽可能让他一直指向数字1所在的位置。所以循环中每轮当`nums[oneIdx]<=1`，就`++oneIdx`，如果原本`nums[oneIdx]==0`，那么也在前面的判断时和`nums[zeroIdx]`对调了。
++ 循环内，注意先判断`nums[oneIdx]&gt;1`的情况，后考虑`nums[oneIdx]&lt;1`的情况。
+  + `nums[oneIdx]&gt;1`时，和`nums[twoIdx]`对调后，此时`nums[oneIdx]`的数字是`&lt;=2`的，就算还是2，之后下一轮循环还是可以替换。（而且`oneIdx`和`twoIdx`两个指针一个从左到右，一个从右到左，互不影响）
+  + `nuns[oneIdx]&lt;1`时，同理和`nums[zeroIdx]`对调，由于`zeroIdx`和`oneIdx`都是从左往右，之后需要考虑怎么移动`oneIdx`。
++ 题目要求"000...11..2222"这种形式，那么`oneIdx`应该尽可能让他一直指向数字1所在的位置。所以循环中每轮当`nums[oneIdx]&lt;=1`，就`++oneIdx`，如果原本`nums[oneIdx]==0`，那么也在前面的判断时和`nums[zeroIdx]`对调了。
 
 代码（0ms，100%）：
 
@@ -510,7 +510,7 @@ class Solution {
 
 ### 最小的K个数
 
-> [面试题 17.14. 最小K个数](https://leetcode-cn.com/problems/smallest-k-lcci/)
+&gt; [面试题 17.14. 最小K个数](https://leetcode-cn.com/problems/smallest-k-lcci/)
 
 语言：java
 
@@ -626,7 +626,7 @@ class Solution {
 
 ###  518. 零钱兑换 II
 
-> [518. 零钱兑换 II](https://leetcode-cn.com/problems/coin-change-2/)
+&gt; [518. 零钱兑换 II](https://leetcode-cn.com/problems/coin-change-2/)
 
 语言：java
 
@@ -668,11 +668,11 @@ class Solution {
 
 ### 416. 分割等和子集
 
-> [416. 分割等和子集](https://leetcode-cn.com/problems/partition-equal-subset-sum/)
->
-> [分割等和子集--官方题解](https://leetcode-cn.com/problems/partition-equal-subset-sum/solution/fen-ge-deng-he-zi-ji-by-leetcode-solution/)
->
-> [动态规划（转换为 0-1 背包问题）](https://leetcode-cn.com/problems/partition-equal-subset-sum/solution/0-1-bei-bao-wen-ti-xiang-jie-zhen-dui-ben-ti-de-yo/)
+&gt; [416. 分割等和子集](https://leetcode-cn.com/problems/partition-equal-subset-sum/)
+&gt;
+&gt; [分割等和子集--官方题解](https://leetcode-cn.com/problems/partition-equal-subset-sum/solution/fen-ge-deng-he-zi-ji-by-leetcode-solution/)
+&gt;
+&gt; [动态规划（转换为 0-1 背包问题）](https://leetcode-cn.com/problems/partition-equal-subset-sum/solution/0-1-bei-bao-wen-ti-xiang-jie-zhen-dui-ben-ti-de-yo/)
 
 语言：java
 
@@ -735,7 +735,7 @@ class Solution {
 
 参考代码1（47ms，24.31%）：
 
-> [分割等和子集--官方题解](https://leetcode-cn.com/problems/partition-equal-subset-sum/solution/fen-ge-deng-he-zi-ji-by-leetcode-solution/)
+&gt; [分割等和子集--官方题解](https://leetcode-cn.com/problems/partition-equal-subset-sum/solution/fen-ge-deng-he-zi-ji-by-leetcode-solution/)
 
 ```java
 class Solution {
@@ -778,7 +778,7 @@ class Solution {
 
 参考代码2（21ms，69.797%）：优化空间复杂度
 
-> [分割等和子集--官方题解](https://leetcode-cn.com/problems/partition-equal-subset-sum/solution/fen-ge-deng-he-zi-ji-by-leetcode-solution/)
+&gt; [分割等和子集--官方题解](https://leetcode-cn.com/problems/partition-equal-subset-sum/solution/fen-ge-deng-he-zi-ji-by-leetcode-solution/)
 
 ```java
 class Solution {
@@ -863,7 +863,7 @@ public class Solution {
 
 ### 474. 一和零
 
-> [474. 一和零](https://leetcode-cn.com/problems/ones-and-zeroes/)
+&gt; [474. 一和零](https://leetcode-cn.com/problems/ones-and-zeroes/)
 
 语言：java
 
@@ -948,7 +948,7 @@ class Solution {
 
 ### 530. 二叉搜索树的最小绝对差
 
-> [530. 二叉搜索树的最小绝对差](https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/)
+&gt; [530. 二叉搜索树的最小绝对差](https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/)
 
 语言：java
 
@@ -1017,7 +1017,7 @@ class Solution {
 
 ### 977. 有序数组的平方
 
-> [977. 有序数组的平方](https://leetcode-cn.com/problems/squares-of-a-sorted-array/)
+&gt; [977. 有序数组的平方](https://leetcode-cn.com/problems/squares-of-a-sorted-array/)
 
 语言：java
 
@@ -1081,7 +1081,7 @@ class Solution {
 
 ### 52. N皇后 II
 
->[52. N皇后 II](https://leetcode-cn.com/problems/n-queens-ii/)
+&gt;[52. N皇后 II](https://leetcode-cn.com/problems/n-queens-ii/)
 
 语言：java
 
@@ -1144,7 +1144,7 @@ class Solution {
 
 参考代码1（0ms）：
 
-> [N皇后 II--官方题解](https://leetcode-cn.com/problems/n-queens-ii/solution/nhuang-hou-ii-by-leetcode-solution/)
+&gt; [N皇后 II--官方题解](https://leetcode-cn.com/problems/n-queens-ii/solution/nhuang-hou-ii-by-leetcode-solution/)
 
 ```java
 class Solution {
@@ -1210,7 +1210,7 @@ class Solution {
 
 ### 844. 比较含退格的字符串
 
-> [844. 比较含退格的字符串](https://leetcode-cn.com/problems/backspace-string-compare/)
+&gt; [844. 比较含退格的字符串](https://leetcode-cn.com/problems/backspace-string-compare/)
 
 语言：java
 
@@ -1393,7 +1393,7 @@ class Solution {
 
 ### 143. 重排链表
 
-> [143. 重排链表](https://leetcode-cn.com/problems/reorder-list/)
+&gt; [143. 重排链表](https://leetcode-cn.com/problems/reorder-list/)
 
 语言：java
 
@@ -1580,7 +1580,7 @@ class Solution {
 
 ### 763. 划分字母区间
 
-> [763. 划分字母区间](https://leetcode-cn.com/problems/partition-labels/)
+&gt; [763. 划分字母区间](https://leetcode-cn.com/problems/partition-labels/)
 
 语言：java
 
@@ -1661,10 +1661,10 @@ class Solution {
 
 这个思路也很清晰，就是只要存储每个字母最后出现的位置，然后重新遍历字符串，维护两个位置变量（可理解为窗口）：`start`、`end`，`end = Math.max(Math.max(last, lasts[chs[right] - 'a'))`表示每次都让右边界尽量大（这样子就直接考虑了字符串重叠的情况），当走出重叠区时`i == end`，直接把窗口的长度加入结果集，然后又更新窗口的左边界`start = end+1`
 
-> [划分字母区间--官方题解](https://leetcode-cn.com/problems/partition-labels/solution/hua-fen-zi-mu-qu-jian-by-leetcode-solution/)
->
-> 上述做法使用贪心的思想寻找每个片段可能的最小结束下标，因此可以保证每个片段的长度一定是符合要求的最短长度，如果取更短的片段，则一定会出现同一个字母出现在多个片段中的情况。由于每次取的片段都是符合要求的最短的片段，因此得到的片段数也是最多的。
->
+&gt; [划分字母区间--官方题解](https://leetcode-cn.com/problems/partition-labels/solution/hua-fen-zi-mu-qu-jian-by-leetcode-solution/)
+&gt;
+&gt; 上述做法使用贪心的思想寻找每个片段可能的最小结束下标，因此可以保证每个片段的长度一定是符合要求的最短长度，如果取更短的片段，则一定会出现同一个字母出现在多个片段中的情况。由于每次取的片段都是符合要求的最短的片段，因此得到的片段数也是最多的。
+&gt;
 
 ```java
 class Solution {
@@ -1721,7 +1721,7 @@ class Solution {
 
 ### 47. 全排列 II
 
-> [47. 全排列 II](https://leetcode-cn.com/problems/permutations-ii/)
+&gt; [47. 全排列 II](https://leetcode-cn.com/problems/permutations-ii/)
 
 语言：java
 
@@ -1729,7 +1729,7 @@ class Solution {
 
 参考代码1（1ms，100%）：
 
-> [47. 全排列 II:【彻底理解排列中的去重问题】详解](https://leetcode-cn.com/problems/permutations-ii/solution/47-quan-pai-lie-iiche-di-li-jie-pai-lie-zhong-de-q/)
+&gt; [47. 全排列 II:【彻底理解排列中的去重问题】详解](https://leetcode-cn.com/problems/permutations-ii/solution/47-quan-pai-lie-iiche-di-li-jie-pai-lie-zhong-de-q/)
 
 ```java
 class Solution {
@@ -1805,7 +1805,7 @@ class Solution {
 
 ### 17. 电话号码的字母组合
 
-> [17. 电话号码的字母组合](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/)
+&gt; [17. 电话号码的字母组合](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/)
 
 语言：java
 
@@ -1846,14 +1846,14 @@ class Solution {
 
 ### 39. 组合总和
 
-> [39. 组合总和](https://leetcode-cn.com/problems/combination-sum/)
+&gt; [39. 组合总和](https://leetcode-cn.com/problems/combination-sum/)
 
 语言：java
 
 思路：还是按照类似全排列的思想去做题，但是这里同样是更暴力的DFS，遍历所有情况。
 
 + 需要排序
-+ 暴力的DFS，但是需要用begin记录起始遍历位置=>避免回头路`1112`和`1121`。
++ 暴力的DFS，但是需要用begin记录起始遍历位置=&gt;避免回头路`1112`和`1121`。
 
 代码（3ms，77.35%）：
 
@@ -1887,7 +1887,7 @@ class Solution {
 
 参考代码1（4ms，52.33%）：
 
-> [组合总和--官方解答](https://leetcode-cn.com/problems/combination-sum/solution/zu-he-zong-he-by-leetcode-solution/)
+&gt; [组合总和--官方解答](https://leetcode-cn.com/problems/combination-sum/solution/zu-he-zong-he-by-leetcode-solution/)
 
 ```java
 class Solution {
@@ -1920,7 +1920,7 @@ class Solution {
 
 ### 40. 组合总和 II
 
-> [40. 组合总和 II](https://leetcode-cn.com/problems/combination-sum-ii/)
+&gt; [40. 组合总和 II](https://leetcode-cn.com/problems/combination-sum-ii/)
 
 语言：java
 
@@ -1974,7 +1974,7 @@ class Solution {
 
 参考代码1（3ms，82.41%）：
 
-> [回溯算法 + 剪枝（Java、Python）](https://leetcode-cn.com/problems/combination-sum-ii/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-m-3/)
+&gt; [回溯算法 + 剪枝（Java、Python）](https://leetcode-cn.com/problems/combination-sum-ii/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-m-3/)
 
 ```java
 import java.util.ArrayDeque;
@@ -2049,7 +2049,7 @@ public class Solution {
 
 ### 51. N皇后
 
-> [51. N 皇后](https://leetcode-cn.com/problems/n-queens/)
+&gt; [51. N 皇后](https://leetcode-cn.com/problems/n-queens/)
 
 语言：java
 
@@ -2115,7 +2115,7 @@ class Solution {
 
 参考代码1（6ms，43.63%）:
 
->[N皇后--官方题解](https://leetcode-cn.com/problems/n-queens/solution/nhuang-hou-by-leetcode-solution/)
+&gt;[N皇后--官方题解](https://leetcode-cn.com/problems/n-queens/solution/nhuang-hou-by-leetcode-solution/)
 
 ```java
 class Solution {
@@ -2175,7 +2175,7 @@ class Solution {
 
 参考代码2（1ms，100.00%）：
 
-> [N皇后--官方题解](https://leetcode-cn.com/problems/n-queens/solution/nhuang-hou-by-leetcode-solution/)
+&gt; [N皇后--官方题解](https://leetcode-cn.com/problems/n-queens/solution/nhuang-hou-by-leetcode-solution/)
 
 ```java
 class Solution {
@@ -2219,7 +2219,7 @@ class Solution {
 
 ### 416. 分割等和子集
 
-> [416. 分割等和子集](https://leetcode-cn.com/problems/partition-equal-subset-sum/)
+&gt; [416. 分割等和子集](https://leetcode-cn.com/problems/partition-equal-subset-sum/)
 
 语言：java
 
@@ -2260,7 +2260,7 @@ class Solution {
 
 参考代码1（20ms，91.38%）：
 
-> [动态规划（转换为 0-1 背包问题）](https://leetcode-cn.com/problems/partition-equal-subset-sum/solution/0-1-bei-bao-wen-ti-xiang-jie-zhen-dui-ben-ti-de-yo/)
+&gt; [动态规划（转换为 0-1 背包问题）](https://leetcode-cn.com/problems/partition-equal-subset-sum/solution/0-1-bei-bao-wen-ti-xiang-jie-zhen-dui-ben-ti-de-yo/)
 
 ```java
 public class Solution {
@@ -2297,7 +2297,7 @@ public class Solution {
 
 ### 474. 一和零
 
-> [474. 一和零](https://leetcode-cn.com/problems/ones-and-zeroes/)
+&gt; [474. 一和零](https://leetcode-cn.com/problems/ones-and-zeroes/)
 
 语言：java
 
@@ -2308,7 +2308,7 @@ public class Solution {
 + 状态转移方程：`dp[m][n] = Math.max(dp[m][n],dp[m-zeroArr[i]][n-oneArr[i]]+1);`
   + 即要么不把当前元素放到背包
   + 或者当前元素放背包，对应的剩余容量减小，然后子集数量+1
-  + `dp[0][0] = 0`，因为题目里面所有字符串长度>0，所以`m=0 且 n=0`时，背包必定装不下任何元素
+  + `dp[0][0] = 0`，因为题目里面所有字符串长度&gt;0，所以`m=0 且 n=0`时，背包必定装不下任何元素
 
 代码（61ms，35.89%）：超级慢，应该是三重for循环的原因
 
@@ -2347,11 +2347,11 @@ class Solution {
 
 参考代码1（41ms，54.92%）：
 
-+ 主要是考虑到是**"有限背包"**，所以计算字符串的0和1的个数。可以在遍历字符串数组的时候临时统计，因为只遍历一次，不会重复放入同一个物品。=>而我多了一次for循环用来专门统计，亏时间了。
++ 主要是考虑到是**"有限背包"**，所以计算字符串的0和1的个数。可以在遍历字符串数组的时候临时统计，因为只遍历一次，不会重复放入同一个物品。=&gt;而我多了一次for循环用来专门统计，亏时间了。
 
-> [一和零--官方题解](https://leetcode-cn.com/problems/ones-and-zeroes/solution/yi-he-ling-by-leetcode/)
->
-> **注意由于每个字符串只能使用一次（即有限背包**），因此在更新 `dp(i, j)` 时，`i` 和 `j` 都需要从大到小进行枚举。
+&gt; [一和零--官方题解](https://leetcode-cn.com/problems/ones-and-zeroes/solution/yi-he-ling-by-leetcode/)
+&gt;
+&gt; **注意由于每个字符串只能使用一次（即有限背包**），因此在更新 `dp(i, j)` 时，`i` 和 `j` 都需要从大到小进行枚举。
 
 ```java
 public class Solution {
@@ -2377,9 +2377,9 @@ public class Solution {
 
 参考代码2（40ms，57.51%）：
 
-> [动态规划（转换为 0-1 背包问题）](https://leetcode-cn.com/problems/ones-and-zeroes/solution/dong-tai-gui-hua-zhuan-huan-wei-0-1-bei-bao-wen-ti/)
->
-> 和官方题解其实差不多，没啥太大区别
+&gt; [动态规划（转换为 0-1 背包问题）](https://leetcode-cn.com/problems/ones-and-zeroes/solution/dong-tai-gui-hua-zhuan-huan-wei-0-1-bei-bao-wen-ti/)
+&gt;
+&gt; 和官方题解其实差不多，没啥太大区别
 
 ```java
 public class Solution {
@@ -2456,7 +2456,7 @@ class Solution {
 
 ### 494. 目标和
 
-> [494. 目标和](https://leetcode-cn.com/problems/target-sum/)
+&gt; [494. 目标和](https://leetcode-cn.com/problems/target-sum/)
 
 语言：java
 
@@ -2464,7 +2464,7 @@ class Solution {
 
 + 这个题目有个烦人点就是+-号问题。
 + 假设准备取正的集合和为Z，准备取负的集合和为F，目标值S，nums数组原本的和为sum
-  + `Z-F = S` => `Z-F+F = S + F` => `Z + Z = S + Z + F` => `2Z = S + sum`
+  + `Z-F = S` =&gt; `Z-F+F = S + F` =&gt; `Z + Z = S + Z + F` =&gt; `2Z = S + sum`
   + 所以到头来，我们只要考虑正数情况，不需要考虑负数
 + `dp[i]`表示目标和到i的方式有几种。
   + `dp[0]=1`，数组非空，全部元素都必须用上，即一定会用到`dp[0]`，每次用到`dp[0]`说明找到一种情况，+1。
@@ -2532,16 +2532,16 @@ class Solution {
 
 ### 1025. 除数博弈
 
-> [1025. 除数博弈](https://leetcode-cn.com/problems/divisor-game/)
+&gt; [1025. 除数博弈](https://leetcode-cn.com/problems/divisor-game/)
 
 语言：java
 
 思路：这里主要需要思考的是，"两个玩家都以最佳状态参与游戏"，怎么样是最佳。
 
 + 先找规律试试，根据题目的提示，可以得知，如果为2，直接就是true，为3则false。
-+ 这里`N-x`替换原本的`N`，也算是一种提示，暗示可以用动态规划=>当前状态依赖过去的计算
++ 这里`N-x`替换原本的`N`，也算是一种提示，暗示可以用动态规划=&gt;当前状态依赖过去的计算
 + `dp[i]`表示数字为i时，爱丽丝是否能赢
-+ `dp[2] = true; d[3] = false` => 题目给出的
++ `dp[2] = true; d[3] = false` =&gt; 题目给出的
 + `dp[1] = false`，因为爱丽丝此时无法操作
 + 纸上发现规律，基本只要考虑-1，-2，-3的情况，而实际上只要是偶数就赢了
 
@@ -2580,7 +2580,7 @@ class Solution {
 
 ### 112. 路径总和
 
-> [112. 路径总和](https://leetcode-cn.com/problems/path-sum/)
+&gt; [112. 路径总和](https://leetcode-cn.com/problems/path-sum/)
 
 语言：java
 
@@ -2611,7 +2611,7 @@ class Solution {
 
 ### 面试题 01.04. 回文排列
 
-> [面试题 01.04. 回文排列](https://leetcode-cn.com/problems/palindrome-permutation-lcci/)
+&gt; [面试题 01.04. 回文排列](https://leetcode-cn.com/problems/palindrome-permutation-lcci/)
 
 语言：java
 
@@ -2644,7 +2644,7 @@ class Solution {
 
 ### 647. 回文子串
 
-> [647. 回文子串](https://leetcode-cn.com/problems/palindromic-substrings/)
+&gt; [647. 回文子串](https://leetcode-cn.com/problems/palindromic-substrings/)
 
 语言：java
 
@@ -2682,11 +2682,11 @@ class Solution {
 
 参考代码1（4ms，78.15%）：
 
-> [回文子串--官方题解](https://leetcode-cn.com/problems/palindromic-substrings/solution/hui-wen-zi-chuan-by-leetcode-solution/)
->
-> 2*n，主要是为了统一长度为偶数和奇数的情况
->
-> 需要纸上找规律， 把回文左右边界的计算规律总结出公式
+&gt; [回文子串--官方题解](https://leetcode-cn.com/problems/palindromic-substrings/solution/hui-wen-zi-chuan-by-leetcode-solution/)
+&gt;
+&gt; 2*n，主要是为了统一长度为偶数和奇数的情况
+&gt;
+&gt; 需要纸上找规律， 把回文左右边界的计算规律总结出公式
 
 ```java
 class Solution {
@@ -2707,9 +2707,9 @@ class Solution {
 
 参考代码2：
 
-> [回文子串--官方题解](https://leetcode-cn.com/problems/palindromic-substrings/solution/hui-wen-zi-chuan-by-leetcode-solution/)
->
-> Manacher 算法 => 有点复杂。
+&gt; [回文子串--官方题解](https://leetcode-cn.com/problems/palindromic-substrings/solution/hui-wen-zi-chuan-by-leetcode-solution/)
+&gt;
+&gt; Manacher 算法 =&gt; 有点复杂。
 
 ```java
 class Solution {
@@ -2748,7 +2748,7 @@ class Solution {
 
 ### 1392. 最长快乐前缀
 
-> [最长快乐前缀](https://leetcode-cn.com/problems/longest-happy-prefix/)
+&gt; [最长快乐前缀](https://leetcode-cn.com/problems/longest-happy-prefix/)
 
 语言：java
 
@@ -2807,7 +2807,7 @@ class Solution {
 
 参考代码2（7ms，97.24%）：
 
-> [利用KMP算法中的next数组求法解答，时间超100%](https://leetcode-cn.com/problems/longest-happy-prefix/solution/li-yong-kmpsuan-fa-zhong-de-nextshu-zu-q-57a7/)
+&gt; [利用KMP算法中的next数组求法解答，时间超100%](https://leetcode-cn.com/problems/longest-happy-prefix/solution/li-yong-kmpsuan-fa-zhong-de-nextshu-zu-q-57a7/)
 
 ```java
 class Solution {
@@ -2857,7 +2857,7 @@ class Solution {
 
 ### 572. 另一个树的子树
 
-> [572. 另一个树的子树](https://leetcode-cn.com/problems/subtree-of-another-tree/)
+&gt; [572. 另一个树的子树](https://leetcode-cn.com/problems/subtree-of-another-tree/)
 
 语言：java
 
@@ -2916,7 +2916,7 @@ class Solution {
 
 参考代码1：同样也是DFS，但是却快了6ms
 
->[另一个树的子树--官方题解](https://leetcode-cn.com/problems/subtree-of-another-tree/solution/ling-yi-ge-shu-de-zi-shu-by-leetcode-solution/)
+&gt;[另一个树的子树--官方题解](https://leetcode-cn.com/problems/subtree-of-another-tree/solution/ling-yi-ge-shu-de-zi-shu-by-leetcode-solution/)
 
 ```java
 class Solution {
@@ -2945,7 +2945,7 @@ class Solution {
 
 参考代码2（5ms，86.0%）：先序遍历+KMP判断，感觉很奇特的解法。
 
->[另一个树的子树--官方题解](https://leetcode-cn.com/problems/subtree-of-another-tree/solution/ling-yi-ge-shu-de-zi-shu-by-leetcode-solution/)
+&gt;[另一个树的子树--官方题解](https://leetcode-cn.com/problems/subtree-of-another-tree/solution/ling-yi-ge-shu-de-zi-shu-by-leetcode-solution/)
 
 ```java
 class Solution {
@@ -3119,7 +3119,7 @@ class Solution {
 
 ### 1143. 最长公共子序列
 
-> [1143. 最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/)
+&gt; [1143. 最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/)
 
 语言：java
 
@@ -3127,7 +3127,7 @@ class Solution {
 
 参考代码1（11ms，81.36%）：好吧，居然要动态规划。
 
-> [最长公共子序列--官方题解](https://leetcode-cn.com/problems/longest-common-subsequence/solution/zui-chang-gong-gong-zi-xu-lie-by-leetcod-y7u0/)
+&gt; [最长公共子序列--官方题解](https://leetcode-cn.com/problems/longest-common-subsequence/solution/zui-chang-gong-gong-zi-xu-lie-by-leetcod-y7u0/)
 
 ```java
 class Solution {
@@ -3212,7 +3212,7 @@ class Solution {
 
 ### 剑指 Offer 48. 最长不含重复字符的子字符串
 
->[剑指 Offer 48. 最长不含重复字符的子字符串](https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/)
+&gt;[剑指 Offer 48. 最长不含重复字符的子字符串](https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/)
 
 语言：java
 
@@ -3248,7 +3248,7 @@ class Solution {
 
 ### 781. 森林中的兔子
 
->[781. 森林中的兔子](https://leetcode-cn.com/problems/rabbits-in-forest/)
+&gt;[781. 森林中的兔子](https://leetcode-cn.com/problems/rabbits-in-forest/)
 
 语言：java
 
@@ -3286,7 +3286,7 @@ class Solution {
 
 参考代码1（3ms，68.18%）：
 
-> [森林中的兔子--官方题解](https://leetcode-cn.com/problems/rabbits-in-forest/solution/sen-lin-zhong-de-tu-zi-by-leetcode-solut-kvla/)
+&gt; [森林中的兔子--官方题解](https://leetcode-cn.com/problems/rabbits-in-forest/solution/sen-lin-zhong-de-tu-zi-by-leetcode-solut-kvla/)
 
 ```java
 class Solution {
@@ -3327,7 +3327,7 @@ class Solution {
 
 ### 310. 最小高度树
 
->[310. 最小高度树](https://leetcode-cn.com/problems/minimum-height-trees/)
+&gt;[310. 最小高度树](https://leetcode-cn.com/problems/minimum-height-trees/)
 
 语言：java
 
@@ -3335,11 +3335,11 @@ class Solution {
 
 参考代码1（13ms，90.51%）：
 
-> [BFS 超级简单 注释超级详细](https://leetcode-cn.com/problems/minimum-height-trees/solution/zui-rong-yi-li-jie-de-bfsfen-xi-jian-dan-zhu-shi-x/)
->
-> 类似拓扑排序。这个代码和另一个题解类似=>[通用图形BFS](https://leetcode-cn.com/problems/minimum-height-trees/solution/tong-yong-tu-xing-bfs-by-user8772/)
->
-> 先找出所有度为1的节点，然后进行BFS，之后度为1的节点BFS中遇到的共同节点，即出于图中心位置的点，也就是我们要的答案。
+&gt; [BFS 超级简单 注释超级详细](https://leetcode-cn.com/problems/minimum-height-trees/solution/zui-rong-yi-li-jie-de-bfsfen-xi-jian-dan-zhu-shi-x/)
+&gt;
+&gt; 类似拓扑排序。这个代码和另一个题解类似=&gt;[通用图形BFS](https://leetcode-cn.com/problems/minimum-height-trees/solution/tong-yong-tu-xing-bfs-by-user8772/)
+&gt;
+&gt; 先找出所有度为1的节点，然后进行BFS，之后度为1的节点BFS中遇到的共同节点，即出于图中心位置的点，也就是我们要的答案。
 
 ```java
 class Solution {
@@ -3495,7 +3495,7 @@ class Solution {
 
 ### 264. 丑数 II
 
->[264. 丑数 II](https://leetcode-cn.com/problems/ugly-number-ii/)
+&gt;[264. 丑数 II](https://leetcode-cn.com/problems/ugly-number-ii/)
 
 语言：java
 
@@ -3503,7 +3503,7 @@ class Solution {
 
 参考代码1（65ms，19.33%）：每次从最小堆里面取最小的数据，然后再把取出来的值\*2，\*3，\*5，放入最小堆中。需要保证没有重复元素。
 
-> [丑数 II--官方题解](https://leetcode-cn.com/problems/ugly-number-ii/solution/chou-shu-ii-by-leetcode-solution-uoqd/)
+&gt; [丑数 II--官方题解](https://leetcode-cn.com/problems/ugly-number-ii/solution/chou-shu-ii-by-leetcode-solution-uoqd/)
 
 ```java
 class Solution {
@@ -3531,7 +3531,7 @@ class Solution {
 
 参考代码2（3ms，81.63%）：动态规划DP，dp[i\]表示第i个丑数
 
-> [丑数 II--官方题解](https://leetcode-cn.com/problems/ugly-number-ii/solution/chou-shu-ii-by-leetcode-solution-uoqd/)
+&gt; [丑数 II--官方题解](https://leetcode-cn.com/problems/ugly-number-ii/solution/chou-shu-ii-by-leetcode-solution-uoqd/)
 
 ```java
 class Solution {
@@ -3592,14 +3592,14 @@ class Solution {
 
 ### 670. 最大交换
 
-> [670. 最大交换 - 力扣（LeetCode）](https://leetcode.cn/problems/maximum-swap/)
+&gt; [670. 最大交换 - 力扣（LeetCode）](https://leetcode.cn/problems/maximum-swap/)
 
 语言：java
 
 思路：许久没有做题了，脑子烂掉。
 
 + 最优情况即整个数字串就是从大到小排序好的，无需调换位置。例如9973
-+ 坏一点的情况，例如9937，则是和最优情况差一点，<u>右边某部分存在不是 从大到小排序好的</u>，则需要调换。
++ 坏一点的情况，例如9937，则是和最优情况差一点，&lt;u&gt;右边某部分存在不是 从大到小排序好的&lt;/u&gt;，则需要调换。
 
 所以，先对原数字串从到小排序得到新数字串，然后左到右遍历新数字串，和原本数字串对比，找到第一个不一样的数字，这个数字需要被调换位置。接着为了让数字尽量大，从右边往左在原来的数字串中找到对应的数字，将这两个下标进行调换。
 
@@ -3646,7 +3646,7 @@ class Solution {
 
 参考代码1（0ms，100%）：
 
-> [【爪哇缪斯】图解LeetCode - 最大交换 - 力扣（LeetCode）](https://leetcode.cn/problems/maximum-swap/solution/by-muse-77-hwnt/)
+&gt; [【爪哇缪斯】图解LeetCode - 最大交换 - 力扣（LeetCode）](https://leetcode.cn/problems/maximum-swap/solution/by-muse-77-hwnt/)
 
 ```java
 class Solution {
@@ -3676,13 +3676,13 @@ class Solution {
 
 参考后重写：
 
-（1）什么情况需要调换位置 => 某下标 右边部分 存在数字比自己当前数字大 => 如何表示 某下标右边的值比自己大 => 试图用当前下标表示右边比自己大的数字
+（1）什么情况需要调换位置 =&gt; 某下标 右边部分 存在数字比自己当前数字大 =&gt; 如何表示 某下标右边的值比自己大 =&gt; 试图用当前下标表示右边比自己大的数字
 
-（2）怎么调换位置最划算 => 同样是需要兑换位置的情况，左边的数字尽量靠近左边，右边的数字尽量靠近右边，且右边的数字尽量大
+（2）怎么调换位置最划算 =&gt; 同样是需要兑换位置的情况，左边的数字尽量靠近左边，右边的数字尽量靠近右边，且右边的数字尽量大
 
 （3）最后怎么调换位置
 
-解决（1）：`rightMaxIndex[i] = j` （i <= j），表示 i 右边 比自己大的最大值数字对应的下标j
+解决（1）：`rightMaxIndex[i] = j` （i &lt;= j），表示 i 右边 比自己大的最大值数字对应的下标j
 
 在（1）的前提下，思考（2），从右边往左遍历数字串，找到右边侧最大值，记录下标到rightMaxIndex[i]，并且下标只记录最大的下标值（即j尽量大）。
 
@@ -3781,9 +3781,9 @@ class Solution {
 
 代码3，双向指针（0ms，100%）：目标是用两个指针，实现把删除的元素挪到右边。这里需要注意的是边界什么时候可以取=号。
 
-+ 最外层while（left <=right）因为在[left,right]找数据，left可以=right
++ 最外层while（left &lt;=right）因为在[left,right]找数据，left可以=right
 + 中间left、right移动时，可取=号，因为[left，right]找数据
-+ 只有left<right才有替换的必要。替换后，left和right当前位置无意义，可以继续挪动指针
++ 只有left&lt;right才有替换的必要。替换后，left和right当前位置无意义，可以继续挪动指针
 
 ```java
 class Solution {
@@ -3833,11 +3833,11 @@ class Solution {
 
 参考代码1（0ms，100%）：进行了局部判断的优化
 
-> [【双指针】删除重复项-带优化思路 - 删除有序数组中的重复项 - 力扣（LeetCode）](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/solution/shuang-zhi-zhen-shan-chu-zhong-fu-xiang-dai-you-hu/)
->
-> 原题解p+1用于存储不重复的数字，如果完全没有数字重复，就会有多余的重复赋值的步骤。
->
-> 而没有重复数字时，p和q只相差1，所以当p和q相差 > 1的时候才有必要显式赋值。
+&gt; [【双指针】删除重复项-带优化思路 - 删除有序数组中的重复项 - 力扣（LeetCode）](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/solution/shuang-zhi-zhen-shan-chu-zhong-fu-xiang-dai-you-hu/)
+&gt;
+&gt; 原题解p+1用于存储不重复的数字，如果完全没有数字重复，就会有多余的重复赋值的步骤。
+&gt;
+&gt; 而没有重复数字时，p和q只相差1，所以当p和q相差 &gt; 1的时候才有必要显式赋值。
 
 ```java
 public int removeDuplicates(int[] nums) {
@@ -3883,9 +3883,9 @@ class Solution {
 
 参考代码1： 
 
-> [动画演示 283.移动零 - 移动零 - 力扣（LeetCode）](https://leetcode.cn/problems/move-zeroes/solution/dong-hua-yan-shi-283yi-dong-ling-by-wang_ni_ma/)
->
-> 下方评论区
+&gt; [动画演示 283.移动零 - 移动零 - 力扣（LeetCode）](https://leetcode.cn/problems/move-zeroes/solution/dong-hua-yan-shi-283yi-dong-ling-by-wang_ni_ma/)
+&gt;
+&gt; 下方评论区
 
 ```java
 public void moveZeroes(int[] nums)  {
@@ -3938,9 +3938,9 @@ class Solution {
 
 参考代码1（1ms，99.99%）：
 
-> [长度最小的子数组 - 长度最小的子数组 - 力扣（LeetCode）](https://leetcode.cn/problems/minimum-size-subarray-sum/solution/chang-du-zui-xiao-de-zi-shu-zu-by-leetcode-solutio/)
->
-> 一样是滑动窗口，不过代码更简洁
+&gt; [长度最小的子数组 - 长度最小的子数组 - 力扣（LeetCode）](https://leetcode.cn/problems/minimum-size-subarray-sum/solution/chang-du-zui-xiao-de-zi-shu-zu-by-leetcode-solutio/)
+&gt;
+&gt; 一样是滑动窗口，不过代码更简洁
 
 ```java
 class Solution {
@@ -3974,7 +3974,7 @@ class Solution {
 
 参考代码（58ms，21.75%）：
 
-> [水果成篮 - 水果成篮 - 力扣（LeetCode）](https://leetcode.cn/problems/fruit-into-baskets/solution/shui-guo-cheng-lan-by-leetcode/)
+&gt; [水果成篮 - 水果成篮 - 力扣（LeetCode）](https://leetcode.cn/problems/fruit-into-baskets/solution/shui-guo-cheng-lan-by-leetcode/)
 
 ```java
 class Solution {
@@ -4010,7 +4010,7 @@ class Counter extends HashMap<Integer, Integer> {
 
 参考代码2（5ms，97.39%）：
 
-> 评论区题解。我最早的写法类似这个，但是对2个篮子的记录处理写得不妥过不了。
+&gt; 评论区题解。我最早的写法类似这个，但是对2个篮子的记录处理写得不妥过不了。
 
 ```java
 // 本题要求，选择一个最长只有两个元素的子序列
@@ -4103,8 +4103,8 @@ class Solution {
 
 参考代码（2ms，96.55%）：
 
-> [最小覆盖子串 - 最小覆盖子串 - 力扣（LeetCode）](https://leetcode.cn/problems/minimum-window-substring/solution/zui-xiao-fu-gai-zi-chuan-by-leetcode-solution/)
-> 评论区大神：
+&gt; [最小覆盖子串 - 最小覆盖子串 - 力扣（LeetCode）](https://leetcode.cn/problems/minimum-window-substring/solution/zui-xiao-fu-gai-zi-chuan-by-leetcode-solution/)
+&gt; 评论区大神：
 
 ```java
 // 常规思路是右指针一直右移，直到窗口中包含t，然后左指针一直右移，直到窗口中不包含t，此过程中要一直验证窗口中是否包含t，时间复杂度高

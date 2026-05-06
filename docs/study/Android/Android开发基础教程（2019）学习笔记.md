@@ -1,8 +1,8 @@
 # Android开发基础教程（2019）学习笔记
 
-> 二话不说，贴其中一个视频的链接，其他的也是同一个up主投递
->
-> https://www.bilibili.com/video/av52405925/?spm_id_from=333.788.videocard.0
+&gt; 二话不说，贴其中一个视频的链接，其他的也是同一个up主投递
+&gt;
+&gt; https://www.bilibili.com/video/av52405925/?spm_id_from=333.788.videocard.0
 
 #### 2. "Hello World"
 
@@ -19,7 +19,7 @@
 
 #### 5. Activity LifeCycle
 
-+ onCreate()-> onStart()-> onResume() -> onPause() -> onStop() -> onDestroy() 
++ onCreate()-&gt; onStart()-&gt; onResume() -&gt; onPause() -&gt; onStop() -&gt; onDestroy() 
 + 调用finish()会触发onDestroy(),切换为横屏也会触发onDestroy，重新创建Activity
 + 需要在onDestroy()之前释放资源，避免内存泄漏
   + 自己尝试了下，回到桌面会执行onPause(),onStop().

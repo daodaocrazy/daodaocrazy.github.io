@@ -1,4 +1,4 @@
-<img src="_media/icon.jpeg" alt="logo" style="zoom: 25%;" />
+&lt;img src="_media/icon.jpeg" alt="logo" style="zoom: 25%;" /&gt;
 
 # Daodaocrazy的个人MD笔记
 

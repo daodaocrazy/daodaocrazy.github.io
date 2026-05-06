@@ -1,6 +1,6 @@
 python数据处理
 
-> 笔记所记录的内容大部分出至《数据科学技术与应用》,还有些是我学习中遇到的问题，穿插其中补充。
+&gt; 笔记所记录的内容大部分出至《数据科学技术与应用》,还有些是我学习中遇到的问题，穿插其中补充。
 
 ## 第1章 数据科学基础
 
@@ -97,7 +97,7 @@ python数据处理
 
 2. Python自定义函数
 
-   使用def关键字定义函数，函数定义时，变量类型无需说明，同时<u>可以在参数列表的最后定义多个带有默认值的参数</u>。函数调用时，具有默认值的形参，可以不传实参。
+   使用def关键字定义函数，函数定义时，变量类型无需说明，同时&lt;u&gt;可以在参数列表的最后定义多个带有默认值的参数&lt;/u&gt;。函数调用时，具有默认值的形参，可以不传实参。
 
    ```python
    >>> def sum(a,b):
@@ -116,15 +116,15 @@ python数据处理
 
 ### 2.1 多维数组对象
 
-> NumPy库提供多维数组ndarray，其**所有元素类型必须相同**，且**大小固定**，在创建时定义，**使用过程中不可改变**。一般采用如下方式导入NumPy库：
->
-> \>\>\> import numpy as np
->
-> 为避免函数命名冲突，后续使用Numpy时使用np代替。
+&gt; NumPy库提供多维数组ndarray，其**所有元素类型必须相同**，且**大小固定**，在创建时定义，**使用过程中不可改变**。一般采用如下方式导入NumPy库：
+&gt;
+&gt; \&gt;\&gt;\&gt; import numpy as np
+&gt;
+&gt; 为避免函数命名冲突，后续使用Numpy时使用np代替。
 
 #### 2.1.1 一维数组对象
 
-> Numpy库的array函数可以基于python的tuple和list创建ndarray对象。(亲测使用dictionary生成的对象0维，而tuple和list创建对象没有区别
+&gt; Numpy库的array函数可以基于python的tuple和list创建ndarray对象。(亲测使用dictionary生成的对象0维，而tuple和list创建对象没有区别
 
 1. 查看数组的属性
 
@@ -157,9 +157,9 @@ python数据处理
 
 4. 根据条件筛选数组元素
 
-   > Python 中 （&，|）和（and，or）之间的区别
-   >
-   >  https://blog.csdn.net/weixin_40041218/article/details/80868521 
+   &gt; Python 中 （&，|）和（and，or）之间的区别
+   &gt;
+   &gt;  https://blog.csdn.net/weixin_40041218/article/details/80868521 
 
    ```python
    arr2 = np.array(["零","一","二","三","四","五","六","七","八"])
@@ -170,7 +170,7 @@ python数据处理
    #用or报错，这里就不贴报错信息了
    ```
 
-   条件筛选分为2步骤，首先利用(arr2 == '零') | (arr2 == '三')条件表达式<u>创建一个布尔型的数组</u>，然后使用此对象对arr2内的元素按位置选择，值是True的选中，Flase的不选。分步骤实现代码如下：
+   条件筛选分为2步骤，首先利用(arr2 == '零') | (arr2 == '三')条件表达式&lt;u&gt;创建一个布尔型的数组&lt;/u&gt;，然后使用此对象对arr2内的元素按位置选择，值是True的选中，Flase的不选。分步骤实现代码如下：
 
    ```python
    arr2 = np.array(["零","一","二","三","四","五","六","七","八"])
@@ -274,7 +274,7 @@ python数据处理
    """
    ```
 
-   + 后面几条尝试了前面提到的start: end: step形式，可以看出end是不包含的，也就是区间是[start,end)​
+   + 后面几条尝试了前面提到的start: end: step形式，可以看出end是不包含的，也就是区间是[start,end)
 
    4）**访问部分行和列数据**
 
@@ -302,7 +302,7 @@ python数据处理
 
 3. 条件筛选
 
-   可以使用布尔型数组筛选访问其他数组的元素。用于筛选的布尔数组，<u>需要具有与访问数组相同的函数或列数</u>。
+   可以使用布尔型数组筛选访问其他数组的元素。用于筛选的布尔数组，&lt;u&gt;需要具有与访问数组相同的函数或列数&lt;/u&gt;。
 
    ```python
    flag = np.array(['one','two','three'])
@@ -332,7 +332,7 @@ python数据处理
 
 1. arange()函数
 
-   生成指定头、尾、步长的<u>等差数组</u>，**参数可以是浮点数**
+   生成指定头、尾、步长的&lt;u&gt;等差数组&lt;/u&gt;，**参数可以是浮点数**
 
    ```python
    np.arange(4)
@@ -442,135 +442,135 @@ python数据处理
 
    + 常用的一元函数(eg: np.abs(arr)等 )
 
-   <escape>
+   &lt;escape&gt;
 
-   <table class="tg">
-     <tr>
-       <th class="tg-c3ow">函数</th>
-       <th class="tg-0pky">描述</th>
-     </tr>
-     <tr>
-       <td class="tg-c3ow">abs、fabs</td>
-       <td class="tg-0pky">计算整数、浮点数或负数的绝对值</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">sqrt</td>
-       <td class="tg-0pky">计算各元素的平方根</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">square</td>
-       <td class="tg-0pky">计算各元素的平方</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">exp</td>
-       <td class="tg-0pky">计算各元素的指数</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">log、log10</td>
-       <td class="tg-0pky">自然对数、底数为10的log</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">sign</td>
-       <td class="tg-0pky">计算各元素的正负号</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">ceil</td>
-       <td class="tg-0pky">计算各元素的ceiling值，即大于或等于该值的最小整数</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">floor</td>
-       <td class="tg-0pky">计算各元素的floor值，即小于或等于该值的最大整数</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">cos、cosh、sin、sinh、tan、tanh</td>
-       <td class="tg-0pky">普通和双曲型三角函数</td>
-     </tr>
-   </table>
+   &lt;table class="tg"&gt;
+     &lt;tr&gt;
+       &lt;th class="tg-c3ow"&gt;函数&lt;/th&gt;
+       &lt;th class="tg-0pky"&gt;描述&lt;/th&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-c3ow"&gt;abs、fabs&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;计算整数、浮点数或负数的绝对值&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;sqrt&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;计算各元素的平方根&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;square&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;计算各元素的平方&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;exp&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;计算各元素的指数&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;log、log10&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;自然对数、底数为10的log&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;sign&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;计算各元素的正负号&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;ceil&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;计算各元素的ceiling值，即大于或等于该值的最小整数&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;floor&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;计算各元素的floor值，即小于或等于该值的最大整数&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;cos、cosh、sin、sinh、tan、tanh&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;普通和双曲型三角函数&lt;/td&gt;
+     &lt;/tr&gt;
+   &lt;/table&gt;
 
-   </escape>
+   &lt;/escape&gt;
 
    + 常用的二元函数
 
-   <escape>
+   &lt;escape&gt;
 
-   <table class="tg">
-     <tr>
-       <th class="tg-c3ow">函数</th>
-       <th class="tg-0pky">描述</th>
-     </tr>
-     <tr>
-       <td class="tg-c3ow">add</td>
-       <td class="tg-0pky">将数据中对应的元素相加</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">subtract</td>
-       <td class="tg-0pky">从第一个数组中践去第二个数组中的元素</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">multiply</td>
-       <td class="tg-0pky">数组元素相乘</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">divide</td>
-       <td class="tg-0pky">数组对应元素相除</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">power</td>
-       <td class="tg-0pky">对第一个数组中的元素A，根据第二个数组中的相应元素B，计算AB</td>
-     </tr>
-     <tr>
-       <td class="tg-0lax">mod</td>
-       <td class="tg-0lax">元素级的求模运算</td>
-     </tr>
-     <tr>
-       <td class="tg-0lax">copysign</td>
-       <td class="tg-0lax">将第二个数组中的值的符号复制给第一个数组中的值</td>
-     </tr>
-     <tr>
-       <td class="tg-0lax">equal,not_equal</td>
-       <td class="tg-0lax">执行元素级的比较运算，产生布尔型数组</td>
-     </tr>
-   </table>
+   &lt;table class="tg"&gt;
+     &lt;tr&gt;
+       &lt;th class="tg-c3ow"&gt;函数&lt;/th&gt;
+       &lt;th class="tg-0pky"&gt;描述&lt;/th&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-c3ow"&gt;add&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;将数据中对应的元素相加&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;subtract&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;从第一个数组中践去第二个数组中的元素&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;multiply&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;数组元素相乘&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;divide&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;数组对应元素相除&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;power&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;对第一个数组中的元素A，根据第二个数组中的相应元素B，计算AB&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0lax"&gt;mod&lt;/td&gt;
+       &lt;td class="tg-0lax"&gt;元素级的求模运算&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0lax"&gt;copysign&lt;/td&gt;
+       &lt;td class="tg-0lax"&gt;将第二个数组中的值的符号复制给第一个数组中的值&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0lax"&gt;equal,not_equal&lt;/td&gt;
+       &lt;td class="tg-0lax"&gt;执行元素级的比较运算，产生布尔型数组&lt;/td&gt;
+     &lt;/tr&gt;
+   &lt;/table&gt;
 
-   </escape>
+   &lt;/escape&gt;
 
 2. 聚焦函数
    + 常用的聚集函数
 
-   <escape>
+   &lt;escape&gt;
    
-   <table class="tg">
-     <tr>
-       <th class="tg-c3ow">函数</th>
-       <th class="tg-0pky">描述</th>
-     </tr>
-     <tr>
-       <td class="tg-c3ow">sum</td>
-       <td class="tg-0pky">求和</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">mean</td>
-       <td class="tg-0pky">算数平均值</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">min、max</td>
-       <td class="tg-0pky">最小值和最大值</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">argmin、argmax</td>
-       <td class="tg-0pky">最小值和最大值的索引</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">cumsum</td>
-       <td class="tg-0pky">从0开始向前累加各元素</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">cumprod</td>
-       <td class="tg-0pky">从1开始向前累乘各元素</td>
-     </tr>
-   </table>
+   &lt;table class="tg"&gt;
+     &lt;tr&gt;
+       &lt;th class="tg-c3ow"&gt;函数&lt;/th&gt;
+       &lt;th class="tg-0pky"&gt;描述&lt;/th&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-c3ow"&gt;sum&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;求和&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;mean&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;算数平均值&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;min、max&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;最小值和最大值&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;argmin、argmax&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;最小值和最大值的索引&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;cumsum&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;从0开始向前累加各元素&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;cumprod&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;从1开始向前累乘各元素&lt;/td&gt;
+     &lt;/tr&gt;
+   &lt;/table&gt;
    
-   </escape>
+   &lt;/escape&gt;
    
    + 聚焦函数的使用样例(下面数据看看就好，主要了解参数)
    
@@ -598,42 +598,42 @@ python数据处理
    # argmax()函数能返回特定元素的下标。首先通过列筛选得到由所有学生英语成绩组成的一维数组，接着通过argmax()函数返回一维数组中最高分的索引值，最后利用该索引值在names数组中查找到该学生的姓名
    ```
    
-   > 对于二维数组对象，可以指定聚集函数是在行上操作还是在列上操作。**当参数axis为0时，函数操作的对象是同一列不同行的数组元素；当参数axis为1时，函数操作的对象是同一行不同列的数组元素**。
+   &gt; 对于二维数组对象，可以指定聚集函数是在行上操作还是在列上操作。**当参数axis为0时，函数操作的对象是同一列不同行的数组元素；当参数axis为1时，函数操作的对象是同一行不同列的数组元素**。
 
 #### 2.2.3 随机数组生成函数
 
 + 常用函数
 
-  <escape>
+  &lt;escape&gt;
   
-  <table class="tg">
-    <tr>
-      <th class="tg-c3ow">函数</th>
-      <th class="tg-0pky">描述</th>
-    </tr>
-  <tr>
-      <td class="tg-c3ow">random</td>
-      <td class="tg-0pky">随机产生[0,1)之间的浮点值</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">randint</td>
-      <td class="tg-0pky">随机生成给定范围的一组整数</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">uniform</td>
-      <td class="tg-0pky">随机生成给定范围内服从均匀分布的一组浮点数</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">choice</td>
-      <td class="tg-0pky">在给定的序列内随机选择元素</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">normal</td>
-      <td class="tg-0pky">随机生成一组服从给定均值和方差的正态分布随机数</td>
-    </tr>
-  </table>
+  &lt;table class="tg"&gt;
+    &lt;tr&gt;
+      &lt;th class="tg-c3ow"&gt;函数&lt;/th&gt;
+      &lt;th class="tg-0pky"&gt;描述&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;tr&gt;
+      &lt;td class="tg-c3ow"&gt;random&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;随机产生[0,1)之间的浮点值&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;randint&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;随机生成给定范围的一组整数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;uniform&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;随机生成给定范围内服从均匀分布的一组浮点数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;choice&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;在给定的序列内随机选择元素&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;normal&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;随机生成一组服从给定均值和方差的正态分布随机数&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
   
-  </escape>
+  &lt;/escape&gt;
   
   ```python
   # 生成5*6的二维随机整数，随机数的取值是0或1
@@ -662,7 +662,7 @@ python数据处理
 
 #### 3.2.1 Series对象
 
-​	Series是类似于数组的一维数据结构，由<u>两个</u>相关联的数组组成。名为“values”的<u>值数组</u>存放数据(任意类型的数据)，每一个元素都有一个与之关联的标签，存储在名为“index”的<u>索引数组</u>中。
+	Series是类似于数组的一维数据结构，由&lt;u&gt;两个&lt;/u&gt;相关联的数组组成。名为“values”的&lt;u&gt;值数组&lt;/u&gt;存放数据(任意类型的数据)，每一个元素都有一个与之关联的标签，存储在名为“index”的&lt;u&gt;索引数组&lt;/u&gt;中。
 
 ```python
 # 使用pandas的Series()函数来创建Series对象变量，格式如下：
@@ -705,48 +705,48 @@ dtype: int64
 
 #### 3.2.2 Series数据访问
 
-​	Series数据访问方式类似于ndarray数组，可以通过值得位置序号获取，同时由于每个值都关联到索引标签，也可以通过索引来访问。
+	Series数据访问方式类似于ndarray数组，可以通过值得位置序号获取，同时由于每个值都关联到索引标签，也可以通过索引来访问。
 
-​	下表列举了Series数据常用的几种选取方法
+	下表列举了Series数据常用的几种选取方法
 
-<escape>
+&lt;escape&gt;
 
-<table>
-    <tr>
-        <th>选取类型</th>
-        <th>选取方法</th>
-        <th>说明</th>
-    </tr>
-    <tr>
-        <td rowspan="2">基于索引名选取</td>
-        <td >obj[index]</td>
-        <td>选取某个值</td>
-    </tr>
-    <tr>
-        <td >obj[indexList]</td>
-        <td>选取多个值</td>
-    </tr>
-    <tr>
-        <td rowspan="3">基于位置选取</td>
-        <td >obj[loc]</td>
-        <td>选取某个值</td>
-    </tr>
-    <tr>
-        <td >obj[locList]</td>
-        <td>选取多个值</td>
-    </tr>
-    <tr>
-        <td >obj[a:b,c]</td>
-        <td>选取位置a~(b-1)以及c的值</td>
-    </tr>
-    <tr>
-    	<td>条件筛选</td>
-        <td>obj[condition]</td>
-        <td>选取满足条件表达式的值</td>
-    </tr>
-</table>
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;选取类型&lt;/th&gt;
+        &lt;th&gt;选取方法&lt;/th&gt;
+        &lt;th&gt;说明&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td rowspan="2"&gt;基于索引名选取&lt;/td&gt;
+        &lt;td &gt;obj[index]&lt;/td&gt;
+        &lt;td&gt;选取某个值&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td &gt;obj[indexList]&lt;/td&gt;
+        &lt;td&gt;选取多个值&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td rowspan="3"&gt;基于位置选取&lt;/td&gt;
+        &lt;td &gt;obj[loc]&lt;/td&gt;
+        &lt;td&gt;选取某个值&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td &gt;obj[locList]&lt;/td&gt;
+        &lt;td&gt;选取多个值&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td &gt;obj[a:b,c]&lt;/td&gt;
+        &lt;td&gt;选取位置a~(b-1)以及c的值&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+    	&lt;td&gt;条件筛选&lt;/td&gt;
+        &lt;td&gt;obj[condition]&lt;/td&gt;
+        &lt;td&gt;选取满足条件表达式的值&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
 
-</escape>
+&lt;/escape&gt;
 
 + 查询
 
@@ -819,7 +819,7 @@ dtype: int64
   """
   ```
 
-+ <u>Series对象创建后，可以修改值，也可以修改索引，用新的列表替换即可</u>。
++ &lt;u&gt;Series对象创建后，可以修改值，也可以修改索引，用新的列表替换即可&lt;/u&gt;。
 
   **如果Series对象的index本身为数字类型，基于位置序号的访问需要使用iloc方式实现。**
 
@@ -850,7 +850,7 @@ dtype: int64
 
 #### 3.2.3 DataFrame对象
 
-​	DataFrame类似于表格的二维数据结构，包括值(values)、行索引(index)、列索引(columns)3部分。值由ndarray的二维数组对象构成，行、列索引则保存为ndarray一维数组。**DataFrame对象的任意一行数据或一列数据都可视为Series对象**。通常DataFrame对象中每列表示一个总体的所有样本，每行为某个体在各个总体中的值。
+	DataFrame类似于表格的二维数据结构，包括值(values)、行索引(index)、列索引(columns)3部分。值由ndarray的二维数组对象构成，行、列索引则保存为ndarray一维数组。**DataFrame对象的任意一行数据或一列数据都可视为Series对象**。通常DataFrame对象中每列表示一个总体的所有样本，每行为某个体在各个总体中的值。
 
 ```python
 # 创建DataFrame方法如下：
@@ -874,60 +874,60 @@ print(students)
 
 #### 3.2.4 DataFrame数据访问
 
-​	DataFrame数据访问方式类似ndarray数组，可以通过值得位置序号获取，同时由于行、列都关联到索引标签，也可以通过索引来访问。
+	DataFrame数据访问方式类似ndarray数组，可以通过值得位置序号获取，同时由于行、列都关联到索引标签，也可以通过索引来访问。
 
 + DataFrame数据选取方法
 
-<escape>
+&lt;escape&gt;
 
-<table>
-  <tr>
-    <th>选取类型</th>
-    <th>选取方法</th>
-    <th>说明</th>
-  </tr>
-  <tr>
-    <td rowspan="4">基于索引名选取</td>
-    <td>obj[col]</td>
-    <td>选取某列</td>
-  </tr>
-  <tr>
-    <td>obj[colList]</td>
-    <td>选取某几列</td>
-  </tr>
-  <tr>
-    <td>obj.loc[index,col]</td>
-    <td>选取某行某列</td>
-  </tr>
-  <tr>
-    <td>obj[indexList,colList]</td>
-    <td>选取多行多列</td>
-  </tr>
-  <tr>
-    <td rowspan="3">基于位置序号选取</td>
-    <td>obj.iloc[iloc,cloc]</td>
-    <td>选取某行某列</td>
-  </tr>
-  <tr>
-    <td>obj.iloc[ilocList,clocList]</td>
-    <td>选取多行多列</td>
-  </tr>
-  <tr>
-    <td>obj.iloc[a:b,c:d]</td>
-    <td>选取a~(b-1)行,c~(d-1)列</td>
-  </tr>
-  <tr>
-    <td rowspan="2">条件筛选</td>
-    <td>obj.loc[condition,colList]</td>
-    <td>使用索引构造条件表达式<br>选取满足条件的行</td>
-  </tr>
-  <tr>
-    <td>obj.iloc[condition,colcList]</td>
-    <td>使用位置序号构造条件表达式<br>选取满足条件的行</td>
-  </tr>
-</table>
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;选取类型&lt;/th&gt;
+    &lt;th&gt;选取方法&lt;/th&gt;
+    &lt;th&gt;说明&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td rowspan="4"&gt;基于索引名选取&lt;/td&gt;
+    &lt;td&gt;obj[col]&lt;/td&gt;
+    &lt;td&gt;选取某列&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;obj[colList]&lt;/td&gt;
+    &lt;td&gt;选取某几列&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;obj.loc[index,col]&lt;/td&gt;
+    &lt;td&gt;选取某行某列&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;obj[indexList,colList]&lt;/td&gt;
+    &lt;td&gt;选取多行多列&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td rowspan="3"&gt;基于位置序号选取&lt;/td&gt;
+    &lt;td&gt;obj.iloc[iloc,cloc]&lt;/td&gt;
+    &lt;td&gt;选取某行某列&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;obj.iloc[ilocList,clocList]&lt;/td&gt;
+    &lt;td&gt;选取多行多列&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;obj.iloc[a:b,c:d]&lt;/td&gt;
+    &lt;td&gt;选取a~(b-1)行,c~(d-1)列&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td rowspan="2"&gt;条件筛选&lt;/td&gt;
+    &lt;td&gt;obj.loc[condition,colList]&lt;/td&gt;
+    &lt;td&gt;使用索引构造条件表达式&lt;br&gt;选取满足条件的行&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;obj.iloc[condition,colcList]&lt;/td&gt;
+    &lt;td&gt;使用位置序号构造条件表达式&lt;br&gt;选取满足条件的行&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
 
-</escape>
+&lt;/escape&gt;
 
 + **如果行或列部分用“:”代替，则表示选中整行或整列**。
 
@@ -1011,7 +1011,7 @@ print(students)
 
 + 添加
 
-  ​	DataFrame对象可以添加新的列，但不能直接增加新的行。增加新的行需要通过2个DataFrame对象的合并实现。当新增的列索引标签不存在时，增加新列；**若存在增修改列值**。
+  	DataFrame对象可以添加新的列，但不能直接增加新的行。增加新的行需要通过2个DataFrame对象的合并实现。当新增的列索引标签不存在时，增加新列；**若存在增修改列值**。
 
   ```python
   students['freetime'] = [4,5,8]
@@ -1049,7 +1049,7 @@ print(students)
 
 + 删除
 
-  ​	DataFrame对象的drop()函数通过axis指明按照行(0)或列(1)删除，且**不修改原始对象的数据**
+  	DataFrame对象的drop()函数通过axis指明按照行(0)或列(1)删除，且**不修改原始对象的数据**
 
   ```python
   students.drop(1,axis=0)	# axis=0表示行
@@ -1086,9 +1086,9 @@ print(students)
 
 1. 读写CSV格式文件
 
-   >CSV(Comma Separated Value)是一种特殊的文本文件，通常使用逗号作为字段之间的分隔符，用换行符作为记录之间的分隔符
-   >
-   >pandas.read_csv()默认第1行为列索引，第1列不是行索引，而是额外生成0~n-1为行索引
+   &gt;CSV(Comma Separated Value)是一种特殊的文本文件，通常使用逗号作为字段之间的分隔符，用换行符作为记录之间的分隔符
+   &gt;
+   &gt;pandas.read_csv()默认第1行为列索引，第1列不是行索引，而是额外生成0~n-1为行索引
 
    ```python
    pd.read_csv(file,sep=',',header='infer',index_col=None,names,skiprows,...)
@@ -1180,44 +1180,44 @@ print(students)
 
 2. 读取TXT文件
 
-   ​	**如果文件不是以逗号作为分隔符的文本（TXT）文件，则读取时需要设置分隔符参数sep。分隔符可以是指定字符串，也可以是正则表达式。**
+   	**如果文件不是以逗号作为分隔符的文本（TXT）文件，则读取时需要设置分隔符参数sep。分隔符可以是指定字符串，也可以是正则表达式。**
 
    + 下表列出最常用的通配符
 
-   <escape>
+   &lt;escape&gt;
 
-   <table class="tg">
-     <tr>
-       <th class="tg-c3ow">通配符</th>
-       <th class="tg-0pky">描述</th>
-     </tr>
-     <tr>
-       <td class="tg-c3ow">\s</td>
-       <td class="tg-0pky">空格等空白字符</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">\S</td>
-       <td class="tg-0pky">非空白字符</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">\t</td>
-       <td class="tg-0pky">制表符</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">\n</td>
-       <td class="tg-0pky">换行符</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">\d</td>
-       <td class="tg-0pky">数字</td>
-     </tr>
-     <tr>
-       <td class="tg-0lax">\D</td>
-       <td class="tg-0lax">非数字字符</td>
-     </tr>
-   </table>
+   &lt;table class="tg"&gt;
+     &lt;tr&gt;
+       &lt;th class="tg-c3ow"&gt;通配符&lt;/th&gt;
+       &lt;th class="tg-0pky"&gt;描述&lt;/th&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-c3ow"&gt;\s&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;空格等空白字符&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;\S&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;非空白字符&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;\t&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;制表符&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;\n&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;换行符&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;\d&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;数字&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0lax"&gt;\D&lt;/td&gt;
+       &lt;td class="tg-0lax"&gt;非数字字符&lt;/td&gt;
+     &lt;/tr&gt;
+   &lt;/table&gt;
 
-   </escape>
+   &lt;/escape&gt;
 
    以下是读取txt文件的例子，和读取csv文件没有本质区别
 
@@ -1295,7 +1295,7 @@ print(students)
 
 #### 3.3.2 读取Excel文件
 
-​	从Excel文件读取数据的函数类似CSV文件，只需再给出数据所在的表单名即可，其余的参数含义一致。
+	从Excel文件读取数据的函数类似CSV文件，只需再给出数据所在的表单名即可，其余的参数含义一致。
 
 ```python
 pd.read_excel(file, sheetname, ...)
@@ -1319,7 +1319,7 @@ print(student[:2])
 
 #### 3.4.1 缺失数据处理
 
-​	使用计算机对大量数据进行缺失处理，主要有**数据滤除**和**数据填充**两类方法，DataFrame提供了处理函数实现对应功能。
+	使用计算机对大量数据进行缺失处理，主要有**数据滤除**和**数据填充**两类方法，DataFrame提供了处理函数实现对应功能。
 
 ```python
 import pandas as pd
@@ -1335,13 +1335,13 @@ print( stu.loc[:3] )
 """
 ```
 
->输出中缺失的数据被表示为NaN。NaN是在NumPy中定义的，若某个数据填充为缺失值，可以用np.NaN(或np.nan)来赋值。
+&gt;输出中缺失的数据被表示为NaN。NaN是在NumPy中定义的，若某个数据填充为缺失值，可以用np.NaN(或np.nan)来赋值。
 
-+ 对缺失数据是填充还是滤除取决于实际应用。<u>如果样本容量很大，则缺失行可以忽略，否则应考虑采用合适的值来填充，以避免样本的浪费。</u>
++ 对缺失数据是填充还是滤除取决于实际应用。&lt;u&gt;如果样本容量很大，则缺失行可以忽略，否则应考虑采用合适的值来填充，以避免样本的浪费。&lt;/u&gt;
 
 1. 数据滤除
 
-   ​	DataFrame的dropna()函数删除空值所在的行或列，产生新数据对象，**不修改原始对象**，格式如下：
+   	DataFrame的dropna()函数删除空值所在的行或列，产生新数据对象，**不修改原始对象**，格式如下：
 
    ```python
    pandas.DataFrame.dropna(axis, how, thresh, ...)
@@ -1359,9 +1359,9 @@ print( stu.loc[:3] )
 
 2. 数据填充
 
-   ​	不能滤除的NaN需要填充后才能保证样本数据完整性。填充有两种基本思路，用默认值填充或用已有数据的均值/中位数填充
+   	不能滤除的NaN需要填充后才能保证样本数据完整性。填充有两种基本思路，用默认值填充或用已有数据的均值/中位数填充
 
-   ​	DataFrame的fillna()函数可以实现NaN数据的批量填充功能，也可以对指定的列进行填充，格式如下：
+   	DataFrame的fillna()函数可以实现NaN数据的批量填充功能，也可以对指定的列进行填充，格式如下：
 
    ```python
    pandas.DataFrame.fillna(value, method, implace, ...)
@@ -1379,7 +1379,7 @@ print( stu.loc[:3] )
 
 #### 3.4.2 去除重复数据
 
-​	用DataFrame的drop_duplicates()函数去除数据值与前面行重复的行，形式如下：
+	用DataFrame的drop_duplicates()函数去除数据值与前面行重复的行，形式如下：
 
 ```python
 DataFrame.drop_duplicates()
@@ -1446,7 +1446,7 @@ DataFrame.drop_duplicates()
 
 2. 排名
 
-   ​	排名在排序基础上,进一步给出每行的名次,排名时可以定义等值数据的处理方式,如并列名次最小值或最大值,也可以取均值.
+   	排名在排序基础上,进一步给出每行的名次,排名时可以定义等值数据的处理方式,如并列名次最小值或最大值,也可以取均值.
 
    ```python
    pd.DataFrame.rank(axis,method,ascending, ...)
@@ -1482,7 +1482,7 @@ DataFrame.drop_duplicates()
 
 ### 3.6 统计分析
 
-​	原始数据经过清洗、合并等处理过程后完成数据准备,后续分析通常需要数学计算实现。<u>Series和DataFrame继承了NumPy的数学函数，并提供了更完善的统计、汇总报告分析方法</u>。
+	原始数据经过清洗、合并等处理过程后完成数据准备,后续分析通常需要数学计算实现。&lt;u&gt;Series和DataFrame继承了NumPy的数学函数，并提供了更完善的统计、汇总报告分析方法&lt;/u&gt;。
 
 #### 3.6.1 通用函数与运算
 
@@ -1490,40 +1490,40 @@ DataFrame可以实现与DataFrame、Series或标量之间的算数运算
 
 + DataFrame算术运算
 
-  <escape>
+  &lt;escape&gt;
 
-  <table class="tg">
-    <tr>
-      <th class="tg-c3ow">运算符</th>
-      <th class="tg-0pky">描述</th>
-    </tr>
-    <tr>
-      <td class="tg-c3ow">df.T</td>
-      <td class="tg-0pky">DataFrame转置</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">df1 + df2</td>
-      <td class="tg-0pky">按照行列索引相加，得到并集，NaN填充</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">df1.add(df2,fill_value=0)</td>
-      <td class="tg-0pky">按照行列索引相加，NaN用指定值填充</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">df1.add/sub/mul/div</td>
-      <td class="tg-0pky">四则运算</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">df - sr</td>
-      <td class="tg-0pky">DataFrame的所有行同时减去Series</td>
-    </tr>
-    <tr>
-      <td class="tg-0lax">df * n</td>
-      <td class="tg-0lax">所有元素乘以n</td>
-    </tr>
-  </table>
+  &lt;table class="tg"&gt;
+    &lt;tr&gt;
+      &lt;th class="tg-c3ow"&gt;运算符&lt;/th&gt;
+      &lt;th class="tg-0pky"&gt;描述&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-c3ow"&gt;df.T&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;DataFrame转置&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;df1 + df2&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;按照行列索引相加，得到并集，NaN填充&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;df1.add(df2,fill_value=0)&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;按照行列索引相加，NaN用指定值填充&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;df1.add/sub/mul/div&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;四则运算&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;df - sr&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;DataFrame的所有行同时减去Series&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;df * n&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;所有元素乘以n&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
 
-  </escape>
+  &lt;/escape&gt;
 
 + DataFrame元素级的函数运算可以通过Numpy的一元通用函数(ufunc)实现，格式如下
 
@@ -1546,72 +1546,72 @@ DataFrame可以实现与DataFrame、Series或标量之间的算数运算
 
 + pandas的常用统计函数，包括Series和DataFrame
 
-  <escape>
+  &lt;escape&gt;
 
-  <table class="tg">
-    <tr>
-      <th class="tg-c3ow">函数</th>
-      <th class="tg-0pky">描述</th>
-    </tr>
-    <tr>
-      <td class="tg-c3ow">sr.value_counts()</td>
-      <td class="tg-0pky">统计频数</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">sr.describe()</td>
-      <td class="tg-0pky">返回基本统计量和分位数</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">sr1.corr(sr2)</td>
-      <td class="tg-0pky">sr1与sr2的相关系统</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">df.count()</td>
-      <td class="tg-0pky">统计每列数据的个数</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">df.max()、df.min()</td>
-      <td class="tg-0pky">最大值和最小值</td>
-    </tr>
-    <tr>
-      <td class="tg-0lax">dif.idxmax()、dif.idxmin()</td>
-      <td class="tg-0lax">最大值、最小值对应的索引</td>
-    </tr>
-    <tr>
-      <td class="tg-0lax">df.sum()</td>
-      <td class="tg-0lax">按行或列求和</td>
-    </tr>
-    <tr>
-      <td class="tg-0lax">df.mean()、df.median()</td>
-      <td class="tg-0lax">计算均值、中位数</td>
-    </tr>
-    <tr>
-      <td class="tg-0lax">df.quantile()</td>
-      <td class="tg-0lax">计算给定的四分位数</td>
-    </tr>
-    <tr>
-      <td class="tg-0lax">df.var()、df.std()</td>
-      <td class="tg-0lax">计算方差、标准差</td>
-    </tr>
-    <tr>
-      <td class="tg-0lax">df.mode()</td>
-      <td class="tg-0lax">计算众数</td>
-    </tr>
-    <tr>
-      <td class="tg-0lax">df.cumsum()</td>
-      <td class="tg-0lax">从0开始向前累加各元素</td>
-    </tr>
-    <tr>
-      <td class="tg-0lax">df.cow()</td>
-      <td class="tg-0lax">计算协方差矩阵</td>
-    </tr>
-    <tr>
-      <td class="tg-0lax">pd.crosstab(df[col1],df[col2])</td>
-      <td class="tg-0lax">pandas函数，交叉表，计算分组的频数</td>
-    </tr>
-  </table>
+  &lt;table class="tg"&gt;
+    &lt;tr&gt;
+      &lt;th class="tg-c3ow"&gt;函数&lt;/th&gt;
+      &lt;th class="tg-0pky"&gt;描述&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-c3ow"&gt;sr.value_counts()&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;统计频数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;sr.describe()&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;返回基本统计量和分位数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;sr1.corr(sr2)&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;sr1与sr2的相关系统&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;df.count()&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;统计每列数据的个数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;df.max()、df.min()&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;最大值和最小值&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;dif.idxmax()、dif.idxmin()&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;最大值、最小值对应的索引&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;df.sum()&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;按行或列求和&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;df.mean()、df.median()&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;计算均值、中位数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;df.quantile()&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;计算给定的四分位数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;df.var()、df.std()&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;计算方差、标准差&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;df.mode()&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;计算众数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;df.cumsum()&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;从0开始向前累加各元素&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;df.cow()&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;计算协方差矩阵&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;pd.crosstab(df[col1],df[col2])&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;pandas函数，交叉表，计算分组的频数&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
 
-  </escape>
+  &lt;/escape&gt;
 
 ```python
 stu = pd.read_excel('data/studentsInfo.xlsx','Group3',index_col=0)
@@ -1651,7 +1651,7 @@ max    181.000000  80.0000  98.000000
 """
 ```
 
-+ <u>分组是根据某些索引将数据对象划分为多个组，然后对每个分组进行排序或统计计算</u>，具体方法如下：
++ &lt;u&gt;分组是根据某些索引将数据对象划分为多个组，然后对每个分组进行排序或统计计算&lt;/u&gt;，具体方法如下：
 
   ```python
   grouped = pd.DataFrame.groupby(col)
@@ -1719,27 +1719,27 @@ stu[['身高','体重','成绩']].corr() # 多列数据之间的相关性
 
 ### 4.1 Python绘图基础
 
-> Python的Matplotlib是专门用于开发二维(包括三维)图表的工具包，可以实现图像元素精细化控制，绘制专业的分析图表，是目前应用最广泛的数据可视化工具。pandas封装了Matplotlib的主要绘图功能，利用Series和DataFrame对象的数据组织特点简便、快捷地创建标准化图表
+&gt; Python的Matplotlib是专门用于开发二维(包括三维)图表的工具包，可以实现图像元素精细化控制，绘制专业的分析图表，是目前应用最广泛的数据可视化工具。pandas封装了Matplotlib的主要绘图功能，利用Series和DataFrame对象的数据组织特点简便、快捷地创建标准化图表
 
 #### 4.1.1 认识基本图形
 
-​	按照数据值特性，常用可视图形大致可以分为以下3类：
+	按照数据值特性，常用可视图形大致可以分为以下3类：
 
-​	1）展示离散数据：散点图、柱状图、饼图等
+	1）展示离散数据：散点图、柱状图、饼图等
 
-​	2）展示连续数据：直方图、箱型图、折线图、半对数图等
+	2）展示连续数据：直方图、箱型图、折线图、半对数图等
 
-​	3）展示数据的区域或空间分布：统计地图、曲面图等
+	3）展示数据的区域或空间分布：统计地图、曲面图等
 
 #### 4.1.2 pandas快速绘图
 
-​	pandas基于Series和DataFrame绘图非常简单，只要3个步骤：
+	pandas基于Series和DataFrame绘图非常简单，只要3个步骤：
 
-​	1）导入Matplotlib、pandas：导入Matplotlib用于图形显示
+	1）导入Matplotlib、pandas：导入Matplotlib用于图形显示
 
-​	2）准备数据：使用Series或DataFrame封装数据
+	2）准备数据：使用Series或DataFrame封装数据
 
-​	3）绘图：调用Series.plot()或DataFrame.plot()函数完成绘图
+	3）绘图：调用Series.plot()或DataFrame.plot()函数完成绘图
 
 ```python
 # 将绘图显示在控制台console
@@ -1765,76 +1765,76 @@ plt.show() # 显示图形
 """
 ```
 
-​	pandas默认的plot()函数完成了图形的主要信息绘制，但<u>添加各类图元信息，如标题、图例、刻度标签及注释等，或者选择图形的展示类别、控制颜色、位置等，则需要在plot()函数中对相关参数进行设置</u>。
+	pandas默认的plot()函数完成了图形的主要信息绘制，但&lt;u&gt;添加各类图元信息，如标题、图例、刻度标签及注释等，或者选择图形的展示类别、控制颜色、位置等，则需要在plot()函数中对相关参数进行设置&lt;/u&gt;。
 
 + 下面列举DataFrame.plot()函数的常用参数，Series.plot()的多数参数与之类似
 
-  <escape>
+  &lt;escape&gt;
 
-  <table class="tg">
-    <tr>
-      <th class="tg-c3ow">参数名</th>
-      <th class="tg-0pky">说明</th>
-    </tr>
-    <tr>
-      <td class="tg-0lax">x</td>
-      <td class="tg-0lax">x轴数据，默认值为None</td>
-    </tr>
-    <tr>
-      <td class="tg-0lax">y</td>
-      <td class="tg-0lax">y轴数据，默认值为None</td>
-    </tr>
-    <tr>
-      <td class="tg-0lax">kind</td>
-      <td class="tg-0lax">绘图类型。'line'：折线图，默认值；'bar'：垂直柱状图；'barh':水平柱状图；‘hist’：直方图；<br>‘box’：箱型图；'kde'：Kernel核密度估计图；'density'与kde相同；‘pie’：饼图；‘scatter’：散点图</td>
-    </tr>
-    <tr>
-      <td class="tg-c3ow">title</td>
-      <td class="tg-0pky">图形标题，字符串</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">color</td>
-      <td class="tg-0pky">画笔颜色。用颜色缩写，如'r'、'b'，或者RBG值，如#CECECE。<br>主要颜色缩写：‘b’:blue; 'c':cyan; 'g':green; 'k':black; 'm':magenta; 'r':red; 'w':white; 'y':yellow</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">grid</td>
-      <td class="tg-0pky">图形是否有网络，默认值为None</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">fontsize</td>
-      <td class="tg-0pky">坐标轴(包括x轴和y轴)刻度的字体大小。整数，默认值为None</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">alpha</td>
-      <td class="tg-0pky">图表的透明度，值为0~1，值越大颜色越深</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">use_index</td>
-      <td class="tg-0pky">默认为True，用索引作为x轴刻度</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">linewidth</td>
-      <td class="tg-0pky">绘图线宽</td>
-    </tr>
-    <tr>
-      <td class="tg-0pky">linestyle</td>
-      <td class="tg-0pky">绘图线型。'-'：实线；‘- -’：破折线；‘-.’：点画线；‘:’虚线</td>
-    </tr>
-    <tr>
-      <td class="tg-0lax">marker</td>
-      <td class="tg-0lax">标记风格。‘.’：点；‘,’：像素(极小点)；’o‘:实心圆；’v‘:倒三角；’^‘：上三角；’&gt;‘:右三角；’&lt;‘:左三角；<br>’1‘：下花三角；’2‘：上花三角；’3‘：左花三角；’4‘：右花三角；’s‘：实心方形；’p‘：实星五角；<br>'*'：星形；'h/H'：竖/横六边形；’|‘：垂直线；’+‘：十字；’x‘：x；'D'：菱形；’d‘：瘦菱形</td>
-    </tr>
-    <tr>
-      <td class="tg-0lax">xlim、ylim</td>
-      <td class="tg-0lax">x轴、y轴的范围，二元组表示最小值和最大值</td>
-    </tr>
-    <tr>
-      <td class="tg-0lax">ax</td>
-      <td class="tg-0lax">axes对象</td>
-    </tr>
-  </table>
+  &lt;table class="tg"&gt;
+    &lt;tr&gt;
+      &lt;th class="tg-c3ow"&gt;参数名&lt;/th&gt;
+      &lt;th class="tg-0pky"&gt;说明&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;x&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;x轴数据，默认值为None&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;y&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;y轴数据，默认值为None&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;kind&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;绘图类型。'line'：折线图，默认值；'bar'：垂直柱状图；'barh':水平柱状图；‘hist’：直方图；&lt;br&gt;‘box’：箱型图；'kde'：Kernel核密度估计图；'density'与kde相同；‘pie’：饼图；‘scatter’：散点图&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-c3ow"&gt;title&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;图形标题，字符串&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;color&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;画笔颜色。用颜色缩写，如'r'、'b'，或者RBG值，如#CECECE。&lt;br&gt;主要颜色缩写：‘b’:blue; 'c':cyan; 'g':green; 'k':black; 'm':magenta; 'r':red; 'w':white; 'y':yellow&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;grid&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;图形是否有网络，默认值为None&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;fontsize&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;坐标轴(包括x轴和y轴)刻度的字体大小。整数，默认值为None&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;alpha&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;图表的透明度，值为0~1，值越大颜色越深&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;use_index&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;默认为True，用索引作为x轴刻度&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;linewidth&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;绘图线宽&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0pky"&gt;linestyle&lt;/td&gt;
+      &lt;td class="tg-0pky"&gt;绘图线型。'-'：实线；‘- -’：破折线；‘-.’：点画线；‘:’虚线&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;marker&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;标记风格。‘.’：点；‘,’：像素(极小点)；’o‘:实心圆；’v‘:倒三角；’^‘：上三角；’&gt;‘:右三角；’&lt;‘:左三角；&lt;br&gt;’1‘：下花三角；’2‘：上花三角；’3‘：左花三角；’4‘：右花三角；’s‘：实心方形；’p‘：实星五角；&lt;br&gt;'*'：星形；'h/H'：竖/横六边形；’|‘：垂直线；’+‘：十字；’x‘：x；'D'：菱形；’d‘：瘦菱形&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;xlim、ylim&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;x轴、y轴的范围，二元组表示最小值和最大值&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;ax&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;axes对象&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
 
-  </escape>
+  &lt;/escape&gt;
 
   ```python
   """
@@ -1852,7 +1852,7 @@ plt.show() # 显示图形
 
 #### 4.1.3 Matplotlib精细绘图
 
-​	pandas绘图简单直接，可以完成基本的标准图形绘制，但如果需要更细致地控制图表样式，如添加标注、在一幅图中包括多幅子图等，必须使用Matplotlib提供的基础函数。
+	pandas绘图简单直接，可以完成基本的标准图形绘制，但如果需要更细致地控制图表样式，如添加标注、在一幅图中包括多幅子图等，必须使用Matplotlib提供的基础函数。
 
 1. 绘图
 
@@ -1864,7 +1864,7 @@ plt.show() # 显示图形
 
    3）绘图。利用pyplot的绘图命令或pandas绘图命令。其中plot()是主要的绘图函数，可实现基本绘图。
 
-   4）设置图元。<u>使用pyplot的图元设置函数，实现图形精细控制</u>。
+   4）设置图元。&lt;u&gt;使用pyplot的图元设置函数，实现图形精细控制&lt;/u&gt;。
 
    ```python
    %matplotlib inline
@@ -1887,15 +1887,15 @@ plt.show() # 显示图形
 
 2.  多子图
 
-   ​	**figure对象可以绘制多个子图**，以便从不同角度观察数据。<u>首先在figure对象创建子图对象axes，然后在子图上绘制图形</u>，绘图使用pyplot或axes对象提供的各种绘图命令，也可以使用pandas绘图。
+   	**figure对象可以绘制多个子图**，以便从不同角度观察数据。&lt;u&gt;首先在figure对象创建子图对象axes，然后在子图上绘制图形&lt;/u&gt;，绘图使用pyplot或axes对象提供的各种绘图命令，也可以使用pandas绘图。
 
-   >【Python】 【绘图】plt.figure()的使用
-   >
-   > https://blog.csdn.net/m0_37362454/article/details/81511427
-   >
-   >python使用matplotlib:subplot绘制多个子图 
-   >
-   > https://www.cnblogs.com/xiaoboge/p/9683056.html 
+   &gt;【Python】 【绘图】plt.figure()的使用
+   &gt;
+   &gt; https://blog.csdn.net/m0_37362454/article/details/81511427
+   &gt;
+   &gt;python使用matplotlib:subplot绘制多个子图 
+   &gt;
+   &gt; https://www.cnblogs.com/xiaoboge/p/9683056.html 
 
    ```python
    # 创建子图的函数如下：
@@ -1925,50 +1925,50 @@ plt.show() # 显示图形
 
 3. 设置图元属性和说明
 
-   ​	Matplotlib提供了<u>对图中各种图元信息增加和设置</u>的功能，常用图元设置函数如下，具体参数参见官方文档资料。
+   	Matplotlib提供了&lt;u&gt;对图中各种图元信息增加和设置&lt;/u&gt;的功能，常用图元设置函数如下，具体参数参见官方文档资料。
 
-   <escape>
+   &lt;escape&gt;
 
-   <table class="tg">
-     <tr>
-       <th class="tg-c3ow">函数</th>
-       <th class="tg-0pky">说明</th>
-     </tr>
-     <tr>
-       <td class="tg-0lax">plt.title</td>
-       <td class="tg-0lax">设置图标题</td>
-     </tr>
-     <tr>
-       <td class="tg-0lax">plt.xlabel、plt.ylabel</td>
-       <td class="tg-0lax">设置x轴、y轴标题</td>
-     </tr>
-     <tr>
-       <td class="tg-0lax">plt.xlim、plt.ylim</td>
-       <td class="tg-0lax">设置x轴、y轴刻度范围</td>
-     </tr>
-     <tr>
-       <td class="tg-c3ow">plt.xticks、plt.yticks</td>
-       <td class="tg-0pky">设置x轴、y轴刻度值</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">plt.legend</td>
-       <td class="tg-0pky">添加图例说明</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">plt.grid</td>
-       <td class="tg-0pky">显示网格线</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">plt.text</td>
-       <td class="tg-0pky">添加注释文字</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky">plt.annotate</td>
-       <td class="tg-0pky">添加注释</td>
-     </tr>
-   </table>
+   &lt;table class="tg"&gt;
+     &lt;tr&gt;
+       &lt;th class="tg-c3ow"&gt;函数&lt;/th&gt;
+       &lt;th class="tg-0pky"&gt;说明&lt;/th&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0lax"&gt;plt.title&lt;/td&gt;
+       &lt;td class="tg-0lax"&gt;设置图标题&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0lax"&gt;plt.xlabel、plt.ylabel&lt;/td&gt;
+       &lt;td class="tg-0lax"&gt;设置x轴、y轴标题&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0lax"&gt;plt.xlim、plt.ylim&lt;/td&gt;
+       &lt;td class="tg-0lax"&gt;设置x轴、y轴刻度范围&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-c3ow"&gt;plt.xticks、plt.yticks&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;设置x轴、y轴刻度值&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;plt.legend&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;添加图例说明&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;plt.grid&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;显示网格线&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;plt.text&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;添加注释文字&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+       &lt;td class="tg-0pky"&gt;plt.annotate&lt;/td&gt;
+       &lt;td class="tg-0pky"&gt;添加注释&lt;/td&gt;
+     &lt;/tr&gt;
+   &lt;/table&gt;
 
-   </escape>
+   &lt;/escape&gt;
 
    ```python
    %matplotlib inline
@@ -2012,11 +2012,11 @@ plt.show() # 显示图形
 
 #### 4.2.1 绘制常用图形
 
-​	数据探索中常用的图形有曲线图、散点图、柱状图等，每种图形的特点及适应性各不相同。本节绘制实现以pandas绘图函数为主，辅以Matplotlib的一些函数
+	数据探索中常用的图形有曲线图、散点图、柱状图等，每种图形的特点及适应性各不相同。本节绘制实现以pandas绘图函数为主，辅以Matplotlib的一些函数
 
 1. 函数绘图
 
-   ​	函数y=f(x)描述了变量y随自变量x的变化过程。通过函数视图可以直观地观察两个变量之间的关系，也可以为线性或逻辑回归等模型提供结果展示。绘制函数plt.plot()根据给定的x坐标值数组，以及对应的y坐标值数组绘图。x的采样值越多，绘制的曲线越精确。
+   	函数y=f(x)描述了变量y随自变量x的变化过程。通过函数视图可以直观地观察两个变量之间的关系，也可以为线性或逻辑回归等模型提供结果展示。绘制函数plt.plot()根据给定的x坐标值数组，以及对应的y坐标值数组绘图。x的采样值越多，绘制的曲线越精确。
 
    ```python
    %matplotlib inline
@@ -2029,7 +2029,7 @@ plt.show() # 显示图形
 
 2. 散点图(Scatter Diagram)
 
-   ​	散点图描述两个一维数据序列之间的关系，可以表示两个指标的相关关系。它将两组数据分别作为点的横坐标和纵坐标。通过散点图可以分析两个数据序列之间是否具有线性关系，辅助线性或逻辑回归算法建立合理的预测模型
+   	散点图描述两个一维数据序列之间的关系，可以表示两个指标的相关关系。它将两组数据分别作为点的横坐标和纵坐标。通过散点图可以分析两个数据序列之间是否具有线性关系，辅助线性或逻辑回归算法建立合理的预测模型
 
    + 散点图的绘制函数：
 
@@ -2105,9 +2105,9 @@ plt.show() # 显示图形
 
 3. 柱状图(Bar Chart)
 
-   ​	柱状图用多个柱体描述单个总体处于不同状态的数量，并按状态序列的顺序排序，柱体高度或长度与该状态下的数量成正比。
+   	柱状图用多个柱体描述单个总体处于不同状态的数量，并按状态序列的顺序排序，柱体高度或长度与该状态下的数量成正比。
 
-   ​	柱状图易于展示数据的大小和比较数据之间的差别，还能用来表示均值和方差估计。按照排列方式的不同，可分为垂直柱状图和水平柱状图。按照表达总体的个数可分为单式柱状图和复式柱状图。**把多个总体同一状态的直条叠加在一起称为堆叠柱状图**。
+   	柱状图易于展示数据的大小和比较数据之间的差别，还能用来表示均值和方差估计。按照排列方式的不同，可分为垂直柱状图和水平柱状图。按照表达总体的个数可分为单式柱状图和复式柱状图。**把多个总体同一状态的直条叠加在一起称为堆叠柱状图**。
 
    + pandas使用plot()函数绘制柱状图，格式如下：
 
@@ -2169,11 +2169,11 @@ plt.show() # 显示图形
 
 4.  折线图
 
-   ​	折线图用线条描述事物的发展变化及趋势。横、纵坐标轴上都使用算数刻度的则先图称为**普通折线图，反映事物变化趋势**。一个坐标轴使用算数刻度、另一个坐标轴使用对数刻度的折线图称为**半对数折线图，反应事物变化速度**。
+   	折线图用线条描述事物的发展变化及趋势。横、纵坐标轴上都使用算数刻度的则先图称为**普通折线图，反映事物变化趋势**。一个坐标轴使用算数刻度、另一个坐标轴使用对数刻度的折线图称为**半对数折线图，反应事物变化速度**。
 
-   ​	当比较的两种或多种事物的数据值域相差较大时，用半对数折线图可确切反映出指标“相对增长量”的变化关系。
+   	当比较的两种或多种事物的数据值域相差较大时，用半对数折线图可确切反映出指标“相对增长量”的变化关系。
 
-   >例如，GDP和人均可支配收入有一定的相关性。但两者不在一个数量级，GDP在几十万亿间变化，人均可支配收入在几万元间变化，两者的“绝对增长量”相差较远；“相对增长量”却各自保持相对稳定的范围，用半对数折线图可以直观看出变化速度。
+   &gt;例如，GDP和人均可支配收入有一定的相关性。但两者不在一个数量级，GDP在几十万亿间变化，人均可支配收入在几万元间变化，两者的“绝对增长量”相差较远；“相对增长量”却各自保持相对稳定的范围，用半对数折线图可以直观看出变化速度。
 
    + **绘制半对数折线图需要在plot()函数中设置参数logx或logy为True**
 
@@ -2208,7 +2208,7 @@ plt.show() # 显示图形
 
 5. 直方图(Histogram)
 
-   ​	直方图用于描述总体的频数分布情况。它将横坐标按区间个数等分，每个区间上长方形的高度表示该区间样本的频率，面积表示频数。直方图的外观和柱状图相似，但表达含义不同。柱状图的一个柱体高度表示横坐标某点对应的数据值，柱体间有间隔；直方图的一个柱体表示一个区间对应的样本个数，柱体间无分割。
+   	直方图用于描述总体的频数分布情况。它将横坐标按区间个数等分，每个区间上长方形的高度表示该区间样本的频率，面积表示频数。直方图的外观和柱状图相似，但表达含义不同。柱状图的一个柱体高度表示横坐标某点对应的数据值，柱体间有间隔；直方图的一个柱体表示一个区间对应的样本个数，柱体间无分割。
 
    + pandas使用plot()函数绘制直方图，格式如下:
 
@@ -2230,9 +2230,9 @@ plt.show() # 显示图形
 
 6. 密度图(Kernel Density Estimate)
 
-   ​	密度图基于样本数据，采用平滑的峰值函数(称为"核")来拟合概率密度函数，对真实的概率分布曲线进行模拟。有很多种核函数，默认采用高斯核。
+   	密度图基于样本数据，采用平滑的峰值函数(称为"核")来拟合概率密度函数，对真实的概率分布曲线进行模拟。有很多种核函数，默认采用高斯核。
 
-   ​	密度图经常和直方图画在一起，这时直方图需要标准化，以便与估计的概率密度进行对比。
+   	密度图经常和直方图画在一起，这时直方图需要标准化，以便与估计的概率密度进行对比。
 
    + pandas使用plot()函数绘制概率密度函数曲线，格式如下：
 
@@ -2253,7 +2253,7 @@ plt.show() # 显示图形
 
 7. 饼图(Pie Chart)
 
-   ​	饼图又称扇形图，描述总体的样本值构成比。它以一个圆的面积表示总体，以各扇形面积表示一类样本占总体的百分数。饼图可以清楚地反应出部分与部分、部分与整体之间的数量关系。
+   	饼图又称扇形图，描述总体的样本值构成比。它以一个圆的面积表示总体，以各扇形面积表示一类样本占总体的百分数。饼图可以清楚地反应出部分与部分、部分与整体之间的数量关系。
 
    + pandas使用plot()函数绘制饼图，格式如下：
 
@@ -2282,7 +2282,7 @@ plt.show() # 显示图形
 
 8. 箱型图(Box Plot)
 
-   ​	<u>箱型图又称盒式图，适于表达数据的**分位数**分布</u>，帮助找到异常值。它将样本居中的50%值域用一个长方形表示，较小和较大的四分之一值域更用一根线表示，异常值用'o'表示。
+   	&lt;u&gt;箱型图又称盒式图，适于表达数据的**分位数**分布&lt;/u&gt;，帮助找到异常值。它将样本居中的50%值域用一个长方形表示，较小和较大的四分之一值域更用一根线表示，异常值用'o'表示。
 
    + pandas可以使用plot()函数绘制箱型图，格式如下：
 
@@ -2301,9 +2301,9 @@ plt.show() # 显示图形
    plt.show()
    ```
 
-   ​	观察箱型图，可以快速确定一个样本是否有利于进行分组判别。再分配直方图和密度图就可以更完整地观察数据的分布。
+   	观察箱型图，可以快速确定一个样本是否有利于进行分组判别。再分配直方图和密度图就可以更完整地观察数据的分布。
 
-   ​	pandas也提供了专门绘制箱型图的函数boxplot(),方便将观察样本按照其他特征进行分组对比，格式如下：
+   	pandas也提供了专门绘制箱型图的函数boxplot(),方便将观察样本按照其他特征进行分组对比，格式如下：
 
    ```python
    DataFrame.boxplot(by, ...)
@@ -2321,57 +2321,57 @@ plt.show() # 显示图形
 
 #### 4.2.2 绘制数据地图
 
-​	将总体样本的数量与地域上的分布情况用各种几何图形、实物形象或不同线纹、颜色等在地图上表示出来的图形，称为数据地图。它可以直观地描述某种现象的地域分布。
+	将总体样本的数量与地域上的分布情况用各种几何图形、实物形象或不同线纹、颜色等在地图上表示出来的图形，称为数据地图。它可以直观地描述某种现象的地域分布。
 
-​	Basemap是Matplotlib的扩展工具包，可以处理地理数据，但Anaconda3中没有包含，需要下载和安装pyproj和basemap工具包后方可导入。
+	Basemap是Matplotlib的扩展工具包，可以处理地理数据，但Anaconda3中没有包含，需要下载和安装pyproj和basemap工具包后方可导入。
 
-​	这里不展开作笔记了，因为用得也不多，感兴趣的可以再查查。
+	这里不展开作笔记了，因为用得也不多，感兴趣的可以再查查。
 
 ## 第五章 机器学习建模分析
 
-​	经过数据探索得到数据集属性的特征及相互之间的关系，如需进一步描述数据集的总体特性，并预测未来产生的新数据，则需要位数据集建立模型。目前主要的建模途径是使用机器学习的算法，让计算机从数据中自主学习产生模型。本章主要介绍机器学习的基本概念，机器学习的常用算法及如何应用Python提供的机器学习算法库scikit-learn实现数据建模和预测分析。
+	经过数据探索得到数据集属性的特征及相互之间的关系，如需进一步描述数据集的总体特性，并预测未来产生的新数据，则需要位数据集建立模型。目前主要的建模途径是使用机器学习的算法，让计算机从数据中自主学习产生模型。本章主要介绍机器学习的基本概念，机器学习的常用算法及如何应用Python提供的机器学习算法库scikit-learn实现数据建模和预测分析。
 
 ### 5.1 机器学习概述
 
 #### 5.1.1 机器学习与人工智能
 
-+ 人工智能(Artificial Intelligence, AI)是研究计算机模拟人的某些思维过程和智能行为(如学习、推理、思考、规划等)的学科，主要包括计算机实现智能的原理、制造类似于人脑智能的计算机，使计算机能实现更高层次的应用。<u>人工智能领域包括机器人、机器学习、计算机视觉、图像识别、自然语言处理和专家系统等，涉及计算机科学、数学、语言学、心理学和哲学等多个学科</u>。
++ 人工智能(Artificial Intelligence, AI)是研究计算机模拟人的某些思维过程和智能行为(如学习、推理、思考、规划等)的学科，主要包括计算机实现智能的原理、制造类似于人脑智能的计算机，使计算机能实现更高层次的应用。&lt;u&gt;人工智能领域包括机器人、机器学习、计算机视觉、图像识别、自然语言处理和专家系统等，涉及计算机科学、数学、语言学、心理学和哲学等多个学科&lt;/u&gt;。
 
 + 机器学习(Machine Learning, ML)是人工智能的分支。机器学习方法利用既有的经验，完成某种既定任务，并在此过程中不断改善自身性能。**通常按照机器学习的任务，将其分为有监督的学习(Supervised Learning)、无监督的学习(Unsupervised Learning)两大类方法**。
   
   + 有监督的学习利用经验(历史数据)，学习表示事物的模型，关注利用模型预测未来数据，一般包括**分类问题(Classification)和回归问题(Regression)**。
   
-    1. <u>分类问题是对事物所属类别的判别，类型的数量是已知的</u>。例如，识别鸟，根据鸟的身长、各部分羽毛的颜色、翅膀的大小等多种特征来确定其种类；垃圾邮件判别，根据邮箱的发件、收件人、标题、内容关键字、附件、时间等特征决定是否为垃圾邮件。
-    2. <u>回归问题的预测目标是连续变量</u>。例如，根据父、母的身高预测孩子的身高；根据企业的各项财务指标预测其资产收益率。
+    1. &lt;u&gt;分类问题是对事物所属类别的判别，类型的数量是已知的&lt;/u&gt;。例如，识别鸟，根据鸟的身长、各部分羽毛的颜色、翅膀的大小等多种特征来确定其种类；垃圾邮件判别，根据邮箱的发件、收件人、标题、内容关键字、附件、时间等特征决定是否为垃圾邮件。
+    2. &lt;u&gt;回归问题的预测目标是连续变量&lt;/u&gt;。例如，根据父、母的身高预测孩子的身高；根据企业的各项财务指标预测其资产收益率。
   
   + 无监督的学习倾向于对事物本身特性的分析，常见问题包括**数据降维(Dimensionality Reduction)和聚类问题(Clustering)**。
   
-    1. <u>数据降维是对描述事物的特征数量进行压缩的方法</u>。例如，描述学生，记录了每个人的性别、身高、体重、选修课程、技能、业余爱好、购物习惯等特征。面向特定的分析目标职业生涯规划，只需选取与之相关的特征进行分析，去掉无关数据，降低处理的复杂度。
+    1. &lt;u&gt;数据降维是对描述事物的特征数量进行压缩的方法&lt;/u&gt;。例如，描述学生，记录了每个人的性别、身高、体重、选修课程、技能、业余爱好、购物习惯等特征。面向特定的分析目标职业生涯规划，只需选取与之相关的特征进行分析，去掉无关数据，降低处理的复杂度。
   
-    2. <u>聚类问题的目标也是将事物划分成不同的类别，与分类问题的不同之处是事先并不知道类别的数量，它根据事物之间的相似性，将相似的事物归为一簇</u>。例如，电子商务网站对客户群的划分，将具有类似背景与购买习惯的用户视为异类，即可有针对性地投放广告。
+    2. &lt;u&gt;聚类问题的目标也是将事物划分成不同的类别，与分类问题的不同之处是事先并不知道类别的数量，它根据事物之间的相似性，将相似的事物归为一簇&lt;/u&gt;。例如，电子商务网站对客户群的划分，将具有类似背景与购买习惯的用户视为异类，即可有针对性地投放广告。
   
-    > 在解决实际领域问题时，通常现根据应用背景和分析目标，将应用转换成以上某类问题及组合问题，然后选用合适的学习算法训练模型。
+    &gt; 在解决实际领域问题时，通常现根据应用背景和分析目标，将应用转换成以上某类问题及组合问题，然后选用合适的学习算法训练模型。
 
 #### 5.1.2 Python机器学习方法库
 
-​	scikit-learn是目前最广泛的开源方法库，它基于Numpy、SciPy、pandas和Matplotlib开发，封装了大量经典及最新的机器学习模型，是一个简单且高效的机器学习和数据挖掘工具。
+	scikit-learn是目前最广泛的开源方法库，它基于Numpy、SciPy、pandas和Matplotlib开发，封装了大量经典及最新的机器学习模型，是一个简单且高效的机器学习和数据挖掘工具。
 
-​	scikit-learn的基本功能分为：分类、回归、聚类、数据降维、模型选择和数据预处理等六部分，详细讲解、参数说明需要自行查阅官方文档。
+	scikit-learn的基本功能分为：分类、回归、聚类、数据降维、模型选择和数据预处理等六部分，详细讲解、参数说明需要自行查阅官方文档。
 
 ### 5.2 回归分析
 
 #### 5.2.1 回归分析原理
 
-​	回归分析是一种预测性的建模分析技术，它通过样本数据学习目标变量和自变量之间的因果关系，建立数学表示模型，基于新的自变量，此模型可预测相应的目标变量。
+	回归分析是一种预测性的建模分析技术，它通过样本数据学习目标变量和自变量之间的因果关系，建立数学表示模型，基于新的自变量，此模型可预测相应的目标变量。
 
-​	常用的回归方法有<u>线性回归(Linear Regression)、逻辑回归(Logistic Regression)和多项式回归(Polynomial Regression)</u>.
+	常用的回归方法有&lt;u&gt;线性回归(Linear Regression)、逻辑回归(Logistic Regression)和多项式回归(Polynomial Regression)&lt;/u&gt;.
 $$
 y=f(x)~,~f(x)=ω_1x_1+ω_2x_2+···+ω_dx_d+b
 $$
 
 + 线性回归问题举例：
 
-  将销量y表示为电视x<sub>1</sub>、微博x<sub>2</sub>和微信x<sub>3</sub>等渠道广告投入量的线性组合函数。
+  将销量y表示为电视x&lt;sub&gt;1&lt;/sub&gt;、微博x&lt;sub&gt;2&lt;/sub&gt;和微信x&lt;sub&gt;3&lt;/sub&gt;等渠道广告投入量的线性组合函数。
 
 + 求解线性回归模型利用统计学的“最小二乘法”，使得线性模型预测所有的训练数据时误差平方和最小。如果使用非线性组合函数，也就是多项式回归，通常模型的预测误差更小，但计算复杂度增加。
 
@@ -2466,23 +2466,23 @@ print("预期销售：",load_linreg.predict(new_X) ) #使用模型预测
 
 #### 5.2.3 回归分析性能评估
 
-​	从直观上分析，回归模型的预测误差越小越好，通常采用均方根误差(Root Mean Squared Error, RMSE)计算误差。
+	从直观上分析，回归模型的预测误差越小越好，通常采用均方根误差(Root Mean Squared Error, RMSE)计算误差。
 
 ![img](res/img/Python5.2.3-1.png)
 
-​	式中，n为样本的个数；y<sub>i</sub>为样本目标变量的真实值；另一个y为使用回归模型预测的目标变量值。在统计学中，使用模型的决定系数R<sup>2</sup>来衡量模型预测能力。
+	式中，n为样本的个数；y&lt;sub&gt;i&lt;/sub&gt;为样本目标变量的真实值；另一个y为使用回归模型预测的目标变量值。在统计学中，使用模型的决定系数R&lt;sup&gt;2&lt;/sup&gt;来衡量模型预测能力。
 
 ![img](res/img/Python5.2.3-2.png)
 
-式中，右上角的y表示y<sub>i</sub>的均值。
+式中，右上角的y表示y&lt;sub&gt;i&lt;/sub&gt;的均值。
 
-​	R<sup>2</sup>的数值范围为0~1,表示目标变量的预测值和实际值之间的相关程度，也可以理解为模型中目标变量的值有百分之多少能够用自变量来解释。R<sup>2</sup>值越大，表示预测效果越好，如果值为1，则可以说回归模型完美地拟合了实际数据。
+	R&lt;sup&gt;2&lt;/sup&gt;的数值范围为0~1,表示目标变量的预测值和实际值之间的相关程度，也可以理解为模型中目标变量的值有百分之多少能够用自变量来解释。R&lt;sup&gt;2&lt;/sup&gt;值越大，表示预测效果越好，如果值为1，则可以说回归模型完美地拟合了实际数据。
 
-​	通常将在原始数据集上学习获得的回归模型用于预测新数据时性能会降低，因为线性函数的参数已经尽可能地拟合已知数据，如果未知地数据具有与训练集中数据不一样的特性，会导致预测值与真实值产生较大的偏差。
+	通常将在原始数据集上学习获得的回归模型用于预测新数据时性能会降低，因为线性函数的参数已经尽可能地拟合已知数据，如果未知地数据具有与训练集中数据不一样的特性，会导致预测值与真实值产生较大的偏差。
 
-​	**有监督的学习**为了更准确地评价模型性能，通常将原始的数据切分为两部分:**训练集和测试集**。在训练集上学习获得回归模型，然后用于测试集(视为未知数据)。在测试集上的性能指标将更好地反映模型应用于未知数据的效果。
+	**有监督的学习**为了更准确地评价模型性能，通常将原始的数据切分为两部分:**训练集和测试集**。在训练集上学习获得回归模型，然后用于测试集(视为未知数据)。在测试集上的性能指标将更好地反映模型应用于未知数据的效果。
 
-​	scikit-learn的model_selection类提供数据集的切分方法，metrics类实现了scikit-learn包中各类机器学习算法的性能评估。功能实现函数格式如下:
+	scikit-learn的model_selection类提供数据集的切分方法，metrics类实现了scikit-learn包中各类机器学习算法的性能评估。功能实现函数格式如下:
 
 + 数据集分割：
 
@@ -2491,10 +2491,10 @@ print("预期销售：",load_linreg.predict(new_X) ) #使用模型预测
   model_selection.train_test_split(X, y, test_size, random_state)
   ```
 
-  > 参数说明：
-  >
-  > test_size:0~1,测试集的比例
-  > random_state:随机数种子，1为每次得到相同的样本划分，否则每次划分不一样
+  &gt; 参数说明：
+  &gt;
+  &gt; test_size:0~1,测试集的比例
+  &gt; random_state:随机数种子，1为每次得到相同的样本划分，否则每次划分不一样
 
 + 误差RMSE计算：
 
@@ -2502,11 +2502,11 @@ print("预期销售：",load_linreg.predict(new_X) ) #使用模型预测
   err = metrics.mean_squared_error(y, y_pred)
   ```
 
-  > 参数说明：
-  >
-  > y:真实目标值
-  >
-  > y_pred:模型预测目标值
+  &gt; 参数说明：
+  &gt;
+  &gt; y:真实目标值
+  &gt;
+  &gt; y_pred:模型预测目标值
 
 + 决定系数计算：
 
@@ -2551,53 +2551,53 @@ print("预期销售：",load_linreg.predict(new_X) ) #使用模型预测
 
   #### 5.3.1 分类学习原理
 
-  ​	分类学习是最常见的监督学习问题，分类预测的结果可以是二分类问题，也可以是多分类问题。手机短信程序根据短信的特征，如发短信、收信人范围、内容关键字等预测是否属于群发垃圾短信以便自动屏蔽，这是一个典型的二分类问题。停车场计费系统根据扫描的车牌图像，识别出车牌上的每个字母和数字，以便自动记录。计算机判别图像中切割出的每一小块图像对应是36类(26个大写字母+10个数字)中的哪一类，这是一个多分类的问题。
+  	分类学习是最常见的监督学习问题，分类预测的结果可以是二分类问题，也可以是多分类问题。手机短信程序根据短信的特征，如发短信、收信人范围、内容关键字等预测是否属于群发垃圾短信以便自动屏蔽，这是一个典型的二分类问题。停车场计费系统根据扫描的车牌图像，识别出车牌上的每个字母和数字，以便自动记录。计算机判别图像中切割出的每一小块图像对应是36类(26个大写字母+10个数字)中的哪一类，这是一个多分类的问题。
 
-  ​	在分类学习(也称训练)过程中，采用不同的学习算法可以得到不同的分类器，常用的分类算法有很多，如决策树(Decision Tree)、贝叶斯分类、KNN(K近邻)、支持向量机(Support Vector Machine， SVM)、神经网络(Neural Network)和集成学习(Ensemble Learning)等。本节以决策树和SVM两种学习算法为例，介绍分类学习的基本思路和应用方法。
+  	在分类学习(也称训练)过程中，采用不同的学习算法可以得到不同的分类器，常用的分类算法有很多，如决策树(Decision Tree)、贝叶斯分类、KNN(K近邻)、支持向量机(Support Vector Machine， SVM)、神经网络(Neural Network)和集成学习(Ensemble Learning)等。本节以决策树和SVM两种学习算法为例，介绍分类学习的基本思路和应用方法。
 
-  ​	分类器的预测准确度通过性能评估来确定。将数据集上每个样本的特征值输入分类器，分类器输出结果(也就是预测类别)。计算每个样本真实类对应的预测类，得到混淆矩阵(Confusion Matrix)
+  	分类器的预测准确度通过性能评估来确定。将数据集上每个样本的特征值输入分类器，分类器输出结果(也就是预测类别)。计算每个样本真实类对应的预测类，得到混淆矩阵(Confusion Matrix)
 
-  <escape>
+  &lt;escape&gt;
 
-  <table class="tg">
-    <tr>
-      <th class="tg-0pky">真实类\预测类</th>
-      <th class="tg-0lax">Class=Yes</th>
-      <th class="tg-0lax">Class=No</th>
-    </tr>
-    <tr>
-      <td class="tg-0lax">Class=Yes(正例)</td>
-      <td class="tg-0lax">a</td>
-      <td class="tg-0lax">b</td>
-    </tr>
-    <tr>
-      <td class="tg-0lax">Class=No(反例)</td>
-      <td class="tg-0lax">c</td>
-      <td class="tg-0lax">d</td>
-    </tr>
-  </table>
+  &lt;table class="tg"&gt;
+    &lt;tr&gt;
+      &lt;th class="tg-0pky"&gt;真实类\预测类&lt;/th&gt;
+      &lt;th class="tg-0lax"&gt;Class=Yes&lt;/th&gt;
+      &lt;th class="tg-0lax"&gt;Class=No&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;Class=Yes(正例)&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;a&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;b&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="tg-0lax"&gt;Class=No(反例)&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;c&lt;/td&gt;
+      &lt;td class="tg-0lax"&gt;d&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
 
-  </escape>
+  &lt;/escape&gt;
 
   基于混淆矩阵，准确率(Accuracy)计算所有数据中被正确预测的比例
 
 ![img](res/img/Python5.3.1-1.png)
 
-​		在实际问题中，很多时候更关心模型对某一特定类别的预测能力，如银行更关心无法偿还贷款的客户是否被预测出来。使用精确率(Precession)、召回率(Recall)和F1-measure对分类器的性能进行评估更有效
+		在实际问题中，很多时候更关心模型对某一特定类别的预测能力，如银行更关心无法偿还贷款的客户是否被预测出来。使用精确率(Precession)、召回率(Recall)和F1-measure对分类器的性能进行评估更有效
 
-​		精确率是对精确性的度量，计算预测为Yes类的样本中，真实类是Yes的比例
+		精确率是对精确性的度量，计算预测为Yes类的样本中，真实类是Yes的比例
 
-​				Precission = a / ( a + c )
+				Precission = a / ( a + c )
 
-​		召回率是覆盖面的度量，计算真实类为Yes的样本中，被正确预测的比例：
+		召回率是覆盖面的度量，计算真实类为Yes的样本中，被正确预测的比例：
 
-​				Recall = a / ( a + b )
+				Recall = a / ( a + b )
 
-​		F1计算精确率和召回率的调和平均数
+		F1计算精确率和召回率的调和平均数
 
-​				F1 = 2a / (2a + b + c)
+				F1 = 2a / (2a + b + c)
 
-​		通常如果学习算法致力于提高分类模型的精确率，意味着得到的模型判别正例时使用更严格的筛选条件，就容易导致筛选出的整理较少，召回率降低。因此，F1较高的模型具有更高的使用价值，常被用来衡量模型的优劣。不同的应用可能对精确率和召回率的关注度不同，可以按照实际需求选用衡量指标。
+		通常如果学习算法致力于提高分类模型的精确率，意味着得到的模型判别正例时使用更严格的筛选条件，就容易导致筛选出的整理较少，召回率降低。因此，F1较高的模型具有更高的使用价值，常被用来衡量模型的优劣。不同的应用可能对精确率和召回率的关注度不同，可以按照实际需求选用衡量指标。
 
 #### 5.3.2 决策树
 
@@ -2605,7 +2605,7 @@ print("预期销售：",load_linreg.predict(new_X) ) #使用模型预测
 
 2. 决策树分类实现
 
-   ​	scikit-learn的DecisionTreeClassifier类实现决策树分类器学习，支持二分类和多分类问题。分类性能评估同样采用metrics类实现。相关实现函数格式如下：
+   	scikit-learn的DecisionTreeClassifier类实现决策树分类器学习，支持二分类和多分类问题。分类性能评估同样采用metrics类实现。相关实现函数格式如下：
 
    + 模型初始化：
 
@@ -2643,29 +2643,29 @@ print("预期销售：",load_linreg.predict(new_X) ) #使用模型预测
      metrics.classification_report(y,predicted_y)
      ```
 
-     > 参数说明：
-     >
-     > X[m,n]:样本特征二维数组，m为样本数，n为特征项个数，数值型。
-     >
-     > y[n]:分类标签的一维数组，必须为整数。
+     &gt; 参数说明：
+     &gt;
+     &gt; X[m,n]:样本特征二维数组，m为样本数，n为特征项个数，数值型。
+     &gt;
+     &gt; y[n]:分类标签的一维数组，必须为整数。
 
    + 推荐一些文章
 
-     >决策树的基本概念
-     >
-     > https://www.cnblogs.com/xiemaycherry/p/10475067.html 
-     >
-     >一看就懂的信息熵
-     >
-     > https://www.cnblogs.com/IamJiangXiaoKun/p/9455689.html 
-     >
-     >[数据挖掘]朴素贝叶斯分类
-     >
-     > https://www.cnblogs.com/csguo/p/7804355.html 
-     >
-     >kNN算法：K最近邻(kNN，k-NearestNeighbor)分类算法
-     >
-     > https://www.cnblogs.com/jyroy/p/9427977.html 
+     &gt;决策树的基本概念
+     &gt;
+     &gt; https://www.cnblogs.com/xiemaycherry/p/10475067.html 
+     &gt;
+     &gt;一看就懂的信息熵
+     &gt;
+     &gt; https://www.cnblogs.com/IamJiangXiaoKun/p/9455689.html 
+     &gt;
+     &gt;[数据挖掘]朴素贝叶斯分类
+     &gt;
+     &gt; https://www.cnblogs.com/csguo/p/7804355.html 
+     &gt;
+     &gt;kNN算法：K最近邻(kNN，k-NearestNeighbor)分类算法
+     &gt;
+     &gt; https://www.cnblogs.com/jyroy/p/9427977.html 
    
    + 决策树例子：使用scikit-learn建立决策树为银行货款偿还的数据集构成分类器，并评估分类器的性能。
    
@@ -2757,15 +2757,15 @@ print("预期销售：",load_linreg.predict(new_X) ) #使用模型预测
      clf = svm.SVC(kernel=, gamma, C,...)
      ```
 
-     > 参数说明：
-     >
-     > kernel:使用的核函数。'linear'为线性核函数、‘poly’为多项式核函数、'rbf'为高斯核函数、'sigmoid'为Logistic核函数
-     >
-     > gamma:'poly'、'rbf'或‘sigmoid’的核函数，一般取值为(0,1)
-     >
-     > C:误差项的惩罚参数，一般取10<sup>n</sup>，如1、0.1、0.01等
-     >
-     > SVM分类实现其他的函数与决策树一致，不再单独说明
+     &gt; 参数说明：
+     &gt;
+     &gt; kernel:使用的核函数。'linear'为线性核函数、‘poly’为多项式核函数、'rbf'为高斯核函数、'sigmoid'为Logistic核函数
+     &gt;
+     &gt; gamma:'poly'、'rbf'或‘sigmoid’的核函数，一般取值为(0,1)
+     &gt;
+     &gt; C:误差项的惩罚参数，一般取10&lt;sup&gt;n&lt;/sup&gt;，如1、0.1、0.01等
+     &gt;
+     &gt; SVM分类实现其他的函数与决策树一致，不再单独说明
 
    + SVM使用例子：建立SVM模型预测银行客户是否接受推荐的投资计划，并评估分类器的性能。
 
@@ -2936,21 +2936,21 @@ print("预期销售：",load_linreg.predict(new_X) ) #使用模型预测
 
 #### 5.4.1 聚类任务
 
-​	在监督学习中，训练样本包含了目标值，学习算法根据目标值学习预测模型。当数据集中没有分类标签信息时，只能根据数据内在性质及规律将其划分为若干个不相交的子集，每个子集称为一个"簇"(Cluster),这就是聚类方法(Clustering)
+	在监督学习中，训练样本包含了目标值，学习算法根据目标值学习预测模型。当数据集中没有分类标签信息时，只能根据数据内在性质及规律将其划分为若干个不相交的子集，每个子集称为一个"簇"(Cluster),这就是聚类方法(Clustering)
 
-​	聚类方法通常分为几大类：划分法(Partition)、层次法(Hierachical)、基于密度聚类(Density based)、基于图/网络聚类(Graph/Grid based)、基于模型聚类(Model based)等，每类下面又延伸出不同的具体算法。
+	聚类方法通常分为几大类：划分法(Partition)、层次法(Hierachical)、基于密度聚类(Density based)、基于图/网络聚类(Graph/Grid based)、基于模型聚类(Model based)等，每类下面又延伸出不同的具体算法。
 
 #### 5.4.2 K-means算法
 
 1. K-means算法原理
 
-   ​	K-means是划分法中最经典的算法。划分法的基本目标是：将数据聚为若干簇，簇内的点都足够近，簇间的点都足够远。它通过计算数据集中样本之间的距离，根据距离的远近将其划分为多个簇。K-means首先需要假定划分的簇数k，然后从数据集中任意选择k个样本作为各簇的中心。聚类过程如下：
+   	K-means是划分法中最经典的算法。划分法的基本目标是：将数据聚为若干簇，簇内的点都足够近，簇间的点都足够远。它通过计算数据集中样本之间的距离，根据距离的远近将其划分为多个簇。K-means首先需要假定划分的簇数k，然后从数据集中任意选择k个样本作为各簇的中心。聚类过程如下：
 
-   ​	1）根据样本与簇中心的距离相似度，将数据集中的每个样本划分到与其最相似的一个簇。
+   	1）根据样本与簇中心的距离相似度，将数据集中的每个样本划分到与其最相似的一个簇。
 
-   ​	2）计算每个簇的中心（如该簇中所有样本的均值）。
+   	2）计算每个簇的中心（如该簇中所有样本的均值）。
 
-   ​	3）不断重复这一过程中直到每个簇的中心点不再变化。
+   	3）不断重复这一过程中直到每个簇的中心点不再变化。
 
 2. K-means聚类实现
 
@@ -2968,11 +2968,11 @@ print("预期销售：",load_linreg.predict(new_X) ) #使用模型预测
    kmeans.fit(X)
    ```
 
-   > 参数说明：
-   >
-   > n_cluster:簇的个数
-   >
-   > X：样本二维数组，数值型
+   &gt; 参数说明：
+   &gt;
+   &gt; n_cluster:簇的个数
+   &gt;
+   &gt; X：样本二维数组，数值型
 
    + 样例代码：
 
@@ -3054,19 +3054,19 @@ print("预期销售：",load_linreg.predict(new_X) ) #使用模型预测
 
 1. 带有分类标签的数据集
 
-   ​	如鸢尾花数据集，带有分类标签，可以使用兰德指数(Adjusted Rand Index, ARI)评价聚类性能，它计算真实标签与聚类标签两种分布之间的相似性，取值范围为[0,1]。1表示最好的结果，即聚类类别和真实类别的分布完全一致。
+   	如鸢尾花数据集，带有分类标签，可以使用兰德指数(Adjusted Rand Index, ARI)评价聚类性能，它计算真实标签与聚类标签两种分布之间的相似性，取值范围为[0,1]。1表示最好的结果，即聚类类别和真实类别的分布完全一致。
 
-   ​	scikit-learn的metrics类提供adjusted_rand_score()函数来计算兰德指数
+   	scikit-learn的metrics类提供adjusted_rand_score()函数来计算兰德指数
 
 2. 没有分类标签的数据集
 
-   ​	如果分类标签没有类别属性，常用轮廓系数(Sihouette Coefficient)来度量聚类的质量。轮廓系数同时考虑聚类结果的簇内凝聚度和簇间分离度，取值范围为[-1,1]，轮廓系数越大，表示聚类效果越好。
+   	如果分类标签没有类别属性，常用轮廓系数(Sihouette Coefficient)来度量聚类的质量。轮廓系数同时考虑聚类结果的簇内凝聚度和簇间分离度，取值范围为[-1,1]，轮廓系数越大，表示聚类效果越好。
 
-   ​	scikit-learn的metrics类提供sihouette_score()函数来计算轮廓系数。
+   	scikit-learn的metrics类提供sihouette_score()函数来计算轮廓系数。
 
 3. 确定初始值k
 
-   ​	数据集没有已知类别，聚类的初始簇数k如何确定？通常我们尝试多个k值得到不同的聚类结果，然后比较这些结果的轮廓系数，选择合适的k作为最终模型。
+   	数据集没有已知类别，聚类的初始簇数k如何确定？通常我们尝试多个k值得到不同的聚类结果，然后比较这些结果的轮廓系数，选择合适的k作为最终模型。
 
 ### 5.5 神经网络和深度学习
 
@@ -3076,7 +3076,7 @@ print("预期销售：",load_linreg.predict(new_X) ) #使用模型预测
 
 #### 5.5.3 神经网络分类实现
 
-​	scikit-learn从0.18以上的版本开始提供神经网络的学习算法库，MLPClassifier是一个基于多层前馈网络的分类器。模型初始化函数如下，学习与性能评估函数与其他分类方法相同。
+	scikit-learn从0.18以上的版本开始提供神经网络的学习算法库，MLPClassifier是一个基于多层前馈网络的分类器。模型初始化函数如下，学习与性能评估函数与其他分类方法相同。
 
 + 模型初始化：
 
@@ -3085,19 +3085,19 @@ print("预期销售：",load_linreg.predict(new_X) ) #使用模型预测
                      alpha,max_iter,random_state,...)
   ```
 
-  > 参数说明：
-  >
-  > solver:优化权重的算法，{'lbfgs','sgd','adam'}，默认为'adam'
-  >
-  > activation:激活函数，{'identity','logistic','tanh','relu'}，默认为‘relu’
-  >
-  > hidden_layer_sizes:神经网络结构，表示元组，其中元组第n个元素值表示第n层的神经元个数。如(5,10,5)表示3隐层，每层的节点数分别为5、10和5
-  >
-  > alpha:正则化惩罚项参数，默认为0.0001
-  >
-  > max_iter:最大迭代次数，BP学习算法的学习次数
-  >
-  > random_state:随机数种子
+  &gt; 参数说明：
+  &gt;
+  &gt; solver:优化权重的算法，{'lbfgs','sgd','adam'}，默认为'adam'
+  &gt;
+  &gt; activation:激活函数，{'identity','logistic','tanh','relu'}，默认为‘relu’
+  &gt;
+  &gt; hidden_layer_sizes:神经网络结构，表示元组，其中元组第n个元素值表示第n层的神经元个数。如(5,10,5)表示3隐层，每层的节点数分别为5、10和5
+  &gt;
+  &gt; alpha:正则化惩罚项参数，默认为0.0001
+  &gt;
+  &gt; max_iter:最大迭代次数，BP学习算法的学习次数
+  &gt;
+  &gt; random_state:随机数种子
 
 + 代码样例：使用神经网络实现鸢尾花数据集的分类分析
 

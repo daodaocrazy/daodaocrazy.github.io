@@ -1,20 +1,20 @@
 # Hive学习笔记
 
-> [APACHE HIVE TM -- 官方文档](https://hive.apache.org/)
+&gt; [APACHE HIVE TM -- 官方文档](https://hive.apache.org/)
 
 # Installation and Configuration
 
-> [安装跟着官方教程走就好了](https://cwiki.apache.org/confluence/display/Hive/GettingStarted#GettingStarted-InstallationandConfiguration)	<=	后面又出各种问题，官方这个安装可能对Linux完全没问题？后面我又找了别人mac的安装教程
->
-> [Mac上配置Hive3.1.0](https://blog.csdn.net/zhangvalue/article/details/84282827)	<=	没想到安装个Hive还得用到MySQL，哈哈。
+&gt; [安装跟着官方教程走就好了](https://cwiki.apache.org/confluence/display/Hive/GettingStarted#GettingStarted-InstallationandConfiguration)	&lt;=	后面又出各种问题，官方这个安装可能对Linux完全没问题？后面我又找了别人mac的安装教程
+&gt;
+&gt; [Mac上配置Hive3.1.0](https://blog.csdn.net/zhangvalue/article/details/84282827)	&lt;=	没想到安装个Hive还得用到MySQL，哈哈。
 
 ## 安装中可能遇到的异常
 
-> [启动hive报错：java.lang.NoSuchMethodError: com.google.common.base.Preconditions.checkArgument(ZLjava/lang/String;Ljava/lang/Object;)V（已解决）](https://www.cnblogs.com/guohu/p/13200879.html)
->
-> [Hive 遇到 Class path contains multiple SLF4J bindings](https://www.cnblogs.com/Jesse-Li/p/7809485.html)
->
-> [Hive的安装配置及原理 完美解决解压hive缺少hive-site.xml文件，和安全模式无法启动hive等问题](https://blog.csdn.net/iamboluke/article/details/103496098)
+&gt; [启动hive报错：java.lang.NoSuchMethodError: com.google.common.base.Preconditions.checkArgument(ZLjava/lang/String;Ljava/lang/Object;)V（已解决）](https://www.cnblogs.com/guohu/p/13200879.html)
+&gt;
+&gt; [Hive 遇到 Class path contains multiple SLF4J bindings](https://www.cnblogs.com/Jesse-Li/p/7809485.html)
+&gt;
+&gt; [Hive的安装配置及原理 完美解决解压hive缺少hive-site.xml文件，和安全模式无法启动hive等问题](https://blog.csdn.net/iamboluke/article/details/103496098)
 
 下面这个，则是没有启动Hadoop。
 
@@ -82,9 +82,9 @@ Caused by: java.net.ConnectException: Connection refused
 
 ## HCatalog
 
-> [利用HCatalog管理元数据](https://www.jianshu.com/p/af3fcc4511b9)
->
-> [HCatalog快速入门](https://blog.csdn.net/ancony_/article/details/79903705)
+&gt; [利用HCatalog管理元数据](https://www.jianshu.com/p/af3fcc4511b9)
+&gt;
+&gt; [HCatalog快速入门](https://blog.csdn.net/ancony_/article/details/79903705)
 
 ## Hive, Map-Reduce and Local-Mode
 
@@ -94,7 +94,7 @@ Hive compiler generates map-reduce jobs for most queries. These jobs are then su
   mapred.job.tracker
 ```
 
-While this usually points to a map-reduce cluster with multiple nodes, <u>Hadoop also offers a nifty option to run map-reduce jobs locally on the user's workstation</u>. This can be very useful to run queries over small data sets – in such cases local mode execution is usually significantly faster than submitting jobs to a large cluster. Data is accessed transparently from HDFS. **Conversely, local mode only runs with one reducer and can be very slow processing larger data sets.**
+While this usually points to a map-reduce cluster with multiple nodes, &lt;u&gt;Hadoop also offers a nifty option to run map-reduce jobs locally on the user's workstation&lt;/u&gt;. This can be very useful to run queries over small data sets – in such cases local mode execution is usually significantly faster than submitting jobs to a large cluster. Data is accessed transparently from HDFS. **Conversely, local mode only runs with one reducer and can be very slow processing larger data sets.**
 
 **Starting with release 0.7, Hive fully supports local mode execution**. To enable this, the user can enable the following option:
 
@@ -102,7 +102,7 @@ While this usually points to a map-reduce cluster with multiple nodes, <u>Hadoop
   hive> SET mapreduce.framework.name=local;
 ```
 
-In addition, `mapred.local.dir` should point to a path that's valid on the local machine (for example `/tmp/<username>/mapred/local`). (Otherwise, the user will get an exception allocating local disk space.)
+In addition, `mapred.local.dir` should point to a path that's valid on the local machine (for example `/tmp/&lt;username&gt;/mapred/local`). (Otherwise, the user will get an exception allocating local disk space.)
 
 **Starting with release 0.7, Hive also supports a mode to run map-reduce jobs in local-mode automatically.** The relevant options are `hive.exec.mode.local.auto`, `hive.exec.mode.local.auto.inputbytes.max`, and `hive.exec.mode.local.auto.tasks.max`:
 
@@ -126,9 +126,9 @@ Note that there may be differences in the runtime environment of Hadoop server n
 
 ## Creating Hive Tables
 
-> [关于hive异常：Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStor](https://blog.csdn.net/hhj724/article/details/79094138)
->
-> [Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient](https://www.58jb.com/html/89.html)
+&gt; [关于hive异常：Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStor](https://blog.csdn.net/hhj724/article/details/79094138)
+&gt;
+&gt; [Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient](https://www.58jb.com/html/89.html)
 
 ```shell
   hive> CREATE TABLE pokes (foo INT, bar STRING);
@@ -237,7 +237,7 @@ The above command will load data from an HDFS file/directory to the table.
 
 # SQL Operations
 
-> **下面操作前如果安装Hive配置的是MySQL，那么需要先开启MySQL服务，且保证本地Hadoop已经启动，保证Hadoop网络通讯不受影响（开放端口、如果有防火墙干扰可以考虑暂时关闭<=学习测试环境）**
+&gt; **下面操作前如果安装Hive配置的是MySQL，那么需要先开启MySQL服务，且保证本地Hadoop已经启动，保证Hadoop网络通讯不受影响（开放端口、如果有防火墙干扰可以考虑暂时关闭&lt;=学习测试环境）**
 
 The Hive query operations are documented in [Select](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Select).
 
@@ -248,13 +248,13 @@ More are available in the Hive sources at `ql/src/test/queries/positive`.
 
 ### SELECTS and FILTERS
 
-> [hadoop拒绝history通过19888端口连接查看已完成的job的日志](https://blog.csdn.net/u014326004/article/details/80332126)
->
-> 在hadoop的sbin目录执行`./mr-jobhistory-daemon.sh start historyserver`
->
-> [NoSuchFieldException: parentOffset - Hive on Spark](https://stackoverflow.com/questions/60811684/nosuchfieldexception-parentoffset-hive-on-spark)	<=	即检查自己JAVA_HOME是jdk8而不是11
->
-> **注意，如果出现Socket连接问题，可以关闭防火墙试试看（我就是自己的TripMode网络防火墙干扰了Hadoop的连接）**
+&gt; [hadoop拒绝history通过19888端口连接查看已完成的job的日志](https://blog.csdn.net/u014326004/article/details/80332126)
+&gt;
+&gt; 在hadoop的sbin目录执行`./mr-jobhistory-daemon.sh start historyserver`
+&gt;
+&gt; [NoSuchFieldException: parentOffset - Hive on Spark](https://stackoverflow.com/questions/60811684/nosuchfieldexception-parentoffset-hive-on-spark)	&lt;=	即检查自己JAVA_HOME是jdk8而不是11
+&gt;
+&gt; **注意，如果出现Socket连接问题，可以关闭防火墙试试看（我就是自己的TripMode网络防火墙干扰了Hadoop的连接）**
 
 ```
   hive> SELECT a.foo FROM invites a WHERE a.ds='2008-08-15';
@@ -293,7 +293,7 @@ selects the sum of a column. The avg, min, or max can also be used. Note that fo
 
 ### GROUP BY
 
-> *这里events表需要先根据前面的CREATE TABLE指令建表，且需要和invites表的列一致，才能成功清空events数据再把invites的数据覆盖上去*
+&gt; *这里events表需要先根据前面的CREATE TABLE指令建表，且需要和invites表的列一致，才能成功清空events数据再把invites的数据覆盖上去*
 
 ```
   hive> FROM invites a INSERT OVERWRITE TABLE events SELECT a.bar, count(*) WHERE a.foo > 0 GROUP BY a.bar;
@@ -425,7 +425,7 @@ Note that if you're using Hive 0.5.0 or earlier you will need to use `COUNT(1)` 
 
 ## Apache Weblog Data
 
-> [hive 建表报错：ParseException - cannot recognize input near 'end' 'string'](https://blog.csdn.net/u011940366/article/details/51396152/)
+&gt; [hive 建表报错：ParseException - cannot recognize input near 'end' 'string'](https://blog.csdn.net/u011940366/article/details/51396152/)
 
 The format of Apache weblog is customizable, while most webmasters use the default.
 For default Apache weblog, we can create a table with the following command.
@@ -454,5 +454,5 @@ STORED AS TEXTFILE;
 
 # LanguageManual
 
-> [LanguageManual](https://cwiki.apache.org/confluence/display/Hive/LanguageManual)
+&gt; [LanguageManual](https://cwiki.apache.org/confluence/display/Hive/LanguageManual)
 

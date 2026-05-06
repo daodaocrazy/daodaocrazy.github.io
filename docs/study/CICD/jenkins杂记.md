@@ -2,19 +2,19 @@
 
 # 1. 安装和使用
 
-> 零基础搭建
->
-> [手把手教你利用Docker+jenkins部署你的网站](https://zhuanlan.zhihu.com/p/145604644)
->
-> [Jenkins+Maven+Github+Springboot实现可持续自动部署(非常详细)](https://www.cnblogs.com/rmxd/p/11609983.html)
->
-> 
->
-> 配置轮询git服务器，拉取更新并重新部署
->
-> [Jenkins定时构建和轮询SCM设置说明](https://blog.csdn.net/MenofGod/article/details/81288987)
->
-> [Jenkins定时构建与轮询SCM](https://www.cnblogs.com/panda-sweets/p/12554200.html)
+&gt; 零基础搭建
+&gt;
+&gt; [手把手教你利用Docker+jenkins部署你的网站](https://zhuanlan.zhihu.com/p/145604644)
+&gt;
+&gt; [Jenkins+Maven+Github+Springboot实现可持续自动部署(非常详细)](https://www.cnblogs.com/rmxd/p/11609983.html)
+&gt;
+&gt; 
+&gt;
+&gt; 配置轮询git服务器，拉取更新并重新部署
+&gt;
+&gt; [Jenkins定时构建和轮询SCM设置说明](https://blog.csdn.net/MenofGod/article/details/81288987)
+&gt;
+&gt; [Jenkins定时构建与轮询SCM](https://www.cnblogs.com/panda-sweets/p/12554200.html)
 
 上述文章贼详细。
 
@@ -26,7 +26,7 @@
 
 ## 2.1 SSH key添加问题
 
-> [jenkins:配置密钥时报错的解决：Failed to add SSH key. Message invalid privatekey(Jenkins 2.257)](https://www.cnblogs.com/architectforest/p/13707244.html)
+&gt; [jenkins:配置密钥时报错的解决：Failed to add SSH key. Message invalid privatekey(Jenkins 2.257)](https://www.cnblogs.com/architectforest/p/13707244.html)
 
 1. 错误信息
 

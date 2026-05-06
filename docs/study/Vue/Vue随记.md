@@ -1,12 +1,12 @@
 # Vue随记
 
-> 最近做毕设，后端Springboot+Flink已经将SlopeOne推荐算法整合完毕了，需要先做一下前端，决定用比较熟的Vue。=> 之后毕设要是结束，有时间整理的话，会把项目开源到github上。
->
-> 这里再开个随记markdown笔记文件。
+&gt; 最近做毕设，后端Springboot+Flink已经将SlopeOne推荐算法整合完毕了，需要先做一下前端，决定用比较熟的Vue。=&gt; 之后毕设要是结束，有时间整理的话，会把项目开源到github上。
+&gt;
+&gt; 这里再开个随记markdown笔记文件。
 
 ## 1.Vue模版
 
-> 同学做作业的时候，偶然发现了一个Vue模版，我觉得挺不错的，分享一下。
+&gt; 同学做作业的时候，偶然发现了一个Vue模版，我觉得挺不错的，分享一下。
 
 1. [VSCode一键生成.vue模版](https://zhuanlan.zhihu.com/p/136906175)
 

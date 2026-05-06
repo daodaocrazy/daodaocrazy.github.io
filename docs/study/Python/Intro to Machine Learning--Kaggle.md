@@ -1,8 +1,8 @@
 #  Intro to Machine Learning 
 
-> 之前google的machine-learning课程到了中间有点懵了，就干脆先换一个看看，这个如果比较基础就先着手这个了。
->
->  https://www.kaggle.com/learn/intro-to-machine-learning 
+&gt; 之前google的machine-learning课程到了中间有点懵了，就干脆先换一个看看，这个如果比较基础就先着手这个了。
+&gt;
+&gt;  https://www.kaggle.com/learn/intro-to-machine-learning 
 
 ## How Models Work
 
@@ -22,21 +22,21 @@
 
 + dataframe.describe()输出基本统计量
 
-  >count 数量
-  >
-  >mean 均值
-  >
-  >std 标准差
-  >
-  >min 最小值
-  >
-  >25% 下四分位
-  >
-  >50% 中位数
-  >
-  >75% 上四分位
-  >
-  >max 最大值
+  &gt;count 数量
+  &gt;
+  &gt;mean 均值
+  &gt;
+  &gt;std 标准差
+  &gt;
+  &gt;min 最小值
+  &gt;
+  &gt;25% 下四分位
+  &gt;
+  &gt;50% 中位数
+  &gt;
+  &gt;75% 上四分位
+  &gt;
+  &gt;max 最大值
 
 ### Exercise：Explore Your Data
 

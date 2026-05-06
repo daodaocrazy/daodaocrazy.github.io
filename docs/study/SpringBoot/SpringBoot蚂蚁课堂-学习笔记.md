@@ -1,6 +1,6 @@
 # SpringBoot视频教程-蚂蚁课堂
 
-> 惯例视频链接： http://www.mayikt.com/course/video/3708 
+&gt; 惯例视频链接： http://www.mayikt.com/course/video/3708 
 
 ## 第一章 SpringBoot课程体系介绍
 
@@ -28,11 +28,11 @@ spring-boot-starter-web整合SpringMVC、Spring
 
 2. SpringCloud依赖SpringBoot组件，使用SpringMVC编写Http协议接口，同时SpringCloud是一套完整的微服务解决框架
 
-   > RPC介绍文章
-   >
-   > [浅谈RPC调用](https://www.cnblogs.com/linlinismine/p/9205676.html)
-   >
-   > [如何给老婆解释什么是RPC]( https://www.jianshu.com/p/2accc2840a1b)
+   &gt; RPC介绍文章
+   &gt;
+   &gt; [浅谈RPC调用](https://www.cnblogs.com/linlinismine/p/9205676.html)
+   &gt;
+   &gt; [如何给老婆解释什么是RPC]( https://www.jianshu.com/p/2accc2840a1b)
 
 ## 第二章 SpringBoot启动方式
 
@@ -46,13 +46,13 @@ spring-boot-starter-web整合SpringMVC、Spring
 
     `@EnableAutoConfiguration`可以帮助SpringBoot应用将所有符合条件的`@Configuration`配置都加载到当前SpringBoot创建并使用的IoC容器。 
 
-   > [SpringBoot之@EnableAutoConfiguration注解]( https://blog.csdn.net/zxc123e/article/details/80222967 )
-   >
-   > 顺便复习一下IOD、DI相关知识
-   >
-   > [Spring bean中的properties元素内的name 和 ref都代表什么意思啊？](https://www.cnblogs.com/lemon-flm/p/7217353.html)
-   >
-   > [面试被问烂的 Spring IOC(求求你别再问了]( https://www.jianshu.com/p/17b66e6390fd )
+   &gt; [SpringBoot之@EnableAutoConfiguration注解]( https://blog.csdn.net/zxc123e/article/details/80222967 )
+   &gt;
+   &gt; 顺便复习一下IOD、DI相关知识
+   &gt;
+   &gt; [Spring bean中的properties元素内的name 和 ref都代表什么意思啊？](https://www.cnblogs.com/lemon-flm/p/7217353.html)
+   &gt;
+   &gt; [面试被问烂的 Spring IOC(求求你别再问了]( https://www.jianshu.com/p/17b66e6390fd )
 
 ### 第八节 使用@ComponentScan指定扫描包启动
 
@@ -76,9 +76,9 @@ spring-boot-starter-web整合SpringMVC、Spring
 
 1. 静态资源访问，放在resources目录的static子目录下自动识别，可以直接url访问，如果static里面再创建子目录，需要在url中加上目录名，比如:
 
-   resources/static/a.js -> localhost:8080/a.js
+   resources/static/a.js -&gt; localhost:8080/a.js
 
-   resources/static/imgs/a.png -> localhost:8080/imgs/a.png
+   resources/static/imgs/a.png -&gt; localhost:8080/imgs/a.png
 
 ### 第十一节 SpringBoot整合Freemarker
 

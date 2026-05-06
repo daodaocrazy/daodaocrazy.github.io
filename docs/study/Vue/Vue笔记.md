@@ -1,20 +1,20 @@
 # Vue笔记
 
-> 最近由于作业的原因，又重新接触了许久没碰过的Vue。
->
-> 有时候看到不错的文章或者技巧就摘录、分享。
+&gt; 最近由于作业的原因，又重新接触了许久没碰过的Vue。
+&gt;
+&gt; 有时候看到不错的文章或者技巧就摘录、分享。
 
 ## 1. JavaScript模块化
 
-> [JavaScript 模块化：CommonJS、AMD、CMD、UMD 和 ES6 Module](https://www.jianshu.com/p/6e688c482b38)
+&gt; [JavaScript 模块化：CommonJS、AMD、CMD、UMD 和 ES6 Module](https://www.jianshu.com/p/6e688c482b38)
 
 ### 1. CommonJS
 
-​	按照声明的导入次序顺序加载模块。通常用于node.js这类服务端JS代码中。客户端则往往需要异步加载多个模块，不适合使用CommonJS。
+	按照声明的导入次序顺序加载模块。通常用于node.js这类服务端JS代码中。客户端则往往需要异步加载多个模块，不适合使用CommonJS。
 
 ### 2. ES6 Module
 
-​	异步导入，编译期加载。通常浏览器使用。
+	异步导入，编译期加载。通常浏览器使用。
 
 ### 3. 常用的CommonJS和ES6 Module的差异*(摘至上方引用文章)*
 

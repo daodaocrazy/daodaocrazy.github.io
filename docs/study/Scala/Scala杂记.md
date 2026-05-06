@@ -1,6 +1,6 @@
 # Scala杂记
 
-> [2021版 Scala大数据 完整版-通俗易懂（半天掌握）](https://www.bilibili.com/video/BV1JX4y1u7HK?p=11)	<=	主要根据这个视频，先大致了解一下scala语法，后面打算再快速过一遍[Scala语言规范.pdf](https://static.runoob.com/download/Scala语言规范.pdf)
+&gt; [2021版 Scala大数据 完整版-通俗易懂（半天掌握）](https://www.bilibili.com/video/BV1JX4y1u7HK?p=11)	&lt;=	主要根据这个视频，先大致了解一下scala语法，后面打算再快速过一遍[Scala语言规范.pdf](https://static.runoob.com/download/Scala语言规范.pdf)
 
 # 1. 六大特性
 
@@ -77,7 +77,7 @@
 
 ## 7. 柯里化函数
 
-> [Scala函数的柯里化](https://zhuanlan.zhihu.com/p/98096436)
+&gt; [Scala函数的柯里化](https://zhuanlan.zhihu.com/p/98096436)
 
 实际就是利用返回值为函数的匿名函数来实现的
 
@@ -116,7 +116,7 @@ new Array[Int](3)
 
 ### map和flatmap
 
-> [scala中的flatMap详解?](https://www.zhihu.com/question/34548588)
+&gt; [scala中的flatMap详解?](https://www.zhihu.com/question/34548588)
 
 + 一对一
 + 一对多
@@ -177,7 +177,7 @@ swap
   + actor内部有一个类似消息队列，会定期检查队列中的消息进行处理
 + 使用
   + ！：`actor ! msg`，表示给actor发msg
-  + 先actor.start => 调用act方法 => `receive(case)`
+  + 先actor.start =&gt; 调用act方法 =&gt; `receive(case)`
 
 # 9. 隐式转换
 

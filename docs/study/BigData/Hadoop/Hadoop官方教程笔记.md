@@ -4,13 +4,13 @@
 
 ## 1. 目的
 
-​	部署单节点Hadoop，以便之后使用Hadoop MapReduce和分布式文件系统HDFS
+	部署单节点Hadoop，以便之后使用Hadoop MapReduce和分布式文件系统HDFS
 
 ## 2. 准备工作
 
 ### 2.1 平台
 
-​	一般建议用Linux
+	一般建议用Linux
 
 ### 2.2 需要的软件
 
@@ -28,9 +28,9 @@ $ sudo apt-get install pdsh
 
 ## 3. 下载
 
-> [下载地址](https://www.apache.org/dyn/closer.cgi/hadoop/common/)
->
-> [文件签名校验教程](https://www.apache.org/info/verification.html)
+&gt; [下载地址](https://www.apache.org/dyn/closer.cgi/hadoop/common/)
+&gt;
+&gt; [文件签名校验教程](https://www.apache.org/info/verification.html)
 
 这里我选择[最新的稳定版本3.3.0](https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/stable/hadoop-3.3.0.tar.gz)进行下载。（mac Big Sur 11.0.1）
 
@@ -48,9 +48,9 @@ Hadoop支持3种集群部署模式：
 
 ### 4.1 单机操作
 
-​	默认情况下，hadoop就是作为单个java程序，以非分布式的模式运行。单节点模式适合debug调试。
+	默认情况下，hadoop就是作为单个java程序，以非分布式的模式运行。单节点模式适合debug调试。
 
-​	下面以解压后的conf目录作为输入，查找匹配指定正则表达式规则的匹配项，将结果输出到我们自定义的目录。
+	下面以解压后的conf目录作为输入，查找匹配指定正则表达式规则的匹配项，将结果输出到我们自定义的目录。
 
 ```shell
   $ mkdir input
@@ -59,11 +59,11 @@ Hadoop支持3种集群部署模式：
   $ cat output/*
 ```
 
-​	最后我获取到的内容是`1	dfsadmin`
+	最后我获取到的内容是`1	dfsadmin`
 
 ### 4.2 伪分布式操作
 
-​	Hadoop可以在一个节点上以伪分布式模式运行，每个Hadoop守护进程都在单独的Java进程中运行。
+	Hadoop可以在一个节点上以伪分布式模式运行，每个Hadoop守护进程都在单独的Java进程中运行。
 
 ####  4.2.1 配置
 
@@ -91,13 +91,13 @@ etc/hadoop/hdfs-site.xml:
 </configuration>
 ```
 
-> 这两个文件的\<configuration\>\</configuration\>	本来都是空的。
+&gt; 这两个文件的\&lt;configuration\&gt;\&lt;/configuration\&gt;	本来都是空的。
 
 #### 4.2.2 设置免密ssh
 
-> mac需要在系统设置的"共享"里设置"允许远程登录"
->
-> [关于Mac中ssh: connect to host localhost port 22: Connection refused](https://blog.csdn.net/u011068475/article/details/52883677)
+&gt; mac需要在系统设置的"共享"里设置"允许远程登录"
+&gt;
+&gt; [关于Mac中ssh: connect to host localhost port 22: Connection refused](https://blog.csdn.net/u011068475/article/details/52883677)
 
 Now check that you can ssh to the localhost without a passphrase:
 
@@ -115,7 +115,7 @@ If you cannot ssh to localhost without a passphrase, execute the following comma
 
 #### 4.2.3 执行
 
-> [MapReduce和YARN区别](https://blog.csdn.net/hahachenchen789/article/details/80527706)
+&gt; [MapReduce和YARN区别](https://blog.csdn.net/hahachenchen789/article/details/80527706)
 
 The following instructions are to run a MapReduce job locally. If you want to execute a job on YARN, see [YARN on Single Node](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html#YARN_on_Single_Node).
 
@@ -186,7 +186,7 @@ The following instructions assume that 1. ~ 4. steps of [the above instructions]
 
 1. Configure parameters as follows:
 
-   `etc/hadoop/mapred-site.xml`:(这个文件的`<configuration></configuration>`原本是空的)
+   `etc/hadoop/mapred-site.xml`:(这个文件的`&lt;configuration&gt;&lt;/configuration&gt;`原本是空的)
 
    ```
    <configuration>
@@ -201,7 +201,7 @@ The following instructions assume that 1. ~ 4. steps of [the above instructions]
    </configuration>
    ```
 
-   `etc/hadoop/yarn-site.xml`:(这个文件的`<configuration></configuration>`原本是空的)
+   `etc/hadoop/yarn-site.xml`:(这个文件的`&lt;configuration&gt;&lt;/configuration&gt;`原本是空的)
 
    ```
    <configuration>
@@ -236,13 +236,13 @@ The following instructions assume that 1. ~ 4. steps of [the above instructions]
 
 ### 4.3 完全分布式操作
 
-​	For information on setting up fully-distributed, non-trivial clusters see [Cluster Setup](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html).
+	For information on setting up fully-distributed, non-trivial clusters see [Cluster Setup](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html).
 
 # 5. mac安装hadoop
 
->[mac安装hadoop及配置伪分布式](https://blog.csdn.net/weixin_44570264/article/details/106872445)	<=	跟着这个确实可以
->
->```shell
+&gt;[mac安装hadoop及配置伪分布式](https://blog.csdn.net/weixin_44570264/article/details/106872445)	&lt;=	跟着这个确实可以
+&gt;
+&gt;```shell
 >vim ~/.bash_profile
 >
 ># hadoop-3.3.0 第一条是hadoop的解压目录

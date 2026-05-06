@@ -2,33 +2,33 @@
 
 ## 0. 入门教程-网上学习的记录
 
-> [【docker入门】10分钟，快速学会docker](https://www.bilibili.com/video/av58402749)
->
-> [Play with Docker](https://labs.play-with-docker.com/)
->
-> [Docker 命令详解（run篇）](https://www.cnblogs.com/shijunjie/p/10488603.html)
->
-> [docker与虚拟机性能比较](https://blog.csdn.net/cbl709/article/details/43955687)
->
-> 安装和配置
->
-> [如何在 CentOS 上安装 RPM 软件包](https://www.linuxidc.com/Linux/2019-08/159875.htm)
->
-> [centos8 安装 docker](https://blog.csdn.net/yucaifu1989/article/details/103111317)
->
-> [RHEL8-安装Docker Problem: package docker-ce-3:19.03.6-3.el7.x86_64 requires containerd.io](https://www.cnblogs.com/leoshi/p/12324827.html)
->
-> [docker_清华源国内的选择](http://www.mamicode.com/info-detail-2862950.html)
->
-> [安装docker-compose的两种方式](https://blog.csdn.net/LUCKWXF/article/details/96131392)
+&gt; [【docker入门】10分钟，快速学会docker](https://www.bilibili.com/video/av58402749)
+&gt;
+&gt; [Play with Docker](https://labs.play-with-docker.com/)
+&gt;
+&gt; [Docker 命令详解（run篇）](https://www.cnblogs.com/shijunjie/p/10488603.html)
+&gt;
+&gt; [docker与虚拟机性能比较](https://blog.csdn.net/cbl709/article/details/43955687)
+&gt;
+&gt; 安装和配置
+&gt;
+&gt; [如何在 CentOS 上安装 RPM 软件包](https://www.linuxidc.com/Linux/2019-08/159875.htm)
+&gt;
+&gt; [centos8 安装 docker](https://blog.csdn.net/yucaifu1989/article/details/103111317)
+&gt;
+&gt; [RHEL8-安装Docker Problem: package docker-ce-3:19.03.6-3.el7.x86_64 requires containerd.io](https://www.cnblogs.com/leoshi/p/12324827.html)
+&gt;
+&gt; [docker_清华源国内的选择](http://www.mamicode.com/info-detail-2862950.html)
+&gt;
+&gt; [安装docker-compose的两种方式](https://blog.csdn.net/LUCKWXF/article/details/96131392)
 
 —————————仓库
 
-​				 		pull |      | push
+				 		pull |      | push
 
 Dockerfile--build--  镜像  --  load -- save -- tar文件
 
-​				 		run |      | commit
+				 		run |      | commit
 
 —————————容器
 
@@ -105,29 +105,29 @@ ADD ./ /usr/share/nginx/html/
 
 ## 0.1 docker入门2-如z何组织一个多容器项目docker-compose
 
-> [docker入门2-如何组织一个多容器项目docker-compose](https://www.bilibili.com/video/av61131351)
->
-> [curl 的用法指南](https://www.ruanyifeng.com/blog/2019/09/curl-reference.html)
->
-> [docker-compose简介(一)](https://www.cnblogs.com/maduar/p/10777355.html)
->
-> [docker-compose安装](https://www.jianshu.com/p/f323aa0416da)
->
-> [解决“ImportError: 'module' object has no attribute 'check_specifier'”](https://blog.csdn.net/yanghx9013/article/details/79496527)
->
-> [docker-compose.yml配置文件详解](https://blog.csdn.net/Aria_Miazzy/article/details/89326829)
->
-> [/usr/lib/python2.7/site-packages/requests/__init__.py:80: RequestsDependencyWarning: urllib3 (1.22) or chardet (2.2.1) doesn't match a supported version! RequestsDependencyWarning)](https://www.cnblogs.com/insane-Mr-Li/p/10914716.html)
->
-> [docker-compose up使用自定义的网段的两种方式（从其根源指定）](https://www.cnblogs.com/lemon-le/p/10531449.html)
->
-> [docker-compose关于网络名的定义](https://www.jianshu.com/p/d70c61d45364)
->
-> [docker network基础](https://www.cnblogs.com/jsonhc/p/7823286.html)
+&gt; [docker入门2-如何组织一个多容器项目docker-compose](https://www.bilibili.com/video/av61131351)
+&gt;
+&gt; [curl 的用法指南](https://www.ruanyifeng.com/blog/2019/09/curl-reference.html)
+&gt;
+&gt; [docker-compose简介(一)](https://www.cnblogs.com/maduar/p/10777355.html)
+&gt;
+&gt; [docker-compose安装](https://www.jianshu.com/p/f323aa0416da)
+&gt;
+&gt; [解决“ImportError: 'module' object has no attribute 'check_specifier'”](https://blog.csdn.net/yanghx9013/article/details/79496527)
+&gt;
+&gt; [docker-compose.yml配置文件详解](https://blog.csdn.net/Aria_Miazzy/article/details/89326829)
+&gt;
+&gt; [/usr/lib/python2.7/site-packages/requests/__init__.py:80: RequestsDependencyWarning: urllib3 (1.22) or chardet (2.2.1) doesn't match a supported version! RequestsDependencyWarning)](https://www.cnblogs.com/insane-Mr-Li/p/10914716.html)
+&gt;
+&gt; [docker-compose up使用自定义的网段的两种方式（从其根源指定）](https://www.cnblogs.com/lemon-le/p/10531449.html)
+&gt;
+&gt; [docker-compose关于网络名的定义](https://www.jianshu.com/p/d70c61d45364)
+&gt;
+&gt; [docker network基础](https://www.cnblogs.com/jsonhc/p/7823286.html)
 
 ### 概述
 
-​	宿主机安装docker后，生成一张docker网卡，docker网卡通过NAT方式为每个容器分配IP。(例如docker网卡IP为172.27.0.1，子网掩码255.255.255.0，给3个容器分配IP为172.27.0.2~172.27.0.4)。容器之间同一网段，可以直接通信，而宿主机和容器之间的通信则需要经过docker网卡
+	宿主机安装docker后，生成一张docker网卡，docker网卡通过NAT方式为每个容器分配IP。(例如docker网卡IP为172.27.0.1，子网掩码255.255.255.0，给3个容器分配IP为172.27.0.2~172.27.0.4)。容器之间同一网段，可以直接通信，而宿主机和容器之间的通信则需要经过docker网卡
 
 ```shell
 ## 首先先创建一个自己的nginx容器
@@ -341,13 +341,13 @@ docker network create --subnet=172.20.0.0/16 --gateway=172.20.0.1 ash-http-bridg
 
 ## 1. Dockerfile
 
-> [你必须知道的Dockerfile](https://www.cnblogs.com/edisonchou/p/dockerfile_inside_introduction.html)
->
-> [Dockerfile文件详解](https://www.cnblogs.com/panwenbin-logs/p/8007348.html)
->
-> [为什么docker上自己创建的mysql镜像特别大](https://www.imooc.com/wenda/detail/425720)
->
-> [【Docker】Dockerfile用法全解析](https://www.bilibili.com/video/av85895204)
+&gt; [你必须知道的Dockerfile](https://www.cnblogs.com/edisonchou/p/dockerfile_inside_introduction.html)
+&gt;
+&gt; [Dockerfile文件详解](https://www.cnblogs.com/panwenbin-logs/p/8007348.html)
+&gt;
+&gt; [为什么docker上自己创建的mysql镜像特别大](https://www.imooc.com/wenda/detail/425720)
+&gt;
+&gt; [【Docker】Dockerfile用法全解析](https://www.bilibili.com/video/av85895204)
 
 Dockerfile常用的5个指令
 
@@ -397,33 +397,33 @@ docker run test
 
 ## 2. 定制镜像
 
-> [Docker 定制镜像](https://www.jianshu.com/p/ff65a4db85ca)
->
-> [dockerfile运行mysql并初始化数据](https://www.cnblogs.com/UniqueColor/p/11150314.html)
+&gt; [Docker 定制镜像](https://www.jianshu.com/p/ff65a4db85ca)
+&gt;
+&gt; [dockerfile运行mysql并初始化数据](https://www.cnblogs.com/UniqueColor/p/11150314.html)
 
 ## 3. 运行项目
 
-> [Spring Boot 的项目打包成的 JAR 包，制作成 docker 镜像并运行](https://www.jianshu.com/p/faf7af05a808)
->
-> [docker 容器之间互相访问（互联）](https://www.jianshu.com/p/c5e39d6a5307)
->
-> [Docker网络管理之docker跨主机通信](https://blog.51cto.com/14157628/2458487?source=dra)
->
-> [外部访问docker容器(docker run -p/-P 指令)](https://www.cnblogs.com/williamjie/p/9915019.html)
->
-> [在docker下运行mysql](https://www.cnblogs.com/jasonboren/p/11362342.html)
->
-> [主机无法访问容器映射的端口：Connection reset by peer](https://www.jianshu.com/p/964b268e1fc8)
->
-> [docker容器内存占用过高(例如mysql)](https://www.cnblogs.com/bingogo/p/12144873.html)
->
-> [使用docker-compose配置mysql数据库并且初始化用户](https://www.cnblogs.com/mmry/p/8812599.html)
->
-> [Docker：MySQL连接慢问题解决](https://blog.csdn.net/bacteriumx/article/details/82792984)
->
-> [Docker方式启动tomcat,访问首页出现404错误](https://blog.csdn.net/qq_40891009/article/details/103898876?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
->
-> [Docker中启动Tomcat外部访问报HTTP Status 404 – 未找到](https://blog.csdn.net/mah666/article/details/104055180/)
+&gt; [Spring Boot 的项目打包成的 JAR 包，制作成 docker 镜像并运行](https://www.jianshu.com/p/faf7af05a808)
+&gt;
+&gt; [docker 容器之间互相访问（互联）](https://www.jianshu.com/p/c5e39d6a5307)
+&gt;
+&gt; [Docker网络管理之docker跨主机通信](https://blog.51cto.com/14157628/2458487?source=dra)
+&gt;
+&gt; [外部访问docker容器(docker run -p/-P 指令)](https://www.cnblogs.com/williamjie/p/9915019.html)
+&gt;
+&gt; [在docker下运行mysql](https://www.cnblogs.com/jasonboren/p/11362342.html)
+&gt;
+&gt; [主机无法访问容器映射的端口：Connection reset by peer](https://www.jianshu.com/p/964b268e1fc8)
+&gt;
+&gt; [docker容器内存占用过高(例如mysql)](https://www.cnblogs.com/bingogo/p/12144873.html)
+&gt;
+&gt; [使用docker-compose配置mysql数据库并且初始化用户](https://www.cnblogs.com/mmry/p/8812599.html)
+&gt;
+&gt; [Docker：MySQL连接慢问题解决](https://blog.csdn.net/bacteriumx/article/details/82792984)
+&gt;
+&gt; [Docker方式启动tomcat,访问首页出现404错误](https://blog.csdn.net/qq_40891009/article/details/103898876?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
+&gt;
+&gt; [Docker中启动Tomcat外部访问报HTTP Status 404 – 未找到](https://blog.csdn.net/mah666/article/details/104055180/)
 
 ## 4. 项目运行示例
 
@@ -732,15 +732,15 @@ spring:
    
    7. 安装docker不讲了，这个讲安装docker-compose（我的环境是CentOS7，其他环境不确定是否相同）
    
-      > [RHEL8-安装Docker Problem: package docker-ce-3:19.03.6-3.el7.x86_64 requires containerd.io](https://www.cnblogs.com/leoshi/p/12324827.html)
-      >
-      > [腾讯云服务器Centos7.6中docker-compose工具安装](https://blog.csdn.net/kellerxq/article/details/103326664)
-      >
-      > [centos 7.4 安装docker 19.03.6 版本。附带离线安装包](https://www.cnblogs.com/wangzy-tongq/p/12361880.html)
-      >
-      > [基于docker19.03.6的服务虚拟化的坑（系统内核版本）](https://blog.csdn.net/HK_poguan/article/details/104657849)
-      >
-      > [安装docker-compose的两种方式](https://blog.csdn.net/LUCKWXF/article/details/96131392)
+      &gt; [RHEL8-安装Docker Problem: package docker-ce-3:19.03.6-3.el7.x86_64 requires containerd.io](https://www.cnblogs.com/leoshi/p/12324827.html)
+      &gt;
+      &gt; [腾讯云服务器Centos7.6中docker-compose工具安装](https://blog.csdn.net/kellerxq/article/details/103326664)
+      &gt;
+      &gt; [centos 7.4 安装docker 19.03.6 版本。附带离线安装包](https://www.cnblogs.com/wangzy-tongq/p/12361880.html)
+      &gt;
+      &gt; [基于docker19.03.6的服务虚拟化的坑（系统内核版本）](https://blog.csdn.net/HK_poguan/article/details/104657849)
+      &gt;
+      &gt; [安装docker-compose的两种方式](https://blog.csdn.net/LUCKWXF/article/details/96131392)
    
       ```shell
       # 推荐根据上面的文章安装，因为我自己安装也出过问题，下面直接贴上面文章的安装方式
@@ -786,40 +786,40 @@ spring:
 
 ## 5. Docker网络
 
-> [跨宿主机Docker网络访问](https://blog.csdn.net/chenzhanhai/article/details/100694087)
->
-> [docker容器间跨主机通信](https://www.cnblogs.com/lyhero11/p/9967328.html)
->
-> [容器云技术选择之kubernetes和swarm对比](https://www.cnblogs.com/i6first/p/9399213.html)
->
-> [Docker网络解决方案 - Weave部署记录](https://www.cnblogs.com/kevingrace/p/6859173.html)
->
-> [Docker Swarm - Overlay 网络长连接问题](https://www.jianshu.com/p/f05294c0a456)
->
-> [Docker Swarm - 网络管理](https://www.jianshu.com/p/60bccbdb6af9)
->
-> [centos7 安装 openvswitch](https://blog.csdn.net/xinxing__8185/article/details/51900444)
->
-> [Docker的4种网络模式](https://www.cnblogs.com/gispathfinder/p/5871043.html)
->
-> [docker 网络模式 和 端口映射](https://www.cnblogs.com/chenpython123/p/10823879.html)
+&gt; [跨宿主机Docker网络访问](https://blog.csdn.net/chenzhanhai/article/details/100694087)
+&gt;
+&gt; [docker容器间跨主机通信](https://www.cnblogs.com/lyhero11/p/9967328.html)
+&gt;
+&gt; [容器云技术选择之kubernetes和swarm对比](https://www.cnblogs.com/i6first/p/9399213.html)
+&gt;
+&gt; [Docker网络解决方案 - Weave部署记录](https://www.cnblogs.com/kevingrace/p/6859173.html)
+&gt;
+&gt; [Docker Swarm - Overlay 网络长连接问题](https://www.jianshu.com/p/f05294c0a456)
+&gt;
+&gt; [Docker Swarm - 网络管理](https://www.jianshu.com/p/60bccbdb6af9)
+&gt;
+&gt; [centos7 安装 openvswitch](https://blog.csdn.net/xinxing__8185/article/details/51900444)
+&gt;
+&gt; [Docker的4种网络模式](https://www.cnblogs.com/gispathfinder/p/5871043.html)
+&gt;
+&gt; [docker 网络模式 和 端口映射](https://www.cnblogs.com/chenpython123/p/10823879.html)
 
 ## 6. Podman
 
-> [Docker 大势已去，Podman 万岁](https://blog.csdn.net/alex_yangchuansheng/article/details/102618128)
+&gt; [Docker 大势已去，Podman 万岁](https://blog.csdn.net/alex_yangchuansheng/article/details/102618128)
 
 ## 7. docker和虚拟机
 
-> [docker容器与虚拟机有什么区别？](https://www.zhihu.com/question/48174633)	<=	以下图文出至该文章
->
-> 说了这么多Docker的优势，大家也没有必要完全否定**虚拟机**技术，因为两者有不同的使用场景。
->
-> + **虚拟机**更擅长于彻底<u>隔离整个运行环境</u>。例如，云服务提供商通常采用虚拟机技术隔离不同的用户。
-> + **Docker**通常用于<u>隔离不同的应用</u>，例如**前端**，**后端**以及**数据库**。
->
-> 因此，我们需要根据不同的应用场景和需求采用不同的方式使用Docker技术或使用服务器虚拟化技术。例如一个典型的Docker应用场景是当主机上的Docker实例属于单一用户的情况下，在保证安全的同时可以充分发挥Docker的技术优势。
->
-> **虚拟机是为提供系统环境而生的，容器是为提供应用环境而生的，各有各的标地。**
+&gt; [docker容器与虚拟机有什么区别？](https://www.zhihu.com/question/48174633)	&lt;=	以下图文出至该文章
+&gt;
+&gt; 说了这么多Docker的优势，大家也没有必要完全否定**虚拟机**技术，因为两者有不同的使用场景。
+&gt;
+&gt; + **虚拟机**更擅长于彻底&lt;u&gt;隔离整个运行环境&lt;/u&gt;。例如，云服务提供商通常采用虚拟机技术隔离不同的用户。
+&gt; + **Docker**通常用于&lt;u&gt;隔离不同的应用&lt;/u&gt;，例如**前端**，**后端**以及**数据库**。
+&gt;
+&gt; 因此，我们需要根据不同的应用场景和需求采用不同的方式使用Docker技术或使用服务器虚拟化技术。例如一个典型的Docker应用场景是当主机上的Docker实例属于单一用户的情况下，在保证安全的同时可以充分发挥Docker的技术优势。
+&gt;
+&gt; **虚拟机是为提供系统环境而生的，容器是为提供应用环境而生的，各有各的标地。**
 
 ![img](https://pic1.zhimg.com/80/v2-ee27d299f5e38ed460218ac087518bba_1440w.jpg?source=1940ef5c)
 

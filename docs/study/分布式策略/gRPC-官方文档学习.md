@@ -1,57 +1,57 @@
 # gRPC-官方文档学习
 
-> [Documentation | gRPC](https://www.grpc.io/docs/)	=>	主要就是根据官方文档简单学习一下gRPC，中间会对一些概念另外查文章学习。
->
-> <small>之前写过一个简单的移动端多人聊天室，服务端主要用到的就是netty+protobuf（客户端dart+protobuf）。但是当时主要就用到protobuf的message（就是用来UDP即时通讯时序列化数据），没用到gRPC定义service服务接口。</small>
+&gt; [Documentation | gRPC](https://www.grpc.io/docs/)	=&gt;	主要就是根据官方文档简单学习一下gRPC，中间会对一些概念另外查文章学习。
+&gt;
+&gt; &lt;small&gt;之前写过一个简单的移动端多人聊天室，服务端主要用到的就是netty+protobuf（客户端dart+protobuf）。但是当时主要就用到protobuf的message（就是用来UDP即时通讯时序列化数据），没用到gRPC定义service服务接口。&lt;/small&gt;
 
 # 1. gRPC介绍
 
 ## 1.1 gRPC概述
 
-​	gRPC can use protocol buffers as both its Interface Definition Language (**IDL**) and as its underlying message interchange format.
+	gRPC can use protocol buffers as both its Interface Definition Language (**IDL**) and as its underlying message interchange format.
 
-> If you’re new to gRPC and/or protocol buffers, read this! If you just want to dive in and see gRPC in action first, [select a language](https://www.grpc.io/docs/languages/) and try its **Quick start**.
+&gt; If you’re new to gRPC and/or protocol buffers, read this! If you just want to dive in and see gRPC in action first, [select a language](https://www.grpc.io/docs/languages/) and try its **Quick start**.
 
 ---
 
-​	使用gRPC，编写代码时能够像调用本地对象一样去调用不同机器上的远程方法，使得部署分布式应用和服务更加简单。和很多RPC系统一样，gRPC基于定义服务的思想，制定具有参数和返回值的远程调用方法。
+	使用gRPC，编写代码时能够像调用本地对象一样去调用不同机器上的远程方法，使得部署分布式应用和服务更加简单。和很多RPC系统一样，gRPC基于定义服务的思想，制定具有参数和返回值的远程调用方法。
 
 + 在服务端，其实现gRPC定义的接口并运行gRPC服务以处理客户端调用请求。
 + 在客户端，留有对应的存根stub，提供和gRPC服务端相同的方法。
 
 ![Concept Diagram](https://www.grpc.io/img/landing-2.svg)
 
-​	gRPC客户端和服务端可以处在不同的环境。例如gRPC服务端使用java提供服务，而gRPC客户端采用go语言请求调用gRPC服务。
+	gRPC客户端和服务端可以处在不同的环境。例如gRPC服务端使用java提供服务，而gRPC客户端采用go语言请求调用gRPC服务。
 
-> [Documentation | gRPC](https://www.grpc.io/docs/)	=>	下方提供具体支持的操作系统、语言版本
->
-> These are the officially supported gRPC language, platform and OS versions:
->
-> | Language    | OS                     | Compilers / SDK                             |
-> | ----------- | ---------------------- | ------------------------------------------- |
-> | C/C++       | Linux, Mac             | GCC 4.9+, Clang 3.4+                        |
-> | C/C++       | Windows 7+             | Visual Studio 2015+                         |
-> | C#          | Linux, Mac             | .NET Core, Mono 4+                          |
-> | C#          | Windows 7+             | .NET Core, NET 4.5+                         |
-> | Dart        | Windows, Linux, Mac    | Dart 2.12+                                  |
-> | Go          | Windows, Linux, Mac    | Go 1.13+                                    |
-> | Java        | Windows, Linux, Mac    | JDK 8 recommended (Jelly Bean+ for Android) |
-> | Kotlin      | Windows, Linux, Mac    | Kotlin 1.3+                                 |
-> | Node.js     | Windows, Linux, Mac    | Node v8+                                    |
-> | Objective-C | macOS 10.10+, iOS 9.0+ | Xcode 7.2+                                  |
-> | PHP         | Linux, Mac             | PHP 7.0+                                    |
-> | Python      | Windows, Linux, Mac    | Python 3.5+                                 |
-> | Ruby        | Windows, Linux, Mac    | Ruby 2.3+                                   |
+&gt; [Documentation | gRPC](https://www.grpc.io/docs/)	=&gt;	下方提供具体支持的操作系统、语言版本
+&gt;
+&gt; These are the officially supported gRPC language, platform and OS versions:
+&gt;
+&gt; | Language    | OS                     | Compilers / SDK                             |
+&gt; | ----------- | ---------------------- | ------------------------------------------- |
+&gt; | C/C++       | Linux, Mac             | GCC 4.9+, Clang 3.4+                        |
+&gt; | C/C++       | Windows 7+             | Visual Studio 2015+                         |
+&gt; | C#          | Linux, Mac             | .NET Core, Mono 4+                          |
+&gt; | C#          | Windows 7+             | .NET Core, NET 4.5+                         |
+&gt; | Dart        | Windows, Linux, Mac    | Dart 2.12+                                  |
+&gt; | Go          | Windows, Linux, Mac    | Go 1.13+                                    |
+&gt; | Java        | Windows, Linux, Mac    | JDK 8 recommended (Jelly Bean+ for Android) |
+&gt; | Kotlin      | Windows, Linux, Mac    | Kotlin 1.3+                                 |
+&gt; | Node.js     | Windows, Linux, Mac    | Node v8+                                    |
+&gt; | Objective-C | macOS 10.10+, iOS 9.0+ | Xcode 7.2+                                  |
+&gt; | PHP         | Linux, Mac             | PHP 7.0+                                    |
+&gt; | Python      | Windows, Linux, Mac    | Python 3.5+                                 |
+&gt; | Ruby        | Windows, Linux, Mac    | Ruby 2.3+                                   |
 
 ## 1.2 Working with Protocol Buffers
 
-> - [Language Guide (proto3)](https://developers.google.com/protocol-buffers/docs/proto3)
+&gt; - [Language Guide (proto3)](https://developers.google.com/protocol-buffers/docs/proto3)
 
-​	By default, gRPC uses [Protocol Buffers](https://developers.google.com/protocol-buffers/docs/overview), Google’s mature open source mechanism for **serializing structured data** (although it can be used with other data formats such as JSON). Here’s a quick intro to how it works. If you’re already familiar with protocol buffers, feel free to skip ahead to the next section.
+	By default, gRPC uses [Protocol Buffers](https://developers.google.com/protocol-buffers/docs/overview), Google’s mature open source mechanism for **serializing structured data** (although it can be used with other data formats such as JSON). Here’s a quick intro to how it works. If you’re already familiar with protocol buffers, feel free to skip ahead to the next section.
 
-​	第一步：编写`.proto`二进制文件，自定义message需要的字段。
+	第一步：编写`.proto`二进制文件，自定义message需要的字段。
 
-​	<small>The first step when working with protocol buffers is to define the structure for the data you want to serialize in a *proto file*: this is an ordinary text file with a `.proto` extension. Protocol buffer data is structured as *messages*, where each message is a small logical record of information containing a series of name-value pairs called *fields*. Here’s a simple example:</small>
+	&lt;small&gt;The first step when working with protocol buffers is to define the structure for the data you want to serialize in a *proto file*: this is an ordinary text file with a `.proto` extension. Protocol buffer data is structured as *messages*, where each message is a small logical record of information containing a series of name-value pairs called *fields*. Here’s a simple example:&lt;/small&gt;
 
 ```protobuf
 message Person {
@@ -61,13 +61,13 @@ message Person {
 }
 ```
 
-​	第二步：通过`protoc`指令根据`.proto`文件生成对应message的数据访问类（生成的类，自带基础的setter等方法）。
+	第二步：通过`protoc`指令根据`.proto`文件生成对应message的数据访问类（生成的类，自带基础的setter等方法）。
 
-​	<small>Then, once you’ve specified your data structures, you use the protocol buffer compiler `protoc` to generate data access classes in your preferred language(s) from your proto definition. These provide simple accessors for each field, like `name()` and `set_name()`, as well as methods to serialize/parse the whole structure to/from raw bytes. So, for instance, if your chosen language is C++, running the compiler on the example above will generate a class called `Person`. You can then use this class in your application to populate, serialize, and retrieve `Person` protocol buffer messages.</small>
+	&lt;small&gt;Then, once you’ve specified your data structures, you use the protocol buffer compiler `protoc` to generate data access classes in your preferred language(s) from your proto definition. These provide simple accessors for each field, like `name()` and `set_name()`, as well as methods to serialize/parse the whole structure to/from raw bytes. So, for instance, if your chosen language is C++, running the compiler on the example above will generate a class called `Person`. You can then use this class in your application to populate, serialize, and retrieve `Person` protocol buffer messages.&lt;/small&gt;
 
-​	gRPC服务同样也是在`.proto`文件中定义，下面定义的gRPC服务中含有一个RPC调用的方法，其参数和返回值都是message。
+	gRPC服务同样也是在`.proto`文件中定义，下面定义的gRPC服务中含有一个RPC调用的方法，其参数和返回值都是message。
 
-​	<small>You define gRPC services in ordinary proto files, with RPC method parameters and return types specified as protocol buffer messages:</small>
+	&lt;small&gt;You define gRPC services in ordinary proto files, with RPC method parameters and return types specified as protocol buffer messages:&lt;/small&gt;
 
 ```protobuf
 // The greeter service definition.
@@ -87,33 +87,33 @@ message HelloReply {
 }
 ```
 
-​		通过gRPC插件`protoc`生成的代码包含客户端和服务端，代码内容包括数据访问、赋值、序列化等。
+		通过gRPC插件`protoc`生成的代码包含客户端和服务端，代码内容包括数据访问、赋值、序列化等。
 
-​	<small>gRPC uses `protoc` with a special gRPC plugin to generate code from your proto file: you get generated gRPC client and server code, as well as the regular protocol buffer code for populating, serializing, and retrieving your message types. You’ll see an example of this below.</small>
+	&lt;small&gt;gRPC uses `protoc` with a special gRPC plugin to generate code from your proto file: you get generated gRPC client and server code, as well as the regular protocol buffer code for populating, serializing, and retrieving your message types. You’ll see an example of this below.&lt;/small&gt;
 
-> ​	To learn more about protocol buffers, including how to install `protoc` with the gRPC plugin in your chosen language, see the [protocol buffers documentation](https://developers.google.com/protocol-buffers/docs/overview).
+&gt; 	To learn more about protocol buffers, including how to install `protoc` with the gRPC plugin in your chosen language, see the [protocol buffers documentation](https://developers.google.com/protocol-buffers/docs/overview).
 
 ## 1.3 Protocol buffer versions
 
-​	简言之就是现在有proto3和proto2，官方推荐用比较新的proto3。
+	简言之就是现在有proto3和proto2，官方推荐用比较新的proto3。
 
-> While [protocol buffers](https://developers.google.com/protocol-buffers/docs/overview) have been available to open source users for some time, most examples from this site use protocol buffers version 3 (proto3), which has a slightly simplified syntax, some useful new features, and supports more languages. Proto3 is currently available in Java, C++, Dart, Python, Objective-C, C#, a lite-runtime (Android Java), Ruby, and JavaScript from the [protocol buffers GitHub repo](https://github.com/google/protobuf/releases), as well as a Go language generator from the [golang/protobuf official package](https://pkg.go.dev/google.golang.org/protobuf), with more languages in development. You can find out more in the [proto3 language guide](https://developers.google.com/protocol-buffers/docs/proto3) and the [reference documentation](https://developers.google.com/protocol-buffers/docs/reference/overview) available for each language. The reference documentation also includes a [formal specification](https://developers.google.com/protocol-buffers/docs/reference/proto3-spec) for the `.proto` file format.
->
-> In general, while you can use proto2 (the current default protocol buffers version), we recommend that you use proto3 with gRPC as it lets you use the full range of gRPC-supported languages, as well as avoiding compatibility issues with proto2 clients talking to proto3 servers and vice versa.
+&gt; While [protocol buffers](https://developers.google.com/protocol-buffers/docs/overview) have been available to open source users for some time, most examples from this site use protocol buffers version 3 (proto3), which has a slightly simplified syntax, some useful new features, and supports more languages. Proto3 is currently available in Java, C++, Dart, Python, Objective-C, C#, a lite-runtime (Android Java), Ruby, and JavaScript from the [protocol buffers GitHub repo](https://github.com/google/protobuf/releases), as well as a Go language generator from the [golang/protobuf official package](https://pkg.go.dev/google.golang.org/protobuf), with more languages in development. You can find out more in the [proto3 language guide](https://developers.google.com/protocol-buffers/docs/proto3) and the [reference documentation](https://developers.google.com/protocol-buffers/docs/reference/overview) available for each language. The reference documentation also includes a [formal specification](https://developers.google.com/protocol-buffers/docs/reference/proto3-spec) for the `.proto` file format.
+&gt;
+&gt; In general, while you can use proto2 (the current default protocol buffers version), we recommend that you use proto3 with gRPC as it lets you use the full range of gRPC-supported languages, as well as avoiding compatibility issues with proto2 clients talking to proto3 servers and vice versa.
 
 # 2. 核心概念、体系架构和生命周期
 
-> Core concepts, architecture and lifecycle
->
-> An introduction to key gRPC concepts, with an overview of gRPC architecture and RPC life cycle.
->
-> Not familiar with gRPC? First read [Introduction to gRPC](https://www.grpc.io/docs/what-is-grpc/introduction/). For language-specific details, see the quick start, tutorial, and reference documentation for your language of choice.
+&gt; Core concepts, architecture and lifecycle
+&gt;
+&gt; An introduction to key gRPC concepts, with an overview of gRPC architecture and RPC life cycle.
+&gt;
+&gt; Not familiar with gRPC? First read [Introduction to gRPC](https://www.grpc.io/docs/what-is-grpc/introduction/). For language-specific details, see the quick start, tutorial, and reference documentation for your language of choice.
 
 ## 2.1 Service definition
 
-​	下面这段前面重复过了，就是"1.1.1 gRPC"概述的内容
+	下面这段前面重复过了，就是"1.1.1 gRPC"概述的内容
 
-​	Like many RPC systems, gRPC is based around the idea of defining a service, specifying the methods that can be called remotely with their parameters and return types. By default, gRPC uses [protocol buffers](https://developers.google.com/protocol-buffers) as the Interface Definition Language (IDL) for describing both the service interface and the structure of the payload messages. It is possible to use other alternatives if desired.
+	Like many RPC systems, gRPC is based around the idea of defining a service, specifying the methods that can be called remotely with their parameters and return types. By default, gRPC uses [protocol buffers](https://developers.google.com/protocol-buffers) as the Interface Definition Language (IDL) for describing both the service interface and the structure of the payload messages. It is possible to use other alternatives if desired.
 
 ```proto
 service HelloService {
@@ -155,11 +155,11 @@ gRPC支持四种service方法：
   rpc BidiHello(stream HelloRequest) returns (stream HelloResponse);
   ```
 
->  You’ll learn more about the different types of RPC in the [RPC life cycle](https://www.grpc.io/docs/what-is-grpc/core-concepts/#rpc-life-cycle) section below.
+&gt;  You’ll learn more about the different types of RPC in the [RPC life cycle](https://www.grpc.io/docs/what-is-grpc/core-concepts/#rpc-life-cycle) section below.
 
 ## 2.2 Using the API
 
-​	通过gRPC提供的protoc插件编译`.proto`文件，生成client端和server端的代码。通常client端调用API，server端实现API。
+	通过gRPC提供的protoc插件编译`.proto`文件，生成client端和server端的代码。通常client端调用API，server端实现API。
 
 + server端：实现`.proto`中声明service API，运行gRPC服务处理client请求。gRPC基础架构负责解码接收到的requests请求（参数），执行service实现方法，编码service的reponse（传回client）。
 
@@ -169,19 +169,19 @@ gRPC支持四种service方法：
 
 ## 2.3 Synchronous vs. asynchronous
 
-​	Synchronous RPC 调用在服务器收到响应之前一直阻塞，这与RPC所期望的过程调用的抽象最接近。另一方面，网络本身就是异步的，在大多数情况下，无需阻塞线程就可启动（和使用）RPC服务，这很有用（很便利）。
+	Synchronous RPC 调用在服务器收到响应之前一直阻塞，这与RPC所期望的过程调用的抽象最接近。另一方面，网络本身就是异步的，在大多数情况下，无需阻塞线程就可启动（和使用）RPC服务，这很有用（很便利）。
 
-​	大多数gRPC编程API都支持同步和异步两种方式。（详情参考所选语言的文档）
+	大多数gRPC编程API都支持同步和异步两种方式。（详情参考所选语言的文档）
 
 ## 2.4 RPC life cycle
 
-​	该章节可以了解到client通过gRPC调用server方法的一些过程，但详情还是要参照选定语言的参考文档。
+	该章节可以了解到client通过gRPC调用server方法的一些过程，但详情还是要参照选定语言的参考文档。
 
 *ps：下面直接看全英版本，就不继续使用我拙劣的译文了，全英比较不容易有理解上的歧义。*
 
 ### Unary RPC
 
-​	First consider the simplest type of RPC where the client sends a single request and gets back a single response.
+	First consider the simplest type of RPC where the client sends a single request and gets back a single response.
 
 1. Once the client calls a stub method, the server is notified that the RPC has been invoked with the client’s [**metadata**](https://www.grpc.io/docs/what-is-grpc/core-concepts/#metadata) for this call, the **method name**, and the specified [**deadline**](https://www.grpc.io/docs/what-is-grpc/core-concepts/#deadlines) if applicable.
 
@@ -201,87 +201,87 @@ gRPC支持四种service方法：
 
 ### Server streaming RPC
 
-​	A server-streaming RPC is similar to a unary RPC, except that the server returns a stream of messages in response to a client’s request. After sending all its messages, the server’s status details (status code and optional status message) and optional trailing metadata are sent to the client. This completes processing on the server side. The client completes once it has all the server’s messages.
+	A server-streaming RPC is similar to a unary RPC, except that the server returns a stream of messages in response to a client’s request. After sending all its messages, the server’s status details (status code and optional status message) and optional trailing metadata are sent to the client. This completes processing on the server side. The client completes once it has all the server’s messages.
 
-​	*server-stream RPC和前面的unary RPC类似，只不过server返回值response变为stream（里面是一系列message）。在server（借助stream）发送完所有message后，再发送server的status details状态信息（状态码、可选的状态message）和可选trailing metadata到client。server服务端流程至此结束，而client在接收所有来自server的messages之后结束流程。*
+	*server-stream RPC和前面的unary RPC类似，只不过server返回值response变为stream（里面是一系列message）。在server（借助stream）发送完所有message后，再发送server的status details状态信息（状态码、可选的状态message）和可选trailing metadata到client。server服务端流程至此结束，而client在接收所有来自server的messages之后结束流程。*
 
 ### Client streaming RPC
 
-​	A client-streaming RPC is similar to a unary RPC, except that the client sends a stream of messages to the server instead of a single message. The server responds with a single message (along with its status details and optional trailing metadata), typically but not necessarily after it has received all the client’s messages.
+	A client-streaming RPC is similar to a unary RPC, except that the client sends a stream of messages to the server instead of a single message. The server responds with a single message (along with its status details and optional trailing metadata), typically but not necessarily after it has received all the client’s messages.
 
-​	*client-stream RPC同理和RPC类似，不过就是client发送到server的request变为stream（里面是一系列message）。server响应一个message（携带一些status details状态信息和可选trailing metadata），通常在接收所有来自client的messages后响应（注意：并不是硬性要求在接收完所有数据后才response）*
+	*client-stream RPC同理和RPC类似，不过就是client发送到server的request变为stream（里面是一系列message）。server响应一个message（携带一些status details状态信息和可选trailing metadata），通常在接收所有来自client的messages后响应（注意：并不是硬性要求在接收完所有数据后才response）*
 
 ### Bidirectional streaming RPC
 
-​	In a bidirectional streaming RPC, the call is initiated by the client invoking the method and the server receiving the client metadata, method name, and deadline. The server can choose to send back its initial metadata or wait for the client to start streaming messages.
+	In a bidirectional streaming RPC, the call is initiated by the client invoking the method and the server receiving the client metadata, method name, and deadline. The server can choose to send back its initial metadata or wait for the client to start streaming messages.
 
-​	*在 bidirectional streaming RPC中，client调用方法、server接收client的metadata、method、deadline时启动RPC调用流程。server可以选择发送其metadata或者等待client通过stream传输messages过来。*
+	*在 bidirectional streaming RPC中，client调用方法、server接收client的metadata、method、deadline时启动RPC调用流程。server可以选择发送其metadata或者等待client通过stream传输messages过来。*
 
-​	Client- and server-side stream processing is application specific. Since the two streams are independent, the client and server can read and write messages in any order. For example, a server can wait until it has received all of a client’s messages before writing its messages, or the server and client can play “ping-pong” – the server gets a request, then sends back a response, then the client sends another request based on the response, and so on.
+	Client- and server-side stream processing is application specific. Since the two streams are independent, the client and server can read and write messages in any order. For example, a server can wait until it has received all of a client’s messages before writing its messages, or the server and client can play “ping-pong” – the server gets a request, then sends back a response, then the client sends another request based on the response, and so on.
 
-​	*client和server端的stream处理流程是应用程序实现中指定的。由于两个stream彼此独立，client和server可随机读写messages。比如，server可以等到接收完所有来自client的messages再进行写messages操作，或者server和client之间进行"ping-pong"操作（即server每接收一个request就回送一个response，之后client又根据新收到的response发送新的request，如此往复。）或者进行其他形式的request/response交互操作。*
+	*client和server端的stream处理流程是应用程序实现中指定的。由于两个stream彼此独立，client和server可随机读写messages。比如，server可以等到接收完所有来自client的messages再进行写messages操作，或者server和client之间进行"ping-pong"操作（即server每接收一个request就回送一个response，之后client又根据新收到的response发送新的request，如此往复。）或者进行其他形式的request/response交互操作。*
 
 ### * Deadlines/Timeouts
 
-​	gRPC allows clients to specify how long they are willing to wait for an RPC to complete before the RPC is terminated with a `DEADLINE_EXCEEDED` error. On the server side, the server can query to see if a particular RPC has timed out, or how much time is left to complete the RPC.
+	gRPC allows clients to specify how long they are willing to wait for an RPC to complete before the RPC is terminated with a `DEADLINE_EXCEEDED` error. On the server side, the server can query to see if a particular RPC has timed out, or how much time is left to complete the RPC.
 
-​	*gRPC允许client指定RPC调用完成的最长执行时间。server端可以查询特定的RPC是否处理超时，或者还剩多少时间可以用于处理该RPC。*
+	*gRPC允许client指定RPC调用完成的最长执行时间。server端可以查询特定的RPC是否处理超时，或者还剩多少时间可以用于处理该RPC。*
 
-​	Specifying a deadline or timeout is language specific: some language APIs work in terms of timeouts (durations of time), and some language APIs work in terms of a deadline (a fixed point in time) and may or may not have a default deadline.
+	Specifying a deadline or timeout is language specific: some language APIs work in terms of timeouts (durations of time), and some language APIs work in terms of a deadline (a fixed point in time) and may or may not have a default deadline.
 
-​	*指定deadline或者timeout和具体使用的编程语言有关：有些编程语言的API根据timeouts（duration of time）运作RPC，有些则根据deadline（a fixed point in time），还有一些有或者没有默认的deadline。*
+	*指定deadline或者timeout和具体使用的编程语言有关：有些编程语言的API根据timeouts（duration of time）运作RPC，有些则根据deadline（a fixed point in time），还有一些有或者没有默认的deadline。*
 
 ### * RPC termination
 
-​	**In gRPC, both the client and server make independent and local determinations of the success of the call, and their conclusions may not match. This means that, for example, you could have an RPC that finishes successfully on the server side (“I have sent all my responses!") but fails on the client side (“The responses arrived after my deadline!"). It’s also possible for a server to decide to complete before a client has sent all its requests.**
+	**In gRPC, both the client and server make independent and local determinations of the success of the call, and their conclusions may not match. This means that, for example, you could have an RPC that finishes successfully on the server side (“I have sent all my responses!") but fails on the client side (“The responses arrived after my deadline!"). It’s also possible for a server to decide to complete before a client has sent all its requests.**
 
-​	***在gRPC中，client和server对"RPC调用成功/结束"只在本地进行独立的判定，它们判定的结论可能不匹配。这意味着，你在server端可能完成了RPC调用，但是在client端出现失败（如client判定来自server端response超出预期的deadline）。还有可能server在client发送完所有requets之前就单方宣告server端已经完成RPC处理。***
+	***在gRPC中，client和server对"RPC调用成功/结束"只在本地进行独立的判定，它们判定的结论可能不匹配。这意味着，你在server端可能完成了RPC调用，但是在client端出现失败（如client判定来自server端response超出预期的deadline）。还有可能server在client发送完所有requets之前就单方宣告server端已经完成RPC处理。***
 
 ### * Cancelling an RPC
 
-​	Either the client or the server can cancel an RPC at any time. A cancellation terminates the RPC immediately so that no further work is done.
+	Either the client or the server can cancel an RPC at any time. A cancellation terminates the RPC immediately so that no further work is done.
 
-​	*在client和server端都可以随时取消RPC调用。一次cancellation取消操作能立即终止RPC，使后续流程不再进行。*
+	*在client和server端都可以随时取消RPC调用。一次cancellation取消操作能立即终止RPC，使后续流程不再进行。*
 
-> Warning
->
-> Changes made before a cancellation are not rolled back.
->
-> 注意：
->
-> **在cancellation取消操作之前的所有改变都不会被回滚！！！**
->
-> **在cancellation取消操作之前的所有改变都不会被回滚！！！**
->
-> **在cancellation取消操作之前的所有改变都不会被回滚！！！**
+&gt; Warning
+&gt;
+&gt; Changes made before a cancellation are not rolled back.
+&gt;
+&gt; 注意：
+&gt;
+&gt; **在cancellation取消操作之前的所有改变都不会被回滚！！！**
+&gt;
+&gt; **在cancellation取消操作之前的所有改变都不会被回滚！！！**
+&gt;
+&gt; **在cancellation取消操作之前的所有改变都不会被回滚！！！**
 
 ### * Metadata
 
-​	Metadata is information about a particular RPC call (such as [authentication details](https://www.grpc.io/docs/guides/auth/)) in the form of a list of key-value pairs, where the keys are strings and the values are typically strings, but can be binary data. Metadata is opaque to gRPC itself - it lets the client provide information associated with the call to the server and vice versa.
+	Metadata is information about a particular RPC call (such as [authentication details](https://www.grpc.io/docs/guides/auth/)) in the form of a list of key-value pairs, where the keys are strings and the values are typically strings, but can be binary data. Metadata is opaque to gRPC itself - it lets the client provide information associated with the call to the server and vice versa.
 
-​	Access to metadata is language dependent.
+	Access to metadata is language dependent.
 
-​	*Metadata是关于特定某个RPC调用的信息（比如身份认证信息），其以key-value对的形式存在，key为字符串，value通常是字符串，但也可以是二进制数据。Metadata对gRPC本身来说是隐藏无需感知的，client和server用其来关联自定义信息到RPC调用动作（可以类比HTTP请求中的header）。*
+	*Metadata是关于特定某个RPC调用的信息（比如身份认证信息），其以key-value对的形式存在，key为字符串，value通常是字符串，但也可以是二进制数据。Metadata对gRPC本身来说是隐藏无需感知的，client和server用其来关联自定义信息到RPC调用动作（可以类比HTTP请求中的header）。*
 
-​	*每个编程语言关于metadata的操作不尽相同。*
+	*每个编程语言关于metadata的操作不尽相同。*
 
 ### * Channels
 
-​	A gRPC channel provides a connection to a gRPC server on a specified host and port. It is used when creating a client stub. Clients can specify channel arguments to modify gRPC’s default behavior, such as switching message compression on or off. A channel has state, including `connected` and `idle`.
+	A gRPC channel provides a connection to a gRPC server on a specified host and port. It is used when creating a client stub. Clients can specify channel arguments to modify gRPC’s default behavior, such as switching message compression on or off. A channel has state, including `connected` and `idle`.
 
-​	How gRPC deals with closing a channel is language dependent. Some languages also permit querying channel state.
+	How gRPC deals with closing a channel is language dependent. Some languages also permit querying channel state.
 
-​	*一个gRPC channel对应一个在特定host、port开放的gRPC server。在创建client stub时就会用到channel。Clients 可以指定不同的channel参数去改变gRPC的默认行为，比如改变message的压缩情况（压缩or不压缩）。channel具有state状态，包括`connected`、`idle`。*
+	*一个gRPC channel对应一个在特定host、port开放的gRPC server。在创建client stub时就会用到channel。Clients 可以指定不同的channel参数去改变gRPC的默认行为，比如改变message的压缩情况（压缩or不压缩）。channel具有state状态，包括`connected`、`idle`。*
 
-​	*gRPC关闭channel的流程依赖编程语言实现。一些编程语言还支持查询channel的state状态。*
+	*gRPC关闭channel的流程依赖编程语言实现。一些编程语言还支持查询channel的state状态。*
 
 # 3. FAQ
 
 ## 3.1 什么是gRPC
 
-​	gRPC is a modern, open source remote procedure call (RPC) framework that can run anywhere. It enables client and server applications to communicate transparently, and makes it easier to build connected systems.
+	gRPC is a modern, open source remote procedure call (RPC) framework that can run anywhere. It enables client and server applications to communicate transparently, and makes it easier to build connected systems.
 
-​	gRPC是开源的RPC远程过程调用框架。它使得client和server应用能够透明通信（即gRPC维护client和server之间的通信，我们只需按照一定语法进行编写即可，无需关心底层通信实现），使用gRPC能够使系统间联系更加简单。
+	gRPC是开源的RPC远程过程调用框架。它使得client和server应用能够透明通信（即gRPC维护client和server之间的通信，我们只需按照一定语法进行编写即可，无需关心底层通信实现），使用gRPC能够使系统间联系更加简单。
 
 ## 3.2 适合gRPC的场景
 
@@ -303,29 +303,29 @@ gRPC支持四种service方法：
 
 ## 3.3 gRPC release支持多久
 
-​	**The gRPC project does not do LTS releases**. Given the rolling release model above, we support the current, latest release and the release prior to that. Support here means bug fixes and security fixes.
+	**The gRPC project does not do LTS releases**. Given the rolling release model above, we support the current, latest release and the release prior to that. Support here means bug fixes and security fixes.
 
 ## 3.4 我能在浏览器上使用gRPC吗
 
-​	The [gRPC-Web](https://github.com/grpc/grpc-web) project is Generally Available.
+	The [gRPC-Web](https://github.com/grpc/grpc-web) project is Generally Available.
 
 ## 3.5 可以在gRPC上使用其他数据格式(JSON、protobuf、Thrift、XML)吗
 
-​	Yes. gRPC is designed to be extensible to support multiple content types. The initial release contains support for Protobuf and with external support for other content types such as FlatBuffers and Thrift, at varying levels of maturity.
+	Yes. gRPC is designed to be extensible to support multiple content types. The initial release contains support for Protobuf and with external support for other content types such as FlatBuffers and Thrift, at varying levels of maturity.
 
 ## 3.6 Can I use gRPC in a service mesh
 
-​	Yes. gRPC applications can be deployed in a service mesh like any other application. gRPC also supports [xDS APIs](https://www.envoyproxy.io/docs/envoy/latest/api-docs/xds_protocol) which enables deploying gRPC applications in a service mesh without sidecar proxies. The proxyless service mesh features supported in gRPC are listed [here](https://github.com/grpc/grpc/blob/master/doc/grpc_xds_features.md).
+	Yes. gRPC applications can be deployed in a service mesh like any other application. gRPC also supports [xDS APIs](https://www.envoyproxy.io/docs/envoy/latest/api-docs/xds_protocol) which enables deploying gRPC applications in a service mesh without sidecar proxies. The proxyless service mesh features supported in gRPC are listed [here](https://github.com/grpc/grpc/blob/master/doc/grpc_xds_features.md).
 
 ## 3.7 gRPC如何助长移动端开发
 
-​	gRPC and Protobuf provide an easy way to precisely define a service and auto generate reliable client libraries for iOS, Android and the servers providing the back end. The clients can take advantage of advanced streaming and connection features which help save bandwidth, do more over fewer TCP connections and save CPU usage and battery life.
+	gRPC and Protobuf provide an easy way to precisely define a service and auto generate reliable client libraries for iOS, Android and the servers providing the back end. The clients can take advantage of advanced streaming and connection features which help save bandwidth, do more over fewer TCP connections and save CPU usage and battery life.
 
-​	简言之gRPC可生成IOS、Android的client客户端代码，这些代码中采用先进的流处理和连接特性，能够有效节省带宽、节省CPU使用率，（变向）延长电池寿命。
+	简言之gRPC可生成IOS、Android的client客户端代码，这些代码中采用先进的流处理和连接特性，能够有效节省带宽、节省CPU使用率，（变向）延长电池寿命。
 
 ## 3.8 Why is gRPC better than any binary blob over HTTP/2?
 
-​	This is largely what gRPC is on the wire. However gRPC is also a set of libraries that will provide higher-level features consistently across platforms that common HTTP libraries typically do not. Examples of such features include:
+	This is largely what gRPC is on the wire. However gRPC is also a set of libraries that will provide higher-level features consistently across platforms that common HTTP libraries typically do not. Examples of such features include:
 
 + interaction with flow-control at the application layer
 + cascading call-cancellation
@@ -333,9 +333,9 @@ gRPC支持四种service方法：
 
 ## 3.9 Why is gRPC better/worse than REST?
 
-​	gRPC largely follows HTTP semantics over HTTP/2 but we explicitly allow for full-duplex streaming. We diverge from typical REST conventions as we use static paths for performance reasons during call dispatch as parsing call parameters from paths, query parameters and payload body adds latency and complexity. We have also formalized a set of errors that we believe are more directly applicable to API use cases than the HTTP status codes.
+	gRPC largely follows HTTP semantics over HTTP/2 but we explicitly allow for full-duplex streaming. We diverge from typical REST conventions as we use static paths for performance reasons during call dispatch as parsing call parameters from paths, query parameters and payload body adds latency and complexity. We have also formalized a set of errors that we believe are more directly applicable to API use cases than the HTTP status codes.
 
-​	gRPC很大程度上遵循基于HTTP/2的HTTP语义，但明确支持全双工流。我们偏离了典型的REST协议，我们出于性能考量，决定在分发调用请求时采用静态路由，因为从路由中解析调度参数、查询参数和数据载体payload body会带来额外的延迟和（处理/设计的）复杂性。我们同时还定义了一组errors，确信其比HTTP状态码更适用于API。
+	gRPC很大程度上遵循基于HTTP/2的HTTP语义，但明确支持全双工流。我们偏离了典型的REST协议，我们出于性能考量，决定在分发调用请求时采用静态路由，因为从路由中解析调度参数、查询参数和数据载体payload body会带来额外的延迟和（处理/设计的）复杂性。我们同时还定义了一组errors，确信其比HTTP状态码更适用于API。
 
 # 4. Languages
 
@@ -343,25 +343,25 @@ gRPC支持四种service方法：
 
 ### Quick start
 
-> [Quick start | Java | gRPC](https://www.grpc.io/docs/languages/java/quickstart/)	=>	跟着做即可
+&gt; [Quick start | Java | gRPC](https://www.grpc.io/docs/languages/java/quickstart/)	=&gt;	跟着做即可
 
 *ps：虽然和这个没关系，但是我顺便安装了一下AdoptOpenJDK-11，用的jenv管理jdk8和jdk11*
 
 ### 基础教程
 
-​	通过该基础教程，将学到：
+	通过该基础教程，将学到：
 
 + Define a service in a `.proto` file.
 + Generate server and client code using the protocol buffer compiler.
 + Use the Java gRPC API to write a simple client and server for your service.
 
-​	It assumes that you have read the [Introduction to gRPC](https://www.grpc.io/docs/what-is-grpc/introduction/) and are familiar with [protocol buffers](https://developers.google.com/protocol-buffers/docs/overview). Note that the example in this tutorial uses the [proto3](https://github.com/google/protobuf/releases) version of the protocol buffers language: you can find out more in the [proto3 language guide](https://developers.google.com/protocol-buffers/docs/proto3) and [Java generated code guide](https://developers.google.com/protocol-buffers/docs/reference/java-generated).
+	It assumes that you have read the [Introduction to gRPC](https://www.grpc.io/docs/what-is-grpc/introduction/) and are familiar with [protocol buffers](https://developers.google.com/protocol-buffers/docs/overview). Note that the example in this tutorial uses the [proto3](https://github.com/google/protobuf/releases) version of the protocol buffers language: you can find out more in the [proto3 language guide](https://developers.google.com/protocol-buffers/docs/proto3) and [Java generated code guide](https://developers.google.com/protocol-buffers/docs/reference/java-generated).
 
 #### 为什么使用gRPC
 
-​	Our example is a simple route mapping application that lets clients get information about features on their route, create a summary of their route, and exchange route information such as traffic updates with the server and other clients.
+	Our example is a simple route mapping application that lets clients get information about features on their route, create a summary of their route, and exchange route information such as traffic updates with the server and other clients.
 
-​	With gRPC we can define our service once in a `.proto` file and generate clients and servers in any of gRPC’s supported languages, which in turn can be run in environments ranging from servers inside a large data center to your own tablet — all the complexity of communication between different languages and environments is handled for you by gRPC. We also get all the advantages of working with protocol buffers, including efficient serialization, a simple IDL, and easy interface updating.
+	With gRPC we can define our service once in a `.proto` file and generate clients and servers in any of gRPC’s supported languages, which in turn can be run in environments ranging from servers inside a large data center to your own tablet — all the complexity of communication between different languages and environments is handled for you by gRPC. We also get all the advantages of working with protocol buffers, including efficient serialization, a simple IDL, and easy interface updating.
 
 简言之：
 
@@ -385,7 +385,7 @@ $ cd grpc-java/examples
 
 #### 定义service
 
-> Our first step (as you’ll know from the [Introduction to gRPC](https://www.grpc.io/docs/what-is-grpc/introduction/)) is to define the gRPC *service* and the method *request* and *response* types using [protocol buffers](https://developers.google.com/protocol-buffers/docs/overview). You can see the complete .proto file in [grpc-java/examples/src/main/proto/route_guide.proto](https://github.com/grpc/grpc-java/blob/master/examples/src/main/proto/route_guide.proto).
+&gt; Our first step (as you’ll know from the [Introduction to gRPC](https://www.grpc.io/docs/what-is-grpc/introduction/)) is to define the gRPC *service* and the method *request* and *response* types using [protocol buffers](https://developers.google.com/protocol-buffers/docs/overview). You can see the complete .proto file in [grpc-java/examples/src/main/proto/route_guide.proto](https://github.com/grpc/grpc-java/blob/master/examples/src/main/proto/route_guide.proto).
 
 + `java_package`用于指定`.proto`生成的java类所在的包路径
 
@@ -393,7 +393,7 @@ $ cd grpc-java/examples
   option java_package = "io.grpc.examples.routeguide";
   ```
 
-  > This specifies the package we want to use for our generated Java classes. If no explicit `java_package` option is given in the .proto file, then by default the proto package (specified using the “package” keyword) will be used. However, proto packages generally do not make good Java packages since proto packages are not expected to start with reverse domain names. If we generate code in another language from this .proto, the `java_package` option has no effect.
+  &gt; This specifies the package we want to use for our generated Java classes. If no explicit `java_package` option is given in the .proto file, then by default the proto package (specified using the “package” keyword) will be used. However, proto packages generally do not make good Java packages since proto packages are not expected to start with reverse domain names. If we generate code in another language from this .proto, the `java_package` option has no effect.
 
 + `service`声明一个命名服务
 
@@ -430,7 +430,7 @@ Then we define `rpc` methods inside our service definition, specifying their req
   rpc RecordRoute(stream Point) returns (RouteSummary) {}
   ```
 
-- A *bidirectional streaming RPC* where <u>both sides send a sequence of messages using a read-write stream.</u> **The two streams operate independently**, so clients and servers can read and write in whatever order they like: for example, the server could wait to receive all the client messages before writing its responses, or it could alternately read a message then write a message, or some other combination of reads and writes. The order of messages in each stream is preserved. You specify this type of method by placing the `stream` keyword before both the request and the response.
+- A *bidirectional streaming RPC* where &lt;u&gt;both sides send a sequence of messages using a read-write stream.&lt;/u&gt; **The two streams operate independently**, so clients and servers can read and write in whatever order they like: for example, the server could wait to receive all the client messages before writing its responses, or it could alternately read a message then write a message, or some other combination of reads and writes. The order of messages in each stream is preserved. You specify this type of method by placing the `stream` keyword before both the request and the response.
 
   ```java
   // Accepts a stream of RouteNotes sent while a route is being traversed,
@@ -455,11 +455,11 @@ message Point {
 
 通过`protoc`插件生成`.proto`文件对应的java代码。
 
->  You need to use the [proto3](https://github.com/google/protobuf/releases) compiler (which supports both proto2 and proto3 syntax) in order to generate gRPC services.
+&gt;  You need to use the [proto3](https://github.com/google/protobuf/releases) compiler (which supports both proto2 and proto3 syntax) in order to generate gRPC services.
 
-​	When using Gradle or Maven, the protoc build plugin can generate the necessary code as part of the build. You can refer to the [grpc-java README](https://github.com/grpc/grpc-java/blob/master/README.md) for how to generate code from your own `.proto` files.
+	When using Gradle or Maven, the protoc build plugin can generate the necessary code as part of the build. You can refer to the [grpc-java README](https://github.com/grpc/grpc-java/blob/master/README.md) for how to generate code from your own `.proto` files.
 
-​	The following classes are generated from our service definition:
+	The following classes are generated from our service definition:
 
 - `Feature.java`, `Point.java`, `Rectangle.java`, and others which contain all the protocol buffer code to populate, serialize, and retrieve our request and response message types.
 - `RouteGuideGrpc.java` which contains (along with some other useful code):
@@ -468,14 +468,14 @@ message Point {
 
 #### 创建 server
 
-​	First let’s look at how we create a `RouteGuide` server. If you’re only interested in creating gRPC clients, you can skip this section and go straight to [Creating the client](https://www.grpc.io/docs/languages/java/basics/#client) (though you might find it interesting anyway!).
+	First let’s look at how we create a `RouteGuide` server. If you’re only interested in creating gRPC clients, you can skip this section and go straight to [Creating the client](https://www.grpc.io/docs/languages/java/basics/#client) (though you might find it interesting anyway!).
 
-​	There are two parts to making our `RouteGuide` service do its job:
+	There are two parts to making our `RouteGuide` service do its job:
 
 - Overriding the service base class generated from our service definition: doing the actual “work” of our service.
 - Running a gRPC server to listen for requests from clients and return the service responses.
 
-> You can find our example `RouteGuide` server in [grpc-java/examples/src/main/java/io/grpc/examples/routeguide/RouteGuideServer.java](https://github.com/grpc/grpc-java/blob/master/examples/src/main/java/io/grpc/examples/routeguide/RouteGuideServer.java). Let’s take a closer look at how it works.
+&gt; You can find our example `RouteGuide` server in [grpc-java/examples/src/main/java/io/grpc/examples/routeguide/RouteGuideServer.java](https://github.com/grpc/grpc-java/blob/master/examples/src/main/java/io/grpc/examples/routeguide/RouteGuideServer.java). Let’s take a closer look at how it works.
 
 ##### Implementing RouteGuide
 
@@ -516,7 +516,7 @@ private Feature checkFeature(Point location) {
 The `getFeature()` method takes two parameters:
 
 - `Point`: the request
-- `StreamObserver<Feature>`: a response observer, which is a special interface for the server to call with its response.
+- `StreamObserver&lt;Feature&gt;`: a response observer, which is a special interface for the server to call with its response.
 
 To return our response to the client and complete the call:
 
@@ -649,11 +649,11 @@ As with our client-side streaming example, we both get and return a `StreamObser
 
 The syntax for reading and writing here is exactly the same as for our client-streaming and server-streaming methods. 
 
-Although **each side will always get the other’s messages in the order they were written**, <u>both the client and server can read and write in any order — the streams operate completely independently.</u>
+Although **each side will always get the other’s messages in the order they were written**, &lt;u&gt;both the client and server can read and write in any order — the streams operate completely independently.&lt;/u&gt;
 
 #### 运行 server
 
-​	Once we’ve implemented all our methods, we also need to start up a gRPC server so that clients can actually use our service. The following snippet shows how we do this for our `RouteGuide` service:
+	Once we’ve implemented all our methods, we also need to start up a gRPC server so that clients can actually use our service. The following snippet shows how we do this for our `RouteGuide` service:
 
 ```java
 public RouteGuideServer(int port, URL featureFile) throws IOException {
@@ -684,16 +684,16 @@ To do this, we:
 
 #### 创建 client
 
-> In this section, we’ll look at creating a client for our `RouteGuide` service. You can see our complete example client code in [grpc-java/examples/src/main/java/io/grpc/examples/routeguide/RouteGuideClient.java](https://github.com/grpc/grpc-java/blob/master/examples/src/main/java/io/grpc/examples/routeguide/RouteGuideClient.java).
+&gt; In this section, we’ll look at creating a client for our `RouteGuide` service. You can see our complete example client code in [grpc-java/examples/src/main/java/io/grpc/examples/routeguide/RouteGuideClient.java](https://github.com/grpc/grpc-java/blob/master/examples/src/main/java/io/grpc/examples/routeguide/RouteGuideClient.java).
 
 ##### Instantiating a stub
 
-​	To call service methods, we first need to create a *stub*, or rather, two stubs:
+	To call service methods, we first need to create a *stub*, or rather, two stubs:
 
 - a *blocking/synchronous* stub: this means that the RPC call waits for the server to respond, and will either return a response or raise an exception.
 - a *non-blocking/asynchronous* stub that makes non-blocking calls to the server, where the response is returned asynchronously. You can make certain types of streaming call only using the asynchronous stub.
 
-​	First we need to create a gRPC *channel* for our stub, specifying the server address and port we want to connect to:
+	First we need to create a gRPC *channel* for our stub, specifying the server address and port we want to connect to:
 
 ```java
 public RouteGuideClient(String host, int port) {
@@ -708,9 +708,9 @@ public RouteGuideClient(ManagedChannelBuilder<?> channelBuilder) {
 }
 ```
 
-​	We use a `ManagedChannelBuilder` to create the channel.
+	We use a `ManagedChannelBuilder` to create the channel.
 
-​	Now we can use the channel to create our stubs using the `newStub` and `newBlockingStub` methods provided in the `RouteGuideGrpc` class we generated from our .proto.
+	Now we can use the channel to create our stubs using the `newStub` and `newBlockingStub` methods provided in the `RouteGuideGrpc` class we generated from our .proto.
 
 ```java
 blockingStub = RouteGuideGrpc.newBlockingStub(channel);
@@ -762,7 +762,7 @@ As you can see, it’s very similar to the simple RPC we just looked at, except 
 
 ##### Client-side streaming RPC
 
-Now for something a little more complicated: the client-side streaming method `RecordRoute`, where we send a stream of `Point`s to the server and get back a single `RouteSummary`. For this method we need to use the **asynchronous stub**. If you’ve already read [Creating the server](https://www.grpc.io/docs/languages/java/basics/#server) some of this may look very familiar - <u>asynchronous streaming RPCs are implemented in a similar way on both sides</u>.
+Now for something a little more complicated: the client-side streaming method `RecordRoute`, where we send a stream of `Point`s to the server and get back a single `RouteSummary`. For this method we need to use the **asynchronous stub**. If you’ve already read [Creating the server](https://www.grpc.io/docs/languages/java/basics/#server) some of this may look very familiar - &lt;u&gt;asynchronous streaming RPCs are implemented in a similar way on both sides&lt;/u&gt;.
 
 ```java
 public void recordRoute(List<Feature> features, int numPoints) throws InterruptedException {
@@ -885,19 +885,19 @@ As with our client-side streaming example, we both get and return a `StreamObser
 
 #### Try it out
 
->  Follow the instructions in the [example directory README](https://github.com/grpc/grpc-java/blob/master/examples/README.md) to build and run the client and server.
+&gt;  Follow the instructions in the [example directory README](https://github.com/grpc/grpc-java/blob/master/examples/README.md) to build and run the client and server.
 
 ### ALTS
 
-> An overview of gRPC authentication in Java using Application Layer Transport Security (ALTS).
+&gt; An overview of gRPC authentication in Java using Application Layer Transport Security (ALTS).
 
 #### 概述
 
-​	**Application Layer Transport Security (ALTS)** is a mutual authentication and transport encryption system developed by Google. It is used for securing RPC communications within Google’s infrastructure. ALTS is similar to mutual TLS but has been designed and optimized to meet the needs of Google’s production environments. For more information, take a look at the [ALTS whitepaper](https://cloud.google.com/security/encryption-in-transit/application-layer-transport-security).
+	**Application Layer Transport Security (ALTS)** is a mutual authentication and transport encryption system developed by Google. It is used for securing RPC communications within Google’s infrastructure. ALTS is similar to mutual TLS but has been designed and optimized to meet the needs of Google’s production environments. For more information, take a look at the [ALTS whitepaper](https://cloud.google.com/security/encryption-in-transit/application-layer-transport-security).
 
-​	简言之，ALTS就是类似TLS的产物，用于通信双方的身份认证和数据加密，使得google的基建RPC通信能安全进行。ALTS类似TLS，google在其基础上进行优化实现，可用于生产环境。
+	简言之，ALTS就是类似TLS的产物，用于通信双方的身份认证和数据加密，使得google的基建RPC通信能安全进行。ALTS类似TLS，google在其基础上进行优化实现，可用于生产环境。
 
-​	ALTS在gRPC方面具有如下特性：
+	ALTS在gRPC方面具有如下特性：
 
 + Create gRPC servers & clients with ALTS as the transport security protocol.
 + ALTS connections are end-to-end protected with privacy and integrity（隐私和完整性）.
@@ -905,13 +905,13 @@ As with our client-side streaming example, we both get and return a `StreamObser
 + Client authorization and server authorization support.（支持客户端授权、服务端授权）
 + Minimal code changes to enable ALTS.（启用ALTS的代码侵入性小）
 
-​	gRPC users can configure their applications to use ALTS as a transport security protocol with few lines of code.
+	gRPC users can configure their applications to use ALTS as a transport security protocol with few lines of code.
 
-> Note that ALTS is fully functional if the application runs on [Google Cloud Platform](https://cloud.google.com/). ALTS could be run on any platforms with a pluggable [ALTS handshaker service](https://github.com/grpc/grpc/blob/7e367da22a137e2e7caeae8342c239a91434ba50/src/proto/grpc/gcp/handshaker.proto#L224-L234).
+&gt; Note that ALTS is fully functional if the application runs on [Google Cloud Platform](https://cloud.google.com/). ALTS could be run on any platforms with a pluggable [ALTS handshaker service](https://github.com/grpc/grpc/blob/7e367da22a137e2e7caeae8342c239a91434ba50/src/proto/grpc/gcp/handshaker.proto#L224-L234).
 
 #### gRPC Client使用ALTS
 
-​	gRPC clients can use ALTS credentials to connect to servers, as illustrated in the following code excerpt:
+	gRPC clients can use ALTS credentials to connect to servers, as illustrated in the following code excerpt:
 
 ```java
 import io.grpc.alts.AltsChannelBuilder;
@@ -922,7 +922,7 @@ ManagedChannel managedChannel = AltsChannelBuilder.forTarget(serverAddress).buil
 
 #### gRPC Server使用ALTS
 
-​	gRPC servers can use ALTS credentials to allow clients to connect to them, as illustrated next:
+	gRPC servers can use ALTS credentials to allow clients to connect to them, as illustrated next:
 
 ```java
 import io.grpc.alts.AltsServerBuilder;
@@ -963,13 +963,13 @@ Status status = AuthorizationUtil.clientAuthorizationCheck(
 
 ### API
 
-> [grpc-all 1.39.0 API](https://grpc.github.io/grpc-java/javadoc/)
+&gt; [grpc-all 1.39.0 API](https://grpc.github.io/grpc-java/javadoc/)
 
 ### Generated code
 
 #### Packages
 
-​	大意就是，`java_package`指定生成的java类的包路径；生成的java类的类名为`.proto`文件中`service`服务名加上后缀`Grpc`。
+	大意就是，`java_package`指定生成的java类的包路径；生成的java类的类名为`.proto`文件中`service`服务名加上后缀`Grpc`。
 
 For each service defined in a .proto file, the Java code generation produces a Java class. The class name is the service’s name suffixed by `Grpc`. The package for the generated code is specified in the .proto file using the `java_package` option.
 
@@ -987,11 +987,11 @@ If `java_package` is not specified, the generated class will use the `package` a
 
 #### Service Stub
 
-​	生成的Java类里面含有一个抽象内部类，其名带有后缀`ImplBase`。其为`.proto`的`service`定义的所有rpc方法提供了默认实现，如果不重写对应的方法，默认实现就是返回error，告知client此方法未实现。
+	生成的Java类里面含有一个抽象内部类，其名带有后缀`ImplBase`。其为`.proto`的`service`定义的所有rpc方法提供了默认实现，如果不重写对应的方法，默认实现就是返回error，告知client此方法未实现。
 
 The generated Java code contains an inner abstract class suffixed with `ImplBase`, such as `ServiceNameImplBase`. This class defines one Java method for each method in the service definition. It is up to the service implementer to extend this class and implement the functionality of these methods. Without being overridden, the methods return an error to the client saying the method is unimplemented.
 
-​	ServiceNameImplBase 中stub方法声明形式与其处理的RPC类型有关（4种 gRPC service方法: unary、server- streaming、client-streaming、bidirectional-streaming）
+	ServiceNameImplBase 中stub方法声明形式与其处理的RPC类型有关（4种 gRPC service方法: unary、server- streaming、client-streaming、bidirectional-streaming）
 
 The signatures of the stub methods in `ServiceNameImplBase` vary depending on the type of RPCs it handles. There are four types of gRPC service methods: unary, server-streaming, client-streaming, and bidirectional-streaming.
 
@@ -1015,7 +1015,7 @@ public void serverStreamingExample(
     StreamObserver<ResponseType> responseObserver)
 ```
 
-<u>Notice that the signatures for unary and server-streaming RPCs are the same.</u> A single `RequestType` is received from the client, and the service implementation sends its response(s) by invoking `responseObserver.onNext(ResponseType response)`.
+&lt;u&gt;Notice that the signatures for unary and server-streaming RPCs are the same.&lt;/u&gt; A single `RequestType` is received from the client, and the service implementation sends its response(s) by invoking `responseObserver.onNext(ResponseType response)`.
 
 ##### Client-streaming
 
@@ -1035,7 +1035,7 @@ public StreamObserver<RequestType> bidirectionalStreamingExample(
     StreamObserver<ResponseType> responseObserver)
 ```
 
-<u>The signatures for client and bidirectional-streaming RPCs are the same</u>. Since the client can send multiple messages to the service, the service implementation is responsible for returning a `StreamObserver<RequestType>` instance. This `StreamObserver` is invoked whenever additional messages are received from the client.
+&lt;u&gt;The signatures for client and bidirectional-streaming RPCs are the same&lt;/u&gt;. Since the client can send multiple messages to the service, the service implementation is responsible for returning a `StreamObserver&lt;RequestType&gt;` instance. This `StreamObserver` is invoked whenever additional messages are received from the client.
 
 #### Client Stubs
 
@@ -1049,7 +1049,7 @@ gRPC支持生成3种类型的stub方法：
 + **blocking**
 + **future**
 
-<u>gRPC Java generates code for three types of stubs: **asynchronous**, **blocking**, and **future**</u>. Each type of stub has a corresponding class in the generated code, such as `ServiceNameStub`, `ServiceNameBlockingStub`, and `ServiceNameFutureStub`.
+&lt;u&gt;gRPC Java generates code for three types of stubs: **asynchronous**, **blocking**, and **future**&lt;/u&gt;. Each type of stub has a corresponding class in the generated code, such as `ServiceNameStub`, `ServiceNameBlockingStub`, and `ServiceNameFutureStub`.
 
 ##### Asynchronous Stub
 
@@ -1124,7 +1124,7 @@ public Iterator<ResponseType> serverStreamingExample(RequestType request)
 
 ##### Future Stub
 
-RPCs made via a future stub wrap the return value of the asynchronous stub in a `GrpcFuture<ResponseType>`, which implements the `com.google.common.util.concurrent.ListenableFuture` interface.
+RPCs made via a future stub wrap the return value of the asynchronous stub in a `GrpcFuture&lt;ResponseType&gt;`, which implements the `com.google.common.util.concurrent.ListenableFuture` interface.
 
 The future stub contains one Java method for each unary method in the service definition. **Future stubs do not support streaming calls**.
 
@@ -1289,21 +1289,21 @@ A user guide of both general and language-specific best practices to improve per
 
 ## 6.1 Authentication
 
-> An overview of gRPC authentication, including built-in auth mechanisms, and how to plug in your own authentication systems.
+&gt; An overview of gRPC authentication, including built-in auth mechanisms, and how to plug in your own authentication systems.
 
 ### 概述
 
-​	gRPC is designed to work with a variety of authentication mechanisms, making it easy to safely use gRPC to talk to other systems. You can use our supported mechanisms - SSL/TLS with or without Google token-based authentication - or you can plug in your own authentication system by extending our provided code.
+	gRPC is designed to work with a variety of authentication mechanisms, making it easy to safely use gRPC to talk to other systems. You can use our supported mechanisms - SSL/TLS with or without Google token-based authentication - or you can plug in your own authentication system by extending our provided code.
 
-​	gRPC also provides a simple authentication API that lets you provide all the necessary authentication information as `Credentials` when creating a channel or making a call.
+	gRPC also provides a simple authentication API that lets you provide all the necessary authentication information as `Credentials` when creating a channel or making a call.
 
-​	gRPC本身设计时就考虑到多种认证机制，使用gRPC能够简单地实现系统间安全通信。可以使用携带or不携带用于认证的Google token的SSL/TLS来实现安全通信，也可以考虑拓展gRPC提供的代码来实现自己的认证系统。
+	gRPC本身设计时就考虑到多种认证机制，使用gRPC能够简单地实现系统间安全通信。可以使用携带or不携带用于认证的Google token的SSL/TLS来实现安全通信，也可以考虑拓展gRPC提供的代码来实现自己的认证系统。
 
-​	gRPC提供了简单的认证API，使得在创建和使用channel的时候能够携带必要的认证信息（诸如`Credentials`）
+	gRPC提供了简单的认证API，使得在创建和使用channel的时候能够携带必要的认证信息（诸如`Credentials`）
 
 ### 支持的认证机制
 
-​	gRPC内置了以下几种认证机制：
+	gRPC内置了以下几种认证机制：
 
 + **SSL/TLS**
 
@@ -1315,15 +1315,15 @@ A user guide of both general and language-specific best practices to improve per
 
 + **Token-based authentication with Google**
 
-  gRPC provides a generic mechanism (described below) to attach metadata based credentials to requests and responses. Additional support for acquiring access tokens (typically OAuth2 tokens) while accessing Google APIs through gRPC is provided for certain auth flows: you can see how this works in our code examples below. In general this mechanism must be used *as well as* SSL/TLS on the channel - <u>Google will not allow connections without SSL/TLS, and most gRPC language implementations will not let you send credentials on an unencrypted channel</u>.
+  gRPC provides a generic mechanism (described below) to attach metadata based credentials to requests and responses. Additional support for acquiring access tokens (typically OAuth2 tokens) while accessing Google APIs through gRPC is provided for certain auth flows: you can see how this works in our code examples below. In general this mechanism must be used *as well as* SSL/TLS on the channel - &lt;u&gt;Google will not allow connections without SSL/TLS, and most gRPC language implementations will not let you send credentials on an unencrypted channel&lt;/u&gt;.
 
-> Warning
->
-> Google credentials should only be used to connect to Google services. <u>Sending a Google issued OAuth2 token to a non-Google service could result in this token being stolen and used to impersonate the client to Google services.</u>
+&gt; Warning
+&gt;
+&gt; Google credentials should only be used to connect to Google services. &lt;u&gt;Sending a Google issued OAuth2 token to a non-Google service could result in this token being stolen and used to impersonate the client to Google services.&lt;/u&gt;
 
 ### 认证API
 
-> gRPC provides a simple authentication API based around the unified concept of Credentials objects, which can be used when creating an entire gRPC channel or an individual call.
+&gt; gRPC provides a simple authentication API based around the unified concept of Credentials objects, which can be used when creating an entire gRPC channel or an individual call.
 
 #### Credential types
 
@@ -1332,15 +1332,15 @@ Credentials can be of two types:
 - **Channel credentials**, which are attached to a `Channel`, such as SSL credentials.
 - **Call credentials**, which are attached to a call (or `ClientContext` in C++).
 
-​	You can also combine these in a `CompositeChannelCredentials`, allowing you to specify, for example, SSL details for the channel along with call credentials for each call made on the channel. A `CompositeChannelCredentials` associates a `ChannelCredentials` and a `CallCredentials` to create a new `ChannelCredentials`. The result will send the authentication data associated with the composed `CallCredentials` with every call made on the channel.
+	You can also combine these in a `CompositeChannelCredentials`, allowing you to specify, for example, SSL details for the channel along with call credentials for each call made on the channel. A `CompositeChannelCredentials` associates a `ChannelCredentials` and a `CallCredentials` to create a new `ChannelCredentials`. The result will send the authentication data associated with the composed `CallCredentials` with every call made on the channel.
 
-​	For example, you could create a `ChannelCredentials` from an `SslCredentials` and an `AccessTokenCredentials`. The result when applied to a `Channel` would send the appropriate access token for each call on this channel.
+	For example, you could create a `ChannelCredentials` from an `SslCredentials` and an `AccessTokenCredentials`. The result when applied to a `Channel` would send the appropriate access token for each call on this channel.
 
-​	Individual `CallCredentials` can also be composed using `CompositeCallCredentials`. The resulting `CallCredentials` when used in a call will trigger the sending of the authentication data associated with the two `CallCredentials`.
+	Individual `CallCredentials` can also be composed using `CompositeCallCredentials`. The resulting `CallCredentials` when used in a call will trigger the sending of the authentication data associated with the two `CallCredentials`.
 
 #### Using client-side SSL/TLS
 
-​	Now let’s look at how `Credentials` work with one of our supported auth mechanisms. This is the simplest authentication scenario, where a client just wants to authenticate the server and encrypt all data. The example is in C++, but the API is similar for all languages: you can see how to enable SSL/TLS in more languages in our Examples section below.
+	Now let’s look at how `Credentials` work with one of our supported auth mechanisms. This is the simplest authentication scenario, where a client just wants to authenticate the server and encrypt all data. The example is in C++, but the API is similar for all languages: you can see how to enable SSL/TLS in more languages in our Examples section below.
 
 ```protobuf
 // Create a default SSL ChannelCredentials object.
@@ -1353,15 +1353,15 @@ std::unique_ptr<Greeter::Stub> stub(Greeter::NewStub(channel));
 grpc::Status s = stub->sayHello(&context, *request, response);
 ```
 
-​	For advanced use cases such as modifying the root CA or using client certs, the corresponding options can be set in the `SslCredentialsOptions` parameter passed to the factory method.
+	For advanced use cases such as modifying the root CA or using client certs, the corresponding options can be set in the `SslCredentialsOptions` parameter passed to the factory method.
 
-> Note
->
-> Non-POSIX-compliant systems (such as Windows) need to specify the root certificates in `SslCredentialsOptions`, since the defaults are only configured for POSIX filesystems.
+&gt; Note
+&gt;
+&gt; Non-POSIX-compliant systems (such as Windows) need to specify the root certificates in `SslCredentialsOptions`, since the defaults are only configured for POSIX filesystems.
 
 #### Using Google token-based authentication
 
-​	gRPC applications can use a simple API to create a credential that works for authentication with Google in various deployment scenarios. Again, our example is in C++ but you can find examples in other languages in our Examples section.
+	gRPC applications can use a simple API to create a credential that works for authentication with Google in various deployment scenarios. Again, our example is in C++ but you can find examples in other languages in our Examples section.
 
 ```java
 auto creds = grpc::GoogleDefaultCredentials();
@@ -1371,18 +1371,18 @@ std::unique_ptr<Greeter::Stub> stub(Greeter::NewStub(channel));
 grpc::Status s = stub->sayHello(&context, *request, response);
 ```
 
-​	This channel credentials object works for applications using Service Accounts as well as for applications running in [Google Compute Engine (GCE)](https://cloud.google.com/compute/). In the former case, the service account’s private keys are loaded from the file named in the environment variable `GOOGLE_APPLICATION_CREDENTIALS`. The keys are used to generate bearer tokens that are attached to each outgoing RPC on the corresponding channel.
+	This channel credentials object works for applications using Service Accounts as well as for applications running in [Google Compute Engine (GCE)](https://cloud.google.com/compute/). In the former case, the service account’s private keys are loaded from the file named in the environment variable `GOOGLE_APPLICATION_CREDENTIALS`. The keys are used to generate bearer tokens that are attached to each outgoing RPC on the corresponding channel.
 
-​	<u>For applications running in GCE, a default service account and corresponding OAuth2 scopes can be configured during VM setup.</u> At run-time, this credential handles communication with the authentication systems to obtain OAuth2 access tokens and attaches them to each outgoing RPC on the corresponding channel.
+	&lt;u&gt;For applications running in GCE, a default service account and corresponding OAuth2 scopes can be configured during VM setup.&lt;/u&gt; At run-time, this credential handles communication with the authentication systems to obtain OAuth2 access tokens and attaches them to each outgoing RPC on the corresponding channel.
 
 #### Extending gRPC to support other authentication mechanisms
 
-​	The Credentials plugin API allows developers to plug in their own type of credentials. This consists of:
+	The Credentials plugin API allows developers to plug in their own type of credentials. This consists of:
 
 - The `MetadataCredentialsPlugin` abstract class, which contains the pure virtual `GetMetadata` method that needs to be implemented by a sub-class created by the developer.
 - The `MetadataCredentialsFromPlugin` function, which creates a `CallCredentials` from the `MetadataCredentialsPlugin`.
 
-​	Here is example of a simple credentials plugin which sets an authentication ticket in a custom header.
+	Here is example of a simple credentials plugin which sets an authentication ticket in a custom header.
 
 ```c++
 class MyCustomAuthenticator : public grpc::MetadataCredentialsPlugin {
@@ -1406,11 +1406,11 @@ auto call_creds = grpc::MetadataCredentialsFromPlugin(
     new MyCustomAuthenticator("super-secret-ticket")));
 ```
 
-​	A deeper integration can be achieved by plugging in a gRPC credentials implementation at the core level. <u>gRPC internals also allow switching out SSL/TLS with other encryption mechanisms.</u>
+	A deeper integration can be achieved by plugging in a gRPC credentials implementation at the core level. &lt;u&gt;gRPC internals also allow switching out SSL/TLS with other encryption mechanisms.&lt;/u&gt;
 
 ### Examples
 
-> These authentication mechanisms will be available in all gRPC’s supported languages. The following sections demonstrate how authentication and authorization features described above appear in each language: more languages are coming soon.
+&gt; These authentication mechanisms will be available in all gRPC’s supported languages. The following sections demonstrate how authentication and authorization features described above appear in each language: more languages are coming soon.
 
 #### Java
 
@@ -1425,9 +1425,9 @@ GreeterGrpc.GreeterStub stub = GreeterGrpc.newStub(channel);
 
 **With server authentication SSL/TLS**
 
-<u>In Java we recommend that you use OpenSSL when using gRPC over TLS</u>. You can find details about installing and using OpenSSL and other required libraries for both Android and non-Android Java in the gRPC Java [Security](https://github.com/grpc/grpc-java/blob/master/SECURITY.md#transport-security-tls) documentation.
+&lt;u&gt;In Java we recommend that you use OpenSSL when using gRPC over TLS&lt;/u&gt;. You can find details about installing and using OpenSSL and other required libraries for both Android and non-Android Java in the gRPC Java [Security](https://github.com/grpc/grpc-java/blob/master/SECURITY.md#transport-security-tls) documentation.
 
-To enable TLS on a server, a certificate chain and private key need to be specified in PEM format. Such private key should not be using a password. The order of certificates in the chain matters: more specifically, the certificate at the top has to be the host CA, while the one at the very bottom has to be the root CA. <u>The standard TLS port is 443, but we use 8443 below to avoid needing extra permissions from the OS</u>.
+To enable TLS on a server, a certificate chain and private key need to be specified in PEM format. Such private key should not be using a password. The order of certificates in the chain matters: more specifically, the certificate at the top has to be the host CA, while the one at the very bottom has to be the root CA. &lt;u&gt;The standard TLS port is 443, but we use 8443 below to avoid needing extra permissions from the OS&lt;/u&gt;.
 
 ```java
 Server server = ServerBuilder.forPort(8443)
@@ -1469,7 +1469,7 @@ GreeterGrpc.GreeterStub stub = GreeterGrpc.newStub(channel)
 
 ## 6.2 Benchmarking
 
-> gRPC is designed to support high-performance open-source RPCs in many languages. This page describes performance benchmarking tools, scenarios considered by tests, and the testing infrastructure.
+&gt; gRPC is designed to support high-performance open-source RPCs in many languages. This page describes performance benchmarking tools, scenarios considered by tests, and the testing infrastructure.
 
 ### 概述
 
@@ -1522,7 +1522,7 @@ Most test instances are 8-core systems, and these are used for both latency and 
 
 ## 6.3 Error handling
 
-> How gRPC deals with errors, and gRPC error codes.
+&gt; How gRPC deals with errors, and gRPC error codes.
 
 ### Standard error model
 
@@ -1588,7 +1588,7 @@ For sample code illustrating how to handle various gRPC errors, see the [grpc-er
 
 ## 6.4 Performance Best Practices
 
-> A user guide of both general and language-specific best practices to improve performance.
+&gt; A user guide of both general and language-specific best practices to improve performance.
 
 ### General
 
@@ -1602,7 +1602,7 @@ For sample code illustrating how to handle various gRPC errors, see the [grpc-er
 
   ***Side note:*** *This does not apply to Python (see Python section for details).*
 
-- *(Special topic)* <u>Each gRPC channel uses 0 or more HTTP/2 connections and each connection usually has a limit on the number of concurrent streams</u>. When the number of active RPCs on the connection reaches this limit, additional RPCs are queued in the client and must wait for active RPCs to finish before they are sent. <u>Applications with high load or long-lived streaming RPCs might see performance issues because of this queueing</u>. There are two possible solutions:
+- *(Special topic)* &lt;u&gt;Each gRPC channel uses 0 or more HTTP/2 connections and each connection usually has a limit on the number of concurrent streams&lt;/u&gt;. When the number of active RPCs on the connection reaches this limit, additional RPCs are queued in the client and must wait for active RPCs to finish before they are sent. &lt;u&gt;Applications with high load or long-lived streaming RPCs might see performance issues because of this queueing&lt;/u&gt;. There are two possible solutions:
 
   1. **Create a separate channel for each area of high load** in the application.
   2. **Use a pool of gRPC channels** to distribute RPCs over multiple connections (channels must have different channel args to prevent re-use so define a use-specific channel arg such as channel number).

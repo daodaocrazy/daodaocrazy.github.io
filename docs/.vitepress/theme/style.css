@@ -1,0 +1,156 @@
+/**
+ * Custom VitePress Theme Styles
+ * 炫酷的自定义样式
+ */
+
+:root {
+  /* 渐变色彩 */
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  
+  /* 阴影 */
+  --shadow-glow: 0 0 20px rgba(102, 126, 234, 0.3);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 整体页面样式 */
+.VPDoc {
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+}
+
+/* 标题渐变效果 */
+.VPDoc h1 {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.VPDoc h2 {
+  border-left: 4px solid;
+  border-image: var(--gradient-primary) 1;
+  padding-left: 1rem;
+}
+
+/* 代码块增强 */
+.vp-code-group .tabs {
+  background: var(--gradient-primary);
+  border-radius: 8px 8px 0 0;
+}
+
+.vp-code-group .tabs button {
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.vp-code-group .tabs button.active {
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* 链接样式 */
+.VPDoc a {
+  color: #667eea;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.VPDoc a:hover {
+  color: #764ba2;
+  text-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+}
+
+/* 侧边栏增强 */
+.VPSidebar {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.VPSidebarItem .link {
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+
+.VPSidebarItem .link:hover {
+  background: rgba(102, 126, 234, 0.1);
+  transform: translateX(4px);
+}
+
+.VPSidebarItem .link.active {
+  background: var(--gradient-primary);
+  color: white;
+}
+
+/* 导航栏增强 */
+.VPNav {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* 按钮增强 */
+.VPButton.brand {
+  background: var(--gradient-primary);
+  border: none;
+  box-shadow: var(--shadow-glow);
+  transition: all 0.3s ease;
+}
+
+.VPButton.brand:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+/* 首页 hero 区域增强 */
+.VPHero .name {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.VPHero .text {
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 卡片增强 */
+.VPFeature {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  background: white;
+  box-shadow: var(--shadow-card);
+}
+
+.VPFeature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.VPFeature .icon {
+  background: var(--gradient-primary);
+  border-radius: 12px;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gradient-secondary);
+}

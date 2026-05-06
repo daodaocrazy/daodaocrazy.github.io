@@ -1,6 +1,6 @@
 # SpringBoot最新教程IDEA版【狂神说Java系列】-学习笔记
 
-> 视频链接 https://www.bilibili.com/video/av75233634
+&gt; 视频链接 https://www.bilibili.com/video/av75233634
 
 ## 1. 这阶段该如何学习
 
@@ -64,21 +64,21 @@ SpringCloud config
 
 ## 2. 什么是SpringBoot
 
-> [干货满满！10分钟看懂Docker和K8S](https://my.oschina.net/jamesview/blog/2994112)
->
-> [MVC、MVP及MVVM之间的关系](https://www.cnblogs.com/shenyf/p/9532342.html)
->
-> [SpringBoot：快速入门](https://blog.kuangstudy.com/index.php/archives/630/)
->
-> [SpringBoot：初识SpringBoot](https://www.cnblogs.com/hellokuangshen/p/11255695.html)
+&gt; [干货满满！10分钟看懂Docker和K8S](https://my.oschina.net/jamesview/blog/2994112)
+&gt;
+&gt; [MVC、MVP及MVVM之间的关系](https://www.cnblogs.com/shenyf/p/9532342.html)
+&gt;
+&gt; [SpringBoot：快速入门](https://blog.kuangstudy.com/index.php/archives/630/)
+&gt;
+&gt; [SpringBoot：初识SpringBoot](https://www.cnblogs.com/hellokuangshen/p/11255695.html)
 
 ## 3. 什么是微服务架构
 
 MVC三层框架 MVVM 微服务架构
 
-业务：service：userService: ===> 模块
+业务：service：userService: ===&gt; 模块
 
-springmvc ， controller ==> 提供接口
+springmvc ， controller ==&gt; 提供接口
 
 
 
@@ -149,7 +149,7 @@ banner.txt
 
 ## 6. Springboot自动装配原理
 
-> [前端页面插件](https://www.bootschool.net/)
+&gt; [前端页面插件](https://www.bootschool.net/)
 
 ### 自动配置
 
@@ -231,9 +231,9 @@ springboot所有自动配置都是在启动的时候扫描并加载：`spring.fa
 
 ## 7. 了解下主启动类如何启动
 
-​	JavaConfig	@Configuration	@Bean
+	JavaConfig	@Configuration	@Bean
 
-​	Docker： 进程
+	Docker： 进程
 
 关于SpringBoot，谈谈你的理解:
 
@@ -244,7 +244,7 @@ springboot所有自动配置都是在启动的时候扫描并加载：`spring.fa
 
 ## 8. yaml语法讲解
 
-> [SpringBoot 全局配置文件(Properties与YAML)详解和@ConfigurationProperties与@Vuale使用](https://blog.csdn.net/qq_42402854/article/details/89884283)
+&gt; [SpringBoot 全局配置文件(Properties与YAML)详解和@ConfigurationProperties与@Vuale使用](https://blog.csdn.net/qq_42402854/article/details/89884283)
 
 ### yaml
 
@@ -259,19 +259,19 @@ springboot所有自动配置都是在启动的时候扫描并加载：`spring.fa
 
 ## 9. 给属性赋值的几种方式
 
-> [@Component 和 @Bean 的区别](https://blog.csdn.net/ztx114/article/details/82665544)
->
-> [@bean和@component的理解](https://blog.csdn.net/daobuxinzi/article/details/100546815)
->
-> [SpringBoot中yaml配置对象](https://www.cnblogs.com/zhuxiaojie/p/6062014.html)
->
-> [SpringBoot：配置文件及自动配置原理](https://www.cnblogs.com/hellokuangshen/p/11259029.html)
->
-> [SpringBoot-configuration-docs](https://docs.spring.io/spring-boot/docs/2.1.6.RELEASE/reference/html/configuration-metadata.html#configuration-metadata-annotation-processor)
+&gt; [@Component 和 @Bean 的区别](https://blog.csdn.net/ztx114/article/details/82665544)
+&gt;
+&gt; [@bean和@component的理解](https://blog.csdn.net/daobuxinzi/article/details/100546815)
+&gt;
+&gt; [SpringBoot中yaml配置对象](https://www.cnblogs.com/zhuxiaojie/p/6062014.html)
+&gt;
+&gt; [SpringBoot：配置文件及自动配置原理](https://www.cnblogs.com/hellokuangshen/p/11259029.html)
+&gt;
+&gt; [SpringBoot-configuration-docs](https://docs.spring.io/spring-boot/docs/2.1.6.RELEASE/reference/html/configuration-metadata.html#configuration-metadata-annotation-processor)
 
 ## 10. JSR303校验
 
-> [JSR-303](https://www.jianshu.com/p/554533f88370)
+&gt; [JSR-303](https://www.jianshu.com/p/554533f88370)
 
 ```java
 import javax.validation.constraints.Email;
@@ -280,9 +280,9 @@ import javax.validation.constraints.Email;
 
 ## 11. 多环境配置及配置文件位置
 
-> [Spring Boot Reference Guide](https://docs.spring.io/spring-boot/docs/2.1.6.RELEASE/reference/htmlsingle/#boot-features-external-config)
->
-> [SpringBoot + Maven实现多环境动态切换yml配置及配置文件拆分](https://blog.csdn.net/Colton_Null/article/details/82145467)
+&gt; [Spring Boot Reference Guide](https://docs.spring.io/spring-boot/docs/2.1.6.RELEASE/reference/htmlsingle/#boot-features-external-config)
+&gt;
+&gt; [SpringBoot + Maven实现多环境动态切换yml配置及配置文件拆分](https://blog.csdn.net/Colton_Null/article/details/82145467)
 
 ### 配置文件生肖路径
 
@@ -308,9 +308,9 @@ Config locations are searched in reverse order. By default, the configured locat
 + @SpringBootApplication
 + @EnableAutoConfiguration
 + @Import({AutoConfigurationImportSelector.class})
-+ List\<String\> getCandidateConfigurations
-+ List\<String\> configurations = SpringFactoriesLoader.loadFactoryNames(this.getSpringFactoriesLoaderFactoryClass(), this.getBeanClassLoader());
-+ List\<String\> loadFactoryNames
++ List\&lt;String\&gt; getCandidateConfigurations
++ List\&lt;String\&gt; configurations = SpringFactoriesLoader.loadFactoryNames(this.getSpringFactoriesLoaderFactoryClass(), this.getBeanClassLoader());
++ List\&lt;String\&gt; loadFactoryNames
 + spring-boot-autoconfigure-xx.xx.xx.RELEASE.jar/META-INF/spring.factories
 
 按照上述顺序，最后从.factories文件读取配置，但是配置不一定生效，需要被导入实际的包依赖时，检测到对应的配置存在才会生效。
@@ -332,9 +332,9 @@ debug=true
 
 ## 13. web开发探究
 
-> [Spring Boot实战：模板引擎](https://www.cnblogs.com/paddix/p/8905531.html)
->
-> [springboot中Thymeleaf和Freemarker模板引擎的区别](https://blog.csdn.net/weixin_43943548/article/details/102978919)
+&gt; [Spring Boot实战：模板引擎](https://www.cnblogs.com/paddix/p/8905531.html)
+&gt;
+&gt; [springboot中Thymeleaf和Freemarker模板引擎的区别](https://blog.csdn.net/weixin_43943548/article/details/102978919)
 
 ### 自动装配
 
@@ -388,7 +388,7 @@ private static final String[] CLASSPATH_RESOURCE_LOCATIONS = new String[]{"class
 
 其中springboot的./src/main/resources目录下优先级如下：
 
-resources > static > public 
+resources &gt; static &gt; public 
 
 + 一般public放公共资源（比如大家都用的js文件）
 + static放静态资源（图片等）
@@ -400,9 +400,9 @@ resources > static > public
    + webjars	`localhost:8080/webjars/`
    + public，static，/**，resources  `localhost:8080/`
 
-2. 优先级：resources > static（springboot项目默认创建） > public 
+2. 优先级：resources &gt; static（springboot项目默认创建） &gt; public 
 
-如果在.properties或者.yml、.yaml配置了spring.mvc.static-path-pattern=/static/**，会使得访问静态由原本的localhost:8080/静态文件--变成-->localhost:8080/static/静态文件
+如果在.properties或者.yml、.yaml配置了spring.mvc.static-path-pattern=/static/**，会使得访问静态由原本的localhost:8080/静态文件--变成--&gt;localhost:8080/static/静态文件
 
 ## 15. 首页和图标定制
 
@@ -445,9 +445,9 @@ templates目录相当于原本web项目的WEB-INF目录（只能通过controllle
 
 ## 16. thymeleaf模板引擎
 
-> [SpringBoot：Web开发](https://www.cnblogs.com/hellokuangshen/p/11310178.html)
->
-> [thymeleaf官方文档](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html)
+&gt; [SpringBoot：Web开发](https://www.cnblogs.com/hellokuangshen/p/11310178.html)
+&gt;
+&gt; [thymeleaf官方文档](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html)
 
 查看`ThymeleafProperties`源代码
 
@@ -558,7 +558,7 @@ public class HelloController {
 
 ## 18. MVC配置原理
 
-查看`ContentNegotiatingViewResolver`源代码->`getCandidateViews`
+查看`ContentNegotiatingViewResolver`源代码-&gt;`getCandidateViews`
 
 ```java
 //  如果，你想diy一些定制化的功能，只要写这个组件，然后把它交给springboot，springboot就会帮我们自动装配
@@ -616,15 +616,15 @@ public class MyMvcConfig implements WebMvcConfigurer {
 
 ## 20. 员工管理系统：准备工作
 
-> [@Data注解 与 lombok](https://www.jianshu.com/p/c1ee7e4247bf)
+&gt; [@Data注解 与 lombok](https://www.jianshu.com/p/c1ee7e4247bf)
 
 ## 21. 员工管理系统：首页实现
 
-> [ThymeLeaf官方文档](https://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html)
->
-> [Springboot 添加server.servlet.context-path相关使用总结](https://blog.csdn.net/qq_38322527/article/details/101691785)
->
-> [spring boot配置文件中 spring.mvc.static-path-pattern 配置项](https://www.cnblogs.com/yql1986/p/9219137.html)
+&gt; [ThymeLeaf官方文档](https://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html)
+&gt;
+&gt; [Springboot 添加server.servlet.context-path相关使用总结](https://blog.csdn.net/qq_38322527/article/details/101691785)
+&gt;
+&gt; [spring boot配置文件中 spring.mvc.static-path-pattern 配置项](https://www.cnblogs.com/yql1986/p/9219137.html)
 
 ```properties
 # 应用上下文路径，原本的thymeleaf不用修改，不过url访问时需要添加/test
@@ -635,7 +635,7 @@ server.servlet.context-path=/test
 
 ## 22. 员工管理系统：国际化
 
-> [什么是JavaConfig](https://blog.csdn.net/albenxie/article/details/82633775)
+&gt; [什么是JavaConfig](https://blog.csdn.net/albenxie/article/details/82633775)
 
 ```properties
 # application.properties 我们的配置文件的真实位置(国际化，login.properties有对应的几套语言版本),对应的thymeleaf使用#{login.tip}
@@ -911,13 +911,13 @@ public class MyMvcConfig implements WebMvcConfigurer {
 
 ## 31. 整合JDBC使用
 
-> [SpringBoot：Mybatis + Druid 数据访问](https://www.cnblogs.com/hellokuangshen/p/11331338.html)
+&gt; [SpringBoot：Mybatis + Druid 数据访问](https://www.cnblogs.com/hellokuangshen/p/11331338.html)
 
 ### 简介
 
-​	对于数据访问层，无论是 SQL(关系型数据库) 还是 NOSQL(非关系型数据库)，Spring Boot 底层都是采用 **Spring Data** 的方式进行统一处理。
+	对于数据访问层，无论是 SQL(关系型数据库) 还是 NOSQL(非关系型数据库)，Spring Boot 底层都是采用 **Spring Data** 的方式进行统一处理。
 
-​	Spring Boot 底层都是采用 Spring Data 的方式进行统一处理各种数据库，Spring Data 也是 Spring 中与 Spring Boot、Spring Cloud 等齐名的知名项目。
+	Spring Boot 底层都是采用 Spring Data 的方式进行统一处理各种数据库，Spring Data 也是 Spring 中与 Spring Boot、Spring Cloud 等齐名的知名项目。
 
 ### 测试使用
 
@@ -1060,15 +1060,15 @@ mybatis-spring-boot-starter
 
 ## 34. SpringSecurity环境搭建
 
-> [安全框架 Shiro 和 Spring Security 如何选择？](https://blog.csdn.net/qq_42914528/article/details/101442524)
->
-> [外观模式（Facade模式）详解](http://c.biancheng.net/view/1369.html)
->
-> [Mybatis的一级缓存和二级缓存的理解和区别](https://www.jianshu.com/p/fdddea36eb22)
->
-> [安全框架Shiro和SpringSecurity的比较](https://www.cnblogs.com/zoli/p/11236799.html)
->
-> [安全框架Shiro和SpringSecurity的比较](https://www.cnblogs.com/zoli/p/11236799.html)
+&gt; [安全框架 Shiro 和 Spring Security 如何选择？](https://blog.csdn.net/qq_42914528/article/details/101442524)
+&gt;
+&gt; [外观模式（Facade模式）详解](http://c.biancheng.net/view/1369.html)
+&gt;
+&gt; [Mybatis的一级缓存和二级缓存的理解和区别](https://www.jianshu.com/p/fdddea36eb22)
+&gt;
+&gt; [安全框架Shiro和SpringSecurity的比较](https://www.cnblogs.com/zoli/p/11236799.html)
+&gt;
+&gt; [安全框架Shiro和SpringSecurity的比较](https://www.cnblogs.com/zoli/p/11236799.html)
 
 在web开发中，安全第一位！过滤器，拦截器~
 
@@ -1482,7 +1482,7 @@ public class UserRealm extends AuthorizingRealm {
 }
 ```
 
-`UserRealm`->`AuthorizingRealm`->`AuthenticatingRealm`->`getCredentialsMatcher`->`CredentialsMatcher`
+`UserRealm`-&gt;`AuthorizingRealm`-&gt;`AuthenticatingRealm`-&gt;`getCredentialsMatcher`-&gt;`CredentialsMatcher`
 
 ## 44. Shiro授权实现
 
@@ -1793,14 +1793,14 @@ public class UserRealm extends AuthorizingRealm {
 
 Vue + SpringBoot
 
-后端时代：前端只用管理静态页面；html==>后端。模板引擎 JSP => 后端是主力
+后端时代：前端只用管理静态页面；html==&gt;后端。模板引擎 JSP =&gt; 后端是主力
 
 前后端分离式时代：
 
 + 后端：后端控制层，服务层，数据访问层【后端团队】
 + 前端：前端控制层，视图层【前端团队】
   + 伪造后端数据，json。已经存在了，不需要后端，前端工程依旧能够跑起来
-+ 前后端如何交互？===>API
++ 前后端如何交互？===&gt;API
 + 前后端相对独立，松耦合
 + 前后但甚至可以部署在不同的服务器上
 
@@ -1819,7 +1819,7 @@ Vue + SpringBoot
 #### Swagger
 
 + 号称世界上最流行的Api框架
-+ Restful Api文档在线自动生成工具=> ==Api文档与API定义同步更新==
++ Restful Api文档在线自动生成工具=&gt; ==Api文档与API定义同步更新==
 + 直接运行,可以在线测试AP接口;
 + 支持多种语言:(Java,Php…)
 
@@ -2076,9 +2076,9 @@ public class Springboot09TestApplication {
 
 ## 52. 邮件任务
 
-> [SpringBoot配置Email发送功能](https://www.cnblogs.com/muliu/p/6017622.html)
->
-> [Spring Boot笔记之邮件（spring-boot-starter-mail）](https://blog.csdn.net/yimcarson/article/details/84936440)
+&gt; [SpringBoot配置Email发送功能](https://www.cnblogs.com/muliu/p/6017622.html)
+&gt;
+&gt; [Spring Boot笔记之邮件（spring-boot-starter-mail）](https://blog.csdn.net/yimcarson/article/details/84936440)
 
 ```xml
 <!-- javax.mail配置 -->
@@ -2144,11 +2144,11 @@ class Springboot09TestApplicationTests {
 
 ## 53. 定时执行任务
 
-> [Java并发编程：Callable、Future和FutureTask](https://www.cnblogs.com/dolphin0520/p/3949310.html)
->
-> [FutureTask](https://blog.csdn.net/weixin_44970764/article/details/90443619)
->
-> [cron表达式](https://www.cnblogs.com/daxiangfei/p/10219706.html)
+&gt; [Java并发编程：Callable、Future和FutureTask](https://www.cnblogs.com/dolphin0520/p/3949310.html)
+&gt;
+&gt; [FutureTask](https://blog.csdn.net/weixin_44970764/article/details/90443619)
+&gt;
+&gt; [cron表达式](https://www.cnblogs.com/daxiangfei/p/10219706.html)
 
 ```java
 TaskExecutor	//任务执行者
@@ -2192,7 +2192,7 @@ public class ScheduledService {
 
 ### 分布式Dubbo + ZooKeeper + SpringBoot
 
->  [SpringBoot分布式：Dubbo+zookeeper](https://www.cnblogs.com/hellokuangshen/p/11330606.html)
+&gt;  [SpringBoot分布式：Dubbo+zookeeper](https://www.cnblogs.com/hellokuangshen/p/11330606.html)
 
 ## 55. 什么是RPC
 
@@ -2212,9 +2212,9 @@ Dubbo：18年重启，Dubbo 3.x RPC
 
 前台 中台 后台
 
-> [漫画：什么是中台？](https://mp.weixin.qq.com/s/rF7_xJBq4NJP6CmkW3HPpQ)
->
-> [前台、中台和后台](https://www.douban.com/note/722859684/)
+&gt; [漫画：什么是中台？](https://mp.weixin.qq.com/s/rF7_xJBq4NJP6CmkW3HPpQ)
+&gt;
+&gt; [前台、中台和后台](https://www.douban.com/note/722859684/)
 
 ## 57. Dubbo-admin安装测试
 
@@ -2389,4 +2389,4 @@ public class UserService {
 
 ## 60. 文件上传下载
 
-> [SpringBoot实现文件的上传和下载](https://www.jianshu.com/p/be1af489551c)
+&gt; [SpringBoot实现文件的上传和下载](https://www.jianshu.com/p/be1af489551c)

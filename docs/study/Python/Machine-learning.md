@@ -1,10 +1,10 @@
 # 机器学习google教程学习
 
->建议学习时，打开两个页面，一个切换English，一个切换中文-简体，实在不懂再切到中文页面查看相对应的描述
->
->google的机器学习>速成课：
->
->https://developers.google.cn/machine-learning/crash-course/ml-intro
+&gt;建议学习时，打开两个页面，一个切换English，一个切换中文-简体，实在不懂再切到中文页面查看相对应的描述
+&gt;
+&gt;google的机器学习&gt;速成课：
+&gt;
+&gt;https://developers.google.cn/machine-learning/crash-course/ml-intro
 
 ## ML Concepts
 

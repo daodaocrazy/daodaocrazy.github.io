@@ -33,9 +33,9 @@
 
 ## 1.3 源码概述
 
-​	Redis源代码主要存放在src文件夹中，其中server.c为服务端程序，redis-cli.c为客户端程序。
+	Redis源代码主要存放在src文件夹中，其中server.c为服务端程序，redis-cli.c为客户端程序。
 
-​	核心部分主要如下：
+	核心部分主要如下：
 
 ### 1. 基本的数据结构
 
@@ -95,11 +95,11 @@
 
 # 2. 简单动态字符串
 
-​	简单动态字符串（Simple Dynamic Strings，SDS）是Redis的基本数据结构之一，用于存储字符串和整型数据。SDS兼容C语言标准字符串处理函数，且在此基础上保证了**二进制安全**。
+	简单动态字符串（Simple Dynamic Strings，SDS）是Redis的基本数据结构之一，用于存储字符串和整型数据。SDS兼容C语言标准字符串处理函数，且在此基础上保证了**二进制安全**。
 
 ## 2.1 数据结构
 
-> 二进制安全：，C语言中，用`\0`表示字符串的结束，如果字符串中本身就有`\0`字符，字符串就会被截断，即非二进制安全；若通过某种机制，保证读写字符串时不损害其内容，则是二进制安全
+&gt; 二进制安全：，C语言中，用`\0`表示字符串的结束，如果字符串中本身就有`\0`字符，字符串就会被截断，即非二进制安全；若通过某种机制，保证读写字符串时不损害其内容，则是二进制安全
 
 ### Redis 3.2 之前的设计
 
@@ -111,9 +111,9 @@ struct sds {
 };
 ```
 
-> 注意：上例中的`buf[]`是一个柔性数组。柔性数组成员（flexible array member），也叫伸缩性数组成员，**只能被放在结构体的末尾**。包含柔性数组成员的结构体，通过malloc函数为柔性数组动态分配内存。
+&gt; 注意：上例中的`buf[]`是一个柔性数组。柔性数组成员（flexible array member），也叫伸缩性数组成员，**只能被放在结构体的末尾**。包含柔性数组成员的结构体，通过malloc函数为柔性数组动态分配内存。
 
-​	之所以用柔性数组存放字符串，是因为柔性数组的地址和结构体是连续的，这样查找内存更快（因为不需要额外通过指针找到字符串的位置）；可以很方便地通过柔性数组的首地址偏移得到结构体首地址，进而能很方便地获取其余变量。
+	之所以用柔性数组存放字符串，是因为柔性数组的地址和结构体是连续的，这样查找内存更快（因为不需要额外通过指针找到字符串的位置）；可以很方便地通过柔性数组的首地址偏移得到结构体首地址，进而能很方便地获取其余变量。
 
 ---
 
@@ -125,19 +125,19 @@ struct sds {
 
 ### Redis 3.2 之后的内存优化
 
-> [ C语言，如何不使用 __attribute__ ((packed)) 解决字节对齐的问题？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/265875753)
->
-> [C语言sizeof求结构体的大小_林伟茂的博客-CSDN博客_c语言sizeof结构体](https://blog.csdn.net/weixin_42814000/article/details/105212284)
->
-> [C语言柔性数组详解_高邮吴少的博客-CSDN博客_c语言柔性数组](https://blog.csdn.net/m0_57180439/article/details/120654912#_16)
+&gt; [ C语言，如何不使用 __attribute__ ((packed)) 解决字节对齐的问题？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/265875753)
+&gt;
+&gt; [C语言sizeof求结构体的大小_林伟茂的博客-CSDN博客_c语言sizeof结构体](https://blog.csdn.net/weixin_42814000/article/details/105212284)
+&gt;
+&gt; [C语言柔性数组详解_高邮吴少的博客-CSDN博客_c语言柔性数组](https://blog.csdn.net/m0_57180439/article/details/120654912#_16)
 
-​	如果存放的字符串实际长度很短，比如只占用1个字节，而头部信息中len、free却已经占用2个字节，显得臃肿。Redis后续考虑不同情况下的字符串内存分配，对头部信息进行了压缩处理。
+	如果存放的字符串实际长度很短，比如只占用1个字节，而头部信息中len、free却已经占用2个字节，显得臃肿。Redis后续考虑不同情况下的字符串内存分配，对头部信息进行了压缩处理。
 
-​	增加一个字段flags标识SDS的不同长度类型（长度1字节、2字节、4字节、8字节、小于1字节），至少要用3位存储类型（2^3=8），1字节剩余5位可以存储长度，可以满足长度小于32的字符串。
+	增加一个字段flags标识SDS的不同长度类型（长度1字节、2字节、4字节、8字节、小于1字节），至少要用3位存储类型（2^3=8），1字节剩余5位可以存储长度，可以满足长度小于32的字符串。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/8f4856a8ac0c4ee3b3d79a4697e5c873.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5p-P5rK5,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-​	在Redis5.0中，用如下结构存储长度小于32的短字符串
+	在Redis5.0中，用如下结构存储长度小于32的短字符串
 
 ```c
 struct __attribute__ ((__packed__))sdshdr5 {
@@ -146,7 +146,7 @@ struct __attribute__ ((__packed__))sdshdr5 {
 };
 ```
 
-​	长度>=32的字符串，代码如下：
+	长度&gt;=32的字符串，代码如下：
 
 ```c
 struct __attribute__((__packed__))sdshdr8 {
@@ -183,9 +183,9 @@ struct __attribute__((__packed__))sdshdr64 {
 
 + buf：柔性数组，真正存储字符串的数据空间。
 
-​	源码中的`__attribute__((__packed__))`需要重点关注。一般情况下，结构体会按其所有变量大小的最小公倍数做字节对齐，而**用packed修饰后，结构体则变为按1字节对齐**。以sdshdr32为例，修饰前按4字节对齐大小为12(4×3)字节；修饰后按1字节对齐，**注意buf是个char类型的柔性数组，地址连续，始终在flags之后**。
+	源码中的`__attribute__((__packed__))`需要重点关注。一般情况下，结构体会按其所有变量大小的最小公倍数做字节对齐，而**用packed修饰后，结构体则变为按1字节对齐**。以sdshdr32为例，修饰前按4字节对齐大小为12(4×3)字节；修饰后按1字节对齐，**注意buf是个char类型的柔性数组，地址连续，始终在flags之后**。
 
-​	使用`__attribute__((__packed__))`的好处：
+	使用`__attribute__((__packed__))`的好处：
 
 + 节省（头部信息占用的）内存，例如sdshdr32可节省3个字节
 + **SDS返回给上层的，不是结构体首地址，而是指向内容的buf指针**。因为此时按1字节对齐，故SDS创建成功后，无论是sdshdr8、sdshdr16还是sdshdr32，都能**通过`(char*)sh+hdrlen`得到buf指针地址**（其中hdrlen是结构体长度，通过sizeof计算得到。**sizeof结构体时，不会返回柔性数组的内存**）。修饰后，无论是sdshdr8、sdshdr16还是sdshdr32，都能**通过`buf[-1]`找到flags**，因为此时按1字节对齐。若没有packed的修饰，还需要对不同结构进行处理，实现更复杂。
@@ -196,7 +196,7 @@ struct __attribute__((__packed__))sdshdr64 {
 
 ### 2.2.1 创建字符串
 
-​	Redis通过`sdsnewlen`函数创建SDS。
+	Redis通过`sdsnewlen`函数创建SDS。
 
 ```c
 // 现在Redis最新代码7.0看这里sdsnewlen内部实现和书本描述有点差别，不过整体差别不大
@@ -228,7 +228,7 @@ sds sdsnewlen(const void *init, size_t initlen) {
 
 ### 2.2.2 释放字符串
 
-​	SDS提供了直接释放内存的方法——`sdsfree`，该函数通过对s的偏移，可定位到SDS结构体的首部，然后调用`s_free`释放内存。
+	SDS提供了直接释放内存的方法——`sdsfree`，该函数通过对s的偏移，可定位到SDS结构体的首部，然后调用`s_free`释放内存。
 
 ```c
 void sdsfree(sds s) {
@@ -237,7 +237,7 @@ void sdsfree(sds s) {
 }
 ```
 
-​	另外也提供了仅将len归零，下次继续复用原本内存空间的`sdsclear`函数
+	另外也提供了仅将len归零，下次继续复用原本内存空间的`sdsclear`函数
 
 ```c
 /* Modify an sds string in-place to make it empty (zero length).
@@ -351,11 +351,11 @@ sds _sdsMakeRoomFor(sds s, size_t addlen, int greedy) {
 }
 ```
 
-​	`sdscatsds`是暴露给上层的方法，其最终调用的是`sdscatlen`。由于其中可能涉及SDS的扩容，`sdscatlen`中调用`sdsMakeRoomFor`对带拼接的字符串s容量做检查，若无须扩容则直接返回s；若需要扩容，则返回扩容好的新字符串s。函数中的len、curlen等长度值是不含结束符的，而拼接时用`memcpy`将两个字符串拼接在一起，指定了相关长度，故该过程保证了二进制安全。最后需要加上结束符。
+	`sdscatsds`是暴露给上层的方法，其最终调用的是`sdscatlen`。由于其中可能涉及SDS的扩容，`sdscatlen`中调用`sdsMakeRoomFor`对带拼接的字符串s容量做检查，若无须扩容则直接返回s；若需要扩容，则返回扩容好的新字符串s。函数中的len、curlen等长度值是不含结束符的，而拼接时用`memcpy`将两个字符串拼接在一起，指定了相关长度，故该过程保证了二进制安全。最后需要加上结束符。
 
 ![sds字符串扩容过程.PNG](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6946b7eb7d904d8ea399fd9a8097589c~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp)
 
-​	Redis的sds中有如下扩容策略：
+	Redis的sds中有如下扩容策略：
 
 1. 若sds中剩余空闲长度avail大于新增内容的长度addlen，直接在柔性数组buf末尾追加即可，无须扩容。
 
@@ -374,7 +374,7 @@ sds _sdsMakeRoomFor(sds s, size_t addlen, int greedy) {
    }
    ```
 
-2. 若sds中剩余空闲长度avail小于或等于新增内容的长度addlen，则分情况讨论：新增后总长度len+addlen<1MB的，按新长度的2倍扩容；新增后总长度len+addlen>1MB的，按新长度加上1MB扩容。
+2. 若sds中剩余空闲长度avail小于或等于新增内容的长度addlen，则分情况讨论：新增后总长度len+addlen&lt;1MB的，按新长度的2倍扩容；新增后总长度len+addlen&gt;1MB的，按新长度加上1MB扩容。
 
    ```c
    {
@@ -487,13 +487,13 @@ sds _sdsMakeRoomFor(sds s, size_t addlen, int greedy) {
 - 最底层的有序链表包含所有节点，最底层的节点个数为跳跃表的长度（length）（不包括头节点）。
 - 每个节点包含一个后退指针，头节点和第一个节点指向NULL；其他节点指向最底层的前一个节点。
 
-​	跳跃表与平衡树相比，实现方式更简单，只要熟悉有序链表，就可以轻松地掌握跳跃表。
+	跳跃表与平衡树相比，实现方式更简单，只要熟悉有序链表，就可以轻松地掌握跳跃表。
 
 ## 3.2 跳跃表节点与结构
 
 ### 3.2.1 跳跃表节点
 
-> server.h内（从`t_zset.c`找找找，发现原来在server.h里....）
+&gt; server.h内（从`t_zset.c`找找找，发现原来在server.h里....）
 
 跳跃表节点的`zskiplistNode`结构体。
 
@@ -517,19 +517,19 @@ typedef struct zskiplistNode {
 
 3. backward：后退指针，只能指向当前节点最底层的前一个节点，头节点和第一个节点——backward指向NULL，从后向前遍历跳跃表时使用。
 
-4. level：为柔性数组。每个节点的数组长度不一样，在生成跳跃表节点时，随机生成一个1～64的值，<u>值越大出现的概率越低</u>。
+4. level：为柔性数组。每个节点的数组长度不一样，在生成跳跃表节点时，随机生成一个1～64的值，&lt;u&gt;值越大出现的概率越低&lt;/u&gt;。
 
-​	level数组的每项包含以下两个元素。
+	level数组的每项包含以下两个元素。
 
 + forward：指向本层下一个节点，尾节点的forward指向NULL。
 
 + span：forward指向的节点与本节点之间的元素个数。span值越大，跳过的节点个数越多。
 
-​	跳跃表是Redis有序集合的底层实现方式之一，所以每个节点的ele存储有序集合的成员member值，score存储成员score值。所有节点的分值是按从小到大的方式排序的，<u>当有序集合的成员分值相同时，节点会按member的字典序进行排序</u>。
+	跳跃表是Redis有序集合的底层实现方式之一，所以每个节点的ele存储有序集合的成员member值，score存储成员score值。所有节点的分值是按从小到大的方式排序的，&lt;u&gt;当有序集合的成员分值相同时，节点会按member的字典序进行排序&lt;/u&gt;。
 
 ### 3.2.2 跳跃表结构
 
-> server.h内（从`t_zset.c`找找找，发现原来在server.h里....）
+&gt; server.h内（从`t_zset.c`找找找，发现原来在server.h里....）
 
 除了跳跃表节点外，还需要一个跳跃表结构来管理节点，Redis使用`zskiplist`结构体，定义如下
 
@@ -541,13 +541,13 @@ typedef struct zskiplist {
 } zskiplist;
 ```
 
-1. header：指向跳跃表头节点。<u>头节点是跳跃表的一个特殊节点，它的level数组元素个数为64</u>。头节点在有序集合中不存储任何member和score值，ele值为NULL，score值为0；<u>也不计入跳跃表的总长度</u>。头节点在初始化时，64个元素的forward都指向NULL，span值都为0。
+1. header：指向跳跃表头节点。&lt;u&gt;头节点是跳跃表的一个特殊节点，它的level数组元素个数为64&lt;/u&gt;。头节点在有序集合中不存储任何member和score值，ele值为NULL，score值为0；&lt;u&gt;也不计入跳跃表的总长度&lt;/u&gt;。头节点在初始化时，64个元素的forward都指向NULL，span值都为0。
 
 2. tail：指向跳跃表尾节点。
-3. length：跳跃表长度，表示<u>除头节点之外</u>的节点总数。
+3. length：跳跃表长度，表示&lt;u&gt;除头节点之外&lt;/u&gt;的节点总数。
 4. level：跳跃表的高度。
 
-​	通过跳跃表结构体的属性我们可以看到，程序可以在O(1)的时间复杂度下，快速获取到跳跃表的头节点、尾节点、长度和高度。
+	通过跳跃表结构体的属性我们可以看到，程序可以在O(1)的时间复杂度下，快速获取到跳跃表的头节点、尾节点、长度和高度。
 
 ## 3.3 基本操作
 
@@ -555,14 +555,14 @@ typedef struct zskiplist {
 
 1. 节点层高
 
-   ​	节点层高的最小值为1，最大值是ZSKIPLIST_MAXLEVEL，Redis5中节点层高的值为64（2022年，我看最新的代码在2019年已经改成32）。
+   	节点层高的最小值为1，最大值是ZSKIPLIST_MAXLEVEL，Redis5中节点层高的值为64（2022年，我看最新的代码在2019年已经改成32）。
 
    ```c
    #define ZSKIPLIST_MAXLEVEL 64 // 2019年改成32，当前2022年
    // #define ZSKIPLIST_MAXLEVEL 32 /* Should be enough for 2^64 elements */
    ```
 
-   ​	Redis通过`zslRandomLevel`函数随机生成一个1～64的值，作为新建节点的高度，值越大出现的概率越低。节点层高确定之后便不会再修改。生成随机层高的代码如下。
+   	Redis通过`zslRandomLevel`函数随机生成一个1～64的值，作为新建节点的高度，值越大出现的概率越低。节点层高确定之后便不会再修改。生成随机层高的代码如下。
 
    ```c
    #define ZSKIPLIST_P 0.25 /* Skiplist P = 1/4 */
@@ -590,7 +590,7 @@ typedef struct zskiplist {
    }
    ```
 
-   ​	上述代码中，level的初始值为1，通过while循环，每次生成一个随机值，取这个值的低16位作为x，当x小于0.25倍的`0xFFFF`时，level的值加1；否则退出while循环。最终返回level和`ZSKIPLIST_MAXLEVEL`两者中的最小值。
+   	上述代码中，level的初始值为1，通过while循环，每次生成一个随机值，取这个值的低16位作为x，当x小于0.25倍的`0xFFFF`时，level的值加1；否则退出while循环。最终返回level和`ZSKIPLIST_MAXLEVEL`两者中的最小值。
 
    下面计算节点的期望层高。假设p=`ZSKIPLIST_P`：
 
@@ -598,11 +598,11 @@ typedef struct zskiplist {
 
    2）节点层高为2的概率为p(1-p)。
 
-   3）节点层高为3的概率为p<sup>2</sup> (1-p)。
+   3）节点层高为3的概率为p&lt;sup&gt;2&lt;/sup&gt; (1-p)。
 
    4）……
 
-   5）节点层高为n的概率为p<sup>n-1</sup> (1-p)。
+   5）节点层高为n的概率为p&lt;sup&gt;n-1&lt;/sup&gt; (1-p)。
 
    所以节点的期望层高为
 
@@ -627,9 +627,9 @@ typedef struct zskiplist {
    }
    ```
 
-   ​	`zskiplistNode`结构体的最后一个元素为<u>柔性数组</u>，申请内存时需要指定柔性数组的大小，一个节点占用的内存大小为`zskiplistNode`的内存大小与level个`zskiplistLevel`的内存大小之和。
+   	`zskiplistNode`结构体的最后一个元素为&lt;u&gt;柔性数组&lt;/u&gt;，申请内存时需要指定柔性数组的大小，一个节点占用的内存大小为`zskiplistNode`的内存大小与level个`zskiplistLevel`的内存大小之和。
 
-   ​	分配好空间之后，进行节点变量初始化。
+   	分配好空间之后，进行节点变量初始化。
 
 3. 头节点
 
@@ -737,19 +737,19 @@ typedef struct zskiplist {
 
    1）第一次for循环，i=1。x为跳跃表的头节点。
 
-   2）此时i的值与`zsl->level-1`相等，所以rank[1]的值为0。
+   2）此时i的值与`zsl-&gt;level-1`相等，所以rank[1]的值为0。
 
-   3）`header->level[1].forward`存在，并且`header->level[1].forward->score==1`小于要插入的score，所以可以进入while循环，rank[1]=1，x为第一个节点。
+   3）`header-&gt;level[1].forward`存在，并且`header-&gt;level[1].forward-&gt;score==1`小于要插入的score，所以可以进入while循环，rank[1]=1，x为第一个节点。
 
    4）第一个节点的第1层的forward指向NULL，所以不会再进入while循环。经过第一次for循环，rank[1]=1。x和update[1]都为第一个节点（score=1）。
 
    5）经过第二次for循环，i=0。x为跳跃表的第一个节点（score=1）。
 
-   6）此时i的值与`zsl->level-1`不相等，所以rank[0]等于rank[1]的值，值为1。
+   6）此时i的值与`zsl-&gt;level-1`不相等，所以rank[0]等于rank[1]的值，值为1。
 
-   7）`x->level[0]->forward`存在，并且`x->level[0].foreard->score==21`小于要插入的score，所以可以进入while循环，rank[0]=2。x为第二个节点（score=21）。
+   7）`x-&gt;level[0]-&gt;forward`存在，并且`x-&gt;level[0].foreard-&gt;score==21`小于要插入的score，所以可以进入while循环，rank[0]=2。x为第二个节点（score=21）。
 
-   8）`x->level[0]->forward`存在，并且`x->level[0].foreard->score==41`大于要插入的score，所以不会再进入while，经过第二次for循环，rank[0]=2。x和update[0]都为第二个节点（score=21）。
+   8）`x-&gt;level[0]-&gt;forward`存在，并且`x-&gt;level[0].foreard-&gt;score==41`大于要插入的score，所以不会再进入while，经过第二次for循环，rank[0]=2。x和update[0]都为第二个节点（score=21）。
 
    update和rank赋值后的跳跃表如图所示：
 
@@ -757,7 +757,7 @@ typedef struct zskiplist {
 
 2. 调整跳跃表高度
 
-   由上文可知，<u>插入节点的高度是随机</u>的，假设要插入节点的高度为3，大于跳跃表的高度2，所以我们需要调整跳跃表的高度。代码如下。
+   由上文可知，&lt;u&gt;插入节点的高度是随机&lt;/u&gt;的，假设要插入节点的高度为3，大于跳跃表的高度2，所以我们需要调整跳跃表的高度。代码如下。
 
    ```c
    // t_zset.c
@@ -780,9 +780,9 @@ typedef struct zskiplist {
    }
    ```
 
-   ​	此时，i的值为2，level的值为3，所以只能进入一次for循环。由于header的第0层到第1层的forward都已经指向了相应的节点，而新添加的节点的高度大于跳跃表的原高度，所以第2层只需要更新header节点即可。前面我们介绍过，rank是用来更新span的变量，其值是头节点到`update[i]`所经过的节点数，而此次修改的是头节点，所以`rank[2]`为0，`update[2]`一定为头节点。`update[2]->level[2].span`的值先赋值为跳跃表的总长度，后续在计算新插入节点level[2]的span时会用到此值。在更新完新插入节点level[2]的span之后会对`update[2]->level[2].span`的值进行重新计算赋值。
+   	此时，i的值为2，level的值为3，所以只能进入一次for循环。由于header的第0层到第1层的forward都已经指向了相应的节点，而新添加的节点的高度大于跳跃表的原高度，所以第2层只需要更新header节点即可。前面我们介绍过，rank是用来更新span的变量，其值是头节点到`update[i]`所经过的节点数，而此次修改的是头节点，所以`rank[2]`为0，`update[2]`一定为头节点。`update[2]-&gt;level[2].span`的值先赋值为跳跃表的总长度，后续在计算新插入节点level[2]的span时会用到此值。在更新完新插入节点level[2]的span之后会对`update[2]-&gt;level[2].span`的值进行重新计算赋值。
 
-   ​	调整高度后的跳跃表如图所示。
+   	调整高度后的跳跃表如图所示。
 
    ![image.png](https://ucc.alicdn.com/pic/developer-ecology/48ca5d1b39ee46bf953154eade42e78f.png)
 
@@ -811,13 +811,13 @@ typedef struct zskiplist {
 
    （1）第一次for循环
 
-   1）x的level[0]的forward为update[0]的level[0]的forward节点，即`x->level[0].forward`为score=41的节点。
+   1）x的level[0]的forward为update[0]的level[0]的forward节点，即`x-&gt;level[0].forward`为score=41的节点。
 
    2）update[0]的level[0]的下一个节点为新插入的节点。
 
-   3）rank[0]-rank[0]＝0，`update[0]->level[0].span=1`，所以`x->level[0].span=1`。
+   3）rank[0]-rank[0]＝0，`update[0]-&gt;level[0].span=1`，所以`x-&gt;level[0].span=1`。
 
-   4）`update[0]->level[0].span=0+1=1`。
+   4）`update[0]-&gt;level[0].span=0+1=1`。
 
    插入节点并更新第0层后的跳跃表如图3-7所示。
 
@@ -825,13 +825,13 @@ typedef struct zskiplist {
 
    （2）第2次for循环
 
-   1）x的level[1]的forward为update[1]的level[1]的forward节点，即`x->level[1].forward`为NULL。
+   1）x的level[1]的forward为update[1]的level[1]的forward节点，即`x-&gt;level[1].forward`为NULL。
 
    2）update[1]的level[1]的下一个节点为新插入的节点。
 
-   3）rank[0]-rank[1]=1，`update[1]->level[1].span=2`，所以`x->level[1].span=1`。
+   3）rank[0]-rank[1]=1，`update[1]-&gt;level[1].span=2`，所以`x-&gt;level[1].span=1`。
 
-   4）`update[1]->level[1].span=1+1=2`。
+   4）`update[1]-&gt;level[1].span=1+1=2`。
 
    插入节点并更新第1层后的跳跃表如图3-8所示。
 
@@ -839,13 +839,13 @@ typedef struct zskiplist {
 
    （3）第3次for循环
 
-   1）x的level[2]的forward为update[2]的level[2]的forward节点，即`x->level[2].forward`为NULL。
+   1）x的level[2]的forward为update[2]的level[2]的forward节点，即`x-&gt;level[2].forward`为NULL。
 
    2）update[2]的level[2]的下一个节点为新插入的节点。
 
-   3）rank[0]-rank[2]=2，因为`update[2]->level[2].span=3`，所以`x->level[2].span=1`。
+   3）rank[0]-rank[2]=2，因为`update[2]-&gt;level[2].span=3`，所以`x-&gt;level[2].span=1`。
 
-   4）`update[2]->level[2].span=2+1=3`。
+   4）`update[2]-&gt;level[2].span=2+1=3`。
 
    插入节点并更新第2层后的跳跃表如图3-9所示。
 
@@ -853,7 +853,7 @@ typedef struct zskiplist {
 
    新插入节点的高度大于原跳跃表高度，所以下面代码不会运行。
 
-   但如果新插入节点的高度小于原跳跃表高度，则从level到`zsl->level-1`层的update[i]节点forward不会指向新插入的节点，所以不用更新update[i]的forward指针，只将这些level层的span加1即可。代码如下。
+   但如果新插入节点的高度小于原跳跃表高度，则从level到`zsl-&gt;level-1`层的update[i]节点forward不会指向新插入的节点，所以不用更新update[i]的forward指针，只将这些level层的span加1即可。代码如下。
 
    ```c
    // t_zset.c

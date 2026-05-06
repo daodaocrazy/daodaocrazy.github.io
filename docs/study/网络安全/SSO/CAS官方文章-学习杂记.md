@@ -1,7 +1,7 @@
 # CAS官方文章-学习杂记
 
-> - [CAS | Apereo](https://www.apereo.org/projects/cas)
-> - [CAS - Home (apereo.github.io)](https://apereo.github.io/cas/6.3.x/index.html)    <=   目前按照当前最新的6.3.X版本进行学习(**以下内容皆出自于此**)
+&gt; - [CAS | Apereo](https://www.apereo.org/projects/cas)
+&gt; - [CAS - Home (apereo.github.io)](https://apereo.github.io/cas/6.3.x/index.html)    &lt;=   目前按照当前最新的6.3.X版本进行学习(**以下内容皆出自于此**)
 
 # CAS Enterprise Single Sign-On
 
@@ -115,7 +115,7 @@ This document provides a high-level guide on how to get started with a CAS serve
 
 It is very important that you document, catalog and analyze your desired use cases and requirements prior to the deployment. Once you have a few ideas, please discuss and share those with the [CAS community](https://apereo.github.io/cas/Support.html) to learn about common trends, practices and patterns that may already have solved the same issues you face today.
 
-> In general, avoid designing and/or adopting use cases and workflows that heavily alter the CAS internal components, induce a heavy burden on your management and maintenance of the configuration or re-invent the CAS software and its supported protocols. All options add to maintenance cost and headache.
+&gt; In general, avoid designing and/or adopting use cases and workflows that heavily alter the CAS internal components, induce a heavy burden on your management and maintenance of the configuration or re-invent the CAS software and its supported protocols. All options add to maintenance cost and headache.
 
 ### 2.2 Study Architecture
 
@@ -168,13 +168,13 @@ Depending on choice of configuration components, there may be additional require
 
 CAS at its heart is a Java-based web application. Prior to deployment, you will need to have [JDK](https://openjdk.java.net/projects/jdk/11/) `11` installed.
 
-> **Oracle JDK License**
->
-> Oracle has updated the license terms on which Oracle JDK is offered. The new Oracle Technology Network License Agreement for Oracle Java SE is substantially different from the licenses under which previous versions of the JDK were offered. **Please review** the new terms carefully before downloading and using this product.
+&gt; **Oracle JDK License**
+&gt;
+&gt; Oracle has updated the license terms on which Oracle JDK is offered. The new Oracle Technology Network License Agreement for Oracle Java SE is substantially different from the licenses under which previous versions of the JDK were offered. **Please review** the new terms carefully before downloading and using this product.
 
 The key part of the license is as follows:
 
-> You may not: use the Programs for any data processing or any commercial, production, or internal business purposes other than developing, testing, prototyping, and demonstrating your Application.
+&gt; You may not: use the Programs for any data processing or any commercial, production, or internal business purposes other than developing, testing, prototyping, and demonstrating your Application.
 
 Do **NOT** download or use the Oracle JDK unless you intend to pay for it. **Use an OpenJDK build instead.**
 
@@ -188,9 +188,9 @@ See [this guide](https://apereo.github.io/cas/6.3.x/installation/Configuring-Ser
 
 WAR overlays are [provided](https://apereo.github.io/cas/6.3.x/installation/WAR-Overlay-Installation.html) to allow for a straightforward and flexible deployment solution. While it admittedly requires a high up-front cost in learning, it reaps numerous benefits in the long run.
 
-> **Do Less**
->
-> You **DO NOT** need to have Gradle installed prior to the installation. It is provided to you automatically.
+&gt; **Do Less**
+&gt;
+&gt; You **DO NOT** need to have Gradle installed prior to the installation. It is provided to you automatically.
 
 ### 3.3 Git (Optional)
 
@@ -243,9 +243,9 @@ The process of working with an overlay can be summarized in the following steps:
 - After changes, rebuild and repeat the process as many times as possible.
 - Double check your changes inside the built binary artifact to make sure the overlay process is working.
 
-> **Be Exact**
->
-> Do NOT copy everything produced by the build. Attempt to keep changes and customizations to a minimum and only grab what you actually need. Make sure the deployment environment is kept clean and precise, or you incur the risk of terrible upgrade issues and painful headaches.
+&gt; **Be Exact**
+&gt;
+&gt; Do NOT copy everything produced by the build. Attempt to keep changes and customizations to a minimum and only grab what you actually need. Make sure the deployment environment is kept clean and precise, or you incur the risk of terrible upgrade issues and painful headaches.
 
 ### 4.4 CAS WAR Overlays
 
@@ -261,15 +261,15 @@ To learn more about the initializr, please [review this guide](https://apereo.gi
 
 You can download or clone the repositories below to get started with a CAS overlay template.
 
-> **Review Branch!**
->
-> The below repositories point you towards their `master` branch. You should always make sure the branch you are on matches the version of CAS you wish to configure and deploy. The `master` branch typically points to the latest stable release of the CAS server. Check the build configuration and if inappropriate, use `git branch -a` to see available branches, and then `git checkout [branch-name]` to switch if necessary.
+&gt; **Review Branch!**
+&gt;
+&gt; The below repositories point you towards their `master` branch. You should always make sure the branch you are on matches the version of CAS you wish to configure and deploy. The `master` branch typically points to the latest stable release of the CAS server. Check the build configuration and if inappropriate, use `git branch -a` to see available branches, and then `git checkout [branch-name]` to switch if necessary.
 
 | Project                                                      | Build Directory           | Source Directory     |
 | ------------------------------------------------------------ | ------------------------- | -------------------- |
 | [CAS WAR Overlay](https://github.com/apereo/cas-overlay-template) | `cas/build/cas-resources` | `src/main/resources` |
 
-The `cas/build/cas-resources` files are unzipped from `cas.war!WEB-INF\lib\cas-server-webapp-resources-<version>.jar` via `gradle explodeWar` in the overlay.
+The `cas/build/cas-resources` files are unzipped from `cas.war!WEB-INF\lib\cas-server-webapp-resources-&lt;version&gt;.jar` via `gradle explodeWar` in the overlay.
 
 To construct the overlay project, you need to copy directories and files *that you need to customize* in the build directory over to the source directory.
 
@@ -295,9 +295,9 @@ CAS can be deployed to a number of servlet containers. See [this guide](https://
 
 It is common to customize or extend the functionality of CAS by developing Java components that implement CAS APIs or to include third-party source by dependency references. Including third-party source is trivial; simply include the relevant dependency in the overlay `build.gradle` file.
 
-> **Stop Coding**
->
-> Overlaying or modifying CAS internal components and classes, *unless ABSOLUTELY required*, should be a last resort and is generally considered a misguided malpractice. Where possible, avoid making custom changes to carry the maintenance burden solely on your own. Avoid carrying . You will risk the stability and security of your deployment. If the enhancement case is attractive or modest, contribute back to the project. Stop writing code, or rite it where it belongs.
+&gt; **Stop Coding**
+&gt;
+&gt; Overlaying or modifying CAS internal components and classes, *unless ABSOLUTELY required*, should be a last resort and is generally considered a misguided malpractice. Where possible, avoid making custom changes to carry the maintenance burden solely on your own. Avoid carrying . You will risk the stability and security of your deployment. If the enhancement case is attractive or modest, contribute back to the project. Stop writing code, or rite it where it belongs.
 
 In order to include custom Java source, it should be included under a `src/main/java` directory in the overlay project source tree.
 
@@ -338,5 +338,5 @@ To take advantage of the CAS BOM at `org.apereo.cas:cas-server-support-bom`, via
 
 ## 5. Blog
 
-> [Apereo Community Blog](https://apereo.github.io/)
+&gt; [Apereo Community Blog](https://apereo.github.io/)
 

@@ -1,16 +1,16 @@
 # ElasticSearch个人笔记
 
-> [Elasticsearch Reference](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html)	<=	官方文档链接
->
-> 官方文档加载极慢(无FQ软件情况下)，建议mac使用Dash离线api软件下载ElasticSearch文档；
->
-> Windows和Linux用户可以用Zeal离线api软件做同样操作。
->
-> [gavin5033的博客 -- ELK专栏](https://blog.csdn.net/gavin5033/category_8070372.html)	<=	**下面很多内容参考该博客。下面不再反复强调了**。
+&gt; [Elasticsearch Reference](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html)	&lt;=	官方文档链接
+&gt;
+&gt; 官方文档加载极慢(无FQ软件情况下)，建议mac使用Dash离线api软件下载ElasticSearch文档；
+&gt;
+&gt; Windows和Linux用户可以用Zeal离线api软件做同样操作。
+&gt;
+&gt; [gavin5033的博客 -- ELK专栏](https://blog.csdn.net/gavin5033/category_8070372.html)	&lt;=	**下面很多内容参考该博客。下面不再反复强调了**。
 
 # 1. RESTful API回顾
 
-​	回顾之前，需要先能跑起来ElasticSearch和Kibana，这里我自己是用docker跑的。[我自己的github](https://github.com/daodaocrazy/ash-demos)里也有对应的docker-compose配置文件。
+	回顾之前，需要先能跑起来ElasticSearch和Kibana，这里我自己是用docker跑的。[我自己的github](https://github.com/daodaocrazy/ash-demos)里也有对应的docker-compose配置文件。
 
 + 建议Chrome浏览器安装[ElasticSearch Head插件](https://chrome.google.com/webstore/detail/elasticsearch-head/ffmkiejjmecolpfloofpjologoblkegm?utm_source=chrome-ntp-icon)，方便查看ElasticSearch中已有的数据
 
@@ -90,7 +90,7 @@ PUT /my-index-000002
 
 ##### 2. 配置文件方式
 
-> [实时搜索引擎Elasticsearch（2）——Rest API的使用](https://blog.csdn.net/gavin5033/article/details/82774529)	<=	我自己暂时未尝试该方式
+&gt; [实时搜索引擎Elasticsearch（2）——Rest API的使用](https://blog.csdn.net/gavin5033/article/details/82774529)	&lt;=	我自己暂时未尝试该方式
 
 1. 创建一个扩展名为test_type.json的文件名，其中type_test就是mapping所对应的type名
 
@@ -170,7 +170,7 @@ PUT my-index-000001/_doc/1
 
 #### 1. 查看集群状态
 
-> [实时搜索引擎Elasticsearch（2）——Rest API的使用](https://blog.csdn.net/gavin5033/article/details/82774529)
+&gt; [实时搜索引擎Elasticsearch（2）——Rest API的使用](https://blog.csdn.net/gavin5033/article/details/82774529)
 
 1. 查看集群状态信息
 
@@ -301,7 +301,7 @@ GET /kibana_sample_data_ecommerce/_mapping
 
 ### 1.2.4  document - 文档
 
-> [实时搜索引擎Elasticsearch（3）——查询API的使用](https://blog.csdn.net/gavin5033/article/details/82786435)
+&gt; [实时搜索引擎Elasticsearch（3）——查询API的使用](https://blog.csdn.net/gavin5033/article/details/82786435)
 
 #### 1. 查询单个document
 
@@ -447,29 +447,29 @@ DELETE /my-index-000001/_doc/1?pretty
 
 # 2. CRUD - R
 
-> [实时搜索引擎Elasticsearch（3）——查询API的使用](https://blog.csdn.net/gavin5033/article/details/82786435)
->
-> **Query和Filter**
->
-> ES为用户提供两类查询API，一类是在查询阶段就进行条件过滤的query查询，另一类是在query查询出来的数据基础上再进行过滤的filter查询。这两类查询的区别是：
->
-> - **query方法会计算查询条件与待查询数据之间的相关性，计算结果写入一个score字段，类似于搜索引擎。filter仅仅做字符串匹配，不会计算相关性，类似于一般的数据查询，所以filter得查询速度比query快。**
-> - **filter查询出来的数据会自动被缓存，而query不能。**
->
-> query和filter可以单独使用，也可以相互嵌套使用，非常灵活。
->
-> **Query查询**
->
-> 下面的情况下适合使用query查询：
->
-> - 需要进行全文搜索。
-> - 查询结果依赖于相关性，即需要计算查询串和数据的相关性。
+&gt; [实时搜索引擎Elasticsearch（3）——查询API的使用](https://blog.csdn.net/gavin5033/article/details/82786435)
+&gt;
+&gt; **Query和Filter**
+&gt;
+&gt; ES为用户提供两类查询API，一类是在查询阶段就进行条件过滤的query查询，另一类是在query查询出来的数据基础上再进行过滤的filter查询。这两类查询的区别是：
+&gt;
+&gt; - **query方法会计算查询条件与待查询数据之间的相关性，计算结果写入一个score字段，类似于搜索引擎。filter仅仅做字符串匹配，不会计算相关性，类似于一般的数据查询，所以filter得查询速度比query快。**
+&gt; - **filter查询出来的数据会自动被缓存，而query不能。**
+&gt;
+&gt; query和filter可以单独使用，也可以相互嵌套使用，非常灵活。
+&gt;
+&gt; **Query查询**
+&gt;
+&gt; 下面的情况下适合使用query查询：
+&gt;
+&gt; - 需要进行全文搜索。
+&gt; - 查询结果依赖于相关性，即需要计算查询串和数据的相关性。
 
-​	最常用的一般就是查询操作。而document文档作为实际存储时的实体，对document的查询操作是我们最需要关注的。ElasticSearch的核心也是查询操作。
+	最常用的一般就是查询操作。而document文档作为实际存储时的实体，对document的查询操作是我们最需要关注的。ElasticSearch的核心也是查询操作。
 
 ## 2.0 Search API
 
-> [Search API](http://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html)
+&gt; [Search API](http://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html)
 
 ```http
 GET /<target>/_search
@@ -483,9 +483,9 @@ POST /_search
 
 ## 2.1 match all query
 
-### 1. `GET /<target>/_search`
+### 1. `GET /&lt;target&gt;/_search`
 
-​	查询时，ES服务端默认对查询结果做了分页处理，每页默认的大小为10。如果想自己指定查询的数据，可使用from和size字段，并且按指定的字段排序。
+	查询时，ES服务端默认对查询结果做了分页处理，每页默认的大小为10。如果想自己指定查询的数据，可使用from和size字段，并且按指定的字段排序。
 
 ```shell
 curl -X GET "localhost:9200/kibana_sample_data_logs/_search?pretty"
@@ -537,9 +537,9 @@ GET /kibana_sample_data_logs/_search
 }
 ```
 
-### 2. `POST /<target>/_search`
+### 2. `POST /&lt;target&gt;/_search`
 
-​	这里就演示分页查询+结果排序。
+	这里就演示分页查询+结果排序。
 
 ```shell
 curl -X POST "localhost:9200/kibana_sample_data_logs/_search" -d'
@@ -644,44 +644,44 @@ POST /kibana_sample_data_logs/_search
 }
 ```
 
-> 注意：不要把from设得过大（超过10000），否则会导致ES服务端因频繁GC而无法正常提供服务。其实实际项目中也没有谁会翻那么多页，但是为了ES的可用性，务必要对分页查询的页码做一定的限制。
+&gt; 注意：不要把from设得过大（超过10000），否则会导致ES服务端因频繁GC而无法正常提供服务。其实实际项目中也没有谁会翻那么多页，但是为了ES的可用性，务必要对分页查询的页码做一定的限制。
 
 ## 2.2 term query
 
-> [Term query](https://kapeli.com/dash_share?docset_file=ElasticSearch&docset_name=Elasticsearch&path=www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html&platform=elasticsearch&repo=Main&source=www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html&version=7.10.0)	<=	下面是官方强调的WARNING
->
-> 总之：
->
-> **term直接对输入的条件做精准匹配（逻辑上是and）；而match把输入的内容进行分词，再做匹配（逻辑上是or）**
->
-> **而text字段，在ES里会被默认拆分成多个分词，所以term大多数情况下无法直接根据整个text字段字匹配到结果。（如果text字段正好无法被分词就可以被匹配。）**
->
->
-> Avoid using the `term` query for [`text`](dfile:///Users/daodaocrazy/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/text.html) fields.
->
-> By default, Elasticsearch changes the values of `text` fields as part of [analysis](dfile:///Users/daodaocrazy/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html). This can make finding exact matches for `text` field values difficult.
->
-> To search `text` field values, use the [`match`](dfile:///Users/daodaocrazy/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html) query instead.
->
-> ---
->
-> #### Avoid using the `term` query for `text` fields
->
-> By default, Elasticsearch changes the values of `text` fields during analysis. For example, the default [standard analyzer](dfile:///Users/daodaocrazy/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html)changes `text` field values as follows:
->
-> - Removes most punctuation
-> - Divides the remaining content into individual words, called [tokens](dfile:///Users/daodaocrazy/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenizers.html)
-> - Lowercases the tokens
->
-> To better search `text` fields, the `match` query also analyzes your provided search term before performing a search. This means the `match` query can search `text` fields for analyzed tokens rather than an exact term.
->
-> The `term` query does **not** analyze the search term. The `term` query only searches for the **exact** term you provide. This means the `term` query may return poor or no results when searching `text` fields.
->
-> [ES中match和term差别对比](https://blog.csdn.net/tclzsn7456/article/details/79956625)
->
-> [es的多种term查询](https://www.cnblogs.com/juncaoit/p/12664109.html)
+&gt; [Term query](https://kapeli.com/dash_share?docset_file=ElasticSearch&docset_name=Elasticsearch&path=www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html&platform=elasticsearch&repo=Main&source=www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html&version=7.10.0)	&lt;=	下面是官方强调的WARNING
+&gt;
+&gt; 总之：
+&gt;
+&gt; **term直接对输入的条件做精准匹配（逻辑上是and）；而match把输入的内容进行分词，再做匹配（逻辑上是or）**
+&gt;
+&gt; **而text字段，在ES里会被默认拆分成多个分词，所以term大多数情况下无法直接根据整个text字段字匹配到结果。（如果text字段正好无法被分词就可以被匹配。）**
+&gt;
+&gt;
+&gt; Avoid using the `term` query for [`text`](dfile:///Users/daodaocrazy/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/text.html) fields.
+&gt;
+&gt; By default, Elasticsearch changes the values of `text` fields as part of [analysis](dfile:///Users/daodaocrazy/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html). This can make finding exact matches for `text` field values difficult.
+&gt;
+&gt; To search `text` field values, use the [`match`](dfile:///Users/daodaocrazy/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html) query instead.
+&gt;
+&gt; ---
+&gt;
+&gt; #### Avoid using the `term` query for `text` fields
+&gt;
+&gt; By default, Elasticsearch changes the values of `text` fields during analysis. For example, the default [standard analyzer](dfile:///Users/daodaocrazy/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html)changes `text` field values as follows:
+&gt;
+&gt; - Removes most punctuation
+&gt; - Divides the remaining content into individual words, called [tokens](dfile:///Users/daodaocrazy/Library/Application Support/Dash/DocSets/ElasticSearch/ElasticSearch.docset/Contents/Resources/Documents/www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenizers.html)
+&gt; - Lowercases the tokens
+&gt;
+&gt; To better search `text` fields, the `match` query also analyzes your provided search term before performing a search. This means the `match` query can search `text` fields for analyzed tokens rather than an exact term.
+&gt;
+&gt; The `term` query does **not** analyze the search term. The `term` query only searches for the **exact** term you provide. This means the `term` query may return poor or no results when searching `text` fields.
+&gt;
+&gt; [ES中match和term差别对比](https://blog.csdn.net/tclzsn7456/article/details/79956625)
+&gt;
+&gt; [es的多种term查询](https://www.cnblogs.com/juncaoit/p/12664109.html)
 
-​	词语查询，如果是对未分词的字段进行查询，则表示精确查询。
+	词语查询，如果是对未分词的字段进行查询，则表示精确查询。
 
 下面从"kibana_sample_data_flights"这个kibana样本数据index索引中查询"FlightNum"为"EAYQW69"的数据
 
