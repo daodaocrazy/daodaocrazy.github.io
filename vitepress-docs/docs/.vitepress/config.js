@@ -9,6 +9,22 @@ export default defineConfig({
     ['meta', { name: 'theme-color', content: '#3c8772' }],
   ],
 
+  vite: {
+    plugins: [
+      {
+        name: 'disable-vue-for-md',
+        configResolved(config) {
+          // 找到 @vitejs/plugin-vue
+          const vuePlugin = config.plugins.find(p => p.name === 'vite:vue')
+          if (vuePlugin && vuePlugin.api) {
+            // 修改 Vue 插件的 include/exclude，避免处理 .md 文件
+            // 但 VitePress 内部已经有处理了，所以我们换一个思路
+          }
+        }
+      }
+    ]
+  },
+
   themeConfig: {
     logo: '/icon.svg',
     siteTitle: '📚 学习笔记',
@@ -32,11 +48,51 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: '📚 目录索引', link: '/study/' },
-            { text: '☕ Java', link: '/study/Java/README' },
-            { text: '🐘 BigData', link: '/study/BigData/README' },
-            { text: '🗄️ DataBase', link: '/study/DataBase/README' },
+            { 
+              text: '☕ Java', 
+              collapsed: true,
+              items: [
+                { text: 'Java 笔记', link: '/study/Java/README' },
+                { text: 'Java 复习回顾', link: '/study/Java/Java复习回顾' },
+                { text: 'Java 杂学记录', link: '/study/Java/Java杂学记录' }
+              ]
+            },
+            { 
+              text: '🐘 BigData', 
+              collapsed: true,
+              items: [
+                { text: 'BigData 首页', link: '/study/BigData/README' },
+                { text: 'ClickHouse', link: '/study/BigData/ClickHouse/README' },
+                { text: 'Flink', link: '/study/BigData/Flink/README' },
+                { text: 'HBase', link: '/study/BigData/HBase/README' },
+                { text: 'Hadoop', link: '/study/BigData/Hadoop/README' },
+                { text: 'Hive', link: '/study/BigData/Hive/README' },
+                { text: '理论', link: '/study/BigData/理论/README' }
+              ]
+            },
+            { 
+              text: '🗄️ DataBase', 
+              collapsed: true,
+              items: [
+                { text: 'DataBase 首页', link: '/study/DataBase/README' },
+                { text: 'DatabaseSystem-Design', link: '/study/DataBase/DatabaseSystem-Design/README' },
+                { text: 'MongoDB', link: '/study/DataBase/MongoDB/README' },
+                { text: 'MySQL', link: '/study/DataBase/MySQL/README' },
+                { text: 'Redis', link: '/study/DataBase/Redis/README' }
+              ]
+            },
             { text: '🐍 Python', link: '/study/Python/README' },
-            { text: '🧠 LeetCode', link: '/study/LeetCode_Study/README' },
+            { 
+              text: '🧠 LeetCode', 
+              collapsed: true,
+              items: [
+                { text: 'LeetCode 首页', link: '/study/LeetCode_Study/README' },
+                { text: '初级算法', link: '/study/LeetCode_Study/初级算法/README' },
+                { text: '中级算法', link: '/study/LeetCode_Study/中级算法/README' },
+                { text: '高级算法', link: '/study/LeetCode_Study/高级算法/README' },
+                { text: '数据结构与算法', link: '/study/LeetCode_Study/数据结构与算法/README' }
+              ]
+            },
             { text: '⚛️ React', link: '/study/React/README' },
             { text: '💚 Vue', link: '/study/Vue/README' },
             { text: '🦀 Rust', link: '/study/Rust/README' },
@@ -100,6 +156,8 @@ export default defineConfig({
     theme: {
       light: 'github-light',
       dark: 'github-dark'
-    }
+    },
+    // 启用 HTML 支持
+    html: true
   }
 })

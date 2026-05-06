@@ -18,7 +18,7 @@
 
 ### 3. 常用的CommonJS和ES6 Module的差异*(摘至上方引用文章)*
 
-**1. CommonJS 支持动态导入，也就是 `require(${path}/xx.js)` ，ES6 目前还不支持，但是已有提案。**
+**1. CommonJS 支持动态导入，也就是 `require($&#123;path&#125;/xx.js)` ，ES6 目前还不支持，但是已有提案。**
 
 **2. CommonJS 是同步导入，ES6是异步导入。**
 

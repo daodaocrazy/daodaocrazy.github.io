@@ -1,6 +1,6 @@
 # Scala杂记
 
-> [2021版 Scala大数据 完整版-通俗易懂（半天掌握）](https://www.bilibili.com/video/BV1JX4y1u7HK?p=11)	<=	主要根据这个视频，先大致了解一下scala语法，后面打算再快速过一遍[Scala语言规范.pdf](https://static.runoob.com/download/Scala语言规范.pdf)
+> [2021版 Scala大数据 完整版-通俗易懂（半天掌握）](https://www.bilibili.com/video/BV1JX4y1u7HK?p=11)	&lt;=	主要根据这个视频，先大致了解一下scala语法，后面打算再快速过一遍[Scala语言规范.pdf](https://static.runoob.com/download/Scala语言规范.pdf)
 
 # 1. 六大特性
 
@@ -51,8 +51,8 @@
 
 ## 1. 函数的定义
 
-+ def方法名(参数列表):返回类型={方法体}
-+ {}只有一行逻辑代码时可以省略
++ def方法名(参数列表):返回类型=&#123;方法体&#125;
++ &#123;&#125;只有一行逻辑代码时可以省略
 + return可以省略，自动将最后一行的内容作为返回值，如果return没有省略，那么必须显式声明返回类型
 + =可以省略，表示丢弃返回值
 + 函数中的参数为val常量，值只能使用不可修改
@@ -152,11 +152,11 @@ swap
 # 6. 默认匹配
 
 + ```scala
-  x match{
+  x match&#123;
     case 1 => ...
     case x:String => ...
     case _ => ...
-  }
+  &#125;
   ```
 
 + 相比java的switch case不光可以匹配值，还可以匹配类型

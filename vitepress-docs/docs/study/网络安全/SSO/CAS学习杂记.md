@@ -10,8 +10,8 @@
 >
 >   2. ST是CAS认证中心认证成功后返回给浏览器，浏览器带着它去访问应用服务器，应用服务器再凭它去认证中心验证你这个用户是否合法。只有这样，浏览器和应用服务器才能建立信任的会话。
 >  3. 而TGC的作用主要是用于实现单点登录，就是当浏览器要访问应用服务器2时，应用服务器2也会重定向到认证服务器，但是此时由于TGC的存在，认证服务器信任了该浏览器，就不需要用户再输入账号密码了，直接返回给浏览器ST，重复2中的步骤。
-> - [CAS票据之ST与TGT过期策略详细说明_Java精选-CSDN博客](https://blog.csdn.net/afreon/article/details/53183157) <= 结合下面的大流程图，很清晰了。
-> - [CAS实现单点登录SSO执行原理探究(终于明白了)_javaloveiphone的专栏-CSDN博客_cas sso原理](https://blog.csdn.net/javaloveiphone/article/details/52439613)  <=  极力推荐，超高赞文章！（多图流、完整登录退出流程）
+> - [CAS票据之ST与TGT过期策略详细说明_Java精选-CSDN博客](https://blog.csdn.net/afreon/article/details/53183157) &lt;= 结合下面的大流程图，很清晰了。
+> - [CAS实现单点登录SSO执行原理探究(终于明白了)_javaloveiphone的专栏-CSDN博客_cas sso原理](https://blog.csdn.net/javaloveiphone/article/details/52439613)  &lt;=  极力推荐，超高赞文章！（多图流、完整登录退出流程）
 >
 > 实战文章
 >
@@ -27,7 +27,7 @@
 >
 >   下面1.CAS流程 ~ 3. 运行CAS-server根据该视频学习，后面看client的教程一般，就看个大概没往下了。 
 >
-> - [SpringBoot 简单实现仿CAS单点登录系统_ljk126wy的博客-CSDN博客](https://blog.csdn.net/ljk126wy/article/details/90640608)    <=.   可参考的文章
+> - [SpringBoot 简单实现仿CAS单点登录系统_ljk126wy的博客-CSDN博客](https://blog.csdn.net/ljk126wy/article/details/90640608)    &lt;=.   可参考的文章
 
 # 1. CAS流程
 
@@ -130,8 +130,8 @@
 1. 修改tomcat9安装目录下`conf/server.xml`
 
    ```xml
-   <!-- myconfig -->
-       <Connector port="8443" protocol="org.apache.coyote.http11.Http11AprProtocol"
+   &lt;!-- myconfig -->
+       &lt;Connector port="8443" protocol="org.apache.coyote.http11.Http11AprProtocol"
                   maxThreads="150" SSLEnabled="true" 
                   scheme="https" secure="true" clientAuth="false" sslProtocol="TLS"
                   keystoreFile="/Users/daodaocrazy/mydocs/docs/study/ITstudy/SSO/CAS/cas-test/keystore/daodaocrazy.keystore"
@@ -178,7 +178,7 @@
 
 1. 下载CAS-server的war包
 
-   > [Central Repository: org/apereo/cas/cas-server-webapp-tomcat (maven.org)](https://repo1.maven.org/maven2/org/apereo/cas/cas-server-webapp-tomcat/) 	<=	从视频教程里找到的war包下载地址，藏得好深。。。
+   > [Central Repository: org/apereo/cas/cas-server-webapp-tomcat (maven.org)](https://repo1.maven.org/maven2/org/apereo/cas/cas-server-webapp-tomcat/) 	&lt;=	从视频教程里找到的war包下载地址，藏得好深。。。
 
 2. 将war包移动到tomcat的webapps目录下
 3. 解压war包，将解压后的文件夹重命名为cas
@@ -197,12 +197,12 @@
 7. 修改`WEB-INF/classes/log4j2.xml`的日志路径
 
    ```xml
-   <?xml version="1.0" encoding="UTF-8" ?>
-   <!-- Specify the refresh internal in seconds. -->
-   <Configuration monitorInterval="5" packages="org.apereo.cas.logging">
-       <Properties>
-           <Property name="baseDir">自定义日志路径（文件夹）</Property>
-       </Properties>
+   &lt;?xml version="1.0" encoding="UTF-8" ?>
+   &lt;!-- Specify the refresh internal in seconds. -->
+   &lt;Configuration monitorInterval="5" packages="org.apereo.cas.logging">
+       &lt;Properties>
+           &lt;Property name="baseDir">自定义日志路径（文件夹）&lt;/Property>
+       &lt;/Properties>
      ...
    ```
 

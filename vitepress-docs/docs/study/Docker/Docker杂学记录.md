@@ -84,7 +84,7 @@ docker save m2 > 1.tar # docker save [镜像名称] > tar文件名.tar
 docker rmi m2 # 可以通过名称也可以通过IMAGE ID删除，如果镜像被运行成容器就删除不了
 
 ## 读取tar文件恢复一份镜像
-docker load < 1.tar #这里运行后，发现images又重新出现了之前Dockerfile创建的m2镜像
+docker load &lt; 1.tar #这里运行后，发现images又重新出现了之前Dockerfile创建的m2镜像
 
 ## push操作需要自己去dockerhub或者其他官方仓库注册
 ## docker run -d -p 88:80 --name ，其中--name 指定容器运行后的名字NAMES，默认随机单词拼写的名字
@@ -224,14 +224,14 @@ docker ps
 下面是test.php文件
 
 ```php
-<?php
+&lt;?php
     phpinfo();
 ```
 
 下面是mysql.php文件
 
 ```php
-<?php
+&lt;?php
 $dbhost = "mysql";
 $dbuser = "root";
 $dbpass = "123456";
@@ -240,9 +240,9 @@ $dbpass = "123456";
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
  
 // 检测连接
-if (! $conn) {
+if (! $conn) &#123;
     die("Could not connect: " . mysqli_error());
-} 
+&#125; 
 echo "mysql connected!!";
 mysqli_close($conn);
 ?>
@@ -253,38 +253,38 @@ mysqli_close($conn);
 ```none
 worker_processes 1;
 
-events {
+events &#123;
 	worker_connections 1024;
-}
-http {
+&#125;
+http &#123;
 	include			mine.types;
 	default_type	application/octet-stream;
 	
 	sendfile		on;
 	
 	keepalive_timeout	65;
-	server {
+	server &#123;
 		listen 80;
 		server_name		localhost;
 		
-		location /	{
+		location /	&#123;
 			root	/ust/share/nginx/html;
 			index	index.html	index.htm;
-		}
+		&#125;
 		
 		error_page	500	502	503	504	/50x.html
-		location = /50x.html {
+		location = /50x.html &#123;
 			root /usr/share/nginx/html;
-		}
+		&#125;
 		
-		location ~ \.php$ {
+		location ~ \.php$ &#123;
 			fastcgi_pass	php:9000;
 			fastcgi_index	index.php;
 			fastcgi_param	SCRIPT_FILENAME	/var/www/html/$fastcgi_script_name;
 			include			fastcgi_params;
-		}
-	}
-}
+		&#125;
+	&#125;
+&#125;
 ```
 
 下面是docker-compose.yml配置文件
@@ -437,32 +437,32 @@ docker run test
 //Config的Application启动类
 @SpringBootApplication
 @EnableConfigServer // 启动Cloud Config服务端服务，获取远程git/gitee的配置
-public class HttpConfigN03344Application {
+public class HttpConfigN03344Application &#123;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) &#123;
         SpringApplication.run(HttpConfigN03344Application.class, args);
-    }
+    &#125;
 
-}
+&#125;
 
 //Eureka的Applicatoin启动类
 @SpringBootApplication
 @EnableEurekaServer // EnableEurekaSever 服务端的启动类，可以接收别人注册进来~
-public class HttpEurekaN17001Application {
+public class HttpEurekaN17001Application &#123;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) &#123;
         SpringApplication.run(HttpEurekaN17001Application.class, args);
-    }
+    &#125;
 
     @EnableWebSecurity //用到了security，如果不写这个，会发现服务之间没法相互注册，明明有开放端口
-    static class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    static class WebSecurityConfig extends WebSecurityConfigurerAdapter &#123;
         @Override
-        protected void configure(HttpSecurity http) throws Exception {
+        protected void configure(HttpSecurity http) throws Exception &#123;
             http.csrf().ignoringAntMatchers("/eureka/**");
             super.configure(http);
-        }
-    }
-}
+        &#125;
+    &#125;
+&#125;
 ```
 
 2. IDEA中编写Config项目的application.yml以及Eureka的application.yml和bootstrap.yml
@@ -569,7 +569,7 @@ spring:
          ip-address: 服务器1的公网ip
        client: 
          service-url: 
-           #单机 defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+           #单机 defaultZone: http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/
            #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址（单机）。
            defaultZone: http://账号:密码@服务器2公网ip:7001/eureka/,http://账号:密码@服务器3公网ip:7001/eureka/
      
@@ -599,7 +599,7 @@ spring:
          ip-address: 服务器1的公网ip
        client: 
          service-url: 
-           #单机 defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+           #单机 defaultZone: http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/
            #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址（单机）。
            defaultZone: http://账号:密码@服务器2公网ip:7001/eureka/,http://账号:密码@服务器3公网ip:7001/eureka/
      
@@ -629,7 +629,7 @@ spring:
          ip-address: 服务器1的公网ip
        client: 
          service-url: 
-           #单机 defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+           #单机 defaultZone: http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/
            #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址（单机）。
            defaultZone: http://账号:密码@服务器2公网ip:7001/eureka/,http://账号:密码@服务器3公网ip:7001/eureka/
      ```
@@ -637,27 +637,27 @@ spring:
 4. pom依赖不贴了，就贴其中一个要点，不配置会发现maven执行package操作后生成的jar文件很小，docker上运行不起来。eureka的pom还需加security的依赖，自己查
 
    ```xml
-   <build>
-       <plugins>
-           <plugin>
-               <groupId>org.springframework.boot</groupId>
-               <artifactId>spring-boot-maven-plugin</artifactId>
-               <version>${springboot.version}</version>
-               <configuration>
-                   <!-- 指定该Main Class为全局的唯一入口 -->
-                   <mainClass>com.ash.springcloud.HttpConfigN03344Application</mainClass>
-                   <layout>ZIP</layout>
-               </configuration>
-               <executions>
-                   <execution>
-                       <goals>
-                           <goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中-->
-                       </goals>
-                   </execution>
-               </executions>
-           </plugin>
-       </plugins>
-   </build>
+   &lt;build>
+       &lt;plugins>
+           &lt;plugin>
+               &lt;groupId>org.springframework.boot&lt;/groupId>
+               &lt;artifactId>spring-boot-maven-plugin&lt;/artifactId>
+               &lt;version>$&#123;springboot.version&#125;&lt;/version>
+               &lt;configuration>
+                   &lt;!-- 指定该Main Class为全局的唯一入口 -->
+                   &lt;mainClass>com.ash.springcloud.HttpConfigN03344Application&lt;/mainClass>
+                   &lt;layout>ZIP&lt;/layout>
+               &lt;/configuration>
+               &lt;executions>
+                   &lt;execution>
+                       &lt;goals>
+                           &lt;goal>repackage&lt;/goal>&lt;!--可以把依赖的包都打包到生成的Jar包中-->
+                       &lt;/goals>
+                   &lt;/execution>
+               &lt;/executions>
+           &lt;/plugin>
+       &lt;/plugins>
+   &lt;/build>
    ```
 
    5. 重点来了，Dockerfile和docker-compose.yml的编写
@@ -810,12 +810,12 @@ spring:
 
 ## 7. docker和虚拟机
 
-> [docker容器与虚拟机有什么区别？](https://www.zhihu.com/question/48174633)	<=	以下图文出至该文章
+> [docker容器与虚拟机有什么区别？](https://www.zhihu.com/question/48174633)	&lt;=	以下图文出至该文章
 >
 > 说了这么多Docker的优势，大家也没有必要完全否定**虚拟机**技术，因为两者有不同的使用场景。
 >
-> + **虚拟机**更擅长于彻底<u>隔离整个运行环境</u>。例如，云服务提供商通常采用虚拟机技术隔离不同的用户。
-> + **Docker**通常用于<u>隔离不同的应用</u>，例如**前端**，**后端**以及**数据库**。
+> + **虚拟机**更擅长于彻底&lt;u>隔离整个运行环境&lt;/u>。例如，云服务提供商通常采用虚拟机技术隔离不同的用户。
+> + **Docker**通常用于&lt;u>隔离不同的应用&lt;/u>，例如**前端**，**后端**以及**数据库**。
 >
 > 因此，我们需要根据不同的应用场景和需求采用不同的方式使用Docker技术或使用服务器虚拟化技术。例如一个典型的Docker应用场景是当主机上的Docker实例属于单一用户的情况下，在保证安全的同时可以充分发挥Docker的技术优势。
 >

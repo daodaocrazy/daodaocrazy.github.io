@@ -1,78 +1,41 @@
----
-layout: home
+#  导读
 
-hero:
-  name: "Daodaocrazy 的学习笔记"
-  text: "技术笔记 | 学习记录 | 知识整理"
-  tagline: |
-    记录成长，分享技术 🖥️💡
+> [Daodaocrazy的个人MD笔记](https://daodaocrazy.github.io/) ==> https://daodaocrazy.github.io/
 
-    从 Java 后端到大数据，从算法到前端，涵盖软件开发的方方面面。
+该项目用于记录个人学习笔记，有部分内容来自图书、博客、论坛等。
 
-    > 📚 笔记中的图片都来自网络，如果加载不出来，建议下载项目到本地阅读
+如有**侵权**等问题，请联系daodaocrazy@outlook.com，本人会第一时间删除相关内容。
 
-  actions:
-    - theme: brand
-      text: 🚀 开始阅读
-      link: /study/
-    - theme: alt
-      text: 📖 快速导航
-      link: /tech/
-    - theme: alt
-      text: 🌟 GitHub
-      link: https://github.com/daodaocrazy
+*&lt;small>笔记中的图片都来自网络(减小项目文件体积)，如果加载不出来，建议下载该项目到本地阅读&lt;/small>*
 
-features:
-  - icon: ☕
-    title: Java & JVM
-    details: 深入理解 Java 虚拟机、并发编程、Spring 生态，掌握企业级开发核心技能
-    link: /study/Java/README
-    linkText: 查看 Java 笔记
+## 目录
 
-  - icon: 🐘
-    title: 大数据生态
-    details: Hadoop、Flink、Spark、Kafka，构建分布式数据处理能力
-    link: /study/BigData/README
-    linkText: 查看大数据笔记
+* [BigData](https://daodaocrazy.github.io/daodaocrazy.github.io//study/BigData/README)
+* [Java](https://daodaocrazy.github.io/daodaocrazy.github.io//study/Java/README)
+* [Python](https://daodaocrazy.github.io/daodaocrazy.github.io//study/Python/README)
+* [Scala](https://daodaocrazy.github.io/daodaocrazy.github.io//study/Scala/README)
+* [LeetCode](https://daodaocrazy.github.io/daodaocrazy.github.io//study/LeetCode_Study/README)
+* [React](https://daodaocrazy.github.io/daodaocrazy.github.io//study/React/README)
+* [Vue](https://daodaocrazy.github.io/daodaocrazy.github.io//study/Vue/README)
+* [GoLang](https://daodaocrazy.github.io/daodaocrazy.github.io//study/GoLang/README)
+* [Android](https://daodaocrazy.github.io/daodaocrazy.github.io//study/Android/README)
+* [Rust](https://daodaocrazy.github.io/daodaocrazy.github.io//study/Rust/README)
+* [SpringBoot](https://daodaocrazy.github.io/daodaocrazy.github.io//study/SpringBoot/README)
+* [SpringCloud](https://daodaocrazy.github.io/daodaocrazy.github.io//study/SpringCloud/README)
+* [MQ](https://daodaocrazy.github.io/daodaocrazy.github.io//study/MQ/README)
+* [Netty](https://daodaocrazy.github.io/daodaocrazy.github.io//study/Netty/README)
+* [Linux](https://daodaocrazy.github.io/daodaocrazy.github.io//study/Linux/README)
+* [操作系统和硬件](https://daodaocrazy.github.io/daodaocrazy.github.io//study/操作系统和硬件/README)
+* [计算机网络](https://daodaocrazy.github.io/daodaocrazy.github.io//study/计算机网络/README)
+* [网络安全](https://daodaocrazy.github.io/daodaocrazy.github.io//study/网络安全/README)
+* [推荐系统](https://daodaocrazy.github.io/daodaocrazy.github.io//study/推荐系统/README)
+* [设计模式](https://daodaocrazy.github.io/daodaocrazy.github.io//study/设计模式/README)
+* [计算广告](https://daodaocrazy.github.io/daodaocrazy.github.io//study/计算广告/README)
+* [文件管理](https://daodaocrazy.github.io/daodaocrazy.github.io//study/文件管理/README)
+* [编程范式(ProgrammingParadigm)](https://daodaocrazy.github.io/daodaocrazy.github.io//study/编程范式(ProgrammingParadigm)/README.md)
+* [DataBase](https://daodaocrazy.github.io/daodaocrazy.github.io//study/DataBase/README)
+* [Elastic-Stack](https://daodaocrazy.github.io/daodaocrazy.github.io//study/Elastic-Stack/README)
 
-  - icon: 🧠
-    title: 算法与数据结构
-    details: LeetCode 刷题笔记、剑指 Offer、程序员面试金典，助力面试通关
-    link: /study/LeetCode_Study/README
-    linkText: 查看算法笔记
-
-  - icon: ⚛️
-    title: 前端技术栈
-    details: React、Vue 现代前端框架，打造交互丰富的用户界面
-    link: /study/React/README
-    linkText: 查看前端笔记
-
-  - icon: 🐳
-    title: DevOps 工具链
-    details: Docker、Kubernetes、CICD，掌握自动化部署与容器化技术
-    link: /study/Docker/README
-    linkText: 查看 DevOps 笔记
-
-  - icon: 🗄️
-    title: 数据库系统
-    details: MySQL、Redis、MongoDB，精通数据存储与缓存策略
-    link: /study/DataBase/README
-    linkText: 查看数据库笔记
-
-  - icon: 🌍
-    title: 计算机基础
-    details: 操作系统、计算机网络、数据结构，夯实技术底蕴
-    link: /study/操作系统和硬件/README
-    linkText: 查看基础笔记
-
-  - icon: 🎯
-    title: 领域知识
-    details: 推荐系统、计算广告、分布式系统，探索技术深水区
-    link: /study/推荐系统/README
-    linkText: 查看领域笔记
-
-footer:
-  message: 持续更新中...
-  copyright: |
-    Made with ❤️ by Daodaocrazy | MIT License
----
++ [Docker](https://daodaocrazy.github.io/daodaocrazy.github.io//study/Docker/README)
++ [kubernetes](https://daodaocrazy.github.io/daodaocrazy.github.io//study/kubernetes/README)
++ [CICD](https://daodaocrazy.github.io/daodaocrazy.github.io//study/CICD/README)

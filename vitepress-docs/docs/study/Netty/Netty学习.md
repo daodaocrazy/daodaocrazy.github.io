@@ -16,7 +16,7 @@
 
 BIO就是传统的同步阻塞IO（需要实时得知IO的执行、需要等到IO执行结束才能向下继续执行）；
 
-NIO是同步非阻塞的IO(可以理解是能够使1个线程处理IO的能力提升，及原本BIO一线程一IO<因为被阻塞了，多个IO也不起作用>，而NIO一线程多IO<通过selector轮询可用的channel>)。常见的NIO使用就是网络通讯编程了，比如，比较简易的聊天室(UDP)
+NIO是同步非阻塞的IO(可以理解是能够使1个线程处理IO的能力提升，及原本BIO一线程一IO&lt;因为被阻塞了，多个IO也不起作用>，而NIO一线程多IO&lt;通过selector轮询可用的channel>)。常见的NIO使用就是网络通讯编程了，比如，比较简易的聊天室(UDP)
 
 AIO是异步非阻塞的IO（NIO2），在IO处理中多了更多的信息获取，能够把IO请求交给操作系统处理后再通知程序进行处理。也就是说，AIO多了异步的回调信息，而不再是单纯的自己调用IO时实时监听变化，变化的异常、结果转由异步回调的消息来通知。
 
@@ -158,7 +158,7 @@ B、谈论打洞问题之前，必须先了解NAT概念。
 
    ​	只要甲想要和老王聊天，那就必须用ipv4，而甲只能通过NAT来获取ipv4和老王聊天。这里甲和老王聊天如果使用到的是TCP，那么往往是 甲--甲to老王的聊天信息--> 聊天TCP服务器 --甲to老王的聊天信息-->老王。
 
-   ​	聊天软件作为中介一般的存在，和甲、老王分别连接TCP连接，然后之后分别使用channel通道和甲、老王交流数据(<u>这里channel实际上不是同一个，但是逻辑上就像是同一个</u>，下面直接用一个标识)交流。
+   ​	聊天软件作为中介一般的存在，和甲、老王分别连接TCP连接，然后之后分别使用channel通道和甲、老王交流数据(&lt;u>这里channel实际上不是同一个，但是逻辑上就像是同一个&lt;/u>，下面直接用一个标识)交流。
 
    ​	甲--channel+A--聊天服务器--channel+B--老王(他其实也是在另一个WAN里面，用的也是网络提供商的ipv4)
 
@@ -236,7 +236,7 @@ B、谈论打洞问题之前，必须先了解NAT概念。
 
    ​	通过前面大篇幅的介绍，得知甲如果想和老王通过UDP通信，需要时刻知道对方的最新ip和port。这需要有第三方记录两者的ip和port的更新（聊天服务器记录）。
 
-   ​	下面**假设甲和老王都是端口受限锥形NAT的前提**下进行UDP打洞。因为如果两者都是对称NAT或者一个对称，一个端口受限锥形的话，虽然可以通过巧妙的算法实现P2P，但是消耗还是挺大的，复杂度也高。（<u>直接说这2种情况就不能实现打洞也不是不行，因为实在复杂，依赖的条件还涉及网络提供商的NAT-port分配策略，条件算苛刻的</u>）
+   ​	下面**假设甲和老王都是端口受限锥形NAT的前提**下进行UDP打洞。因为如果两者都是对称NAT或者一个对称，一个端口受限锥形的话，虽然可以通过巧妙的算法实现P2P，但是消耗还是挺大的，复杂度也高。（&lt;u>直接说这2种情况就不能实现打洞也不是不行，因为实在复杂，依赖的条件还涉及网络提供商的NAT-port分配策略，条件算苛刻的&lt;/u>）
 
    **打洞流程**大致如下：
 
@@ -310,7 +310,7 @@ B、谈论打洞问题之前，必须先了解NAT概念。
 
 ​	以前有次找了个UDP代码，那时候对UDP、TCP那些还不太熟，所以先找网上代码跑跑看能看效果再学习。这时候遇到一个问题，UDPclient和UDPserver都在我本地网络下是能正常交互的，这里代码逻辑就简单的Echo，client发一句话给server，server重新发回来。后面我把UDPserver放到服务器上，结果**服务器Linux只用tcpdump抓包能抓到UDP包，程序却收不到UDP包**。当时对linux网卡等了解不多，所以没能解决。
 
-​	最近又回想起来这个事情，于是重跑一遍代码，tcpdump抓包，发现能抓到UCP包，但是程序还是收不到数据。这次我对Linux网卡有过学习了。所以查看ifconfig发现抓包的UDP目的地址是eth0的ip，而服务跑在docker网桥上，所以没能收到UDP包。于是<u>我docker-compose指定了network_mode: host，使得docker容器使用和宿主机相同的网络环境</u>，进而能获取到eth0的包，问题就解决了。
+​	最近又回想起来这个事情，于是重跑一遍代码，tcpdump抓包，发现能抓到UCP包，但是程序还是收不到数据。这次我对Linux网卡有过学习了。所以查看ifconfig发现抓包的UDP目的地址是eth0的ip，而服务跑在docker网桥上，所以没能收到UDP包。于是&lt;u>我docker-compose指定了network_mode: host，使得docker容器使用和宿主机相同的网络环境&lt;/u>，进而能获取到eth0的包，问题就解决了。
 
 ​	期间顺便给服务端代码加了个HashMap记录client，然后把client的数据发送给所有和服务器交互过的client。我这里4个client每3秒发送UDP包给Server，然后server不管收到谁的UDP包，记录或更新其在HashMap中的IP和port记录，然后把该UDP包的内容发送给HashMap中记录的所有client。（主要最近要做一个群聊的功能，以前是想用UDP，但是那时候出现获取不到数据的问题，后面就用TCP了。最近重新试试，因为对计网\Linux了解多了不少，问题倒是解决挺快的了）
 
@@ -361,7 +361,7 @@ B、谈论打洞问题之前，必须先了解NAT概念。
 
 ​	`PooledByteBufAllocator`（池化ByteBuf分配器）将ByteBuf实例放入池中，提高了性能，将内存碎片减少到最小**；这个池化分配器采用了jemalloc高效内存分配的策略，该策略被好几种现代操作系统所使用**。
 
-​	<u>UnpooledByteBufAllocator是普通的未池化ByteBuf分配器，它没有把ByteBuf放入池中，每次被调用时，返回一个新的ByteBuf实例：通过Java的垃圾回收机制回收。</u>
+​	&lt;u>UnpooledByteBufAllocator是普通的未池化ByteBuf分配器，它没有把ByteBuf放入池中，每次被调用时，返回一个新的ByteBuf实例：通过Java的垃圾回收机制回收。&lt;/u>
 
 ​	使用Netty官方的DiscardServer代码进行DEBUG，也可以看到，Server服务启动的bind绑定端口时，会进行一些初始化的操作，其中就有根据系统来使用不同的`ByteBufAllocator`。
 
@@ -380,10 +380,10 @@ B、谈论打洞问题之前，必须先了解NAT概念。
 ```java
 /**
  * A virtual buffer which shows multiple buffers as a single merged buffer.  It is recommended to use
- * {@link ByteBufAllocator#compositeBuffer()} or {@link Unpooled#wrappedBuffer(ByteBuf...)} instead of calling the
+ * &#123;@link ByteBufAllocator#compositeBuffer()&#125; or &#123;@link Unpooled#wrappedBuffer(ByteBuf...)&#125; instead of calling the
  * constructor explicitly.
  */
-public class CompositeByteBuf extends AbstractReferenceCountedByteBuf implements Iterable<ByteBuf> {
+public class CompositeByteBuf extends AbstractReferenceCountedByteBuf implements Iterable&lt;ByteBuf> &#123;
     
     // (1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)
     // 存储组装的ByteBuf，比如N个ByteBuf组成一个，内部就是把N个ByteBuf存这个数组里了
@@ -394,7 +394,7 @@ public class CompositeByteBuf extends AbstractReferenceCountedByteBuf implements
     // (2)(2)(2)(2)(2)(2)(2)(2)(2)(2)(2)(2)(2)(2)(2)(2)(2)
     // Component内部类，里面含有ByteBuf成员对象
     // 可以看到下面完全没有 新建ByteBuf的操作，用的都是ByteBuf对象的引用。
-    private static final class Component {
+    private static final class Component &#123;
         final ByteBuf srcBuf; // the originally added buffer
         final ByteBuf buf; // srcBuf unwrapped zero or more times
         int srcAdjustment; // index of the start of this CompositeByteBuf relative to srcBuf
@@ -405,7 +405,7 @@ public class CompositeByteBuf extends AbstractReferenceCountedByteBuf implements
         private ByteBuf slice; // cached slice, may be null
 
         Component(ByteBuf srcBuf, int srcOffset, ByteBuf buf, int bufOffset,
-                int offset, int len, ByteBuf slice) {
+                int offset, int len, ByteBuf slice) &#123;
             this.srcBuf = srcBuf;
             this.srcAdjustment = srcOffset - offset;
             this.buf = buf;
@@ -413,58 +413,58 @@ public class CompositeByteBuf extends AbstractReferenceCountedByteBuf implements
             this.offset = offset;
             this.endOffset = offset + len;
             this.slice = slice;
-        }
+        &#125;
 
-        int srcIdx(int index) {
+        int srcIdx(int index) &#123;
             return index + srcAdjustment;
-        }
+        &#125;
 
-        int idx(int index) {
+        int idx(int index) &#123;
             return index + adjustment;
-        }
+        &#125;
 
-        int length() {
+        int length() &#123;
             return endOffset - offset;
-        }
+        &#125;
 
-        void reposition(int newOffset) {
+        void reposition(int newOffset) &#123;
             int move = newOffset - offset;
             endOffset += move;
             srcAdjustment -= move;
             adjustment -= move;
             offset = newOffset;
-        }
+        &#125;
 
         // copy then release
-        void transferTo(ByteBuf dst) {
+        void transferTo(ByteBuf dst) &#123;
             dst.writeBytes(buf, idx(offset), length());
             free();
-        }
+        &#125;
 
-        ByteBuf slice() {
+        ByteBuf slice() &#123;
             ByteBuf s = slice;
-            if (s == null) {
+            if (s == null) &#123;
                 slice = s = srcBuf.slice(srcIdx(offset), length());
-            }
+            &#125;
             return s;
-        }
+        &#125;
 
-        ByteBuf duplicate() {
+        ByteBuf duplicate() &#123;
             return srcBuf.duplicate();
-        }
+        &#125;
 
-        ByteBuffer internalNioBuffer(int index, int length) {
+        ByteBuffer internalNioBuffer(int index, int length) &#123;
             // Some buffers override this so we must use srcBuf
             return srcBuf.internalNioBuffer(srcIdx(index), length);
-        }
+        &#125;
 
-        void free() {
+        void free() &#123;
             slice = null;
             // Release the original buffer since it may have a different
             // refcount to the unwrapped buf (e.g. if PooledSlicedByteBuf)
             srcBuf.release();
-        }
-    }
+        &#125;
+    &#125;
     
     //...
     
@@ -475,56 +475,56 @@ public class CompositeByteBuf extends AbstractReferenceCountedByteBuf implements
     // 大ByteBuf用的内存还是原本那些指针所指向的对象所占用的内存。
     // 不需要在Java中new一个和N个ByteBuf所占用的内存空间相同大小的ByteBuf对象来组装它们。
     private CompositeByteBuf addComponents0(boolean increaseWriterIndex,
-                                            final int cIndex, ByteBuf[] buffers, int arrOffset) {
+                                            final int cIndex, ByteBuf[] buffers, int arrOffset) &#123;
         final int len = buffers.length, count = len - arrOffset;
         // only set ci after we've shifted so that finally block logic is always correct
         int ci = Integer.MAX_VALUE;
-        try {
+        try &#123;
             checkComponentIndex(cIndex);
             shiftComps(cIndex, count); // will increase componentCount
             int nextOffset = cIndex > 0 ? components[cIndex - 1].endOffset : 0;
-            for (ci = cIndex; arrOffset < len; arrOffset++, ci++) {
+            for (ci = cIndex; arrOffset &lt; len; arrOffset++, ci++) &#123;
                 ByteBuf b = buffers[arrOffset];
-                if (b == null) {
+                if (b == null) &#123;
                     break;
-                }
+                &#125;
                 // 这个方法里面也没有new ByteBuf,往下翻，看newComponent方法的实现就知道了
                 Component c = newComponent(ensureAccessible(b), nextOffset);
                 components[ci] = c;
                 nextOffset = c.endOffset;
-            }
+            &#125;
             return this;
-        } finally {
+        &#125; finally &#123;
            // ...
-        }
-    }
+        &#125;
+    &#125;
     
     // ... 
     
     // (4)(4)(4)(4)(4)(4)(4)(4)(4)(4)(4)(4)(4)(4)(4)(4)(4)
     // (3)代码片段中addComponents0(...)使用到该方法，这里同样没有新建ByteBuf对象。
     @SuppressWarnings("deprecation")
-    private Component newComponent(final ByteBuf buf, final int offset) {
+    private Component newComponent(final ByteBuf buf, final int offset) &#123;
         final int srcIndex = buf.readerIndex();
         final int len = buf.readableBytes();
 
         // unpeel any intermediate outer layers (UnreleasableByteBuf, LeakAwareByteBufs, SwappedByteBuf)
         ByteBuf unwrapped = buf;
         int unwrappedIndex = srcIndex;
-        while (unwrapped instanceof WrappedByteBuf || unwrapped instanceof SwappedByteBuf) {
+        while (unwrapped instanceof WrappedByteBuf || unwrapped instanceof SwappedByteBuf) &#123;
             unwrapped = unwrapped.unwrap();
-        }
+        &#125;
 
         // unwrap if already sliced
-        if (unwrapped instanceof AbstractUnpooledSlicedByteBuf) {
+        if (unwrapped instanceof AbstractUnpooledSlicedByteBuf) &#123;
             unwrappedIndex += ((AbstractUnpooledSlicedByteBuf) unwrapped).idx(0);
             unwrapped = unwrapped.unwrap();
-        } else if (unwrapped instanceof PooledSlicedByteBuf) {
+        &#125; else if (unwrapped instanceof PooledSlicedByteBuf) &#123;
             unwrappedIndex += ((PooledSlicedByteBuf) unwrapped).adjustment;
             unwrapped = unwrapped.unwrap();
-        } else if (unwrapped instanceof DuplicatedByteBuf || unwrapped instanceof PooledDuplicatedByteBuf) {
+        &#125; else if (unwrapped instanceof DuplicatedByteBuf || unwrapped instanceof PooledDuplicatedByteBuf) &#123;
             unwrapped = unwrapped.unwrap();
-        }
+        &#125;
 
         // We don't need to slice later to expose the internal component if the readable range
         // is already the entire buffer
@@ -532,15 +532,15 @@ public class CompositeByteBuf extends AbstractReferenceCountedByteBuf implements
 
         return new Component(buf.order(ByteOrder.BIG_ENDIAN), srcIndex,
                 unwrapped.order(ByteOrder.BIG_ENDIAN), unwrappedIndex, offset, len, slice);
-    }
+    &#125;
     
     // ... 
     @Override
-    public ByteBuf unwrap() {
+    public ByteBuf unwrap() &#123;
         return null;
-    }
+    &#125;
     
-}
+&#125;
 ```
 
 ​	上面删掉了一些源代码。注意点就是`CompositeByteBuf`有个内部类数组成员对象`private Component[] components;`，而内部类`Component`中封装了`ByteBuf`，可以看到在`CompositeByteBuf`的`addComponents0(...)`方法中，用`components`这个Component数组存储“预组合在一起”的N个ByteBuf，并没有真正新建和N个Bytebuf占用内存相同大小的新Java对象ByteBuf。
@@ -548,19 +548,19 @@ public class CompositeByteBuf extends AbstractReferenceCountedByteBuf implements
 ​	而实际中，我们不需要直接对`CompositeByteBuf`操作，往往用`Unpooled.wrappedBuffer(...)`来完成ByteBuf的“组装”。
 
 ```java
-public class ByteBufTest {
+public class ByteBufTest &#123;
 
     private EventLoopGroup bossGroup = new NioEventLoopGroup(1);
     private EventLoopGroup workGroup = new NioEventLoopGroup();
 
     @Test
-    public void BootStrapTest() throws InterruptedException {
+    public void BootStrapTest() throws InterruptedException &#123;
         UnpooledByteBufAllocator allocator = new UnpooledByteBufAllocator(true);
-        ByteBuf byteBuf1 = Unpooled.wrappedBuffer(new byte[]{1,2,3,4,5,6});
-        ByteBuf byteBuf2 = Unpooled.wrappedBuffer(new byte[]{7,8,9,10,11,12});
+        ByteBuf byteBuf1 = Unpooled.wrappedBuffer(new byte[]&#123;1,2,3,4,5,6&#125;);
+        ByteBuf byteBuf2 = Unpooled.wrappedBuffer(new byte[]&#123;7,8,9,10,11,12&#125;);
         Unpooled.wrappedBuffer(byteBuf1,byteBuf2); // 这里打断点
-    }
-}
+    &#125;
+&#125;
 
 ```
 

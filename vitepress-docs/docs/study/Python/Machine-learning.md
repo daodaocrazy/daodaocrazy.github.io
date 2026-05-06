@@ -34,7 +34,7 @@
    + Examples样本：特定的数据实例，分为有标签样本 labeled examples 和无标签样本 unlabeled examples 。
    
      ```python
-     labeled examples: {features, label}: (x,y)
+     labeled examples: &#123;features, label&#125;: (x,y)
      ```
    
      使用样本训练模型。在垃圾邮件检测系统中，有标签的样例就是那些被用户明确标记了是"垃圾邮件"or"非垃圾邮件"的分类邮件集合。
@@ -42,7 +42,7 @@
      无标签的样本只包含features特征，而没有label标签。
    
      ```python
-     unlabeled examples: {features, ?}: (x, ?)
+     unlabeled examples: &#123;features, ?&#125;: (x, ?)
      ```
    
      一旦我们用有标签的样本label examples训练了模型，我们就可以用这个模型去预测无标签样本unlabeled examples的标签label。在前面提到的垃圾邮件检测系统中，无标签样本unlabeled examples就是人们还没有标记过的邮件(标记是"垃圾邮件"，还是"非垃圾邮件")。

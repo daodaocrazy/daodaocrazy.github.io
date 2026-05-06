@@ -1,0 +1,37 @@
+# 学习笔记
+
+欢迎来到 Daodaocrazy 的个人学习笔记！这里整理了我在技术学习过程中的各类笔记，涵盖编程语言、框架、数据库、算法等多个领域。
+
+## 📚 目录导航
+
+- [☕ Java](/study/Java/README)
+- [🐘 BigData](/study/BigData/README)
+- [🗄️ DataBase](/study/DataBase/README)
+- [🐍 Python](/study/Python/README)
+- [🧠 LeetCode](/study/LeetCode_Study/README)
+- [⚛️ React](/study/React/README)
+- [💚 Vue](/study/Vue/README)
+- [🦀 Rust](/study/Rust/README)
+- [🐹 GoLang](/study/GoLang/README)
+- [🍀 Scala](/study/Scala/README)
+- [🌱 Spring](/study/Spring/README)
+- [🚀 SpringBoot](/study/SpringBoot/README)
+- [☁️ SpringCloud](/study/SpringCloud/README)
+- [🔌 Netty](/study/Netty/README)
+- [🧩 MQ](/study/MQ/README)
+- [🐳 Docker](/study/Docker/README)
+- [☸️ Kubernetes](/study/kubernetes/README)
+- [🔍 Elastic Stack](/study/Elastic-Stack/README)
+- [🔄 CICD](/study/CICD/README)
+- [💻 Linux](/study/Linux/README)
+- [🌐 计算机网络](/study/计算机网络/README)
+- [🔒 网络安全](/study/网络安全/README)
+- [🎨 设计模式](/study/设计模式/README)
+- [🎯 推荐系统](/study/推荐系统/README)
+- [📢 计算广告](/study/计算广告/README)
+- [📐 分布式策略](/study/分布式策略/README)
+- [⚖️ 负载均衡](/study/负载均衡-代理/README)
+- [📁 文件管理](/study/文件管理/README)
+- [🎭 编程范式](/study/编程范式(ProgrammingParadigm)/README)
+- [💾 操作系统](/study/操作系统和硬件/README)
+- [📱 Android](/study/Android/README)

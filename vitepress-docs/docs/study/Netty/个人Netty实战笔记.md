@@ -27,16 +27,16 @@
       ```java
       // Controller
       @RestController
-      public class testController{
+      public class testController&#123;
           
           @GetMapping("/getTest")
-          public ProtobufJavaPo getTest() {
+          public ProtobufJavaPo getTest() &#123;
               ProtobufJavaPo protobufJavaPo = new ProtobufJavaPo();
               //... 省略给protobufJavaPo装填数据的过程
               return protobufJavaPo; // 这些都是我自己捏造的，就大概这个意思
-          }
+          &#125;
       
-      }
+      &#125;
       ```
 
    2. ProtobufJavaPo.java
@@ -49,14 +49,14 @@
       @EqualsAndHashCode(callSuper = false)
       @Accessors(chain = true)
       @JsonInclude(JsonInclude.Include.NON_NULL)
-      public class ProtobufJavaPo implements Serializable {
+      public class ProtobufJavaPo implements Serializable &#123;
           private static final long serialVersionUID = 1L;
       
           // protobuf序列化数据的 byte数组 使用UTF-8编码 转String
           // 这里假设testProto就是.proto文件生成的java类的对象
           // udpProtoList.add(new String(testProto.toByteArray(), StandardCharsets.UTF_8));
-          List<String> udpProtoList;
-      }
+          List&lt;String> udpProtoList;
+      &#125;
       ```
 
 2. Dart前端/移动端(同样都是模拟的，讲个大概)
@@ -67,33 +67,33 @@
       ```dart
       import 'package:dio/dio.dart';// 社区的http请求包。可以去(dev.pub)这个网站查找
       // 其余依赖我就不说了
-      // 这里DartMess是假装有这么一个dart类作为返回值，其含有List<TestProtoDart> protoList;
-      class HttpDart {
+      // 这里DartMess是假装有这么一个dart类作为返回值，其含有List&lt;TestProtoDart> protoList;
+      class HttpDart &#123;
       
           // HTTP获取JSON数据，解析里面的String字符串形式的protobuf数据
           // 然后转成dart中.proto生成的TestProtoDart.dart类。(这些名称什么的全都假设的)
-          Future<DartMess> getProtoFromJSON() async {
+          Future&lt;DartMess> getProtoFromJSON() async &#123;
       
               var response = await dio.get('XXXXXXXX(host:port)/getTest');
               List dynamicList = response.data['udpProtoList'];
-              if(dynamicList!=null){
+              if(dynamicList!=null)&#123;
                   var dartMess = DartMess(); 
-                  List<TestProtoDart> protoDartList = List();
-                  dynamicList.forEach((f)=>{protoDartList.add(TestProtoDart.fromBuffer(utf8.encode(f)))});
+                  List&lt;TestProtoDart> protoDartList = List();
+                  dynamicList.forEach((f)=>&#123;protoDartList.add(TestProtoDart.fromBuffer(utf8.encode(f)))&#125;);
                   dartMess.protoList = protoDartList;
                   return dartMess;
-              }
+              &#125;
               return null;
-          }
-      }
+          &#125;
+      &#125;
       ```
 
    2. DartMess.dart
 
       ```dart
-      class DartMess {
-          List<TestProtoDart> protoList; // TestProtoDart假设是.proto文件生成的dart类
-      }
+      class DartMess &#123;
+          List&lt;TestProtoDart> protoList; // TestProtoDart假设是.proto文件生成的dart类
+      &#125;
       ```
 
       

@@ -2,7 +2,7 @@
 
 > [Documentation | gRPC](https://www.grpc.io/docs/)	=>	主要就是根据官方文档简单学习一下gRPC，中间会对一些概念另外查文章学习。
 >
-> <small>之前写过一个简单的移动端多人聊天室，服务端主要用到的就是netty+protobuf（客户端dart+protobuf）。但是当时主要就用到protobuf的message（就是用来UDP即时通讯时序列化数据），没用到gRPC定义service服务接口。</small>
+> &lt;small>之前写过一个简单的移动端多人聊天室，服务端主要用到的就是netty+protobuf（客户端dart+protobuf）。但是当时主要就用到protobuf的message（就是用来UDP即时通讯时序列化数据），没用到gRPC定义service服务接口。&lt;/small>
 
 # 1. gRPC介绍
 
@@ -51,45 +51,45 @@
 
 ​	第一步：编写`.proto`二进制文件，自定义message需要的字段。
 
-​	<small>The first step when working with protocol buffers is to define the structure for the data you want to serialize in a *proto file*: this is an ordinary text file with a `.proto` extension. Protocol buffer data is structured as *messages*, where each message is a small logical record of information containing a series of name-value pairs called *fields*. Here’s a simple example:</small>
+​	&lt;small>The first step when working with protocol buffers is to define the structure for the data you want to serialize in a *proto file*: this is an ordinary text file with a `.proto` extension. Protocol buffer data is structured as *messages*, where each message is a small logical record of information containing a series of name-value pairs called *fields*. Here’s a simple example:&lt;/small>
 
 ```protobuf
-message Person {
+message Person &#123;
   string name = 1;
   int32 id = 2;
   bool has_ponycopter = 3;
-}
+&#125;
 ```
 
 ​	第二步：通过`protoc`指令根据`.proto`文件生成对应message的数据访问类（生成的类，自带基础的setter等方法）。
 
-​	<small>Then, once you’ve specified your data structures, you use the protocol buffer compiler `protoc` to generate data access classes in your preferred language(s) from your proto definition. These provide simple accessors for each field, like `name()` and `set_name()`, as well as methods to serialize/parse the whole structure to/from raw bytes. So, for instance, if your chosen language is C++, running the compiler on the example above will generate a class called `Person`. You can then use this class in your application to populate, serialize, and retrieve `Person` protocol buffer messages.</small>
+​	&lt;small>Then, once you’ve specified your data structures, you use the protocol buffer compiler `protoc` to generate data access classes in your preferred language(s) from your proto definition. These provide simple accessors for each field, like `name()` and `set_name()`, as well as methods to serialize/parse the whole structure to/from raw bytes. So, for instance, if your chosen language is C++, running the compiler on the example above will generate a class called `Person`. You can then use this class in your application to populate, serialize, and retrieve `Person` protocol buffer messages.&lt;/small>
 
 ​	gRPC服务同样也是在`.proto`文件中定义，下面定义的gRPC服务中含有一个RPC调用的方法，其参数和返回值都是message。
 
-​	<small>You define gRPC services in ordinary proto files, with RPC method parameters and return types specified as protocol buffer messages:</small>
+​	&lt;small>You define gRPC services in ordinary proto files, with RPC method parameters and return types specified as protocol buffer messages:&lt;/small>
 
 ```protobuf
 // The greeter service definition.
-service Greeter {
+service Greeter &#123;
   // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply) {}
-}
+  rpc SayHello (HelloRequest) returns (HelloReply) &#123;&#125;
+&#125;
 
 // The request message containing the user's name.
-message HelloRequest {
+message HelloRequest &#123;
   string name = 1;
-}
+&#125;
 
 // The response message containing the greetings
-message HelloReply {
+message HelloReply &#123;
   string message = 1;
-}
+&#125;
 ```
 
 ​		通过gRPC插件`protoc`生成的代码包含客户端和服务端，代码内容包括数据访问、赋值、序列化等。
 
-​	<small>gRPC uses `protoc` with a special gRPC plugin to generate code from your proto file: you get generated gRPC client and server code, as well as the regular protocol buffer code for populating, serializing, and retrieving your message types. You’ll see an example of this below.</small>
+​	&lt;small>gRPC uses `protoc` with a special gRPC plugin to generate code from your proto file: you get generated gRPC client and server code, as well as the regular protocol buffer code for populating, serializing, and retrieving your message types. You’ll see an example of this below.&lt;/small>
 
 > ​	To learn more about protocol buffers, including how to install `protoc` with the gRPC plugin in your chosen language, see the [protocol buffers documentation](https://developers.google.com/protocol-buffers/docs/overview).
 
@@ -116,17 +116,17 @@ message HelloReply {
 ​	Like many RPC systems, gRPC is based around the idea of defining a service, specifying the methods that can be called remotely with their parameters and return types. By default, gRPC uses [protocol buffers](https://developers.google.com/protocol-buffers) as the Interface Definition Language (IDL) for describing both the service interface and the structure of the payload messages. It is possible to use other alternatives if desired.
 
 ```proto
-service HelloService {
+service HelloService &#123;
   rpc SayHello (HelloRequest) returns (HelloResponse);
-}
+&#125;
 
-message HelloRequest {
+message HelloRequest &#123;
   string greeting = 1;
-}
+&#125;
 
-message HelloResponse {
+message HelloResponse &#123;
   string reply = 1;
-}
+&#125;
 ```
 
 gRPC支持四种service方法：
@@ -398,9 +398,9 @@ $ cd grpc-java/examples
 + `service`声明一个命名服务
 
   ```java
-  service RouteGuide {
+  service RouteGuide &#123;
      ...
-  }
+  &#125;
   ```
 
 Then we define `rpc` methods inside our service definition, specifying their request and response types. gRPC lets you define four kinds of service methods, all of which are used in the `RouteGuide` service:
@@ -409,7 +409,7 @@ Then we define `rpc` methods inside our service definition, specifying their req
 
   ```java
   // Obtains the feature at a given position.
-  rpc GetFeature(Point) returns (Feature) {}
+  rpc GetFeature(Point) returns (Feature) &#123;&#125;
   ```
 
 - A *server-side streaming RPC* where the client sends a request to the server and gets a stream to read a sequence of messages back. The client reads from the returned stream until there are no more messages. As you can see in our example, you specify a server-side streaming method by placing the `stream` keyword before the *response* type.
@@ -419,7 +419,7 @@ Then we define `rpc` methods inside our service definition, specifying their req
   // streamed rather than returned at once (e.g. in a response message with a
   // repeated field), as the rectangle may cover a large area and contain a
   // huge number of features.
-  rpc ListFeatures(Rectangle) returns (stream Feature) {}
+  rpc ListFeatures(Rectangle) returns (stream Feature) &#123;&#125;
   ```
 
 - A *client-side streaming RPC* where the client writes a sequence of messages and sends them to the server, again using a provided stream. Once the client has finished writing the messages, it waits for the server to read them all and return its response. You specify a client-side streaming method by placing the `stream` keyword before the *request* type.
@@ -427,15 +427,15 @@ Then we define `rpc` methods inside our service definition, specifying their req
   ```java
   // Accepts a stream of Points on a route being traversed, returning a
   // RouteSummary when traversal is completed.
-  rpc RecordRoute(stream Point) returns (RouteSummary) {}
+  rpc RecordRoute(stream Point) returns (RouteSummary) &#123;&#125;
   ```
 
-- A *bidirectional streaming RPC* where <u>both sides send a sequence of messages using a read-write stream.</u> **The two streams operate independently**, so clients and servers can read and write in whatever order they like: for example, the server could wait to receive all the client messages before writing its responses, or it could alternately read a message then write a message, or some other combination of reads and writes. The order of messages in each stream is preserved. You specify this type of method by placing the `stream` keyword before both the request and the response.
+- A *bidirectional streaming RPC* where &lt;u>both sides send a sequence of messages using a read-write stream.&lt;/u> **The two streams operate independently**, so clients and servers can read and write in whatever order they like: for example, the server could wait to receive all the client messages before writing its responses, or it could alternately read a message then write a message, or some other combination of reads and writes. The order of messages in each stream is preserved. You specify this type of method by placing the `stream` keyword before both the request and the response.
 
   ```java
   // Accepts a stream of RouteNotes sent while a route is being traversed,
   // while receiving other RouteNotes (e.g. from other users).
-  rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}
+  rpc RouteChat(stream RouteNote) returns (stream RouteNote) &#123;&#125;
   ```
 
 除了声明service，当然`.proto`也包含了我们service中自定义的request和response的types：
@@ -445,10 +445,10 @@ Then we define `rpc` methods inside our service definition, specifying their req
 // (degrees multiplied by 10**7 and rounded to the nearest integer).
 // Latitudes should be in the range +/- 90 degrees and longitude should be in
 // the range +/- 180 degrees (inclusive).
-message Point {
+message Point &#123;
   int32 latitude = 1;
   int32 longitude = 2;
-}
+&#125;
 ```
 
 #### 生成client和server代码
@@ -482,9 +482,9 @@ message Point {
 As you can see, our server has a `RouteGuideService` class that extends the generated `RouteGuideGrpc.RouteGuideImplBase` abstract class:
 
 ```java
-private static class RouteGuideService extends RouteGuideGrpc.RouteGuideImplBase {
+private static class RouteGuideService extends RouteGuideGrpc.RouteGuideImplBase &#123;
 ...
-}
+&#125;
 ```
 
 ##### Simple RPC
@@ -493,30 +493,30 @@ private static class RouteGuideService extends RouteGuideGrpc.RouteGuideImplBase
 
 ```java
 @Override
-public void getFeature(Point request, StreamObserver<Feature> responseObserver) {
+public void getFeature(Point request, StreamObserver&lt;Feature> responseObserver) &#123;
   responseObserver.onNext(checkFeature(request));
   responseObserver.onCompleted();
-}
+&#125;
 
 ...
 
-private Feature checkFeature(Point location) {
-  for (Feature feature : features) {
+private Feature checkFeature(Point location) &#123;
+  for (Feature feature : features) &#123;
     if (feature.getLocation().getLatitude() == location.getLatitude()
-        && feature.getLocation().getLongitude() == location.getLongitude()) {
+        && feature.getLocation().getLongitude() == location.getLongitude()) &#123;
       return feature;
-    }
-  }
+    &#125;
+  &#125;
 
   // No feature was found, return an unnamed feature.
   return Feature.newBuilder().setName("").setLocation(location).build();
-}
+&#125;
 ```
 
 The `getFeature()` method takes two parameters:
 
 - `Point`: the request
-- `StreamObserver<Feature>`: a response observer, which is a special interface for the server to call with its response.
+- `StreamObserver&lt;Feature>`: a response observer, which is a special interface for the server to call with its response.
 
 To return our response to the client and complete the call:
 
@@ -529,30 +529,30 @@ To return our response to the client and complete the call:
 Next let’s look at one of our streaming RPCs. `ListFeatures` is a server-side streaming RPC, so we need to send back multiple `Feature`s to our client.
 
 ```java
-private final Collection<Feature> features;
+private final Collection&lt;Feature> features;
 
 ...
 
 @Override
-public void listFeatures(Rectangle request, StreamObserver<Feature> responseObserver) {
+public void listFeatures(Rectangle request, StreamObserver&lt;Feature> responseObserver) &#123;
   int left = min(request.getLo().getLongitude(), request.getHi().getLongitude());
   int right = max(request.getLo().getLongitude(), request.getHi().getLongitude());
   int top = max(request.getLo().getLatitude(), request.getHi().getLatitude());
   int bottom = min(request.getLo().getLatitude(), request.getHi().getLatitude());
 
-  for (Feature feature : features) {
-    if (!RouteGuideUtil.exists(feature)) {
+  for (Feature feature : features) &#123;
+    if (!RouteGuideUtil.exists(feature)) &#123;
       continue;
-    }
+    &#125;
 
     int lat = feature.getLocation().getLatitude();
     int lon = feature.getLocation().getLongitude();
-    if (lon >= left && lon <= right && lat >= bottom && lat <= top) {
+    if (lon >= left && lon &lt;= right && lat >= bottom && lat &lt;= top) &#123;
       responseObserver.onNext(feature);
-    }
-  }
+    &#125;
+  &#125;
   responseObserver.onCompleted();
-}
+&#125;
 ```
 
 Like the simple RPC, this method gets a request object (the `Rectangle` in which our client wants to find `Feature`s) and a `StreamObserver` response observer.
@@ -565,8 +565,8 @@ Now let’s look at something a little more complicated: the client-side streami
 
 ```java
 @Override
-public StreamObserver<Point> recordRoute(final StreamObserver<RouteSummary> responseObserver) {
-  return new StreamObserver<Point>() {
+public StreamObserver&lt;Point> recordRoute(final StreamObserver&lt;RouteSummary> responseObserver) &#123;
+  return new StreamObserver&lt;Point>() &#123;
     int pointCount;
     int featureCount;
     int distance;
@@ -574,34 +574,34 @@ public StreamObserver<Point> recordRoute(final StreamObserver<RouteSummary> resp
     long startTime = System.nanoTime();
 
     @Override
-    public void onNext(Point point) {
+    public void onNext(Point point) &#123;
       pointCount++;
-      if (RouteGuideUtil.exists(checkFeature(point))) {
+      if (RouteGuideUtil.exists(checkFeature(point))) &#123;
         featureCount++;
-      }
+      &#125;
       // For each point after the first, add the incremental distance from the previous point
       // to the total distance value.
-      if (previous != null) {
+      if (previous != null) &#123;
         distance += calcDistance(previous, point);
-      }
+      &#125;
       previous = point;
-    }
+    &#125;
 
     @Override
-    public void onError(Throwable t) {
+    public void onError(Throwable t) &#123;
       logger.log(Level.WARNING, "Encountered error in recordRoute", t);
-    }
+    &#125;
 
     @Override
-    public void onCompleted() {
+    public void onCompleted() &#123;
       long seconds = NANOSECONDS.toSeconds(System.nanoTime() - startTime);
       responseObserver.onNext(RouteSummary.newBuilder().setPointCount(pointCount)
           .setFeatureCount(featureCount).setDistance(distance)
           .setElapsedTime((int) seconds).build());
       responseObserver.onCompleted();
-    }
-  };
-}
+    &#125;
+  &#125;;
+&#125;
 ```
 
 As you can see, like the previous method types our method gets a `StreamObserver` response observer parameter, but this time it returns a `StreamObserver` for the client to write its `Point`s.
@@ -617,61 +617,61 @@ Finally, let’s look at our bidirectional streaming RPC `RouteChat()`.
 
 ```java
 @Override
-public StreamObserver<RouteNote> routeChat(final StreamObserver<RouteNote> responseObserver) {
-  return new StreamObserver<RouteNote>() {
+public StreamObserver&lt;RouteNote> routeChat(final StreamObserver&lt;RouteNote> responseObserver) &#123;
+  return new StreamObserver&lt;RouteNote>() &#123;
     @Override
-    public void onNext(RouteNote note) {
-      List<RouteNote> notes = getOrCreateNotes(note.getLocation());
+    public void onNext(RouteNote note) &#123;
+      List&lt;RouteNote> notes = getOrCreateNotes(note.getLocation());
 
       // Respond with all previous notes at this location.
-      for (RouteNote prevNote : notes.toArray(new RouteNote[0])) {
+      for (RouteNote prevNote : notes.toArray(new RouteNote[0])) &#123;
         responseObserver.onNext(prevNote);
-      }
+      &#125;
 
       // Now add the new note to the list
       notes.add(note);
-    }
+    &#125;
 
     @Override
-    public void onError(Throwable t) {
+    public void onError(Throwable t) &#123;
       logger.log(Level.WARNING, "Encountered error in routeChat", t);
-    }
+    &#125;
 
     @Override
-    public void onCompleted() {
+    public void onCompleted() &#123;
       responseObserver.onCompleted();
-    }
-  };
-}
+    &#125;
+  &#125;;
+&#125;
 ```
 
 As with our client-side streaming example, we both get and return a `StreamObserver` response observer, **except this time we return values via our method’s response observer while the client is still writing messages to *their* message stream**. 
 
 The syntax for reading and writing here is exactly the same as for our client-streaming and server-streaming methods. 
 
-Although **each side will always get the other’s messages in the order they were written**, <u>both the client and server can read and write in any order — the streams operate completely independently.</u>
+Although **each side will always get the other’s messages in the order they were written**, &lt;u>both the client and server can read and write in any order — the streams operate completely independently.&lt;/u>
 
 #### 运行 server
 
 ​	Once we’ve implemented all our methods, we also need to start up a gRPC server so that clients can actually use our service. The following snippet shows how we do this for our `RouteGuide` service:
 
 ```java
-public RouteGuideServer(int port, URL featureFile) throws IOException {
+public RouteGuideServer(int port, URL featureFile) throws IOException &#123;
   this(ServerBuilder.forPort(port), port, RouteGuideUtil.parseFeatures(featureFile));
-}
+&#125;
 
 /** Create a RouteGuide server using serverBuilder as a base and features as data. */
-public RouteGuideServer(ServerBuilder<?> serverBuilder, int port, Collection<Feature> features) {
+public RouteGuideServer(ServerBuilder&lt;?> serverBuilder, int port, Collection&lt;Feature> features) &#123;
   this.port = port;
   server = serverBuilder.addService(new RouteGuideService(features))
       .build();
-}
+&#125;
 ...
-public void start() throws IOException {
+public void start() throws IOException &#123;
   server.start();
   logger.info("Server started, listening on " + port);
  ...
-}
+&#125;
 ```
 
 As you can see, we build and start our server using a `ServerBuilder`.
@@ -696,16 +696,16 @@ To do this, we:
 ​	First we need to create a gRPC *channel* for our stub, specifying the server address and port we want to connect to:
 
 ```java
-public RouteGuideClient(String host, int port) {
+public RouteGuideClient(String host, int port) &#123;
   this(ManagedChannelBuilder.forAddress(host, port).usePlaintext());
-}
+&#125;
 
 /** Construct client for accessing RouteGuide server using the existing channel. */
-public RouteGuideClient(ManagedChannelBuilder<?> channelBuilder) {
+public RouteGuideClient(ManagedChannelBuilder&lt;?> channelBuilder) &#123;
   channel = channelBuilder.build();
   blockingStub = RouteGuideGrpc.newBlockingStub(channel);
   asyncStub = RouteGuideGrpc.newStub(channel);
-}
+&#125;
 ```
 
 ​	We use a `ManagedChannelBuilder` to create the channel.
@@ -728,12 +728,12 @@ Calling the simple RPC `GetFeature` on the blocking stub is as straightforward a
 ```java
 Point request = Point.newBuilder().setLatitude(lat).setLongitude(lon).build();
 Feature feature;
-try {
+try &#123;
   feature = blockingStub.getFeature(request);
-} catch (StatusRuntimeException e) {
-  logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
+&#125; catch (StatusRuntimeException e) &#123;
+  logger.log(Level.WARNING, "RPC failed: &#123;0&#125;", e.getStatus());
   return;
-}
+&#125;
 ```
 
 We create and populate a request protocol buffer object (in our case `Point`), pass it to the `getFeature()` method on our blocking stub, and get back a `Feature`.
@@ -749,76 +749,76 @@ Rectangle request =
     Rectangle.newBuilder()
         .setLo(Point.newBuilder().setLatitude(lowLat).setLongitude(lowLon).build())
         .setHi(Point.newBuilder().setLatitude(hiLat).setLongitude(hiLon).build()).build();
-Iterator<Feature> features;
-try {
+Iterator&lt;Feature> features;
+try &#123;
   features = blockingStub.listFeatures(request);
-} catch (StatusRuntimeException e) {
-  logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
+&#125; catch (StatusRuntimeException e) &#123;
+  logger.log(Level.WARNING, "RPC failed: &#123;0&#125;", e.getStatus());
   return;
-}
+&#125;
 ```
 
 As you can see, it’s very similar to the simple RPC we just looked at, except instead of returning a single `Feature`, the method returns an `Iterator` that the client can use to read all the returned `Feature`s.
 
 ##### Client-side streaming RPC
 
-Now for something a little more complicated: the client-side streaming method `RecordRoute`, where we send a stream of `Point`s to the server and get back a single `RouteSummary`. For this method we need to use the **asynchronous stub**. If you’ve already read [Creating the server](https://www.grpc.io/docs/languages/java/basics/#server) some of this may look very familiar - <u>asynchronous streaming RPCs are implemented in a similar way on both sides</u>.
+Now for something a little more complicated: the client-side streaming method `RecordRoute`, where we send a stream of `Point`s to the server and get back a single `RouteSummary`. For this method we need to use the **asynchronous stub**. If you’ve already read [Creating the server](https://www.grpc.io/docs/languages/java/basics/#server) some of this may look very familiar - &lt;u>asynchronous streaming RPCs are implemented in a similar way on both sides&lt;/u>.
 
 ```java
-public void recordRoute(List<Feature> features, int numPoints) throws InterruptedException {
+public void recordRoute(List&lt;Feature> features, int numPoints) throws InterruptedException &#123;
   info("*** RecordRoute");
   final CountDownLatch finishLatch = new CountDownLatch(1);
-  StreamObserver<RouteSummary> responseObserver = new StreamObserver<RouteSummary>() {
+  StreamObserver&lt;RouteSummary> responseObserver = new StreamObserver&lt;RouteSummary>() &#123;
     @Override
-    public void onNext(RouteSummary summary) {
-      info("Finished trip with {0} points. Passed {1} features. "
-          + "Travelled {2} meters. It took {3} seconds.", summary.getPointCount(),
+    public void onNext(RouteSummary summary) &#123;
+      info("Finished trip with &#123;0&#125; points. Passed &#123;1&#125; features. "
+          + "Travelled &#123;2&#125; meters. It took &#123;3&#125; seconds.", summary.getPointCount(),
           summary.getFeatureCount(), summary.getDistance(), summary.getElapsedTime());
-    }
+    &#125;
 
     @Override
-    public void onError(Throwable t) {
+    public void onError(Throwable t) &#123;
       Status status = Status.fromThrowable(t);
-      logger.log(Level.WARNING, "RecordRoute Failed: {0}", status);
+      logger.log(Level.WARNING, "RecordRoute Failed: &#123;0&#125;", status);
       finishLatch.countDown();
-    }
+    &#125;
 
     @Override
-    public void onCompleted() {
+    public void onCompleted() &#123;
       info("Finished RecordRoute");
       finishLatch.countDown();
-    }
-  };
+    &#125;
+  &#125;;
 
-  StreamObserver<Point> requestObserver = asyncStub.recordRoute(responseObserver);
-  try {
+  StreamObserver&lt;Point> requestObserver = asyncStub.recordRoute(responseObserver);
+  try &#123;
     // Send numPoints points randomly selected from the features list.
     Random rand = new Random();
-    for (int i = 0; i < numPoints; ++i) {
+    for (int i = 0; i &lt; numPoints; ++i) &#123;
       int index = rand.nextInt(features.size());
       Point point = features.get(index).getLocation();
-      info("Visiting point {0}, {1}", RouteGuideUtil.getLatitude(point),
+      info("Visiting point &#123;0&#125;, &#123;1&#125;", RouteGuideUtil.getLatitude(point),
           RouteGuideUtil.getLongitude(point));
       requestObserver.onNext(point);
       // Sleep for a bit before sending the next one.
       Thread.sleep(rand.nextInt(1000) + 500);
-      if (finishLatch.getCount() == 0) {
+      if (finishLatch.getCount() == 0) &#123;
         // RPC completed or errored before we finished sending.
         // Sending further requests won't error, but they will just be thrown away.
         return;
-      }
-    }
-  } catch (RuntimeException e) {
+      &#125;
+    &#125;
+  &#125; catch (RuntimeException e) &#123;
     // Cancel RPC
     requestObserver.onError(e);
     throw e;
-  }
+  &#125;
   // Mark the end of requests
   requestObserver.onCompleted();
 
   // Receiving happens asynchronously
   finishLatch.await(1, TimeUnit.MINUTES);
-}
+&#125;
 ```
 
 As you can see, to call this method we need to create a `StreamObserver`, which implements a special interface for the server to call with its `RouteSummary` response. In our `StreamObserver` we:
@@ -833,52 +833,52 @@ We then pass the `StreamObserver` to the asynchronous stub’s `recordRoute()` m
 Finally, let’s look at our bidirectional streaming RPC `RouteChat()`.
 
 ```java
-public void routeChat() throws Exception {
+public void routeChat() throws Exception &#123;
   info("*** RoutChat");
   final CountDownLatch finishLatch = new CountDownLatch(1);
-  StreamObserver<RouteNote> requestObserver =
-      asyncStub.routeChat(new StreamObserver<RouteNote>() {
+  StreamObserver&lt;RouteNote> requestObserver =
+      asyncStub.routeChat(new StreamObserver&lt;RouteNote>() &#123;
         @Override
-        public void onNext(RouteNote note) {
-          info("Got message \"{0}\" at {1}, {2}", note.getMessage(), note.getLocation()
+        public void onNext(RouteNote note) &#123;
+          info("Got message \"&#123;0&#125;\" at &#123;1&#125;, &#123;2&#125;", note.getMessage(), note.getLocation()
               .getLatitude(), note.getLocation().getLongitude());
-        }
+        &#125;
 
         @Override
-        public void onError(Throwable t) {
+        public void onError(Throwable t) &#123;
           Status status = Status.fromThrowable(t);
-          logger.log(Level.WARNING, "RouteChat Failed: {0}", status);
+          logger.log(Level.WARNING, "RouteChat Failed: &#123;0&#125;", status);
           finishLatch.countDown();
-        }
+        &#125;
 
         @Override
-        public void onCompleted() {
+        public void onCompleted() &#123;
           info("Finished RouteChat");
           finishLatch.countDown();
-        }
-      });
+        &#125;
+      &#125;);
 
-  try {
+  try &#123;
     RouteNote[] requests =
-        {newNote("First message", 0, 0), newNote("Second message", 0, 1),
-            newNote("Third message", 1, 0), newNote("Fourth message", 1, 1)};
+        &#123;newNote("First message", 0, 0), newNote("Second message", 0, 1),
+            newNote("Third message", 1, 0), newNote("Fourth message", 1, 1)&#125;;
 
-    for (RouteNote request : requests) {
-      info("Sending message \"{0}\" at {1}, {2}", request.getMessage(), request.getLocation()
+    for (RouteNote request : requests) &#123;
+      info("Sending message \"&#123;0&#125;\" at &#123;1&#125;, &#123;2&#125;", request.getMessage(), request.getLocation()
           .getLatitude(), request.getLocation().getLongitude());
       requestObserver.onNext(request);
-    }
-  } catch (RuntimeException e) {
+    &#125;
+  &#125; catch (RuntimeException e) &#123;
     // Cancel RPC
     requestObserver.onError(e);
     throw e;
-  }
+  &#125;
   // Mark the end of requests
   requestObserver.onCompleted();
 
   // Receiving happens asynchronously
   finishLatch.await(1, TimeUnit.MINUTES);
-}
+&#125;
 ```
 
 As with our client-side streaming example, we both get and return a `StreamObserver` response observer, except this time we send values via our method’s response observer while the server is still writing messages to *their* message stream. The syntax for reading and writing here is exactly the same as for our client-streaming method. Although each side will always get the other’s messages in the order they were written, both the client and server can read and write in any order — the streams operate completely independently.
@@ -928,7 +928,7 @@ ManagedChannel managedChannel = AltsChannelBuilder.forTarget(serverAddress).buil
 import io.grpc.alts.AltsServerBuilder;
 import io.grpc.Server;
 
-Server server = AltsServerBuilder.forPort(<port>)
+Server server = AltsServerBuilder.forPort(&lt;port>)
     .addService(new MyServiceImpl()).build().start();
 ```
 
@@ -956,7 +956,7 @@ import io.grpc.alts.AuthorizationUtil;
 import io.grpc.ServerCall;
 import io.grpc.Status;
 
-ServerCall<?, ?> call;
+ServerCall&lt;?, ?> call;
 Status status = AuthorizationUtil.clientAuthorizationCheck(
     call, Lists.newArrayList("foo@iam.gserviceaccount.com"));
 ```
@@ -1002,7 +1002,7 @@ The service stub signature for a unary RPC method `unaryExample`：
 ```java
 public void unaryExample(
     RequestType request,
-    StreamObserver<ResponseType> responseObserver)
+    StreamObserver&lt;ResponseType> responseObserver)
 ```
 
 ##### Server-streaming
@@ -1012,18 +1012,18 @@ The service stub signature for a server-streaming RPC method `serverStreamingExa
 ```java
 public void serverStreamingExample(
     RequestType request,
-    StreamObserver<ResponseType> responseObserver)
+    StreamObserver&lt;ResponseType> responseObserver)
 ```
 
-<u>Notice that the signatures for unary and server-streaming RPCs are the same.</u> A single `RequestType` is received from the client, and the service implementation sends its response(s) by invoking `responseObserver.onNext(ResponseType response)`.
+&lt;u>Notice that the signatures for unary and server-streaming RPCs are the same.&lt;/u> A single `RequestType` is received from the client, and the service implementation sends its response(s) by invoking `responseObserver.onNext(ResponseType response)`.
 
 ##### Client-streaming
 
 The service stub signature for a client-streaming RPC method `clientStreamingExample`:
 
 ```java
-public StreamObserver<RequestType> clientStreamingExample(
-    StreamObserver<ResponseType> responseObserver)
+public StreamObserver&lt;RequestType> clientStreamingExample(
+    StreamObserver&lt;ResponseType> responseObserver)
 ```
 
 ##### Bidirectional-streaming
@@ -1031,11 +1031,11 @@ public StreamObserver<RequestType> clientStreamingExample(
 The service stub signature for a bidirectional-streaming RPC method `bidirectionalStreamingExample`:
 
 ```java
-public StreamObserver<RequestType> bidirectionalStreamingExample(
-    StreamObserver<ResponseType> responseObserver)
+public StreamObserver&lt;RequestType> bidirectionalStreamingExample(
+    StreamObserver&lt;ResponseType> responseObserver)
 ```
 
-<u>The signatures for client and bidirectional-streaming RPCs are the same</u>. Since the client can send multiple messages to the service, the service implementation is responsible for returning a `StreamObserver<RequestType>` instance. This `StreamObserver` is invoked whenever additional messages are received from the client.
+&lt;u>The signatures for client and bidirectional-streaming RPCs are the same&lt;/u>. Since the client can send multiple messages to the service, the service implementation is responsible for returning a `StreamObserver&lt;RequestType>` instance. This `StreamObserver` is invoked whenever additional messages are received from the client.
 
 #### Client Stubs
 
@@ -1049,7 +1049,7 @@ gRPC支持生成3种类型的stub方法：
 + **blocking**
 + **future**
 
-<u>gRPC Java generates code for three types of stubs: **asynchronous**, **blocking**, and **future**</u>. Each type of stub has a corresponding class in the generated code, such as `ServiceNameStub`, `ServiceNameBlockingStub`, and `ServiceNameFutureStub`.
+&lt;u>gRPC Java generates code for three types of stubs: **asynchronous**, **blocking**, and **future**&lt;/u>. Each type of stub has a corresponding class in the generated code, such as `ServiceNameStub`, `ServiceNameBlockingStub`, and `ServiceNameFutureStub`.
 
 ##### Asynchronous Stub
 
@@ -1067,7 +1067,7 @@ The asynchronous stub signature for a unary RPC method `unaryExample`:
 
 public void unaryExample(
     RequestType request,
-    StreamObserver<ResponseType> responseObserver)
+    StreamObserver&lt;ResponseType> responseObserver)
 ```
 
 ###### Server-streaming
@@ -1077,7 +1077,7 @@ The asynchronous stub signature for a server-streaming RPC method `serverStreami
 ```java
 public void serverStreamingExample(
     RequestType request,
-    StreamObserver<ResponseType> responseObserver)
+    StreamObserver&lt;ResponseType> responseObserver)
 ```
 
 ###### Client-streaming[ ](https://www.grpc.io/docs/languages/java/generated-code/#client-streaming-1)
@@ -1085,8 +1085,8 @@ public void serverStreamingExample(
 The asynchronous stub signature for a client-streaming RPC method `clientStreamingExample`:
 
 ```java
-public StreamObserver<RequestType> clientStreamingExample(
-    StreamObserver<ResponseType> responseObserver)
+public StreamObserver&lt;RequestType> clientStreamingExample(
+    StreamObserver&lt;ResponseType> responseObserver)
 ```
 
 ###### Bidirectional-streaming
@@ -1094,8 +1094,8 @@ public StreamObserver<RequestType> clientStreamingExample(
 The asynchronous stub signature for a bidirectional-streaming RPC method `bidirectionalStreamingExample`:
 
 ```java
-public StreamObserver<RequestType> bidirectionalStreamingExample(
-    StreamObserver<ResponseType> responseObserver)
+public StreamObserver&lt;RequestType> bidirectionalStreamingExample(
+    StreamObserver&lt;ResponseType> responseObserver)
 ```
 
 ##### Blocking Stub
@@ -1119,12 +1119,12 @@ public ResponseType unaryExample(RequestType request)
 The blocking stub signature for a server-streaming RPC method `serverStreamingExample`:
 
 ```java
-public Iterator<ResponseType> serverStreamingExample(RequestType request)
+public Iterator&lt;ResponseType> serverStreamingExample(RequestType request)
 ```
 
 ##### Future Stub
 
-RPCs made via a future stub wrap the return value of the asynchronous stub in a `GrpcFuture<ResponseType>`, which implements the `com.google.common.util.concurrent.ListenableFuture` interface.
+RPCs made via a future stub wrap the return value of the asynchronous stub in a `GrpcFuture&lt;ResponseType>`, which implements the `com.google.common.util.concurrent.ListenableFuture` interface.
 
 The future stub contains one Java method for each unary method in the service definition. **Future stubs do not support streaming calls**.
 
@@ -1135,7 +1135,7 @@ A new future stub is instantiated via the `ServiceNameGrpc.newFutureStub(Channel
 The future stub signature for a unary RPC method `unaryExample`:
 
 ```java
-public ListenableFuture<ResponseType> unaryExample(RequestType request)
+public ListenableFuture&lt;ResponseType> unaryExample(RequestType request)
 ```
 
 #### 代码生成
@@ -1147,35 +1147,35 @@ For protobuf-based codegen, you can put your `.proto` files in the `src/main/pro
 A typical [protobuf-maven-plugin](https://www.xolstice.org/protobuf-maven-plugin/) configuration for generating gRPC and Protocol Buffers code would look like the following:
 
 ```xml
-<build>
-  <extensions>
-    <extension>
-      <groupId>kr.motd.maven</groupId>
-      <artifactId>os-maven-plugin</artifactId>
-      <version>1.4.1.Final</version>
-    </extension>
-  </extensions>
-  <plugins>
-    <plugin>
-      <groupId>org.xolstice.maven.plugins</groupId>
-      <artifactId>protobuf-maven-plugin</artifactId>
-      <version>0.5.0</version>
-      <configuration>
-        <protocArtifact>com.google.protobuf:protoc:3.3.0:exe:${os.detected.classifier}</protocArtifact>
-        <pluginId>grpc-java</pluginId>
-        <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.4.0:exe:${os.detected.classifier}</pluginArtifact>
-      </configuration>
-      <executions>
-        <execution>
-          <goals>
-            <goal>compile</goal>
-            <goal>compile-custom</goal>
-          </goals>
-        </execution>
-      </executions>
-    </plugin>
-  </plugins>
-</build>
+&lt;build>
+  &lt;extensions>
+    &lt;extension>
+      &lt;groupId>kr.motd.maven&lt;/groupId>
+      &lt;artifactId>os-maven-plugin&lt;/artifactId>
+      &lt;version>1.4.1.Final&lt;/version>
+    &lt;/extension>
+  &lt;/extensions>
+  &lt;plugins>
+    &lt;plugin>
+      &lt;groupId>org.xolstice.maven.plugins&lt;/groupId>
+      &lt;artifactId>protobuf-maven-plugin&lt;/artifactId>
+      &lt;version>0.5.0&lt;/version>
+      &lt;configuration>
+        &lt;protocArtifact>com.google.protobuf:protoc:3.3.0:exe:$&#123;os.detected.classifier&#125;&lt;/protocArtifact>
+        &lt;pluginId>grpc-java&lt;/pluginId>
+        &lt;pluginArtifact>io.grpc:protoc-gen-grpc-java:1.4.0:exe:$&#123;os.detected.classifier&#125;&lt;/pluginArtifact>
+      &lt;/configuration>
+      &lt;executions>
+        &lt;execution>
+          &lt;goals>
+            &lt;goal>compile&lt;/goal>
+            &lt;goal>compile-custom&lt;/goal>
+          &lt;/goals>
+        &lt;/execution>
+      &lt;/executions>
+    &lt;/plugin>
+  &lt;/plugins>
+&lt;/build>
 ```
 
 Eclipse and NetBeans users should also look at `os-maven-plugin`’s [IDE documentation](https://github.com/trustin/os-maven-plugin#issues-with-eclipse-m2e-or-other-ides).
@@ -1186,32 +1186,32 @@ A typical [protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plu
 apply plugin: 'java'
 apply plugin: 'com.google.protobuf'
 
-buildscript {
-  repositories {
+buildscript &#123;
+  repositories &#123;
     mavenCentral()
-  }
-  dependencies {
+  &#125;
+  dependencies &#123;
     // ASSUMES GRADLE 2.12 OR HIGHER. Use plugin version 0.7.5 with earlier
     // gradle versions
     classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.0'
-  }
-}
+  &#125;
+&#125;
 
-protobuf {
-  protoc {
+protobuf &#123;
+  protoc &#123;
     artifact = "com.google.protobuf:protoc:3.2.0"
-  }
-  plugins {
-    grpc {
+  &#125;
+  plugins &#123;
+    grpc &#123;
       artifact = 'io.grpc:protoc-gen-grpc-java:1.4.0'
-    }
-  }
-  generateProtoTasks {
-    all()*.plugins {
-      grpc {}
-    }
-  }
-}
+    &#125;
+  &#125;
+  generateProtoTasks &#123;
+    all()*.plugins &#123;
+      grpc &#123;&#125;
+    &#125;
+  &#125;
+&#125;
 ```
 
 Bazel developers can use the [`java_grpc_library`](https://github.com/grpc/grpc-java/blob/master/java_grpc_library.bzl) rule, typically as follows:
@@ -1315,11 +1315,11 @@ A user guide of both general and language-specific best practices to improve per
 
 + **Token-based authentication with Google**
 
-  gRPC provides a generic mechanism (described below) to attach metadata based credentials to requests and responses. Additional support for acquiring access tokens (typically OAuth2 tokens) while accessing Google APIs through gRPC is provided for certain auth flows: you can see how this works in our code examples below. In general this mechanism must be used *as well as* SSL/TLS on the channel - <u>Google will not allow connections without SSL/TLS, and most gRPC language implementations will not let you send credentials on an unencrypted channel</u>.
+  gRPC provides a generic mechanism (described below) to attach metadata based credentials to requests and responses. Additional support for acquiring access tokens (typically OAuth2 tokens) while accessing Google APIs through gRPC is provided for certain auth flows: you can see how this works in our code examples below. In general this mechanism must be used *as well as* SSL/TLS on the channel - &lt;u>Google will not allow connections without SSL/TLS, and most gRPC language implementations will not let you send credentials on an unencrypted channel&lt;/u>.
 
 > Warning
 >
-> Google credentials should only be used to connect to Google services. <u>Sending a Google issued OAuth2 token to a non-Google service could result in this token being stolen and used to impersonate the client to Google services.</u>
+> Google credentials should only be used to connect to Google services. &lt;u>Sending a Google issued OAuth2 token to a non-Google service could result in this token being stolen and used to impersonate the client to Google services.&lt;/u>
 
 ### 认证API
 
@@ -1348,7 +1348,7 @@ auto channel_creds = grpc::SslCredentials(grpc::SslCredentialsOptions());
 // Create a channel using the credentials created in the previous step.
 auto channel = grpc::CreateChannel(server_name, channel_creds);
 // Create a stub on the channel.
-std::unique_ptr<Greeter::Stub> stub(Greeter::NewStub(channel));
+std::unique_ptr&lt;Greeter::Stub> stub(Greeter::NewStub(channel));
 // Make actual RPC calls on the stub.
 grpc::Status s = stub->sayHello(&context, *request, response);
 ```
@@ -1367,13 +1367,13 @@ grpc::Status s = stub->sayHello(&context, *request, response);
 auto creds = grpc::GoogleDefaultCredentials();
 // Create a channel, stub and make RPC calls (same as in the previous example)
 auto channel = grpc::CreateChannel(server_name, creds);
-std::unique_ptr<Greeter::Stub> stub(Greeter::NewStub(channel));
+std::unique_ptr&lt;Greeter::Stub> stub(Greeter::NewStub(channel));
 grpc::Status s = stub->sayHello(&context, *request, response);
 ```
 
 ​	This channel credentials object works for applications using Service Accounts as well as for applications running in [Google Compute Engine (GCE)](https://cloud.google.com/compute/). In the former case, the service account’s private keys are loaded from the file named in the environment variable `GOOGLE_APPLICATION_CREDENTIALS`. The keys are used to generate bearer tokens that are attached to each outgoing RPC on the corresponding channel.
 
-​	<u>For applications running in GCE, a default service account and corresponding OAuth2 scopes can be configured during VM setup.</u> At run-time, this credential handles communication with the authentication systems to obtain OAuth2 access tokens and attaches them to each outgoing RPC on the corresponding channel.
+​	&lt;u>For applications running in GCE, a default service account and corresponding OAuth2 scopes can be configured during VM setup.&lt;/u> At run-time, this credential handles communication with the authentication systems to obtain OAuth2 access tokens and attaches them to each outgoing RPC on the corresponding channel.
 
 #### Extending gRPC to support other authentication mechanisms
 
@@ -1385,28 +1385,28 @@ grpc::Status s = stub->sayHello(&context, *request, response);
 ​	Here is example of a simple credentials plugin which sets an authentication ticket in a custom header.
 
 ```c++
-class MyCustomAuthenticator : public grpc::MetadataCredentialsPlugin {
+class MyCustomAuthenticator : public grpc::MetadataCredentialsPlugin &#123;
   public:
-  MyCustomAuthenticator(const grpc::string& ticket) : ticket_(ticket) {}
+  MyCustomAuthenticator(const grpc::string& ticket) : ticket_(ticket) &#123;&#125;
 
   grpc::Status GetMetadata(
     grpc::string_ref service_url, grpc::string_ref method_name,
     const grpc::AuthContext& channel_auth_context,
-    std::multimap<grpc::string, grpc::string>* metadata) override {
+    std::multimap&lt;grpc::string, grpc::string>* metadata) override &#123;
     metadata->insert(std::make_pair("x-custom-auth-ticket", ticket_));
     return grpc::Status::OK;
-  }
+  &#125;
 
   private:
   grpc::string ticket_;
-};
+&#125;;
 
 auto call_creds = grpc::MetadataCredentialsFromPlugin(
-  std::unique_ptr<grpc::MetadataCredentialsPlugin>(
+  std::unique_ptr&lt;grpc::MetadataCredentialsPlugin>(
     new MyCustomAuthenticator("super-secret-ticket")));
 ```
 
-​	A deeper integration can be achieved by plugging in a gRPC credentials implementation at the core level. <u>gRPC internals also allow switching out SSL/TLS with other encryption mechanisms.</u>
+​	A deeper integration can be achieved by plugging in a gRPC credentials implementation at the core level. &lt;u>gRPC internals also allow switching out SSL/TLS with other encryption mechanisms.&lt;/u>
 
 ### Examples
 
@@ -1425,9 +1425,9 @@ GreeterGrpc.GreeterStub stub = GreeterGrpc.newStub(channel);
 
 **With server authentication SSL/TLS**
 
-<u>In Java we recommend that you use OpenSSL when using gRPC over TLS</u>. You can find details about installing and using OpenSSL and other required libraries for both Android and non-Android Java in the gRPC Java [Security](https://github.com/grpc/grpc-java/blob/master/SECURITY.md#transport-security-tls) documentation.
+&lt;u>In Java we recommend that you use OpenSSL when using gRPC over TLS&lt;/u>. You can find details about installing and using OpenSSL and other required libraries for both Android and non-Android Java in the gRPC Java [Security](https://github.com/grpc/grpc-java/blob/master/SECURITY.md#transport-security-tls) documentation.
 
-To enable TLS on a server, a certificate chain and private key need to be specified in PEM format. Such private key should not be using a password. The order of certificates in the chain matters: more specifically, the certificate at the top has to be the host CA, while the one at the very bottom has to be the root CA. <u>The standard TLS port is 443, but we use 8443 below to avoid needing extra permissions from the OS</u>.
+To enable TLS on a server, a certificate chain and private key need to be specified in PEM format. Such private key should not be using a password. The order of certificates in the chain matters: more specifically, the certificate at the top has to be the host CA, while the one at the very bottom has to be the root CA. &lt;u>The standard TLS port is 443, but we use 8443 below to avoid needing extra permissions from the OS&lt;/u>.
 
 ```java
 Server server = ServerBuilder.forPort(8443)
@@ -1602,7 +1602,7 @@ For sample code illustrating how to handle various gRPC errors, see the [grpc-er
 
   ***Side note:*** *This does not apply to Python (see Python section for details).*
 
-- *(Special topic)* <u>Each gRPC channel uses 0 or more HTTP/2 connections and each connection usually has a limit on the number of concurrent streams</u>. When the number of active RPCs on the connection reaches this limit, additional RPCs are queued in the client and must wait for active RPCs to finish before they are sent. <u>Applications with high load or long-lived streaming RPCs might see performance issues because of this queueing</u>. There are two possible solutions:
+- *(Special topic)* &lt;u>Each gRPC channel uses 0 or more HTTP/2 connections and each connection usually has a limit on the number of concurrent streams&lt;/u>. When the number of active RPCs on the connection reaches this limit, additional RPCs are queued in the client and must wait for active RPCs to finish before they are sent. &lt;u>Applications with high load or long-lived streaming RPCs might see performance issues because of this queueing&lt;/u>. There are two possible solutions:
 
   1. **Create a separate channel for each area of high load** in the application.
   2. **Use a pool of gRPC channels** to distribute RPCs over multiple connections (channels must have different channel args to prevent re-use so define a use-specific channel arg such as channel number).

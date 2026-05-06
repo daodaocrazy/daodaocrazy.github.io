@@ -1,12 +1,12 @@
 # ElasticSearch个人笔记
 
-> [Elasticsearch Reference](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html)	<=	官方文档链接
+> [Elasticsearch Reference](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html)	&lt;=	官方文档链接
 >
 > 官方文档加载极慢(无FQ软件情况下)，建议mac使用Dash离线api软件下载ElasticSearch文档；
 >
 > Windows和Linux用户可以用Zeal离线api软件做同样操作。
 >
-> [gavin5033的博客 -- ELK专栏](https://blog.csdn.net/gavin5033/category_8070372.html)	<=	**下面很多内容参考该博客。下面不再反复强调了**。
+> [gavin5033的博客 -- ELK专栏](https://blog.csdn.net/gavin5033/category_8070372.html)	&lt;=	**下面很多内容参考该博客。下面不再反复强调了**。
 
 # 1. RESTful API回顾
 
@@ -28,7 +28,7 @@
 
 ```shell
 curl -XPUT "127.0.0.1:9200/index_test"
-{"acknowledged":true,"shards_acknowledged":true,"index":"index_test"}%
+&#123;"acknowledged":true,"shards_acknowledged":true,"index":"index_test"&#125;%
 ```
 
 ```http
@@ -36,11 +36,11 @@ PUT index_test
 ```
 
 ```json
-{
+&#123;
   "acknowledged" : true,
   "shards_acknowledged" : true,
   "index" : "index_test"
-}
+&#125;
 ```
 
 #### 2. 创建index的mapping
@@ -49,67 +49,67 @@ PUT index_test
 
 ```shell
 curl -X PUT "localhost:9200/my-index-000001?pretty" -H 'Content-Type: application/json' -d'
-{
-  "mappings": {
-    "properties": {
-      "age":    { "type": "integer" },  
-      "email":  { "type": "keyword"  }, 
-      "name":   { "type": "text"  }     
-    }
-  }
-}
+&#123;
+  "mappings": &#123;
+    "properties": &#123;
+      "age":    &#123; "type": "integer" &#125;,  
+      "email":  &#123; "type": "keyword"  &#125;, 
+      "name":   &#123; "type": "text"  &#125;     
+    &#125;
+  &#125;
+&#125;
 '
 
-{
+&#123;
   "acknowledged" : true,
   "shards_acknowledged" : true,
   "index" : "my-index-000001"
-}
+&#125;
 ```
 
 ```http
 PUT /my-index-000002
-{
-  "mappings": {
-    "properties": {
-      "age":    { "type": "integer" },  
-      "email":  { "type": "keyword"  }, 
-      "name":   { "type": "text"  }     
-    }
-  }
-}
+&#123;
+  "mappings": &#123;
+    "properties": &#123;
+      "age":    &#123; "type": "integer" &#125;,  
+      "email":  &#123; "type": "keyword"  &#125;, 
+      "name":   &#123; "type": "text"  &#125;     
+    &#125;
+  &#125;
+&#125;
 ```
 
 ```json
-{
+&#123;
   "acknowledged" : true,
   "shards_acknowledged" : true,
   "index" : "my-index-000002"
-}
+&#125;
 ```
 
 ##### 2. 配置文件方式
 
-> [实时搜索引擎Elasticsearch（2）——Rest API的使用](https://blog.csdn.net/gavin5033/article/details/82774529)	<=	我自己暂时未尝试该方式
+> [实时搜索引擎Elasticsearch（2）——Rest API的使用](https://blog.csdn.net/gavin5033/article/details/82774529)	&lt;=	我自己暂时未尝试该方式
 
 1. 创建一个扩展名为test_type.json的文件名，其中type_test就是mapping所对应的type名
 
 2. 在test_type.json中输入mapping信息。假设你的mapping如下：
 
    ```json
-   {
-     "test_type": { # 注意，这里的test_type与json文件名必须一致
-         "properties": {
-           "name": {
+   &#123;
+     "test_type": &#123; # 注意，这里的test_type与json文件名必须一致
+         "properties": &#123;
+           "name": &#123;
              "type": "string",
              "index": "not_analyzed"
-           },
-           "age": {
+           &#125;,
+           "age": &#123;
              "type": "integer"
-           }
-         }
-       }
-     }
+           &#125;
+         &#125;
+       &#125;
+     &#125;
    ```
 
 3. 在$ES_HOME/config/路径下创建mappings/index_test子目录，这里的index_test目录名必须与我们要建立的索引名一致。将test_type.json文件拷贝到index_tes目录下。
@@ -126,42 +126,42 @@ PUT /my-index-000002
 
 ```shell
 curl -X PUT "localhost:9200/my-index-000001/_doc/1?pretty" -H 'Content-Type: application/json' -d'
-{
+&#123;
   "@timestamp": "2099-11-15T13:12:00",
   "message": "GET /search HTTP/1.1 200 1070000",
-  "user": {
+  "user": &#123;
     "id": "kimchy"
-  }
-}
+  &#125;
+&#125;
 '
 ```
 
 ```http
 PUT my-index-000001/_doc/1
-{
+&#123;
   "@timestamp": "2099-11-15T13:12:00",
   "message": "GET /search HTTP/1.1 200 1070000",
-  "user": {
+  "user": &#123;
     "id": "kimchy"
-  }
-}
+  &#125;
+&#125;
 ```
 
 ```json
-{
+&#123;
   "_index" : "my-index-000001",
   "_type" : "_doc",
   "_id" : "1",
   "_version" : 1,
   "result" : "created",
-  "_shards" : {
+  "_shards" : &#123;
     "total" : 2,
     "successful" : 1,
     "failed" : 0
-  },
+  &#125;,
   "_seq_no" : 0,
   "_primary_term" : 1
-}
+&#125;
 ```
 
 ## 1.2 CRUD - R
@@ -277,26 +277,26 @@ GET /kibana_sample_data_ecommerce/_mapping
 ```
 
 ```json
-{
-  "kibana_sample_data_ecommerce" : {
-    "mappings" : {
-      "properties" : {
-        "category" : {
+&#123;
+  "kibana_sample_data_ecommerce" : &#123;
+    "mappings" : &#123;
+      "properties" : &#123;
+        "category" : &#123;
           "type" : "text",
-          "fields" : {
-            "keyword" : {
+          "fields" : &#123;
+            "keyword" : &#123;
               "type" : "keyword"
-            }
-          }
-        },
-        "currency" : {
+            &#125;
+          &#125;
+        &#125;,
+        "currency" : &#123;
           "type" : "keyword"
-        },
+        &#125;,
         //....
-      }
-    }
-  }
-}
+      &#125;
+    &#125;
+  &#125;
+&#125;
 ```
 
 ### 1.2.4  document - 文档
@@ -314,7 +314,7 @@ GET /my-index-000001/_doc/1?pretty
 ```
 
 ```json
-{
+&#123;
   "_index" : "my-index-000001",
   "_type" : "_doc",
   "_id" : "1",
@@ -322,14 +322,14 @@ GET /my-index-000001/_doc/1?pretty
   "_seq_no" : 5,
   "_primary_term" : 1,
   "found" : true,
-  "_source" : {
+  "_source" : &#123;
     "@timestamp" : "2099-11-15T13:12:00",
     "message" : "GET /search HTTP/1.1 200 1070000",
-    "user" : {
+    "user" : &#123;
       "id" : "kimchy"
-    }
-  }
-}
+    &#125;
+  &#125;
+&#125;
 ```
 
 ## 1.3 CRUD - U
@@ -346,42 +346,42 @@ GET /my-index-000001/_doc/1?pretty
 
 ```shell
 curl -X POST "localhost:9200/my-index-000001/_update/1?pretty" -H 'Content-Type: application/json' -d'
-{
-	"doc":{
-		"user": {
+&#123;
+	"doc":&#123;
+		"user": &#123;
     	"id" : "kitty"
-  	}
-	}
-}
+  	&#125;
+	&#125;
+&#125;
 '
 ```
 
 ```http
 POST /my-index-000001/_update/1?pretty
-{
-	"doc":{
-		"user": {
+&#123;
+	"doc":&#123;
+		"user": &#123;
     	"id" : "kitty"
-  	}
-	}
-}
+  	&#125;
+	&#125;
+&#125;
 ```
 
 ```json
-{
+&#123;
   "_index" : "my-index-000001",
   "_type" : "_doc",
   "_id" : "1",
   "_version" : 2,
   "result" : "updated",
-  "_shards" : {
+  "_shards" : &#123;
     "total" : 2,
     "successful" : 1,
     "failed" : 0
-  },
+  &#125;,
   "_seq_no" : 1,
   "_primary_term" : 1
-}
+&#125;
 ```
 
 
@@ -398,7 +398,7 @@ POST /my-index-000001/_update/1?pretty
 
 ```shell
 curl -X DELETE "127.0.0.1:9200/index_test"          
-{"acknowledged":true}%
+&#123;"acknowledged":true&#125;%
 ```
 
 ```http
@@ -406,9 +406,9 @@ DELETE index_test
 ```
 
 ```json
-{
+&#123;
   "acknowledged" : true
-}
+&#125;
 ```
 
 #### 2. 删除index的mapping
@@ -429,20 +429,20 @@ DELETE /my-index-000001/_doc/1?pretty
 ```
 
 ```json
-{
+&#123;
   "_index" : "my-index-000001",
   "_type" : "_doc",
   "_id" : "1",
   "_version" : 2,
   "result" : "deleted",
-  "_shards" : {
+  "_shards" : &#123;
     "total" : 2,
     "successful" : 1,
     "failed" : 0
-  },
+  &#125;,
   "_seq_no" : 4,
   "_primary_term" : 1
-}
+&#125;
 ```
 
 # 2. CRUD - R
@@ -472,18 +472,18 @@ DELETE /my-index-000001/_doc/1?pretty
 > [Search API](http://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html)
 
 ```http
-GET /<target>/_search
+GET /&lt;target>/_search
 
 GET /_search
 
-POST /<target>/_search
+POST /&lt;target>/_search
 
 POST /_search
 ```
 
 ## 2.1 match all query
 
-### 1. `GET /<target>/_search`
+### 1. `GET /&lt;target>/_search`
 
 ​	查询时，ES服务端默认对查询结果做了分页处理，每页默认的大小为10。如果想自己指定查询的数据，可使用from和size字段，并且按指定的字段排序。
 
@@ -496,28 +496,28 @@ GET /kibana_sample_data_logs/_search
 ```
 
 ```json
-{
+&#123;
   "took" : 0,										// 查询耗时(毫秒)
   "timed_out" : false,					// 是否超时
-  "_shards" : {									
+  "_shards" : &#123;									
     "total" : 1,								// 总共查询的分片数
     "successful" : 1,						// 查询成功的分片数
     "skipped" : 0,							// 查询时跳过的分片数(往往是由于查询带有范围，而分片的数据都在范围外)
     "failed" : 0								// 查询失败的分片数
-  },
-  "hits" : {
-    "total" : {
+  &#125;,
+  "hits" : &#123;
+    "total" : &#123;
       "value" : 10000,					// 本次查询的记录数
       "relation" : "gte"
-    },
+    &#125;,
     "max_score" : 1.0,					// 查询所有数据中的最大score
     "hits" : [
-      {
+      &#123;
         "_index" : "kibana_sample_data_logs",		// 数据所属的索引名
         "_type" : "_doc",												// 数据所属的type
         "_id" : "IWMeO3YB8B3Eg53mS9_J",					// 数据的id值
         "_score" : 1.0,													// 该记录的score
-        "_source" : {														// ES将原始数据保存到_source字段中
+        "_source" : &#123;														// ES将原始数据保存到_source字段中
           "agent" : "Mozilla/5.0 (X11; Linux x86_64; rv:6.0a1) Gecko/20110421 Firefox/6.0a1",
           "bytes" : 6219,
           "clientip" : "223.87.60.27",
@@ -526,97 +526,97 @@ GET /kibana_sample_data_logs/_search
           "timestamp" : "2020-11-29T00:39:02.912Z",
           "url" : "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.3.2.deb_1",
           "utc_time" : "2020-11-29T00:39:02.912Z",
-          "event" : {
+          "event" : &#123;
             "dataset" : "sample_web_logs"
-          }
-        }
-      },
+          &#125;
+        &#125;
+      &#125;,
       // ... 
     ]
-  }
-}
+  &#125;
+&#125;
 ```
 
-### 2. `POST /<target>/_search`
+### 2. `POST /&lt;target>/_search`
 
 ​	这里就演示分页查询+结果排序。
 
 ```shell
 curl -X POST "localhost:9200/kibana_sample_data_logs/_search" -d'
-{
-  "query": {
-    "match_all": {}
-  },
+&#123;
+  "query": &#123;
+    "match_all": &#123;&#125;
+  &#125;,
   "from": 2,        // 从下标2开始取(0，1，2，也就是第三条)
   "size": 4,        // 取4条数据(即2,3,4,5这4条=>如果指数组中的下标的话)
-  "sort": {
-    "clientip": {  // 按clientip字段升序
+  "sort": &#123;
+    "clientip": &#123;  // 按clientip字段升序
       "order": "asc"// 降序为desc
-    }
-  } 
-}
+    &#125;
+  &#125; 
+&#125;
 '
 ```
 
 ```http
 POST /kibana_sample_data_logs/_search
-{
-  "query": {
-    "match_all": {}
-  },
+&#123;
+  "query": &#123;
+    "match_all": &#123;&#125;
+  &#125;,
   "from": 2,    
   "size": 4,     
-  "sort": {
-    "clientip": { 
+  "sort": &#123;
+    "clientip": &#123; 
       "order": "asc"
-    }
-  } 
-}
+    &#125;
+  &#125; 
+&#125;
 ```
 
 ```json
-{
+&#123;
   "took" : 22,
   "timed_out" : false,
-  "_shards" : {
+  "_shards" : &#123;
     "total" : 1,
     "successful" : 1,
     "skipped" : 0,
     "failed" : 0
-  },
-  "hits" : {
-    "total" : {
+  &#125;,
+  "hits" : &#123;
+    "total" : &#123;
       "value" : 10000,
       "relation" : "gte"
-    },
+    &#125;,
     "max_score" : null,
     "hits" : [
-      {
+      &#123;
         "_index" : "kibana_sample_data_logs",
         "_type" : "_doc",
         "_id" : "iWMeO3YB8B3Eg53mVeuE",
         "_score" : null,
-        "_source" : {
+        "_source" : &#123;
           "agent" : "Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.50 Safari/534.24",
           "bytes" : 9145,
           "clientip" : "0.72.176.46",
           "extension" : "deb",
-          "geo" : {
+          "geo" : &#123;
             "srcdest" : "ES:AR",
             "src" : "ES",
             "dest" : "AR",
-            "coordinates" : {
+            "coordinates" : &#123;
               "lat" : 31.68932389,
               "lon" : -87.7613875
-            }
-          },
+            &#125;
+          &#125;,
           "host" : "artifacts.elastic.co",
           "index" : "kibana_sample_data_logs",
           "ip" : "0.72.176.46",
-          "machine" : {
+          "machine" : &#123;
             "ram" : 12884901888,
             "os" : "ios"
-          },
+          &#125;,
           "memory" : null,
           "message" : "0.72.176.46 - - [2018-08-04T19:01:47.849Z] \"GET /beats/metricbeat/metricbeat-6.3.2-amd64.deb HTTP/1.1\" 200 9145 \"-\" \"Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.50 Safari/534.24\"",
           "phpmemory" : null,
@@ -630,25 +630,25 @@ POST /kibana_sample_data_logs/_search
           "timestamp" : "2020-12-12T19:01:47.849Z",
           "url" : "https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-6.3.2-amd64.deb",
           "utc_time" : "2020-12-12T19:01:47.849Z",
-          "event" : {
+          "event" : &#123;
             "dataset" : "sample_web_logs"
-          }
-        },
+          &#125;
+        &#125;,
         "sort" : [
           "0.72.176.46"
         ]
-      },
+      &#125;,
       // ... 另外三项
     ]
-  }
-}
+  &#125;
+&#125;
 ```
 
 > 注意：不要把from设得过大（超过10000），否则会导致ES服务端因频繁GC而无法正常提供服务。其实实际项目中也没有谁会翻那么多页，但是为了ES的可用性，务必要对分页查询的页码做一定的限制。
 
 ## 2.2 term query
 
-> [Term query](https://kapeli.com/dash_share?docset_file=ElasticSearch&docset_name=Elasticsearch&path=www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html&platform=elasticsearch&repo=Main&source=www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html&version=7.10.0)	<=	下面是官方强调的WARNING
+> [Term query](https://kapeli.com/dash_share?docset_file=ElasticSearch&docset_name=Elasticsearch&path=www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html&platform=elasticsearch&repo=Main&source=www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html&version=7.10.0)	&lt;=	下面是官方强调的WARNING
 >
 > 总之：
 >
@@ -687,50 +687,50 @@ POST /kibana_sample_data_logs/_search
 
 ```shell
 curl -X POST "127.0.0.1:9200/kibana_sample_data_flights/_search?pretty" -H 'Content-Type: application/json' -d'
-{
-  "query": {
-    "term": {
+&#123;
+  "query": &#123;
+    "term": &#123;
       "FlightNum": "EAYQW69"
-    }
-  }
-}
+    &#125;
+  &#125;
+&#125;
 '
 ```
 
 ```http
 POST /kibana_sample_data_flights/_search?pretty
-{
-  "query": {
-    "term": {
+&#123;
+  "query": &#123;
+    "term": &#123;
       "FlightNum": "EAYQW69"
-    }
-  }
-}
+    &#125;
+  &#125;
+&#125;
 ```
 
 ```json
-{
+&#123;
   "took" : 0,
   "timed_out" : false,
-  "_shards" : {
+  "_shards" : &#123;
     "total" : 1,
     "successful" : 1,
     "skipped" : 0,
     "failed" : 0
-  },
-  "hits" : {
-    "total" : {
+  &#125;,
+  "hits" : &#123;
+    "total" : &#123;
       "value" : 1,
       "relation" : "eq"
-    },
+    &#125;,
     "max_score" : 9.071844,
     "hits" : [
-      {
+      &#123;
         "_index" : "kibana_sample_data_flights",
         "_type" : "_doc",
         "_id" : "vmQiO3YB8B3Eg53mBRZs",
         "_score" : 9.071844,
-        "_source" : {
+        "_source" : &#123;
           "FlightNum" : "EAYQW69",
           "DestCountry" : "IT",
           "OriginWeather" : "Thunder & Lightning",
@@ -745,30 +745,30 @@ POST /kibana_sample_data_flights/_search?pretty
           "dayOfWeek" : 0,
           "DistanceKilometers" : 555.7377668725265,
           "timestamp" : "2020-11-30T10:33:28",
-          "DestLocation" : {
+          "DestLocation" : &#123;
             "lat" : "45.648399",
             "lon" : "12.1944"
-          },
+          &#125;,
           "DestAirportID" : "TV01",
           "Carrier" : "Kibana Airlines",
           "Cancelled" : true,
           "FlightTimeMin" : 222.74905899019436,
           "Origin" : "Naples International Airport",
-          "OriginLocation" : {
+          "OriginLocation" : &#123;
             "lat" : "40.886002",
             "lon" : "14.2908"
-          },
+          &#125;,
           "DestRegion" : "IT-34",
           "OriginAirportID" : "NA01",
           "OriginRegion" : "IT-72",
           "DestCityName" : "Treviso",
           "FlightTimeHour" : 3.712484316503239,
           "FlightDelayMin" : 180
-        }
-      }
+        &#125;
+      &#125;
     ]
-  }
-}
+  &#125;
+&#125;
 ```
 
 ## 2.3 bool query

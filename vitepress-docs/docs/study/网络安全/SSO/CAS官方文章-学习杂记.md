@@ -1,7 +1,7 @@
 # CAS官方文章-学习杂记
 
 > - [CAS | Apereo](https://www.apereo.org/projects/cas)
-> - [CAS - Home (apereo.github.io)](https://apereo.github.io/cas/6.3.x/index.html)    <=   目前按照当前最新的6.3.X版本进行学习(**以下内容皆出自于此**)
+> - [CAS - Home (apereo.github.io)](https://apereo.github.io/cas/6.3.x/index.html)    &lt;=   目前按照当前最新的6.3.X版本进行学习(**以下内容皆出自于此**)
 
 # CAS Enterprise Single Sign-On
 
@@ -269,7 +269,7 @@ You can download or clone the repositories below to get started with a CAS overl
 | ------------------------------------------------------------ | ------------------------- | -------------------- |
 | [CAS WAR Overlay](https://github.com/apereo/cas-overlay-template) | `cas/build/cas-resources` | `src/main/resources` |
 
-The `cas/build/cas-resources` files are unzipped from `cas.war!WEB-INF\lib\cas-server-webapp-resources-<version>.jar` via `gradle explodeWar` in the overlay.
+The `cas/build/cas-resources` files are unzipped from `cas.war!WEB-INF\lib\cas-server-webapp-resources-&lt;version>.jar` via `gradle explodeWar` in the overlay.
 
 To construct the overlay project, you need to copy directories and files *that you need to customize* in the build directory over to the source directory.
 

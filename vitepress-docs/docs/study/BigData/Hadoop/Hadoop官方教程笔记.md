@@ -72,26 +72,26 @@ Use the following:
 etc/hadoop/core-site.xml:
 
 ```xml
-<configuration>
-    <property>
-        <name>fs.defaultFS</name>
-        <value>hdfs://localhost:9000</value>
-    </property>
-</configuration>
+&lt;configuration>
+    &lt;property>
+        &lt;name>fs.defaultFS&lt;/name>
+        &lt;value>hdfs://localhost:9000&lt;/value>
+    &lt;/property>
+&lt;/configuration>
 ```
 
 etc/hadoop/hdfs-site.xml:
 
 ```xml
-<configuration>
-    <property>
-        <name>dfs.replication</name>
-        <value>1</value>
-    </property>
-</configuration>
+&lt;configuration>
+    &lt;property>
+        &lt;name>dfs.replication&lt;/name>
+        &lt;value>1&lt;/value>
+    &lt;/property>
+&lt;/configuration>
 ```
 
-> 这两个文件的\<configuration\>\</configuration\>	本来都是空的。
+> 这两个文件的\&lt;configuration\>\&lt;/configuration\>	本来都是空的。
 
 #### 4.2.2 设置免密ssh
 
@@ -141,7 +141,7 @@ The following instructions are to run a MapReduce job locally. If you want to ex
 
    ```
      $ bin/hdfs dfs -mkdir /user
-     $ bin/hdfs dfs -mkdir /user/<username>
+     $ bin/hdfs dfs -mkdir /user/&lt;username>
    ```
 
 5. Copy the input files into the distributed filesystem:
@@ -186,34 +186,34 @@ The following instructions assume that 1. ~ 4. steps of [the above instructions]
 
 1. Configure parameters as follows:
 
-   `etc/hadoop/mapred-site.xml`:(这个文件的`<configuration></configuration>`原本是空的)
+   `etc/hadoop/mapred-site.xml`:(这个文件的`&lt;configuration>&lt;/configuration>`原本是空的)
 
    ```
-   <configuration>
-       <property>
-           <name>mapreduce.framework.name</name>
-           <value>yarn</value>
-       </property>
-       <property>
-           <name>mapreduce.application.classpath</name>
-           <value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</value>
-       </property>
-   </configuration>
+   &lt;configuration>
+       &lt;property>
+           &lt;name>mapreduce.framework.name&lt;/name>
+           &lt;value>yarn&lt;/value>
+       &lt;/property>
+       &lt;property>
+           &lt;name>mapreduce.application.classpath&lt;/name>
+           &lt;value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*&lt;/value>
+       &lt;/property>
+   &lt;/configuration>
    ```
 
-   `etc/hadoop/yarn-site.xml`:(这个文件的`<configuration></configuration>`原本是空的)
+   `etc/hadoop/yarn-site.xml`:(这个文件的`&lt;configuration>&lt;/configuration>`原本是空的)
 
    ```
-   <configuration>
-       <property>
-           <name>yarn.nodemanager.aux-services</name>
-           <value>mapreduce_shuffle</value>
-       </property>
-       <property>
-           <name>yarn.nodemanager.env-whitelist</name>
-           <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
-       </property>
-   </configuration>
+   &lt;configuration>
+       &lt;property>
+           &lt;name>yarn.nodemanager.aux-services&lt;/name>
+           &lt;value>mapreduce_shuffle&lt;/value>
+       &lt;/property>
+       &lt;property>
+           &lt;name>yarn.nodemanager.env-whitelist&lt;/name>
+           &lt;value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME&lt;/value>
+       &lt;/property>
+   &lt;/configuration>
    ```
 
 2. Start ResourceManager daemon and NodeManager daemon:
@@ -240,7 +240,7 @@ The following instructions assume that 1. ~ 4. steps of [the above instructions]
 
 # 5. mac安装hadoop
 
->[mac安装hadoop及配置伪分布式](https://blog.csdn.net/weixin_44570264/article/details/106872445)	<=	跟着这个确实可以
+>[mac安装hadoop及配置伪分布式](https://blog.csdn.net/weixin_44570264/article/details/106872445)	&lt;=	跟着这个确实可以
 >
 >```shell
 >vim ~/.bash_profile

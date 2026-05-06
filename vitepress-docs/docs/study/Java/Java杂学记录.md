@@ -84,24 +84,24 @@ UserServiceImpl userService; // JDK报错，因为该类型不是接口，JDK是
 >
 > [关于final对象回收的疑问](https://bbs.csdn.net/topics/320255560)
 >
-> [final对象的生命周期](https://bbs.csdn.net/topics/220029494?page=2)	<=	大神回答
+> [final对象的生命周期](https://bbs.csdn.net/topics/220029494?page=2)	&lt;=	大神回答
 >
 > + 原文中的问题
 >
 >   ```
->   class Outer{
+>   class Outer&#123;
 >   
 >   	final int i1 = 1;
 >   
->   	void f(){
+>   	void f()&#123;
 >   
 >   		final int i2 = 1;
 >   
 >   		int i3 = 1;
 >   
->   		class Inner{
+>   		class Inner&#123;
 >   
->   			void f(){
+>   			void f()&#123;
 >   
 >   				i1 = 2;
 >   
@@ -109,13 +109,13 @@ UserServiceImpl userService; // JDK报错，因为该类型不是接口，JDK是
 >   
 >   				//i3 = 2;	不能访问非final局部变量
 >   
->   			}
+>   			&#125;
 >   
->   		}
+>   		&#125;
 >   
->   	}
+>   	&#125;
 >   
->   }
+>   &#125;
 >   ```
 >
 >   谢谢大家的回帖，有的人误会了我的意思，我指的不是i1，我指的是i2。
@@ -182,7 +182,7 @@ UserServiceImpl userService; // JDK报错，因为该类型不是接口，JDK是
 >
 > 并发异常
 >
-> [Java并发--ConcurrentModificationException（并发修改异常）异常原因和解决方法](https://www.cnblogs.com/bsjl/p/7676209.html)	<=	
+> [Java并发--ConcurrentModificationException（并发修改异常）异常原因和解决方法](https://www.cnblogs.com/bsjl/p/7676209.html)	&lt;=	
 >
 > 
 >
@@ -214,7 +214,7 @@ UserServiceImpl userService; // JDK报错，因为该类型不是接口，JDK是
 >
 > 通配符"?" => 编译时不知道类型，所以只能get不能add；
 >
-> 有界通配符"\<? extends Object\>","\<? super Object\>"可以add对应Object或其子类/父类。（因为我们编译前给定了父类/子类）
+> 有界通配符"\&lt;? extends Object\>","\&lt;? super Object\>"可以add对应Object或其子类/父类。（因为我们编译前给定了父类/子类）
 >
 > [**谈谈java泛型的擦除机制**](http://www.zuidaima.com/blog/3689434434948096.htm)
 
@@ -226,7 +226,7 @@ UserServiceImpl userService; // JDK报错，因为该类型不是接口，JDK是
 
 ## 10. 容器
 
-> [Java HashMap 原理（位桶 + 链表）](https://blog.csdn.net/wilson1068/article/details/88142495) <= 推荐阅读
+> [Java HashMap 原理（位桶 + 链表）](https://blog.csdn.net/wilson1068/article/details/88142495) &lt;= 推荐阅读
 >
 > JDK 1.6, JDK 1.7 HashMap 采用位桶 + 链表实现。
 >
@@ -234,7 +234,7 @@ UserServiceImpl userService; // JDK报错，因为该类型不是接口，JDK是
 >
 > HashMap 容量 (capacity) 和负载因子 (loadFactor)。
 >
-> capacity初始值16，loadFactor为0.75。index = hash mod 2<sup>n</sup>,初始n=4。
+> capacity初始值16，loadFactor为0.75。index = hash mod 2&lt;sup>n&lt;/sup>,初始n=4。
 >
 > 当数组中的节点（**entry**）数目 &gt; capacity \* loadFactor \> capacity \* loadFactor \> capacity \* loadFactor时，就需要扩容，调整数组的大小为当前的 2 倍，以提高 HashMap 的 hash 效率。
 >
@@ -246,7 +246,7 @@ UserServiceImpl userService; // JDK报错，因为该类型不是接口，JDK是
 
 ## 12. Guava
 
-> [Guava Cache用法介绍](https://www.cnblogs.com/fnlingnzb-learner/p/11022152.html) <== 极力推荐，包括中间提及的[使用缓存的9大误区（上）](https://kb.cnblogs.com/page/138696/)和[使用缓存的9大误区（下）](https://kb.cnblogs.com/page/144396/)
+> [Guava Cache用法介绍](https://www.cnblogs.com/fnlingnzb-learner/p/11022152.html) &lt;== 极力推荐，包括中间提及的[使用缓存的9大误区（上）](https://kb.cnblogs.com/page/138696/)和[使用缓存的9大误区（下）](https://kb.cnblogs.com/page/144396/)
 
 ## 13. 字符编码
 
@@ -275,17 +275,17 @@ package coding;
 
 import sun.misc.Contended;
 
-public final class FalseSharing implements Runnable {
+public final class FalseSharing implements Runnable &#123;
   public final static long ITERATIONS = 500L * 1000L * 1000L;
   private static VolatileLong volatileLong;
   private String groupId;
 
-  public FalseSharing(String groupId) {
+  public FalseSharing(String groupId) &#123;
     this.groupId = groupId;
 
-  }
+  &#125;
 
-  public static void main(final String[] args) throws Exception {
+  public static void main(final String[] args) throws Exception &#123;
     // Thread.sleep(10000);
     System.out.println("starting....");
 
@@ -293,35 +293,35 @@ public final class FalseSharing implements Runnable {
     final long start = System.nanoTime();
     runTest();
     System.out.println("duration = " + (System.nanoTime() - start));
-  }
+  &#125;
 
-  private static void runTest() throws InterruptedException {
+  private static void runTest() throws InterruptedException &#123;
     Thread t0 = new Thread(new FalseSharing("t0"));
     Thread t1 = new Thread(new FalseSharing("t1"));
     t0.start();
     t1.start();
     t0.join();
     t1.join();
-  }
+  &#125;
 
   @Override
-  public void run() {
+  public void run() &#123;
     long i = ITERATIONS + 1;
-    if (groupId.equals("t0")) {
-      while (0 != --i) {
+    if (groupId.equals("t0")) &#123;
+      while (0 != --i) &#123;
         volatileLong.value1 = i+1;
         volatileLong.value3 = i-1;
-      }
-    } else if (groupId.equals("t1")) {
-      while (0 != --i) {
+      &#125;
+    &#125; else if (groupId.equals("t1")) &#123;
+      while (0 != --i) &#123;
         volatileLong.value2 = i+1;
         volatileLong.value4 = i-1;
-      }
-    }
-  }
-}
+      &#125;
+    &#125;
+  &#125;
+&#125;
 
-class VolatileLong {
+class VolatileLong &#123;
   @Contended("group0")
   public volatile long value1 = 0L;
   @Contended("group0")
@@ -331,7 +331,7 @@ class VolatileLong {
   public volatile long value3 = 0L;
   @Contended("group1")
   public volatile long value4 = 0L;
-}
+&#125;
 ```
 
 输出如下：

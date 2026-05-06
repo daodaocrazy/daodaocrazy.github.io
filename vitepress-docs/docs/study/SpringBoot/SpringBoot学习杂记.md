@@ -12,7 +12,7 @@
 
 # 3. Spring事务
 
-> + [Spring中同一类@Transactional修饰方法相互调用的坑_前路无畏的博客-CSDN博客](https://blog.csdn.net/fsjwin/article/details/109211355)	<=	避坑推荐
+> + [Spring中同一类@Transactional修饰方法相互调用的坑_前路无畏的博客-CSDN博客](https://blog.csdn.net/fsjwin/article/details/109211355)	&lt;=	避坑推荐
 > + [Spring事务-随笔-daodaocrazy - 博客园 (cnblogs.com)](https://www.cnblogs.com/daodaocrazy/p/15085827.html)
 > + [Spring事务测试github项目](https://github.com/daodaocrazy/SpringTransactionTest)
 
@@ -25,18 +25,18 @@
      ```java
      // eg：
      @Service("studentService")
-     public class StudentServiceImpl implements StudentService {
+     public class StudentServiceImpl implements StudentService &#123;
        
        @Resource
        private TeacherService teacherService;
        
        @Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRES_NEW)
        @Override
-       public void A(Integer id) throws Exception {
+       public void A(Integer id) throws Exception &#123;
      		this.insert(id);
          teacherService.insert(id);
-       }
-     }
+       &#125;
+     &#125;
      ```
 
   2. 同类，但是用AspectJ获取代理对象，用代理对象再调用同类的B方法；
@@ -44,15 +44,15 @@
      ```java
      // eg:
      @Service("studentService")
-     public class StudentServiceImpl implements StudentService {
+     public class StudentServiceImpl implements StudentService &#123;
        
        @Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRES_NEW)
        @Override
-       public void A(Integer id) throws Exception {
+       public void A(Integer id) throws Exception &#123;
      		this.insert(id);
          ((StudentServiceImpl)AopContext.currentProxy()).B(id);
-       }
-     }
+       &#125;
+     &#125;
      ```
 
   3. 同类，依赖注入自己，再调用注入的对象的方法
@@ -60,18 +60,18 @@
      ```java
      // eg:
      @Service("studentService")
-     public class StudentServiceImpl implements StudentService {
+     public class StudentServiceImpl implements StudentService &#123;
      
        @Resource
        private StudentService studentService;
      
        @Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRES_NEW)
        @Override
-       public void A(Integer id) throws Exception {
+       public void A(Integer id) throws Exception &#123;
          this.insert(id);
          studentService.insert(id);
-       }
-     }
+       &#125;
+     &#125;
      ```
 
   (ps: 可以在 `org.springframework.transaction.interceptor.TransactionAspectSupport#invokeWithinTransaction` 中打断点查看一些事务调用情况)
@@ -88,10 +88,10 @@
 5. 同一个类中方法调用会可能导致@Transactional失效，重新使得@Transcational生效的方法：
     1. pom.xml 中添加AspectJ:
     ```xml
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-aop</artifactId>
-    </dependency>
+    &lt;dependency>
+        &lt;groupId>org.springframework.boot&lt;/groupId>
+        &lt;artifactId>spring-boot-starter-aop&lt;/artifactId>
+    &lt;/dependency>
     ```
     2. 启动类上添加 @EnableAspectJAutoProxy(exposeProxy = true)
     3. AopContext.currentProxy()操作当前的代理类
@@ -166,24 +166,24 @@
 */
 
 // 1. 带有@ExceptionHandler注解方法的 AbstractController
-public abstract class AbstractController {
+public abstract class AbstractController &#123;
   @ExceptionHandler(ArrayStoreException.class)
-  public Object handleThrowable(HttpServletRequest request, Throwable e) {}
-}
+  public Object handleThrowable(HttpServletRequest request, Throwable e) &#123;&#125;
+&#125;
 
 // 2. 全局异常处理器
 @RestControllerAdvice
-public class ExceptionHandlers {
+public class ExceptionHandlers &#123;
   @ExceptionHandler(Throwable.class)
-  public String handleThrowable(HttpServletRequest request, Throwable e) {}
-}
+  public String handleThrowable(HttpServletRequest request, Throwable e) &#123;&#125;
+&#125;
 
 // 3. 普通Controller
 @RestController
 @RequestMapping("/test")
-public class TestController extends AbstractController {
+public class TestController extends AbstractController &#123;
   @GetMapping("/test001")
-  public String test001() throws Throwable {}
-}
+  public String test001() throws Throwable &#123;&#125;
+&#125;
 ```
 
