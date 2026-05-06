@@ -1,1 +1,1 @@
-https://raw.githubusercontent.com/daodaocrazy/shadowrocket-config/main/modules/adblock.sgmodule
+https://raw.githubusercontent.com/daodaocrazy/daodaocrazy.github.io/main/shadowrocket/modules/adblock.sgmodule
