@@ -7,11 +7,11 @@ hero:
   tagline: 知识整理与分享
   actions:
     - theme: brand
-      text: 开始阅读
-      link: /study/
-    - theme: alt
       text: GitHub
       link: https://github.com/daodaocrazy/daodaocrazy.github.io
+    - theme: alt
+      text: 查看文档
+      link: /study/
 
 features:
   - title: 大数据
