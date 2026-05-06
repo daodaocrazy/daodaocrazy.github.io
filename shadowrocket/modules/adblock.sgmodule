@@ -1,0 +1,215 @@
+#!name=Ultimate iOS AdBlock
+#!desc=AntiAD + AWAvenue + AdGuard + EasyList + Custom CN AdBlock
+#!author=custom
+#!version=3.0
+
+########################################
+# Remote AdBlock Rules (Auto Update)
+########################################
+
+[Rule]
+
+# Anti-AD 国内最强广告规则
+RULE-SET,https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-sr.txt,REJECT
+
+# 秋风广告规则
+RULE-SET,https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Shadowrocket/Ads.conf,REJECT
+
+# AdGuard Mobile Ads
+RULE-SET,https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt,REJECT
+
+# EasyList China
+RULE-SET,https://easylist-downloads.adblockplus.org/easylistchina.txt,REJECT
+
+# 大圣广告规则
+RULE-SET,https://raw.githubusercontent.com/lmfstar/adblock-rules/master/surge.txt,REJECT
+
+
+########################################
+# Tencent Ads (广点通)
+########################################
+
+DOMAIN-SUFFIX,gdt.qq.com,REJECT
+DOMAIN-SUFFIX,e.qq.com,REJECT
+DOMAIN-SUFFIX,ad.qq.com,REJECT
+DOMAIN-SUFFIX,adsmind.qq.com,REJECT
+
+
+########################################
+# ByteDance Ads (穿山甲)
+########################################
+
+DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,REJECT
+DOMAIN-SUFFIX,pangolin-sdk-toutiao1.com,REJECT
+DOMAIN-SUFFIX,ctobsnssdk.com,REJECT
+DOMAIN-SUFFIX,bytescm.com,REJECT
+DOMAIN-SUFFIX,snssdk.com,REJECT
+
+
+########################################
+# Sigmob Ads
+########################################
+
+DOMAIN-SUFFIX,sigmob.cn,REJECT
+DOMAIN-SUFFIX,sigmob.com,REJECT
+
+
+########################################
+# Baidu Ads
+########################################
+
+DOMAIN-SUFFIX,bgg.baidu.com,REJECT
+DOMAIN-SUFFIX,cpro.baidu.com,REJECT
+DOMAIN-SUFFIX,pos.baidu.com,REJECT
+DOMAIN-SUFFIX,dup.baidustatic.com,REJECT
+
+
+########################################
+# Alibaba Tanx Ads
+########################################
+
+DOMAIN-SUFFIX,tanx.com,REJECT
+DOMAIN-SUFFIX,atanx.alicdn.com,REJECT
+DOMAIN-SUFFIX,atanx2.alicdn.com,REJECT
+
+
+########################################
+# DSP Ad Networks
+########################################
+
+DOMAIN-SUFFIX,66mobi.com,REJECT
+DOMAIN-SUFFIX,adwangmai.com,REJECT
+DOMAIN-SUFFIX,beizi.biz,REJECT
+DOMAIN-SUFFIX,1rtb.net,REJECT
+DOMAIN-SUFFIX,fancydsp.com,REJECT
+DOMAIN-SUFFIX,datads.cn,REJECT
+DOMAIN-SUFFIX,fancyapi.com,REJECT
+DOMAIN-SUFFIX,adview.cn,REJECT
+DOMAIN-SUFFIX,adview.com,REJECT
+
+
+########################################
+# Tracking / Analytics SDK
+########################################
+
+DOMAIN-SUFFIX,umeng.com,REJECT
+DOMAIN-SUFFIX,miaozhen.com,REJECT
+DOMAIN-SUFFIX,cnzz.com,REJECT
+DOMAIN-SUFFIX,talkingdata.net,REJECT
+DOMAIN-SUFFIX,admaster.com.cn,REJECT
+DOMAIN-SUFFIX,growingio.com,REJECT
+DOMAIN-SUFFIX,bugly.qq.com,REJECT
+
+
+########################################
+# Global Web Ads
+########################################
+
+DOMAIN-SUFFIX,doubleclick.net,REJECT
+DOMAIN-SUFFIX,googlesyndication.com,REJECT
+DOMAIN-SUFFIX,googleadservices.com,REJECT
+DOMAIN-SUFFIX,admob.com,REJECT
+DOMAIN-SUFFIX,ads.yahoo.com,REJECT
+DOMAIN-SUFFIX,analytics.yahoo.com,REJECT
+
+
+########################################
+# Keyword Ad Blocking
+########################################
+
+DOMAIN-KEYWORD,adservice,REJECT
+DOMAIN-KEYWORD,adserver,REJECT
+DOMAIN-KEYWORD,adsdk,REJECT
+DOMAIN-KEYWORD,adtrack,REJECT
+DOMAIN-KEYWORD,analytics,REJECT
+DOMAIN-KEYWORD,tracking,REJECT
+
+
+########################################
+# Weibo Ads
+########################################
+
+DOMAIN-SUFFIX,uve.weibo.com,REJECT
+DOMAIN-SUFFIX,biz.weibo.com,REJECT
+DOMAIN,sdkaction.weibo.com,REJECT
+DOMAIN,click.weibo.com,REJECT
+
+DOMAIN,sdk.weibo.cn,REJECT
+DOMAIN,adimg.wbimg.cn,REJECT
+DOMAIN,adstrategy.biz.weibo.com,REJECT
+DOMAIN,ads.weibo.com,REJECT
+DOMAIN,adimg.weibo.com,REJECT
+DOMAIN,beacon.sina.com.cn,REJECT
+DOMAIN,dp.im.weibo.cn,REJECT
+DOMAIN,vip.storage.weibo.com,REJECT
+DOMAIN,gateway.im.weibo.cn,REJECT
+#DOMAIN,tva1.sinaimg.cn,REJECT
+#DOMAIN,tvax1.sinaimg.cn,REJECT
+#DOMAIN,tvax2.sinaimg.cn,REJECT
+
+# 微博广告增强拦截
+DOMAIN,adimg.wb.rd.com,REJECT
+DOMAIN,adimg.uve.weibo.com,REJECT
+DOMAIN,adstrategy.biz.weibo.com,REJECT
+DOMAIN,sdkapp.uve.weibo.com,REJECT
+DOMAIN-KEYWORD,ad.sina,REJECT
+
+
+########################################
+# Zhihu Ads
+########################################
+
+DOMAIN-SUFFIX,zhihu-web-analytics.zhihu.com,REJECT
+DOMAIN-SUFFIX,zhihu-ads.zhihu.com,REJECT
+
+
+########################################
+# Xiaohongshu Ads
+########################################
+
+# 小红书评论
+# DOMAIN-SUFFIX,edith.xiaohongshu.com,REJECT
+DOMAIN-SUFFIX,ads.xiaohongshu.com,REJECT
+
+########################################
+# Hupu Ads
+########################################
+
+DOMAIN,goblin.hupu.com,REJECT
+DOMAIN,e-goblin.hupu.com,REJECT
+DOMAIN-keyword,pangolin-sdk,REJECT
+DOMAIN-keyword,volceapplog,REJECT
+
+
+########################################
+# Taoyuangu Ad Source
+########################################
+
+DOMAIN,adfile.taoyuangu.com,REJECT
+
+
+########################################
+# Auto Generated Ads Rules
+########################################
+
+URL-REGEX,^https://.*/splash,REJECT
+URL-REGEX,^https://.*/startup,REJECT
+URL-REGEX,^https://.*/advert,REJECT
+URL-REGEX,^https://.*/ad/get,REJECT
+URL-REGEX,^https://.*/ads,REJECT
+
+
+########################################
+# Direct Rules (No Proxy)
+########################################
+
+DOMAIN-SUFFIX,trae.cn,DIRECT
+
+
+########################################
+# MITM
+########################################
+
+[MITM]
+hostname = %APPEND% pangolin-sdk-toutiao.com, gdt.qq.com, sigmob.cn, uve.weibo.com
+hostname = %APPEND% api.weibo.cn, sdk.weibo.cn, *.sinaimg.cn
