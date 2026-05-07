@@ -1,37 +1,65 @@
 import { defineConfig } from 'vitepress'
 
+function sanitizeLegacyStudyMarkdown(source) {
+  return source
+    .replace(/\{([^{}\n]+)\}/g, '&#123;$1&#125;')
+    .replace(/!\[([^\]]*)\]\(((?:[A-Za-z]:)?\\[^)]+)\)/g, (_match, alt, imagePath) => {
+      const label = alt || '本地图片'
+      return `[${label}：原始本地图片路径已省略]`
+    })
+    .replace(/\{\{/g, '&#123;&#123;')
+    .replace(/\}\}/g, '&#125;&#125;')
+    .replace(/<sup>([^<]+)<\/sup>/g, '^$1')
+    .replace(/<sub>([^<]+)<\/sub>/g, '_$1')
+    .replace(/<big>([^<]+)<\/big>/g, '$1')
+    .replace(/<\/?u>/g, '')
+    .replace(/<\/?small>/g, '')
+    .replace(/<\/?big>/g, '')
+    .replace(/<\\?html>/g, '&lt;html&gt;')
+    .replace(/<=/g, '&lt;=')
+    .replace(/<(?!\/?br\b)([^>\n]+)>/g, '&lt;$1&gt;')
+}
+
 export default defineConfig({
-  title: 'Daodaocrazy 的学习笔记',
-  description: '个人技术学习笔记整理，涵盖 Java、大数据、算法、前端等多个领域',
+  title: "Daodaocrazy's Blog",
+  description: '个人 blog portal，承载技术文档、学习记录、项目实验与持续输出',
+  appearance: 'dark',
   srcDir: '.',
+  ignoreDeadLinks: true,
+  vite: {
+    plugins: [
+      {
+        name: 'sanitize-legacy-study-markdown',
+        enforce: 'pre',
+        transform(source, id) {
+          if (!id.endsWith('.md') || !id.includes('/docs/study/')) {
+            return null
+          }
+
+          return sanitizeLegacyStudyMarkdown(source)
+        }
+      }
+    ]
+  },
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/icon.svg' }],
     ['meta', { name: 'theme-color', content: '#3c8772' }],
   ],
 
   themeConfig: {
-    logo: '/icon.svg',
-    siteTitle: '📚 学习笔记',
+    siteTitle: "Daodaocrazy's Blog",
 
     nav: [
-      { text: '🏠 首页', link: '/' },
-      { text: '📖 学习笔记', link: '/study/' },
-      { text: '💻 技术栈', link: '/tech/' },
-      {
-        text: '🔗 链接',
-        items: [
-          { text: 'GitHub', link: 'https://github.com/daodaocrazy' },
-        ]
-      }
+      { text: '首页', link: '/' },
+      { text: '知识归档', link: '/study/' }
     ],
 
     sidebar: {
       '/study/': [
         {
-          text: '📖 学习目录',
+          text: '📖 知识归档',
           collapsed: false,
           items: [
-            { text: '📚 目录索引', link: '/study/' },
+            { text: '📚 归档索引', link: '/study/' },
             { text: '☕ Java', link: '/study/Java/README' },
             { text: '🐘 BigData', link: '/study/BigData/README' },
             { text: '🗄️ DataBase', link: '/study/DataBase/README' },
@@ -92,10 +120,16 @@ export default defineConfig({
     docFooter: {
       prev: '← 上一页',
       next: '下一页 →'
+    },
+
+    outline: {
+      level: [1, 2],
+      label: '页内目录'
     }
   },
 
   markdown: {
+    html: false,
     lineNumbers: true,
     theme: {
       light: 'github-light',

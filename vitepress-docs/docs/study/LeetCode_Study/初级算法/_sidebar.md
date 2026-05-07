@@ -1,5 +1,5 @@
 * **目录**
-  * [根目录（/）](/README)
+  * [根目录（/）](/study/)
   * [回到上一级（../）](/study/LeetCode_Study/README)
   * [数组](/study/LeetCode_Study/初级算法/初级算法-数组)
   * [字符串](/study/LeetCode_Study/初级算法/初级算法-字符串)
