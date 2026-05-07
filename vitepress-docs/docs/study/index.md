@@ -1,13 +1,13 @@
 ---
-title: 学习目录
-description: Daodaocrazy 的学习笔记分类导航
+title: 知识归档
+description: Daodaocrazy 的知识归档与主题索引
 ---
 
-# 学习目录
+# 知识归档
 
-从这里进入各个主题的笔记分类。
+从这里进入各个主题的文档、学习记录与长期积累内容。
 
-## 核心分类
+## 核心归档
 
 - [Java](/study/Java/README)
 - [BigData](/study/BigData/README)
@@ -19,7 +19,7 @@ description: Daodaocrazy 的学习笔记分类导航
 - [Docker](/study/Docker/README)
 - [kubernetes](/study/kubernetes/README)
 
-## 基础与扩展
+## 基础与延伸
 
 - [Linux](/study/Linux/README)
 - [计算机网络](/study/计算机网络/README)

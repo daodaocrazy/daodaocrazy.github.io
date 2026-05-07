@@ -1,6 +1,6 @@
 :root {
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: linear-gradient(120deg, #3c8772 0%, #667eea 50%, #764ba2 100%);
+  --vp-home-hero-name-background: linear-gradient(120deg, #3c8772 0%, #5b8def 55%, #4a9f8e 100%);
   --vp-c-brand-1: #3c8772;
   --vp-c-brand-2: #4a9f8e;
   --vp-c-brand-3: #5cb5a6;
@@ -11,17 +11,12 @@
   --vp-c-brand-1: #4fd1c5;
   --vp-c-brand-2: #38b2ac;
   --vp-c-brand-3: #319795;
-  --vp-home-hero-name-background: linear-gradient(120deg, #4fd1c5 0%, #667eea 50%, #f093fb 100%);
-}
-
-.VPHero .name {
-  font-size: 4rem !important;
-  letter-spacing: -0.02em;
+  --vp-home-hero-name-background: linear-gradient(120deg, #4fd1c5 0%, #78a7ff 55%, #56c7a7 100%);
 }
 
 .VPFeature {
   border: 1px solid var(--vp-c-divider) !important;
-  transition: all 0.3s ease !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease !important;
 }
 
 .VPFeature:hover {
@@ -31,6 +26,7 @@
 }
 
 .VPNav {
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
   backdrop-filter: saturate(180%) blur(12px);
   background: rgba(255, 255, 255, 0.8) !important;
 }
@@ -40,11 +36,19 @@
 }
 
 .VPSidebar {
-  background: linear-gradient(180deg, transparent 0%, rgba(60, 135, 114, 0.03) 100%) !important;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--vp-c-bg-alt) 98%, var(--vp-c-brand-1) 2%) 0%,
+    color-mix(in srgb, var(--vp-c-bg-alt) 92%, var(--vp-c-brand-1) 8%) 100%
+  ) !important;
 }
 
 .dark .VPSidebar {
-  background: linear-gradient(180deg, transparent 0%, rgba(77, 209, 197, 0.05) 100%) !important;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--vp-c-bg-alt) 96%, var(--vp-c-brand-1) 4%) 0%,
+    color-mix(in srgb, var(--vp-c-bg-alt) 88%, var(--vp-c-brand-1) 12%) 100%
+  ) !important;
 }
 
 @media (max-width: 767px) {
@@ -80,34 +84,55 @@
   transform: translateY(-2px);
 }
 
-.VPLink.active .VPImage {
-  transform: scale(1.05);
-}
-
 .VPNavBarTitle:hover .title {
   color: var(--vp-c-brand-1) !important;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+.VPNavBarTitle .title {
+  letter-spacing: -0.01em;
+  font-weight: 600;
 }
 
-.VPHero .clip {
-  animation: float 3s ease-in-out infinite;
+.VPNavBarMenu .link {
+  font-weight: 500;
 }
 
 .VPFeature .icon {
-  font-size: 2.5rem !important;
-  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-3)) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
+  font-size: 2.2rem !important;
 }
 
 .VPDocAside .outline-title {
   font-weight: 700;
   color: var(--vp-c-brand-1);
+}
+
+.VPLocalNav.has-sidebar .container {
+  position: relative;
+}
+
+.VPLocalNavOutlineDropdown {
+  position: relative;
+  z-index: 80;
+}
+
+.VPLocalNavOutlineDropdown .items {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  left: auto;
+  z-index: 81;
+  width: min(26rem, calc(100vw - 24px));
+  max-height: min(70vh, 32rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--vp-c-bg) 96%, var(--vp-c-brand-1) 4%);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+.dark .VPLocalNavOutlineDropdown .items {
+  background: color-mix(in srgb, var(--vp-c-bg) 92%, var(--vp-c-brand-1) 8%);
 }
 
 ::-webkit-scrollbar {
@@ -144,7 +169,7 @@
 }
 
 @media (max-width: 768px) {
-  .VPHero .name {
-    font-size: 2.5rem !important;
+  .VPFeature .icon {
+    font-size: 2rem !important;
   }
 }
