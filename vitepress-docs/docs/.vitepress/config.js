@@ -7,6 +7,18 @@ function sanitizeLegacyStudyMarkdown(source) {
       const label = alt || '本地图片'
       return `[${label}：原始本地图片路径已省略]`
     })
+    .replace(/<img\b([^>]*)>/gi, (_match, attrs) => {
+      const srcMatch = attrs.match(/\bsrc=(['"])(.*?)\1/i)
+
+      if (!srcMatch) {
+        return ''
+      }
+
+      const altMatch = attrs.match(/\balt=(['"])(.*?)\1/i)
+      const alt = altMatch?.[2] || 'img'
+
+      return `![${alt}](${srcMatch[2]})`
+    })
     .replace(/\{\{/g, '&#123;&#123;')
     .replace(/\}\}/g, '&#125;&#125;')
     .replace(/<sup>([^<]+)<\/sup>/g, '^$1')
@@ -43,6 +55,7 @@ export default defineConfig({
   },
   head: [
     ['meta', { name: 'theme-color', content: '#3c8772' }],
+     ['link', { rel: 'icon', type: 'image/jpeg', href: '/_media/icon.jpeg' }],
   ],
 
   themeConfig: {
@@ -131,6 +144,17 @@ export default defineConfig({
   markdown: {
     html: false,
     lineNumbers: true,
+    config(md) {
+      const defaultImageRenderer = md.renderer.rules.image || ((tokens, idx, options, _env, self) => self.renderToken(tokens, idx, options))
+
+      md.renderer.rules.image = (tokens, idx, options, env, self) => {
+        tokens[idx].attrSet('referrerpolicy', 'no-referrer')
+        tokens[idx].attrSet('loading', 'lazy')
+        tokens[idx].attrSet('decoding', 'async')
+
+        return defaultImageRenderer(tokens, idx, options, env, self)
+      }
+    },
     theme: {
       light: 'github-light',
       dark: 'github-dark'
