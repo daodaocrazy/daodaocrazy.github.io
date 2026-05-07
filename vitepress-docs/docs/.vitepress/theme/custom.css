@@ -14,6 +14,32 @@
   --vp-home-hero-name-background: linear-gradient(120deg, #4fd1c5 0%, #78a7ff 55%, #56c7a7 100%);
 }
 
+.VPHomeHero .heading {
+  overflow: visible;
+}
+
+.VPHomeHero .name.clip {
+  display: inline-block;
+  animation: hero-float 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes hero-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .VPHomeHero .name.clip {
+    animation: none;
+  }
+}
+
 .VPFeature {
   border: 1px solid var(--vp-c-divider) !important;
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease !important;
