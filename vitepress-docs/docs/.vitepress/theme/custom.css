@@ -1,0 +1,150 @@
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(120deg, #3c8772 0%, #667eea 50%, #764ba2 100%);
+  --vp-c-brand-1: #3c8772;
+  --vp-c-brand-2: #4a9f8e;
+  --vp-c-brand-3: #5cb5a6;
+  --vp-c-brand-soft: rgba(60, 135, 114, 0.14);
+}
+
+.dark {
+  --vp-c-brand-1: #4fd1c5;
+  --vp-c-brand-2: #38b2ac;
+  --vp-c-brand-3: #319795;
+  --vp-home-hero-name-background: linear-gradient(120deg, #4fd1c5 0%, #667eea 50%, #f093fb 100%);
+}
+
+.VPHero .name {
+  font-size: 4rem !important;
+  letter-spacing: -0.02em;
+}
+
+.VPFeature {
+  border: 1px solid var(--vp-c-divider) !important;
+  transition: all 0.3s ease !important;
+}
+
+.VPFeature:hover {
+  transform: translateY(-4px) !important;
+  border-color: var(--vp-c-brand-1) !important;
+  box-shadow: 0 12px 32px rgba(60, 135, 114, 0.15) !important;
+}
+
+.VPNav {
+  backdrop-filter: saturate(180%) blur(12px);
+  background: rgba(255, 255, 255, 0.8) !important;
+}
+
+.dark .VPNav {
+  background: rgba(30, 30, 30, 0.8) !important;
+}
+
+.VPSidebar {
+  background: linear-gradient(180deg, transparent 0%, rgba(60, 135, 114, 0.03) 100%) !important;
+}
+
+.dark .VPSidebar {
+  background: linear-gradient(180deg, transparent 0%, rgba(77, 209, 197, 0.05) 100%) !important;
+}
+
+@media (max-width: 767px) {
+  .VPNavScreen {
+    height: calc(100dvh - var(--vp-nav-height) - var(--vp-layout-top-height, 0px));
+    z-index: 70;
+  }
+}
+
+.VPDocFooter {
+  border-top: 1px solid var(--vp-c-divider) !important;
+}
+
+.VPButton.medium.brand {
+  background: linear-gradient(135deg, #3c8772 0%, #5cb5a6 100%) !important;
+  transition: all 0.3s ease !important;
+}
+
+.VPButton.medium.brand:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(60, 135, 114, 0.35) !important;
+}
+
+.VPButton.medium.alt {
+  border: 2px solid var(--vp-c-brand-1) !important;
+  color: var(--vp-c-brand-1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.VPButton.medium.alt:hover {
+  background: var(--vp-c-brand-1) !important;
+  color: white !important;
+  transform: translateY(-2px);
+}
+
+.VPLink.active .VPImage {
+  transform: scale(1.05);
+}
+
+.VPNavBarTitle:hover .title {
+  color: var(--vp-c-brand-1) !important;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.VPHero .clip {
+  animation: float 3s ease-in-out infinite;
+}
+
+.VPFeature .icon {
+  font-size: 2.5rem !important;
+  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-3)) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+.VPDocAside .outline-title {
+  font-weight: 700;
+  color: var(--vp-c-brand-1);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(60, 135, 114, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vp-c-brand-1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-brand-2);
+}
+
+.VPLink:hover .link-icon {
+  transform: translateX(4px);
+  transition: transform 0.2s ease;
+}
+
+.VPDocFooter .pager-link {
+  border: 1px solid var(--vp-c-divider) !important;
+  transition: all 0.3s ease !important;
+}
+
+.VPDocFooter .pager-link:hover {
+  border-color: var(--vp-c-brand-1) !important;
+  background: var(--vp-c-brand-soft) !important;
+}
+
+@media (max-width: 768px) {
+  .VPHero .name {
+    font-size: 2.5rem !important;
+  }
+}

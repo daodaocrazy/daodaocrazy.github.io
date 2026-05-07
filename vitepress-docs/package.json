@@ -1,0 +1,18 @@
+{
+  "name": "vitepress-docs",
+  "version": "1.0.0",
+  "description": "Daodaocrazy的个人MD笔记 - 使用VitePress重构",
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "keywords": ["vitepress", "documentation", "notes"],
+  "author": "Daodaocrazy",
+  "license": "MIT",
+  "dependencies": {
+    "vitepress": "^1.6.4",
+    "vue": "^3.5.34"
+  }
+}
