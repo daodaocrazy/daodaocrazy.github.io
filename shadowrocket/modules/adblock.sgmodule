@@ -36,21 +36,42 @@ DOMAIN-SUFFIX,adsmind.qq.com,REJECT
 
 
 ########################################
-# QQ Music Ads (QQ音乐广告拦截)
+# QQ Music Ads (QQ音乐广告拦截 - 增强版)
 ########################################
 
-# TME广告分发接口
-DOMAIN,tmead.y.qq.com,REJECT
-# 广告数据上报
-DOMAIN,u6.y.qq.com,REJECT
-# 音乐播放监测
-DOMAIN,monitor.music.qq.com,REJECT
-# 广告监测统计
-DOMAIN,oth.bls.mdt.qq.com,REJECT
-# 数据统计上报
-DOMAIN,stat6.y.qq.com,REJECT
-# 流媒体广告缓存域名
+# ========== 通配域名后缀 ==========
+# 腾讯广告素材与分发
+DOMAIN-SUFFIX,ugdtimg.com,REJECT
+DOMAIN-SUFFIX,gtimg.cn,REJECT
+DOMAIN-SUFFIX,l.qq.com,REJECT
+
+# 腾讯音乐广告系统 (TME AD)
+DOMAIN-SUFFIX,tmead.y.qq.com,REJECT
+DOMAIN-SUFFIX,tmeadquic.y.qq.com,REJECT
+DOMAIN-SUFFIX,tmeadbak.y.qq.com,REJECT
 DOMAIN-SUFFIX,qkcdn6-media.tencentmusic.com,REJECT
+
+# 腾讯系统计与测速
+DOMAIN-SUFFIX,trace.qq.com,REJECT
+DOMAIN-SUFFIX,tpstelemetry.tencentmusic.com,REJECT
+
+# ========== 关键词匹配 ==========
+# 拦截所有包含广告特征词的域名
+DOMAIN-KEYWORD,adsmind,REJECT
+DOMAIN-KEYWORD,admgr,REJECT
+DOMAIN-KEYWORD,adv.music,REJECT
+DOMAIN-KEYWORD,adstats,REJECT
+DOMAIN-KEYWORD,monitor.music,REJECT
+
+# ========== URL正则拦截 ==========
+# 拦截开屏广告配置请求
+URL-REGEX,^https?:\/\/.*\.y\.qq\.com\/.*(adv|splash|pre_load),REJECT
+
+# ========== 具体域名补充 ==========
+DOMAIN,u6.y.qq.com,REJECT
+DOMAIN,oth.bls.mdt.qq.com,REJECT
+DOMAIN,stat6.y.qq.com,REJECT
+DOMAIN,m.cn.miaozhen.com,REJECT
 
 
 ########################################
@@ -231,3 +252,4 @@ DOMAIN-SUFFIX,trae.cn,DIRECT
 [MITM]
 hostname = %APPEND% pangolin-sdk-toutiao.com, gdt.qq.com, sigmob.cn, uve.weibo.com
 hostname = %APPEND% api.weibo.cn, sdk.weibo.cn, *.sinaimg.cn
+hostname = %APPEND% *.y.qq.com, *.tencentmusic.com
