@@ -36,6 +36,20 @@ DOMAIN-SUFFIX,adsmind.qq.com,REJECT
 
 
 ########################################
+# QQ Music Ads (QQ音乐广告)
+########################################
+
+# QQ音乐 13:21 前后广告及监测补充
+DOMAIN,tmead.y.qq.com,REJECT
+DOMAIN,u6.y.qq.com,REJECT
+DOMAIN,monitor.music.qq.com,REJECT
+DOMAIN,oth.bls.mdt.qq.com,REJECT
+DOMAIN,stat6.y.qq.com,REJECT
+# qkcdn6 是流媒体广告缓存域名
+DOMAIN-SUFFIX,qkcdn6-media.tencentmusic.com,REJECT
+
+
+########################################
 # ByteDance Ads (穿山甲)
 ########################################
 
