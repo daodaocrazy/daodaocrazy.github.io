@@ -18,6 +18,7 @@ interface CategorizedRepos {
 const repos = ref<Repository[]>([])
 const loading = ref(true)
 const error = ref('')
+const isCollapsed = ref(true)
 
 const GITHUB_USERNAME = 'daodaocrazy'
 const API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`
@@ -58,6 +59,10 @@ const categorizedRepos = computed<CategorizedRepos>(() => {
   return result
 })
 
+const toggleCollapse = () => {
+  isCollapsed.value = !isCollapsed.value
+}
+
 const formatDate = (dateString: string): string => {
   return new Date(dateString).toLocaleDateString('zh-CN')
 }
@@ -84,7 +89,10 @@ onMounted(() => {
 
 <template>
   <div class="forked-repos">
-    <h2 class="forked-repos-title">🍴 Fork 的仓库</h2>
+    <h2 class="forked-repos-title" @click="toggleCollapse">
+      <span class="toggle-icon">{{ isCollapsed ? '▶' : '▼' }}</span>
+      🍴 Fork 的仓库
+    </h2>
     
     <div v-if="loading" class="loading">
       <span>加载中...</span>
@@ -98,25 +106,27 @@ onMounted(() => {
       <span>暂无 fork 的仓库</span>
     </div>
     
-    <div v-else class="repo-categories">
-      <div v-for="(categoryRepos, category) in categorizedRepos" :key="category" class="repo-category">
-        <h3 class="category-title">📁 {{ category }}</h3>
-        <div class="repo-list">
-          <div v-for="repo in categoryRepos" :key="repo.html_url" class="repo-item">
-            <a :href="repo.html_url" target="_blank" rel="noopener" class="repo-name">
-              {{ repo.name }}
-            </a>
-            <p class="repo-description">{{ repo.description || '暂无描述' }}</p>
-            <div class="repo-meta">
-              <span v-if="repo.language" class="repo-language">{{ repo.language }}</span>
-              <span class="repo-stars">⭐ {{ repo.stargazers_count }}</span>
-              <span class="repo-forks">🔀 {{ repo.forks_count }}</span>
-              <span class="repo-updated">📅 {{ formatDate(repo.updated_at) }}</span>
+    <transition name="collapse">
+      <div v-else v-show="!isCollapsed" class="repo-categories">
+        <div v-for="(categoryRepos, category) in categorizedRepos" :key="category" class="repo-category">
+          <h3 class="category-title">📁 {{ category }}</h3>
+          <div class="repo-list">
+            <div v-for="repo in categoryRepos" :key="repo.html_url" class="repo-item">
+              <a :href="repo.html_url" target="_blank" rel="noopener" class="repo-name">
+                {{ repo.name }}
+              </a>
+              <p class="repo-description">{{ repo.description || '暂无描述' }}</p>
+              <div class="repo-meta">
+                <span v-if="repo.language" class="repo-language">{{ repo.language }}</span>
+                <span class="repo-stars">⭐ {{ repo.stargazers_count }}</span>
+                <span class="repo-forks">🔀 {{ repo.forks_count }}</span>
+                <span class="repo-updated">📅 {{ formatDate(repo.updated_at) }}</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -134,6 +144,22 @@ onMounted(() => {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: opacity 0.3s ease;
+  user-select: none;
+}
+
+.forked-repos-title:hover {
+  opacity: 0.8;
+}
+
+.toggle-icon {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  font-size: 1.2rem;
 }
 
 .loading,
@@ -224,6 +250,26 @@ onMounted(() => {
   border-radius: 20px;
   color: #667eea;
   font-weight: 500;
+}
+
+.collapse-enter-active,
+.collapse-leave-active {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.collapse-enter-from,
+.collapse-leave-to {
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(-10px);
+}
+
+.collapse-enter-to,
+.collapse-leave-from {
+  opacity: 1;
+  max-height: 2000px;
+  transform: translateY(0);
 }
 
 @media (max-width: 768px) {
