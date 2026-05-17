@@ -106,27 +106,29 @@ onMounted(() => {
       <span>暂无 fork 的仓库</span>
     </div>
     
-    <transition name="collapse">
-      <div v-else v-show="!isCollapsed" class="repo-categories">
-        <div v-for="(categoryRepos, category) in categorizedRepos" :key="category" class="repo-category">
-          <h3 class="category-title">📁 {{ category }}</h3>
-          <div class="repo-list">
-            <div v-for="repo in categoryRepos" :key="repo.html_url" class="repo-item">
-              <a :href="repo.html_url" target="_blank" rel="noopener" class="repo-name">
-                {{ repo.name }}
-              </a>
-              <p class="repo-description">{{ repo.description || '暂无描述' }}</p>
-              <div class="repo-meta">
-                <span v-if="repo.language" class="repo-language">{{ repo.language }}</span>
-                <span class="repo-stars">⭐ {{ repo.stargazers_count }}</span>
-                <span class="repo-forks">🔀 {{ repo.forks_count }}</span>
-                <span class="repo-updated">📅 {{ formatDate(repo.updated_at) }}</span>
+    <template v-else>
+      <transition name="collapse">
+        <div v-show="!isCollapsed" class="repo-categories">
+          <div v-for="(categoryRepos, category) in categorizedRepos" :key="category" class="repo-category">
+            <h3 class="category-title">📁 {{ category }}</h3>
+            <div class="repo-list">
+              <div v-for="repo in categoryRepos" :key="repo.html_url" class="repo-item">
+                <a :href="repo.html_url" target="_blank" rel="noopener" class="repo-name">
+                  {{ repo.name }}
+                </a>
+                <p class="repo-description">{{ repo.description || '暂无描述' }}</p>
+                <div class="repo-meta">
+                  <span v-if="repo.language" class="repo-language">{{ repo.language }}</span>
+                  <span class="repo-stars">⭐ {{ repo.stargazers_count }}</span>
+                  <span class="repo-forks">🔀 {{ repo.forks_count }}</span>
+                  <span class="repo-updated">📅 {{ formatDate(repo.updated_at) }}</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </transition>
+      </transition>
+    </template>
   </div>
 </template>
 
