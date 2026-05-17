@@ -1,13 +1,13 @@
-<script setup lang="ts">
+
+&lt;script setup lang="ts"&gt;
 import { computed, onBeforeUnmount, onMounted, provide, useSlots } from 'vue'
-import { Content, useRoute } from 'vitepress'
+import { Content, useRoute, useData } from 'vitepress'
 import VPBackdrop from 'vitepress/dist/client/theme-default/components/VPBackdrop.vue'
 import VPContent from 'vitepress/dist/client/theme-default/components/VPContent.vue'
 import VPFooter from 'vitepress/dist/client/theme-default/components/VPFooter.vue'
 import VPLocalNav from 'vitepress/dist/client/theme-default/components/VPLocalNav.vue'
 import VPNav from 'vitepress/dist/client/theme-default/components/VPNav.vue'
 import VPSkipLink from 'vitepress/dist/client/theme-default/components/VPSkipLink.vue'
-import { useData } from 'vitepress/dist/client/theme-default/composables/data'
 import {
   useCloseSidebarOnEscape,
   useSidebar
@@ -15,6 +15,7 @@ import {
 import StudyPageOutline from './components/StudyPageOutline.vue'
 import StudySidebar from './components/StudySidebar.vue'
 import StudySidebarToggle from './components/StudySidebarToggle.vue'
+import ForkedRepos from './components/ForkedRepos.vue'
 
 const {
   isOpen: isSidebarOpen,
@@ -27,7 +28,7 @@ useRoute()
 useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
 
 function handleStudyCloseSidebar() {
-  if (typeof window !== 'undefined' && !window.matchMedia('(min-width: 960px)').matches) {
+  if (typeof window !== 'undefined' &amp;&amp; !window.matchMedia('(min-width: 960px)').matches) {
     closeSidebar()
   }
 }
@@ -54,85 +55,90 @@ function handleDocumentClick(event: MouseEvent) {
   closeSidebar()
 }
 
-onMounted(() => {
+onMounted(() =&gt; {
   window.addEventListener('study:close-sidebar', handleStudyCloseSidebar)
   document.addEventListener('click', handleDocumentClick, true)
 })
 
-onBeforeUnmount(() => {
+onBeforeUnmount(() =&gt; {
   window.removeEventListener('study:close-sidebar', handleStudyCloseSidebar)
   document.removeEventListener('click', handleDocumentClick, true)
 })
 
 const { frontmatter } = useData()
+const isHomePage = computed(() =&gt; frontmatter.value.layout === 'home')
 
 const slots = useSlots()
-const heroImageSlotExists = computed(() => !!slots['home-hero-image'])
+const heroImageSlotExists = computed(() =&gt; !!slots['home-hero-image'])
 
 provide('hero-image-slot-exists', heroImageSlotExists)
 provide('study-close-sidebar', closeSidebar)
-</script>
+&lt;/script&gt;
 
-<template>
-  <div v-if="frontmatter.layout !== false" class="Layout" :class="frontmatter.pageClass">
-    <StudySidebarToggle />
-    <StudyPageOutline />
-    <VPSkipLink />
-    <VPBackdrop class="backdrop" :show="isSidebarOpen" @click="closeSidebar" />
-    <VPNav>
-      <template #nav-bar-title-before><slot name="nav-bar-title-before" /></template>
-      <template #nav-bar-title-after><slot name="nav-bar-title-after" /></template>
-      <template #nav-bar-content-before><slot name="nav-bar-content-before" /></template>
-      <template #nav-bar-content-after><slot name="nav-bar-content-after" /></template>
-      <template #nav-screen-content-before><slot name="nav-screen-content-before" /></template>
-      <template #nav-screen-content-after><slot name="nav-screen-content-after" /></template>
-    </VPNav>
-    <VPLocalNav :open="isSidebarOpen" @open-menu="openSidebar" />
+&lt;template&gt;
+  &lt;div v-if="frontmatter.layout !== false" class="Layout" :class="frontmatter.pageClass"&gt;
+    &lt;StudySidebarToggle /&gt;
+    &lt;StudyPageOutline /&gt;
+    &lt;VPSkipLink /&gt;
+    &lt;VPBackdrop class="backdrop" :show="isSidebarOpen" @click="closeSidebar" /&gt;
+    &lt;VPNav&gt;
+      &lt;template #nav-bar-title-before&gt;&lt;slot name="nav-bar-title-before" /&gt;&lt;/template&gt;
+      &lt;template #nav-bar-title-after&gt;&lt;slot name="nav-bar-title-after" /&gt;&lt;/template&gt;
+      &lt;template #nav-bar-content-before&gt;&lt;slot name="nav-bar-content-before" /&gt;&lt;/template&gt;
+      &lt;template #nav-bar-content-after&gt;&lt;slot name="nav-bar-content-after" /&gt;&lt;/template&gt;
+      &lt;template #nav-screen-content-before&gt;&lt;slot name="nav-screen-content-before" /&gt;&lt;/template&gt;
+      &lt;template #nav-screen-content-after&gt;&lt;slot name="nav-screen-content-after" /&gt;&lt;/template&gt;
+    &lt;/VPNav&gt;
+    &lt;VPLocalNav :open="isSidebarOpen" @open-menu="openSidebar" /&gt;
 
-    <StudySidebar :open="isSidebarOpen">
-      <template #sidebar-nav-before><slot name="sidebar-nav-before" /></template>
-      <template #sidebar-nav-after><slot name="sidebar-nav-after" /></template>
-    </StudySidebar>
+    &lt;StudySidebar :open="isSidebarOpen"&gt;
+      &lt;template #sidebar-nav-before&gt;&lt;slot name="sidebar-nav-before" /&gt;&lt;/template&gt;
+      &lt;template #sidebar-nav-after&gt;&lt;slot name="sidebar-nav-after" /&gt;&lt;/template&gt;
+    &lt;/StudySidebar&gt;
 
-    <VPContent>
-      <template #page-top><slot name="page-top" /></template>
-      <template #page-bottom><slot name="page-bottom" /></template>
+    &lt;VPContent&gt;
+      &lt;template #page-top&gt;&lt;slot name="page-top" /&gt;&lt;/template&gt;
+      &lt;template #page-bottom&gt;&lt;slot name="page-bottom" /&gt;&lt;/template&gt;
 
-      <template #not-found><slot name="not-found" /></template>
-      <template #home-hero-before><slot name="home-hero-before" /></template>
-      <template #home-hero-info-before><slot name="home-hero-info-before" /></template>
-      <template #home-hero-info><slot name="home-hero-info" /></template>
-      <template #home-hero-info-after><slot name="home-hero-info-after" /></template>
-      <template #home-hero-actions-after><slot name="home-hero-actions-after" /></template>
-      <template #home-hero-image><slot name="home-hero-image" /></template>
-      <template #home-hero-after><slot name="home-hero-after" /></template>
-      <template #home-features-before><slot name="home-features-before" /></template>
-      <template #home-features-after><slot name="home-features-after" /></template>
+      &lt;template #not-found&gt;&lt;slot name="not-found" /&gt;&lt;/template&gt;
+      &lt;template #home-hero-before&gt;&lt;slot name="home-hero-before" /&gt;&lt;/template&gt;
+      &lt;template #home-hero-info-before&gt;&lt;slot name="home-hero-info-before" /&gt;&lt;/template&gt;
+      &lt;template #home-hero-info&gt;&lt;slot name="home-hero-info" /&gt;&lt;/template&gt;
+      &lt;template #home-hero-info-after&gt;&lt;slot name="home-hero-info-after" /&gt;&lt;/template&gt;
+      &lt;template #home-hero-actions-after&gt;&lt;slot name="home-hero-actions-after" /&gt;&lt;/template&gt;
+      &lt;template #home-hero-image&gt;&lt;slot name="home-hero-image" /&gt;&lt;/template&gt;
+      &lt;template #home-hero-after&gt;&lt;slot name="home-hero-after" /&gt;&lt;/template&gt;
+      &lt;template #home-features-before&gt;&lt;slot name="home-features-before" /&gt;&lt;/template&gt;
+      &lt;template #home-features-after&gt;
+        &lt;slot name="home-features-after" /&gt;
+        &lt;ForkedRepos v-if="isHomePage" /&gt;
+      &lt;/template&gt;
 
-      <template #doc-footer-before><slot name="doc-footer-before" /></template>
-      <template #doc-before><slot name="doc-before" /></template>
-      <template #doc-after><slot name="doc-after" /></template>
-      <template #doc-top><slot name="doc-top" /></template>
-      <template #doc-bottom><slot name="doc-bottom" /></template>
+      &lt;template #doc-footer-before&gt;&lt;slot name="doc-footer-before" /&gt;&lt;/template&gt;
+      &lt;template #doc-before&gt;&lt;slot name="doc-before" /&gt;&lt;/template&gt;
+      &lt;template #doc-after&gt;&lt;slot name="doc-after" /&gt;&lt;/template&gt;
+      &lt;template #doc-top&gt;&lt;slot name="doc-top" /&gt;&lt;/template&gt;
+      &lt;template #doc-bottom&gt;&lt;slot name="doc-bottom" /&gt;&lt;/template&gt;
 
-      <template #aside-top><slot name="aside-top" /></template>
-      <template #aside-bottom><slot name="aside-bottom" /></template>
-      <template #aside-outline-before><slot name="aside-outline-before" /></template>
-      <template #aside-outline-after><slot name="aside-outline-after" /></template>
-      <template #aside-ads-before><slot name="aside-ads-before" /></template>
-      <template #aside-ads-after><slot name="aside-ads-after" /></template>
-    </VPContent>
+      &lt;template #aside-top&gt;&lt;slot name="aside-top" /&gt;&lt;/template&gt;
+      &lt;template #aside-bottom&gt;&lt;slot name="aside-bottom" /&gt;&lt;/template&gt;
+      &lt;template #aside-outline-before&gt;&lt;slot name="aside-outline-before" /&gt;&lt;/template&gt;
+      &lt;template #aside-outline-after&gt;&lt;slot name="aside-outline-after" /&gt;&lt;/template&gt;
+      &lt;template #aside-ads-before&gt;&lt;slot name="aside-ads-before" /&gt;&lt;/template&gt;
+      &lt;template #aside-ads-after&gt;&lt;slot name="aside-ads-after" /&gt;&lt;/template&gt;
+    &lt;/VPContent&gt;
 
-    <VPFooter />
-    <slot name="layout-bottom" />
-  </div>
-  <Content v-else />
-</template>
+    &lt;VPFooter /&gt;
+    &lt;slot name="layout-bottom" /&gt;
+  &lt;/div&gt;
+  &lt;Content v-else /&gt;
+&lt;/template&gt;
 
-<style scoped>
+&lt;style scoped&gt;
 .Layout {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
-</style>
+&lt;/style&gt;
+
