@@ -36,8 +36,25 @@ jobs:
         env:
           NODE_OPTIONS: --max-old-space-size=4096
 
+      - name: Verify build output
+        run: |
+          if [ -d "./docs/.vitepress/dist" ]; then
+            echo "✓ Build output found"
+            ls -lh ./docs/.vitepress/dist | head -10
+            echo "---"
+            du -sh ./docs/.vitepress/dist
+          else
+            echo "✗ Build output not found!"
+            exit 1
+          fi
+
       - name: Upload build output for inspection
-        if: always()
+        if: success()
+        run: |
+          echo "Attempting to upload build artifact..."
+          echo "Build directory: ./docs/.vitepress/dist"
+          echo "Directory size:"
+          du -sh ./docs/.vitepress/dist || echo "Could not get size"
         uses: actions/upload-artifact@v4
         with:
           name: vitepress-build-${{ github.ref_name }}
