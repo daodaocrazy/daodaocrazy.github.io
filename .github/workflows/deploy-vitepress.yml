@@ -1,44 +1,53 @@
-# VitePress 站点部署
-name: Deploy VitePress site to Pages
+name: Deploy VitePress
 
 on:
-  # 每次推送到 `main` 分支时触发部署
   push:
-    branches: [main]
-
-  # 允许在 Actions 标签页中手动触发部署
+    branches: [main, lab]
   workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        description: Environment to deploy
+        options:
+          - main
+          - lab
+        default: main
 
-# 设置用于部署的 GITHUB_TOKEN 权限
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 只允许同时进行一次部署
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: 'pages-${{ github.ref }}'
+  cancel-in-progress: true
 
 jobs:
-  # 构建
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./vitepress-docs
+    outputs:
+      build-status: ${{ steps.build-status.outputs.status }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+
+      - name: Detect environment
+        id: env
+        run: |
+          if [ "${{ github.event.inputs.environment }}" = "lab" ] || [ "${GITHUB_REF_NAME}" = "lab" ]; then
+            echo "environment=lab" >> $GITHUB_OUTPUT
+            echo "base=/lab" >> $GITHUB_OUTPUT
+          else
+            echo "environment=main" >> $GITHUB_OUTPUT
+            echo "base=/" >> $GITHUB_OUTPUT
+          fi
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-          cache-dependency-path: ./vitepress-docs/package-lock.json
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -46,24 +55,31 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build with VitePress
-        run: npm run docs:build
-        env:
-          NODE_OPTIONS: --max-old-space-size=4096
-
+      - name: Build
+        id: build
+        run: |
+          NODE_OPTIONS="--max-old-space-size=4096" BASE_URL="${{ steps.env.outputs.base }}" npm run docs:build
+          echo "status=success" >> $GITHUB_OUTPUT
+      - name: Verify build output
+        if: success()
+        run: |
+          if [ ! -d "docs/.vitepress/dist" ]; then
+            echo "::error::Build output not found"
+            exit 1
+          fi
+          ls -la docs/.vitepress/dist
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./vitepress-docs/docs/.vitepress/dist
+          path: docs/.vitepress/dist
 
-  # 部署
   deploy:
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
     runs-on: ubuntu-latest
-    name: Deploy
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

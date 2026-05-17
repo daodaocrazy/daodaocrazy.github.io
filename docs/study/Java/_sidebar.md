@@ -1,6 +1,6 @@
 * **目录**
-  * [根目录（/）](/README)
-  * [回到上一级（../）](/README)
+  * [根目录（/）](/study/)
+  * [回到上一级（../）](../README)
   * [Java复习回顾](/study/Java/Java复习回顾)
   * [《Effective-Java第三版》-读书笔记-01](/study/Java/《Effective-Java第三版》-读书笔记-01)
   * [《Effective-Java第三版》-读书笔记-02](/study/Java/《Effective-Java第三版》-读书笔记-02)

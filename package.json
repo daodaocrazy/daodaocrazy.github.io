@@ -1,0 +1,24 @@
+{
+  "name": "daodaocrazy-portfolio",
+  "version": "1.0.0",
+  "description": "Daodaocrazy's AI Native Personal Workspace - VitePress, React, Tools & Experiments",
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "docs:build:lab": "BASE_URL=/lab vitepress build docs",
+    "format": "prettier --write \"**/*.{js,ts,json,md,vue}\"",
+    "lint": "eslint --ext .js,.ts,.vue docs/.vitepress"
+  },
+  "keywords": ["vitepress", "documentation", "ai", "workspace", "tools", "playground"],
+  "author": "Daodaocrazy",
+  "license": "MIT",
+  "dependencies": {
+    "vitepress": "^1.6.4",
+    "vue": "^3.5.34"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.0"
+  }
+}

@@ -86,10 +86,10 @@ HBase不同于一般的关系数据库，它是一个适合于非结构化数据
 | :---------------: | :------------------: | :----------------------: | :---------------------------: | :------------------------: |
 |   “com.cnn.www”   |          T9          |                          |   anchor：cnnsi.com =“CNN”    |                            |
 |   “com.cnn.www”   |          T8          |                          | anchor：my.look.ca =“CNN.com” |                            |
-|   “com.cnn.www”   |          T6          | 内容：html =“<html> ...” |                               |                            |
-|   “com.cnn.www”   |          T5          | 内容：html =“<html> ...” |                               |                            |
-|   “com.cnn.www”   |          T3          | 内容：html =“<html> ...” |                               |                            |
-| “com.example.www” |          T5          | 内容：html =“<html> ...” |                               | people:author = "John Doe" |
+|   “com.cnn.www”   |          T6          | 内容：html =“&lt;html&gt; ...” |                            |                            |
+|   “com.cnn.www”   |          T5          | 内容：html =“&lt;html&gt; ...” |                            |                            |
+|   “com.cnn.www”   |          T3          | 内容：html =“&lt;html&gt; ...” |                            |                            |
+| “com.example.www” |          T5          | 内容：html =“&lt;html&gt; ...” |                            | people:author = "John Doe" |
 
 ​	此表中显示为空的单元格在 HBase 中不占用空间或实际上存在。这正是使 HBase “稀疏”的原因。表格视图并不是查看 HBase 数据的唯一可能的方法，甚至是最准确的。以下代表与多维地图相同的信息。这只是用于说明目的的模拟，可能并不严格准确。
 
@@ -136,9 +136,9 @@ ColumnFamily contents 表：
 
 | 行键（Row Key） | 时间戳（Time Stamp） |  ColumnFamily `contents:`  |
 | :-------------: | :------------------: | :------------------------: |
-|  “com.cnn.www”  |          T6          | contents:html = "\<html>…" |
-|  “com.cnn.www”  |          T5          | contents:html = "\<html>…" |
-|  “com.cnn.www”  |          T3          | contents:html = "\<html>…" |
+|  “com.cnn.www”  |          T6          | contents:html = "&lt;html&gt;..." |
+|  “com.cnn.www”  |          T5          | contents:html = "&lt;html&gt;..." |
+|  “com.cnn.www”  |          T3          | contents:html = "&lt;html&gt;..." |
 
 + **HBase 概念视图中显示的空单元根本不存储**。
 
@@ -161,7 +161,7 @@ ColumnFamily contents 表：
 你可以创建、删除或更改命名空间。通过指定表单的完全限定表名，<u>在创建表时确定命名空间成员权限</u>：
 
 ```pseudocode
-<table namespace>:<table qualifier>
+&lt;table namespace&gt;:&lt;table qualifier&gt;
 ```
 
 示例：
@@ -204,7 +204,7 @@ HBase 中表是在 schema 定义时被预先声明的。
 可以使用以下的命令来创建一个表，在这里必须指定表名和列族名。在 HBase shell 中创建表的语法如下所示：
 
 ```shell
-create ‘<table name>’,’<column family>’
+create '&lt;table name&gt;','&lt;column family&gt;'
 ```
 
 ## 25. Row
@@ -254,7 +254,7 @@ Hbase表中的每个列都归属于某个列族，列族必须作为标模式(sc
 
 单元格是由行、列族、列限定符、值和代表值版本的时间戳组成的。
 
-（{row key,column( =\<family>+\<qualifier>)，version}）唯一确定单元格。
+（{row key,column( =&lt;family&gt;+&lt;qualifier&gt;)，version}）唯一确定单元格。
 
 <big>**cell中的数据是没有类型的，全部是字节码形式存储**。</big>
 
@@ -269,7 +269,7 @@ Get 指定行的返回属性。读取通过 Table.get 执行。
 Get 操作的语法如下所示：
 
 ```shell
-get ’<table name>’,’row1’
+get '&lt;table name&gt;','row1'
 ```
 
 在以下的 get 命令示例中，我们扫描了 emp 表的第一行：
@@ -362,7 +362,7 @@ Scan 允许在多个行上对指定属性进行迭代。
 Scan 操作的语法如下：
 
 ```shell
-scan ‘<table name>’ 
+scan '&lt;table name&gt;'
 ```
 
 以下是扫描表格实例的示例。假定表中有带有键 "row1 "、 "row2 "、 "row3 " 的行，然后是具有键“abc1”，“abc2”和“abc3”的另一组行。以下示例显示如何设置Scan实例以返回以“row”开头的行。
@@ -400,7 +400,7 @@ Delete 操作用于从表中删除一行。Delete 通过 Table.delete 执行。
 使用 Delete 命令的语法如下：
 
 ```shell
-delete ‘<table name>’, ‘<row>’, ‘<column name >’, ‘<time stamp>’
+delete '&lt;table name&gt;', '&lt;row&gt;', '&lt;column name&gt;', '&lt;time stamp&gt;'
 ```
 
 下面是一个删除特定单元格的例子：
@@ -416,7 +416,7 @@ hbase(main):006:0> delete 'emp', '1', 'personal data:city',
 使用 “deleteall” 命令，可以删除一行中所有单元格。下面给出是 deleteall 命令的语法：
 
 ```shell
-deleteall ‘<table name>’, ‘<row>’,
+deleteall '&lt;table name&gt;', '&lt;row&gt;'
 ```
 
 这里是使用“deleteall”命令删除 emp 表 row1 的所有单元的一个例子。
