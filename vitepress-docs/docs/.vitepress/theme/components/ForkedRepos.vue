@@ -91,7 +91,7 @@ onMounted(() => {
   <div class="forked-repos">
     <h2 class="forked-repos-title" @click="toggleCollapse">
       <span class="toggle-icon">{{ isCollapsed ? '▶' : '▼' }}</span>
-      🍴 Fork 的仓库
+      🍴 Forks
     </h2>
     
     <div v-if="loading" class="loading">
@@ -103,7 +103,7 @@ onMounted(() => {
     </div>
     
     <div v-else-if="Object.keys(categorizedRepos).length === 0" class="empty">
-      <span>暂无 fork 的仓库</span>
+      <span>暂无 forks</span>
     </div>
     
     <template v-else>
