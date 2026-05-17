@@ -1,5 +1,4 @@
-
-&lt;script setup lang="ts"&gt;
+<script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 
 interface Repository {
@@ -16,14 +15,14 @@ interface CategorizedRepos {
   [key: string]: Repository[]
 }
 
-const repos = ref&lt;Repository[]&gt;([])
+const repos = ref<Repository[]>([])
 const loading = ref(true)
 const error = ref('')
 
 const GITHUB_USERNAME = 'daodaocrazy'
-const API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&amp;sort=updated`
+const API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`
 
-const LANGUAGE_CATEGORIES: Record&lt;string, string&gt; = {
+const LANGUAGE_CATEGORIES: Record<string, string> = {
   'JavaScript': '前端开发',
   'TypeScript': '前端开发',
   'HTML': '前端开发',
@@ -42,10 +41,10 @@ const LANGUAGE_CATEGORIES: Record&lt;string, string&gt; = {
   'Makefile': '构建工具'
 }
 
-const categorizedRepos = computed&lt;CategorizedRepos&gt;(() =&gt; {
+const categorizedRepos = computed<CategorizedRepos>(() => {
   const result: CategorizedRepos = {}
   
-  repos.value.forEach(repo =&gt; {
+  repos.value.forEach(repo => {
     const language = repo.language || '其他'
     const category = LANGUAGE_CATEGORIES[language] || '其他'
     
@@ -59,18 +58,18 @@ const categorizedRepos = computed&lt;CategorizedRepos&gt;(() =&gt; {
   return result
 })
 
-const formatDate = (dateString: string): string =&gt; {
+const formatDate = (dateString: string): string => {
   return new Date(dateString).toLocaleDateString('zh-CN')
 }
 
-const fetchRepos = async () =&gt; {
+const fetchRepos = async () => {
   try {
     const response = await fetch(API_URL)
     if (!response.ok) {
       throw new Error('Failed to fetch repositories')
     }
     const data = await response.json()
-    repos.value = data.filter((repo: Repository) =&gt; repo.fork)
+    repos.value = data.filter((repo: Repository) => repo.fork)
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Failed to load repositories'
   } finally {
@@ -78,50 +77,50 @@ const fetchRepos = async () =&gt; {
   }
 }
 
-onMounted(() =&gt; {
+onMounted(() => {
   fetchRepos()
 })
-&lt;/script&gt;
+</script>
 
-&lt;template&gt;
-  &lt;div class="forked-repos"&gt;
-    &lt;h2 class="forked-repos-title"&gt;🍴 Fork 的仓库&lt;/h2&gt;
+<template>
+  <div class="forked-repos">
+    <h2 class="forked-repos-title">🍴 Fork 的仓库</h2>
     
-    &lt;div v-if="loading" class="loading"&gt;
-      &lt;span&gt;加载中...&lt;/span&gt;
-    &lt;/div&gt;
+    <div v-if="loading" class="loading">
+      <span>加载中...</span>
+    </div>
     
-    &lt;div v-else-if="error" class="error"&gt;
-      &lt;span&gt;{{ error }}&lt;/span&gt;
-    &lt;/div&gt;
+    <div v-else-if="error" class="error">
+      <span>{{ error }}</span>
+    </div>
     
-    &lt;div v-else-if="Object.keys(categorizedRepos).length === 0" class="empty"&gt;
-      &lt;span&gt;暂无 fork 的仓库&lt;/span&gt;
-    &lt;/div&gt;
+    <div v-else-if="Object.keys(categorizedRepos).length === 0" class="empty">
+      <span>暂无 fork 的仓库</span>
+    </div>
     
-    &lt;div v-else class="repo-categories"&gt;
-      &lt;div v-for="(categoryRepos, category) in categorizedRepos" :key="category" class="repo-category"&gt;
-        &lt;h3 class="category-title"&gt;📁 {{ category }}&lt;/h3&gt;
-        &lt;div class="repo-list"&gt;
-          &lt;div v-for="repo in categoryRepos" :key="repo.html_url" class="repo-item"&gt;
-            &lt;a :href="repo.html_url" target="_blank" rel="noopener" class="repo-name"&gt;
+    <div v-else class="repo-categories">
+      <div v-for="(categoryRepos, category) in categorizedRepos" :key="category" class="repo-category">
+        <h3 class="category-title">📁 {{ category }}</h3>
+        <div class="repo-list">
+          <div v-for="repo in categoryRepos" :key="repo.html_url" class="repo-item">
+            <a :href="repo.html_url" target="_blank" rel="noopener" class="repo-name">
               {{ repo.name }}
-            &lt;/a&gt;
-            &lt;p class="repo-description"&gt;{{ repo.description || '暂无描述' }}&lt;/p&gt;
-            &lt;div class="repo-meta"&gt;
-              &lt;span v-if="repo.language" class="repo-language"&gt;{{ repo.language }}&lt;/span&gt;
-              &lt;span class="repo-stars"&gt;⭐ {{ repo.stargazers_count }}&lt;/span&gt;
-              &lt;span class="repo-forks"&gt;🔀 {{ repo.forks_count }}&lt;/span&gt;
-              &lt;span class="repo-updated"&gt;📅 {{ formatDate(repo.updated_at) }}&lt;/span&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
+            </a>
+            <p class="repo-description">{{ repo.description || '暂无描述' }}</p>
+            <div class="repo-meta">
+              <span v-if="repo.language" class="repo-language">{{ repo.language }}</span>
+              <span class="repo-stars">⭐ {{ repo.stargazers_count }}</span>
+              <span class="repo-forks">🔀 {{ repo.forks_count }}</span>
+              <span class="repo-updated">📅 {{ formatDate(repo.updated_at) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 
-&lt;style scoped&gt;
+<style scoped>
 .forked-repos {
   margin-top: 3rem;
   padding-top: 2rem;
@@ -244,5 +243,4 @@ onMounted(() =&gt; {
     gap: 0.5rem;
   }
 }
-&lt;/style&gt;
-
+</style>
