@@ -6,7 +6,15 @@
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:build:ci": "node ./scripts/run-build.mjs",
+    "docs:build:main": "node ./scripts/run-build.mjs --base / --ref main",
+    "docs:build:lab": "node ./scripts/run-build.mjs --base /lab/ --ref lab",
+    "docs:build:preview": "node ./scripts/run-build.mjs --base /preview/local-preview/ --ref feature/local-preview",
+    "docs:preview": "vitepress preview docs",
+    "docs:preview:multi": "node ./scripts/local-multi-env-preview.mjs --port 4175 --root-ref main --mount /lab/=lab --mount /worktree/=worktree",
+    "docs:preview:multi:feature": "node ./scripts/local-multi-env-preview.mjs --port 4175 --root-ref main --mount /lab/=lab --mount /worktree/=worktree",
+    "docs:preview:multi:stop": "node ./scripts/local-multi-env-stop.mjs --port 4175",
+    "docs:preview:multi:status": "node ./scripts/local-multi-env-status.mjs --port 4175"
   },
   "keywords": ["vitepress", "documentation", "notes"],
   "author": "Daodaocrazy",
