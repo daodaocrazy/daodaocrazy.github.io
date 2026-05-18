@@ -18,15 +18,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 20
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Resolve deployment target
         id: target
@@ -77,7 +77,7 @@ jobs:
         run: node ./vitepress-docs/scripts/render-preview-index.mjs "$STAGING_DIR" "https://daodaocrazy.github.io"
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ${{ steps.snapshot.outputs.staging_dir }}
 
@@ -89,7 +89,7 @@ jobs:
       id-token: write
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
+      name: github-pages-preview
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages

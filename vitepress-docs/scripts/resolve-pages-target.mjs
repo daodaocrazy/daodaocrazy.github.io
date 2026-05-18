@@ -46,7 +46,7 @@ function resolveTarget(branchName) {
       channel: 'preview',
       base_path: normalizeBasePath(deploySubdir),
       deploy_subdir: deploySubdir,
-      environment_name: 'github-pages',
+      environment_name: 'github-pages-preview',
       preview_slug: previewSlug
     }
   }

@@ -24,22 +24,23 @@ jobs:
       channel: ${{ steps.target.outputs.channel }}
       base_path: ${{ steps.target.outputs.base_path }}
       deploy_subdir: ${{ steps.target.outputs.deploy_subdir }}
+      environment_name: ${{ steps.target.outputs.environment_name }}
       preview_slug: ${{ steps.target.outputs.preview_slug }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: npm
           cache-dependency-path: vitepress-docs/package-lock.json
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Resolve deployment target
         id: target
@@ -131,13 +132,13 @@ jobs:
         run: node ./vitepress-docs/scripts/render-preview-index.mjs "$STAGING_DIR" "https://daodaocrazy.github.io"
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ${{ steps.snapshot.outputs.staging_dir }}
 
   deploy:
     environment:
-      name: github-pages
+      name: ${{ needs.build.outputs.environment_name }}
       url: ${{ steps.deployment.outputs.page_url }}
     needs: build
     runs-on: ubuntu-latest

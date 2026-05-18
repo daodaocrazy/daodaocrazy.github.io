@@ -15,12 +15,12 @@ jobs:
         working-directory: ./vitepress-docs
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: npm
@@ -48,7 +48,7 @@ jobs:
 
       - name: Upload build output for inspection
         if: success()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: vitepress-build-${{ github.event.pull_request.head.ref || github.ref_name }}
           path: ./vitepress-docs/docs/.vitepress/dist
