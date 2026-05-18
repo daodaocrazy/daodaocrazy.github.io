@@ -1,0 +1,97 @@
+name: Cleanup Preview Environment
+
+on:
+  delete:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-site
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    if: github.event.ref_type == 'branch' && startsWith(github.event.ref, 'feature/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Resolve deployment target
+        id: target
+        run: node ./vitepress-docs/scripts/resolve-pages-target.mjs "${{ github.event.ref }}" --format=github-output >> "$GITHUB_OUTPUT"
+
+      - name: Restore live Pages snapshot
+        id: snapshot
+        env:
+          PUBLIC_ORIGIN: https://daodaocrazy.github.io
+        run: |
+          set -euo pipefail
+
+          STAGING_DIR="$RUNNER_TEMP/pages-site"
+          SNAPSHOT_DIR="$RUNNER_TEMP/live-pages"
+
+          mkdir -p "$STAGING_DIR" "$SNAPSHOT_DIR"
+
+          download_seed() {
+            local seed="$1"
+            wget --mirror --no-verbose --directory-prefix "$SNAPSHOT_DIR" "$seed" || true
+          }
+
+          if curl --fail --silent --show-error --location "$PUBLIC_ORIGIN/" >/dev/null; then
+            download_seed "$PUBLIC_ORIGIN/"
+            download_seed "$PUBLIC_ORIGIN/lab/"
+            download_seed "$PUBLIC_ORIGIN/preview/"
+
+            if [[ -d "$SNAPSHOT_DIR/daodaocrazy.github.io" ]]; then
+              rsync -a "$SNAPSHOT_DIR/daodaocrazy.github.io/" "$STAGING_DIR/"
+            fi
+          fi
+
+          touch "$STAGING_DIR/.nojekyll"
+          echo "staging_dir=$STAGING_DIR" >> "$GITHUB_OUTPUT"
+
+      - name: Remove deleted preview subtree
+        env:
+          DEPLOY_SUBDIR: ${{ steps.target.outputs.deploy_subdir }}
+          STAGING_DIR: ${{ steps.snapshot.outputs.staging_dir }}
+        run: |
+          set -euo pipefail
+          rm -rf "$STAGING_DIR/$DEPLOY_SUBDIR"
+          touch "$STAGING_DIR/.nojekyll"
+
+      - name: Rebuild preview index
+        env:
+          STAGING_DIR: ${{ steps.snapshot.outputs.staging_dir }}
+        run: node ./vitepress-docs/scripts/render-preview-index.mjs "$STAGING_DIR" "https://daodaocrazy.github.io"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.snapshot.outputs.staging_dir }}
+
+  deploy:
+    needs: cleanup
+    if: needs.cleanup.result == 'success'
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

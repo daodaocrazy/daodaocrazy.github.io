@@ -324,10 +324,33 @@ function sanitizeLegacyStudyMarkdown(source) {
     .replace(/<(?!\/?br\b)([^>\n]+)>/g, '&lt;$1&gt;')
 }
 
+function normalizeBase(basePath) {
+  if (!basePath || basePath === '/') {
+    return '/'
+  }
+
+  const normalized = `/${basePath.replace(/^\/+|\/+$/g, '')}/`
+  return normalized.replace(/\/+/g, '/')
+}
+
+function joinWithBase(basePath, targetPath) {
+  const normalizedTarget = targetPath.startsWith('/') ? targetPath : `/${targetPath}`
+
+  if (basePath === '/') {
+    return normalizedTarget
+  }
+
+  return `${basePath.replace(/\/$/, '')}${normalizedTarget}`
+}
+
+const siteBase = normalizeBase(process.env.VITEPRESS_BASE_PATH || '/')
+const contentRef = process.env.DOCS_CONTENT_REF || 'main'
+
 export default defineConfig({
   title: "Daodaocrazy's Blog",
   description: '个人 blog portal，承载技术文档、学习记录、项目实验与持续输出',
   appearance: 'dark',
+  base: siteBase,
   srcDir: '.',
   ignoreDeadLinks: true,
   vite: {
@@ -347,17 +370,59 @@ export default defineConfig({
   },
   head: [
     ['meta', { name: 'theme-color', content: '#3c8772' }],
-     ['link', { rel: 'icon', type: 'image/jpeg', href: '/_media/icon.jpeg' }],
+    ['link', { rel: 'icon', type: 'image/jpeg', href: joinWithBase(siteBase, '/_media/icon.jpeg') }],
   ],
 
   themeConfig: {
     siteTitle: "Daodaocrazy's Blog",
 
     nav: [
-      { text: '首页', link: '/' }
+      { text: '首页', link: '/' },
+      { text: '文档', link: '/study/' },
+      { text: 'Tool Box', link: '/tools/' },
+      { text: 'Playground', link: '/playground/' },
+      { text: 'Lab', link: '/lab/' },
+      { text: 'Experiments', link: '/experiments/' }
     ],
 
-    sidebar: studySidebar,
+    sidebar: {
+      ...studySidebar,
+      '/tools/': [
+        {
+          text: 'Tool Box',
+          items: [
+            { text: '总览', link: '/tools/' },
+            { text: 'MCP Explorer', link: '/tools/mcp-explorer' }
+          ]
+        }
+      ],
+      '/playground/': [
+        {
+          text: 'Playground',
+          items: [
+            { text: '总览', link: '/playground/' },
+            { text: 'Prompt Playground', link: '/playground/prompt-playground' },
+            { text: 'Workflow Visualizer', link: '/playground/workflow-visualizer' }
+          ]
+        }
+      ],
+      '/lab/': [
+        {
+          text: 'Lab',
+          items: [
+            { text: '总览', link: '/lab/' }
+          ]
+        }
+      ],
+      '/experiments/': [
+        {
+          text: 'Experiments',
+          items: [
+            { text: '总览', link: '/experiments/' }
+          ]
+        }
+      ]
+    },
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/daodaocrazy' }
@@ -371,7 +436,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/daodaocrazy/daodaocrazy.github.io/edit/main/docs/:path',
+      pattern: `https://github.com/daodaocrazy/daodaocrazy.github.io/edit/${contentRef}/vitepress-docs/docs/:path`,
       text: '在 GitHub 上编辑此页'
     },
 
