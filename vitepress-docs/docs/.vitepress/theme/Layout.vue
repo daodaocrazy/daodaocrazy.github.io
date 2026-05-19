@@ -16,6 +16,7 @@ import StudyPageOutline from './components/StudyPageOutline.vue'
 import StudySidebar from './components/StudySidebar.vue'
 import StudySidebarToggle from './components/StudySidebarToggle.vue'
 import ForkedRepos from './components/ForkedRepos.vue'
+import PublicJsonPilotWorkbench from './components/PublicJsonPilotWorkbench.vue'
 
 const {
   isOpen: isSidebarOpen,
@@ -23,7 +24,7 @@ const {
   close: closeSidebar
 } = useSidebar()
 
-useRoute()
+const route = useRoute()
 
 useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
 
@@ -67,6 +68,7 @@ onBeforeUnmount(() => {
 
 const { frontmatter } = useVitePressData()
 const isHomePage = computed(() => frontmatter.value.layout === 'home')
+const isPublicJsonPilotPage = computed(() => route.path.startsWith('/tools/public-json-pilot'))
 
 const slots = useSlots()
 const heroImageSlotExists = computed(() => !!slots['home-hero-image'])
@@ -98,7 +100,10 @@ provide('study-close-sidebar', closeSidebar)
 
     <VPContent>
       <template #page-top><slot name="page-top" /></template>
-      <template #page-bottom><slot name="page-bottom" /></template>
+      <template #page-bottom>
+        <slot name="page-bottom" />
+        <PublicJsonPilotWorkbench v-if="isPublicJsonPilotPage" />
+      </template>
 
       <template #not-found><slot name="not-found" /></template>
       <template #home-hero-before><slot name="home-hero-before" /></template>
@@ -116,7 +121,10 @@ provide('study-close-sidebar', closeSidebar)
 
       <template #doc-footer-before><slot name="doc-footer-before" /></template>
       <template #doc-before><slot name="doc-before" /></template>
-      <template #doc-after><slot name="doc-after" /></template>
+      <template #doc-after>
+        <slot name="doc-after" />
+        <PublicJsonPilotWorkbench v-if="isPublicJsonPilotPage" />
+      </template>
       <template #doc-top><slot name="doc-top" /></template>
       <template #doc-bottom><slot name="doc-bottom" /></template>
 
