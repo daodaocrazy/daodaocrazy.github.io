@@ -46,11 +46,19 @@ jobs:
             exit 1
           fi
 
+      - name: Prepare artifact name
+        id: artifact_name
+        env:
+          RAW_REF_NAME: ${{ github.event.pull_request.head.ref || github.ref_name }}
+        run: |
+          sanitized_ref=$(printf '%s' "$RAW_REF_NAME" | tr '/\\:*?"<>|' '-' | tr -d '\r\n')
+          echo "value=vitepress-build-$sanitized_ref" >> "$GITHUB_OUTPUT"
+
       - name: Upload build output for inspection
         if: success()
         uses: actions/upload-artifact@v6
         with:
-          name: vitepress-build-${{ github.event.pull_request.head.ref || github.ref_name }}
+          name: ${{ steps.artifact_name.outputs.value }}
           path: ./vitepress-docs/docs/.vitepress/dist
           retention-days: 7
 
