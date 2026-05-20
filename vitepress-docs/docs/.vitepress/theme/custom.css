@@ -225,8 +225,17 @@ body.study-page {
   padding-inline: clamp(12px, 2vw, 24px);
 }
 
+.metals-market-snapshot-page .VPPage {
+  box-sizing: border-box;
+  padding-inline: clamp(12px, 2vw, 24px);
+}
+
 @media (min-width: 960px) {
   .json-formatter-page .VPPage {
+    padding-inline: clamp(18px, 2.6vw, 32px);
+  }
+
+  .metals-market-snapshot-page .VPPage {
     padding-inline: clamp(18px, 2.6vw, 32px);
   }
 }

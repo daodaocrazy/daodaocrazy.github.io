@@ -146,64 +146,83 @@ onMounted(() => {
 
 <style scoped>
 .metals-workbench {
-  margin-top: 2rem;
-  padding: 1.25rem;
+  --metals-shell-start: color-mix(in srgb, var(--vp-c-bg) 86%, var(--vp-c-brand-1) 14%);
+  --metals-shell-end: color-mix(in srgb, var(--vp-c-bg-alt) 90%, var(--vp-c-brand-2) 10%);
+  --metals-panel: color-mix(in srgb, var(--vp-c-bg-elv) 94%, var(--vp-c-brand-1) 6%);
+  --metals-panel-strong: color-mix(in srgb, var(--vp-c-bg-elv) 88%, var(--vp-c-brand-1) 12%);
+  --metals-panel-soft: color-mix(in srgb, var(--vp-c-bg) 92%, var(--vp-c-brand-1) 8%);
+  --metals-border: color-mix(in srgb, var(--vp-c-divider) 78%, var(--vp-c-brand-1) 22%);
+  --metals-border-strong: color-mix(in srgb, var(--vp-c-divider) 62%, var(--vp-c-brand-1) 38%);
+  --metals-accent: var(--vp-c-brand-1);
+  --metals-accent-soft: color-mix(in srgb, var(--vp-c-brand-1) 14%, transparent);
+  --metals-text: var(--vp-c-text-1);
+  --metals-text-soft: var(--vp-c-text-2);
+  --metals-text-muted: var(--vp-c-text-3);
+  margin: 28px 0 12px;
+  padding: 24px;
   border-radius: 28px;
+  border: 1px solid var(--metals-border-strong);
   background:
-    radial-gradient(circle at top left, rgba(197, 136, 71, 0.16), transparent 32%),
-    linear-gradient(145deg, rgba(12, 23, 36, 0.96), rgba(28, 42, 61, 0.92));
-  color: #eef4fb;
+    radial-gradient(circle at top left, color-mix(in srgb, var(--vp-c-brand-2) 18%, transparent), transparent 32%),
+    linear-gradient(145deg, var(--metals-shell-start), var(--metals-shell-end));
+  box-shadow: 0 22px 44px rgba(15, 23, 42, 0.08);
+  color: var(--metals-text);
 }
 
 .metals-workbench__hero {
   display: flex;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 24px;
   align-items: flex-start;
-  margin-bottom: 1.5rem;
+  margin-bottom: 18px;
+}
+
+.metals-workbench__hero > div {
+  max-width: 42rem;
 }
 
 .metals-workbench__eyebrow {
-  margin: 0 0 0.35rem;
-  font-size: 0.8rem;
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #f2c27d;
+  color: var(--metals-accent);
 }
 
 .metals-workbench__hero h2 {
-  margin: 0;
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  margin: 6px 0 8px;
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  line-height: 1.08;
 }
 
 .metals-workbench__intro {
-  max-width: 52rem;
-  margin: 0.75rem 0 0;
-  color: rgba(238, 244, 251, 0.84);
+  margin: 0;
+  color: var(--metals-text-soft);
   line-height: 1.7;
 }
 
 .metals-workbench__meta {
   display: grid;
   grid-template-columns: repeat(3, minmax(7rem, 1fr));
-  gap: 0.9rem;
+  gap: 12px;
   min-width: min(24rem, 100%);
 }
 
 .metals-workbench__meta div,
 .metals-workbench__quote {
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--metals-border);
+  background: var(--metals-panel);
   border-radius: 18px;
 }
 
 .metals-workbench__meta div {
-  padding: 0.9rem 1rem;
+  padding: 14px 16px;
 }
 
 .metals-workbench__meta dt {
   font-size: 0.78rem;
-  color: rgba(238, 244, 251, 0.66);
+  color: var(--metals-text-muted);
 }
 
 .metals-workbench__meta dd {
@@ -213,42 +232,45 @@ onMounted(() => {
 }
 
 .metals-workbench__state {
-  padding: 1rem 1.1rem;
+  padding: 16px 18px;
   border-radius: 18px;
+  border: 1px solid var(--metals-border);
+  background: var(--metals-panel-soft);
 }
 
 .metals-workbench__state.is-loading {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--metals-panel-soft);
 }
 
 .metals-workbench__state.is-error {
-  background: rgba(138, 35, 49, 0.26);
-  border: 1px solid rgba(255, 137, 137, 0.34);
+  background: color-mix(in srgb, var(--vp-c-red-1) 10%, var(--metals-panel-soft) 90%);
+  border-color: color-mix(in srgb, var(--vp-c-red-1) 30%, var(--metals-border) 70%);
 }
 
 .metals-workbench__state-detail {
   margin-bottom: 0;
-  color: rgba(255, 226, 226, 0.9);
+  color: var(--vp-c-red-1);
 }
 
 .metals-workbench__grid {
   display: grid;
-  gap: 1rem;
+  gap: 16px;
 }
 
 .metals-workbench__metal-card {
-  padding: 1.1rem;
+  padding: 20px;
   border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--metals-border);
+  background: var(--metals-panel-strong);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--vp-c-default-1) 4%, transparent);
 }
 
 .metals-workbench__metal-header {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 16px;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
 }
 
 .metals-workbench__metal-header h3,
@@ -256,42 +278,51 @@ onMounted(() => {
   margin: 0;
 }
 
+.metals-workbench__metal-header h3 {
+  font-size: 1.08rem;
+}
+
 .metals-workbench__metal-header p {
-  color: rgba(238, 244, 251, 0.56);
+  color: var(--metals-text-muted);
+  font-size: 0.92rem;
 }
 
 .metals-workbench__category {
   padding: 0.3rem 0.7rem;
   border-radius: 999px;
-  background: rgba(242, 194, 125, 0.16);
-  color: #f7d2a5;
+  background: var(--metals-accent-soft);
+  color: var(--metals-accent);
   font-size: 0.78rem;
 }
 
 .metals-workbench__quotes {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 14px;
 }
 
 .metals-workbench__quote {
-  padding: 1rem;
+  padding: 16px;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--vp-c-default-1) 4%, transparent);
 }
 
 .metals-workbench__quote.is-positive {
-  border-color: rgba(95, 215, 150, 0.35);
+  border-color: color-mix(in srgb, var(--vp-c-green-1) 44%, var(--metals-border) 56%);
+  background: color-mix(in srgb, var(--vp-c-green-1) 8%, var(--metals-panel) 92%);
 }
 
 .metals-workbench__quote.is-negative {
-  border-color: rgba(245, 120, 120, 0.35);
+  border-color: color-mix(in srgb, var(--vp-c-red-1) 44%, var(--metals-border) 56%);
+  background: color-mix(in srgb, var(--vp-c-red-1) 8%, var(--metals-panel) 92%);
 }
 
 .metals-workbench__quote.is-warning {
-  border-color: rgba(247, 204, 115, 0.35);
+  border-color: color-mix(in srgb, var(--vp-c-yellow-1) 44%, var(--metals-border) 56%);
+  background: color-mix(in srgb, var(--vp-c-yellow-1) 8%, var(--metals-panel) 92%);
 }
 
 .metals-workbench__quote.is-muted {
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--metals-border);
 }
 
 .metals-workbench__quote-top {
@@ -303,7 +334,12 @@ onMounted(() => {
 
 .metals-workbench__status {
   font-size: 0.78rem;
-  color: rgba(238, 244, 251, 0.68);
+  color: var(--metals-text-muted);
+}
+
+.metals-workbench__basis {
+  font-size: 0.92rem;
+  color: var(--metals-text-soft);
 }
 
 .metals-workbench__basis,
@@ -314,14 +350,35 @@ onMounted(() => {
 
 .metals-workbench__price {
   margin: 0.75rem 0 0;
-  font-size: 1.32rem;
+  font-size: 1.4rem;
   font-weight: 700;
+  line-height: 1.2;
+}
+
+.metals-workbench__delta {
+  font-weight: 600;
+}
+
+.metals-workbench__quote.is-positive .metals-workbench__delta {
+  color: var(--vp-c-green-1);
+}
+
+.metals-workbench__quote.is-negative .metals-workbench__delta {
+  color: var(--vp-c-red-1);
+}
+
+.metals-workbench__quote.is-warning .metals-workbench__delta {
+  color: var(--vp-c-yellow-1);
+}
+
+.metals-workbench__quote.is-muted .metals-workbench__delta {
+  color: var(--metals-text-soft);
 }
 
 .metals-workbench__details {
   margin: 0.75rem 0 0;
   padding-left: 1.1rem;
-  color: rgba(238, 244, 251, 0.8);
+  color: var(--metals-text-soft);
 }
 
 .metals-workbench__details li + li {
@@ -329,7 +386,12 @@ onMounted(() => {
 }
 
 .metals-workbench a {
-  color: #f2c27d;
+  color: var(--metals-accent);
+  text-decoration-color: color-mix(in srgb, var(--vp-c-brand-1) 40%, transparent);
+}
+
+.metals-workbench a:hover {
+  color: var(--vp-c-brand-2);
 }
 
 @media (max-width: 960px) {
@@ -347,7 +409,8 @@ onMounted(() => {
 
 @media (max-width: 640px) {
   .metals-workbench {
-    padding: 1rem;
+    margin: 24px 0 12px;
+    padding: 18px;
     border-radius: 22px;
   }
 
