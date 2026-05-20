@@ -37,4 +37,3 @@
 - vitepress-docs/scripts/local-multi-env-preview.mjs
 - vitepress-docs/scripts/local-multi-env-status.mjs
 - vitepress-docs/scripts/local-multi-env-stop.mjs
-- plans/2026-05-pages-cicd-modernization.md

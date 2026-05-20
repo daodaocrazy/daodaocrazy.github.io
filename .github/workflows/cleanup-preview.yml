@@ -25,6 +25,11 @@ jobs:
         with:
           node-version: 20
 
+      - name: Verify GitHub Pages repository settings
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node ./vitepress-docs/scripts/verify-pages-config.mjs --branch "${{ github.event.ref }}"
+
       - name: Setup Pages
         uses: actions/configure-pages@v6
 

@@ -39,6 +39,11 @@ jobs:
           cache: npm
           cache-dependency-path: vitepress-docs/package-lock.json
 
+      - name: Verify GitHub Pages repository settings
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node ./vitepress-docs/scripts/verify-pages-config.mjs --branch "${{ github.ref_name }}"
+
       - name: Setup Pages
         uses: actions/configure-pages@v6
 
