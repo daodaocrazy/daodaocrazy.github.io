@@ -13,6 +13,7 @@ import {
   useSidebar
 } from 'vitepress/dist/client/theme-default/composables/sidebar'
 import StudyPageOutline from './components/StudyPageOutline.vue'
+import JsonFormatterWorkbench from './components/JsonFormatterWorkbench.vue'
 import MetalsMarketWorkbench from './components/MetalsMarketWorkbench.vue'
 import StudySidebar from './components/StudySidebar.vue'
 import StudySidebarToggle from './components/StudySidebarToggle.vue'
@@ -71,6 +72,7 @@ const isHomePage = computed(() => frontmatter.value.layout === 'home')
 
 const slots = useSlots()
 const heroImageSlotExists = computed(() => !!slots['home-hero-image'])
+const isJsonFormatterPage = computed(() => route.path.startsWith('/tools/json-formatter'))
 const isMetalsMarketSnapshotPage = computed(() => route.path.startsWith('/tools/metals-market-snapshot'))
 
 provide('hero-image-slot-exists', heroImageSlotExists)
@@ -102,6 +104,7 @@ provide('study-close-sidebar', closeSidebar)
       <template #page-top><slot name="page-top" /></template>
       <template #page-bottom>
         <slot name="page-bottom" />
+        <JsonFormatterWorkbench v-if="isJsonFormatterPage" />
         <MetalsMarketWorkbench v-if="isMetalsMarketSnapshotPage" />
       </template>
 
@@ -123,6 +126,7 @@ provide('study-close-sidebar', closeSidebar)
       <template #doc-before><slot name="doc-before" /></template>
       <template #doc-after>
         <slot name="doc-after" />
+        <JsonFormatterWorkbench v-if="isJsonFormatterPage" />
         <MetalsMarketWorkbench v-if="isMetalsMarketSnapshotPage" />
       </template>
       <template #doc-top><slot name="doc-top" /></template>

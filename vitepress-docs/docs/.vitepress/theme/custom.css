@@ -220,6 +220,17 @@ body.study-page {
   font-size: 15px;
 }
 
+.json-formatter-page .VPPage {
+  box-sizing: border-box;
+  padding-inline: clamp(12px, 2vw, 24px);
+}
+
+@media (min-width: 960px) {
+  .json-formatter-page .VPPage {
+    padding-inline: clamp(18px, 2.6vw, 32px);
+  }
+}
+
 body.study-page.study-sidebar-collapsed .study-sidebar-toggle {
   background: color-mix(in srgb, var(--vp-c-bg) 88%, var(--vp-c-brand-1) 12%);
 }
