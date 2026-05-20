@@ -1,0 +1,155 @@
+name: Refresh Metals Market Snapshot
+
+on:
+  schedule:
+    - cron: '17 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-site
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      channel: ${{ steps.target.outputs.channel }}
+      base_path: ${{ steps.target.outputs.base_path }}
+      deploy_subdir: ${{ steps.target.outputs.deploy_subdir }}
+      environment_name: ${{ steps.target.outputs.environment_name }}
+      preview_slug: ${{ steps.target.outputs.preview_slug }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: vitepress-docs/package-lock.json
+
+      - name: Verify GitHub Pages repository settings
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node ./vitepress-docs/scripts/verify-pages-config.mjs --branch "${{ github.ref_name }}"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
+
+      - name: Resolve deployment target
+        id: target
+        run: node ./vitepress-docs/scripts/resolve-pages-target.mjs "${GITHUB_REF_NAME}" --format=github-output >> "$GITHUB_OUTPUT"
+
+      - name: Install dependencies
+        working-directory: ./vitepress-docs
+        run: npm ci
+
+      - name: Refresh metals market snapshot
+        working-directory: ./vitepress-docs
+        run: node ./scripts/refresh-metals-market-snapshot.mjs
+
+      - name: Restore live Pages snapshot
+        id: snapshot
+        env:
+          PUBLIC_ORIGIN: https://daodaocrazy.github.io
+        run: |
+          set -euo pipefail
+
+          STAGING_DIR="$RUNNER_TEMP/pages-site"
+          SNAPSHOT_DIR="$RUNNER_TEMP/live-pages"
+
+          mkdir -p "$STAGING_DIR" "$SNAPSHOT_DIR"
+
+          download_seed() {
+            local seed="$1"
+            wget --mirror --no-verbose --directory-prefix "$SNAPSHOT_DIR" "$seed" || true
+          }
+
+          if curl --fail --silent --show-error --location "$PUBLIC_ORIGIN/" >/dev/null; then
+            download_seed "$PUBLIC_ORIGIN/"
+            download_seed "$PUBLIC_ORIGIN/lab/"
+            download_seed "$PUBLIC_ORIGIN/preview/"
+
+            if [[ -d "$SNAPSHOT_DIR/daodaocrazy.github.io" ]]; then
+              rsync -a "$SNAPSHOT_DIR/daodaocrazy.github.io/" "$STAGING_DIR/"
+            fi
+          fi
+
+          touch "$STAGING_DIR/.nojekyll"
+          echo "staging_dir=$STAGING_DIR" >> "$GITHUB_OUTPUT"
+
+      - name: Build with VitePress
+        working-directory: ./vitepress-docs
+        run: node ./scripts/run-build.mjs --base "${{ steps.target.outputs.base_path }}" --ref "${{ github.ref_name }}"
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+
+      - name: Sync build output into Pages bundle
+        env:
+          DEPLOY_SUBDIR: ${{ steps.target.outputs.deploy_subdir }}
+          STAGING_DIR: ${{ steps.snapshot.outputs.staging_dir }}
+        run: |
+          set -euo pipefail
+
+          if [[ -n "$DEPLOY_SUBDIR" ]]; then
+            TARGET_DIR="$STAGING_DIR/$DEPLOY_SUBDIR"
+            rm -rf "$TARGET_DIR"
+            mkdir -p "$TARGET_DIR"
+          else
+            TARGET_DIR="$STAGING_DIR"
+            find "$STAGING_DIR" -mindepth 1 -maxdepth 1 ! -name lab ! -name preview ! -name .nojekyll -exec rm -rf {} +
+          fi
+
+          rsync -a --delete ./vitepress-docs/docs/.vitepress/dist/ "$TARGET_DIR/"
+          touch "$STAGING_DIR/.nojekyll"
+
+      - name: Persist preview metadata
+        if: steps.target.outputs.channel == 'preview'
+        env:
+          DEPLOY_SUBDIR: ${{ steps.target.outputs.deploy_subdir }}
+          PREVIEW_SLUG: ${{ steps.target.outputs.preview_slug }}
+          STAGING_DIR: ${{ steps.snapshot.outputs.staging_dir }}
+        run: |
+          set -euo pipefail
+
+          TARGET_DIR="$STAGING_DIR/$DEPLOY_SUBDIR"
+          DEPLOYED_AT="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+
+          cat > "$TARGET_DIR/_preview.json" <<EOF
+          {
+            "branch": "${GITHUB_REF_NAME}",
+            "slug": "${PREVIEW_SLUG}",
+            "deployedAt": "${DEPLOYED_AT}",
+            "url": "https://daodaocrazy.github.io/${DEPLOY_SUBDIR}/"
+          }
+          EOF
+
+      - name: Rebuild preview index
+        env:
+          STAGING_DIR: ${{ steps.snapshot.outputs.staging_dir }}
+        run: node ./vitepress-docs/scripts/render-preview-index.mjs "$STAGING_DIR" "https://daodaocrazy.github.io"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ${{ steps.snapshot.outputs.staging_dir }}
+
+  deploy:
+    environment:
+      name: ${{ needs.build.outputs.environment_name }}
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

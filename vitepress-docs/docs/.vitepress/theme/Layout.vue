@@ -13,6 +13,7 @@ import {
   useSidebar
 } from 'vitepress/dist/client/theme-default/composables/sidebar'
 import StudyPageOutline from './components/StudyPageOutline.vue'
+import MetalsMarketWorkbench from './components/MetalsMarketWorkbench.vue'
 import StudySidebar from './components/StudySidebar.vue'
 import StudySidebarToggle from './components/StudySidebarToggle.vue'
 import ForkedRepos from './components/ForkedRepos.vue'
@@ -72,6 +73,7 @@ const isPublicJsonPilotPage = computed(() => route.path.startsWith('/tools/publi
 
 const slots = useSlots()
 const heroImageSlotExists = computed(() => !!slots['home-hero-image'])
+const isMetalsMarketSnapshotPage = computed(() => route.path.startsWith('/tools/metals-market-snapshot'))
 
 provide('hero-image-slot-exists', heroImageSlotExists)
 provide('study-close-sidebar', closeSidebar)
@@ -103,6 +105,7 @@ provide('study-close-sidebar', closeSidebar)
       <template #page-bottom>
         <slot name="page-bottom" />
         <PublicJsonPilotWorkbench v-if="isPublicJsonPilotPage" />
+        <MetalsMarketWorkbench v-if="isMetalsMarketSnapshotPage" />
       </template>
 
       <template #not-found><slot name="not-found" /></template>
@@ -124,6 +127,7 @@ provide('study-close-sidebar', closeSidebar)
       <template #doc-after>
         <slot name="doc-after" />
         <PublicJsonPilotWorkbench v-if="isPublicJsonPilotPage" />
+        <MetalsMarketWorkbench v-if="isMetalsMarketSnapshotPage" />
       </template>
       <template #doc-top><slot name="doc-top" /></template>
       <template #doc-bottom><slot name="doc-bottom" /></template>
