@@ -1,5 +1,28 @@
 # 仓库工作说明
 
+## OpenSpec + Superpowers 工作模式
+
+- 仓库默认采用 OpenSpec + superpowers 双层开发模式。
+- OpenSpec 负责 `openspec/changes/<change>/` 下的 `proposal.md`、`design.md`、`tasks.md`、spec delta 与 archive 生命周期，作为新功能开发的 Source of Truth。
+- superpowers 负责 `propose`、`apply`、`validate`、`archive`、`doc-sync` 的执行入口与工作流加速，但不得替代 OpenSpec 的 Source of Truth 顺序。
+- 若 superpowers 入口与仓库文档规则冲突，必须先更新对应 change 或仓库文档，再继续执行。
+
+## 新功能开发标准流程（强制）
+
+只要属于“新功能开发”，默认按 `propose -> apply -> validate -> doc-sync -> archive` 的顺序执行，不允许跳步：
+
+1. `propose`：在 `openspec/changes/<change>/` 创建或续写 `proposal.md`、`design.md`、`tasks.md`，并把 source-of-truth、范围、非目标、验证计划、文档同步点写完整。
+2. `apply`：按 `tasks.md` 的最小可验证任务推进实现；每完成一个任务立即回写勾选状态。若实现偏离原计划，先更新 change 文档再继续编码。
+3. `validate`：先做改动最相关的 focused tests，再补必要的类型检查或 lint；没有验证证据不得宣称完成。
+4. `doc-sync`：逐项检查并同步架构文档、README、相关 `openspec/specs/*`、相关 `docs/` 与其他受影响说明；若无需更新，也必须明确记录“已检查，无需更新”。
+5. `archive`：当任务与验证都完成后，将 change 归档到 `openspec/changes/archive/YYYY-MM-DD-<change>/`，并确认该 change 不再出现在 active changes。
+
+补充约束：
+
+- 未创建或未续写 active change，不得开始实现新功能代码。
+- `tasks.md` 仍有未完成项时，不得执行完成态归档。
+- 新功能默认要求在一次完整路径中走完 `propose -> apply -> validate -> doc-sync -> archive`；只有在明确阻塞时才允许暂停，并记录阻塞原因与恢复条件。
+
 - 当前站点的真实构建入口在 `vitepress-docs/`。涉及站点内容、构建脚本或发布逻辑时，优先从 `vitepress-docs/package.json`、`vitepress-docs/docs/` 和 `vitepress-docs/scripts/` 出发，不要默认把仓库根目录当成当前站点入口。
 - `vitepress-docs/docs/` 是当前 VitePress 文档源。仓库根目录的 `docs/` 和 `study-old/` 主要视为历史内容或归档，除非任务明确要求，否则不要把它们当成新的 VitePress 页面源。
 - 当前 VitePress 配置将 `markdown.html` 设为关闭状态。需要交互式工具页时，不要在 Markdown 正文里直接写 Vue 组件标签；优先通过主题 `Layout` 按路由注入，或使用自定义页面组件承载交互区。
