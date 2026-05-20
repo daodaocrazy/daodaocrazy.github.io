@@ -3,25 +3,26 @@
 ## OpenSpec + Superpowers 工作模式
 
 - 仓库默认采用 OpenSpec + superpowers 双层开发模式。
-- OpenSpec 负责 `openspec/changes/<change>/` 下的 `proposal.md`、`design.md`、`tasks.md`、spec delta 与 archive 生命周期，作为新功能开发的 Source of Truth。
-- superpowers 负责 `propose`、`apply`、`validate`、`archive`、`doc-sync` 的执行入口与工作流加速，但不得替代 OpenSpec 的 Source of Truth 顺序。
+- OpenSpec 负责 `openspec/changes/<change>/` 下的 `proposal.md`、`design.md`、`tasks.md`、spec delta 与 archive 生命周期，作为 change-centric 协作的 Source of Truth。
+- superpowers 负责 `propose`、`apply`、`validate`、`archive`、`doc-sync` 的执行入口与工作流加速；这些入口可以围绕同一个 active change 迭代推进，但相关 artifacts 必须保持同步，不得脱离 OpenSpec 单独演进。
 - 若 superpowers 入口与仓库文档规则冲突，必须先更新对应 change 或仓库文档，再继续执行。
 
-## 新功能开发标准流程（强制）
+## 新功能开发协作约束
 
-只要属于“新功能开发”，默认按 `propose -> apply -> validate -> doc-sync -> archive` 的顺序执行，不允许跳步：
+只要属于“新功能开发”，默认围绕同一个 active change 推进：
 
-1. `propose`：在 `openspec/changes/<change>/` 创建或续写 `proposal.md`、`design.md`、`tasks.md`，并把 source-of-truth、范围、非目标、验证计划、文档同步点写完整。
-2. `apply`：按 `tasks.md` 的最小可验证任务推进实现；每完成一个任务立即回写勾选状态。若实现偏离原计划，先更新 change 文档再继续编码。
-3. `validate`：先做改动最相关的 focused tests，再补必要的类型检查或 lint；没有验证证据不得宣称完成。
-4. `doc-sync`：逐项检查并同步架构文档、README、相关 `openspec/specs/*`、相关 `docs/` 与其他受影响说明；若无需更新，也必须明确记录“已检查，无需更新”。
-5. `archive`：当任务与验证都完成后，将 change 归档到 `openspec/changes/archive/YYYY-MM-DD-<change>/`，并确认该 change 不再出现在 active changes。
+1. `propose` / `continue`：先创建或续写 `proposal.md`、`design.md`、`tasks.md`，至少补齐当前任务需要的 source-of-truth、范围、非目标、验证计划和文档同步点。
+2. `apply`：可以在已有 change 上继续推进实现，也允许在实现过程中回写或补齐 artifacts；但一旦实现偏离当前 change，必须先更新 change 文档再继续扩展代码。
+3. `validate`：在宣称完成、交付、归档或推送前，必须先补齐改动最相关的 focused tests，再补必要的类型检查或 lint。
+4. `doc-sync`：在宣称完成或归档前，必须检查并同步相关 `openspec/specs/*`、README、相关 `docs/` 与其他受影响说明；若无需更新，也必须明确记录“已检查，无需更新”。
+5. `archive`：只有当任务完成且 validate/doc-sync 已闭环时，才归档到 `openspec/changes/archive/YYYY-MM-DD-<change>/`，并确认该 change 不再出现在 active changes。
 
 补充约束：
 
-- 未创建或未续写 active change，不得开始实现新功能代码。
+- 全新 feature 在进入稳定实现前，至少要有对应的 active change 与当前任务所需 artifacts；不要脱离 change 长段编码。
+- `apply` 可以服务于继续已有 change、分段推进实现以及实现后回写 artifacts，不要求所有动作严格 phase-locked；但完成态仍必须回到 `validate -> doc-sync -> archive`。
 - `tasks.md` 仍有未完成项时，不得执行完成态归档。
-- 新功能默认要求在一次完整路径中走完 `propose -> apply -> validate -> doc-sync -> archive`；只有在明确阻塞时才允许暂停，并记录阻塞原因与恢复条件。
+- 若实现中出现范围或设计漂移，必须先回写 change 再继续编码；只有在明确阻塞时才允许暂停，并记录阻塞原因与恢复条件。
 
 - 当前站点的真实构建入口在 `vitepress-docs/`。涉及站点内容、构建脚本或发布逻辑时，优先从 `vitepress-docs/package.json`、`vitepress-docs/docs/` 和 `vitepress-docs/scripts/` 出发，不要默认把仓库根目录当成当前站点入口。
 - `vitepress-docs/docs/` 是当前 VitePress 文档源。仓库根目录的 `docs/` 和 `study-old/` 主要视为历史内容或归档，除非任务明确要求，否则不要把它们当成新的 VitePress 页面源。

@@ -1,9 +1,5 @@
-# repository-ai-change-workflow Specification
+## MODIFIED Requirements
 
-## Purpose
-定义仓库级 instruction 如何与 OpenSpec source-of-truth、superpowers 执行入口和 change-centric / fluid apply 协作方式保持一致，同时保留 validate、doc-sync 与 archive 的完成门槛。
-
-## Requirements
 ### Requirement: 仓库 instruction 必须声明 OpenSpec 与 superpowers 的职责边界
 仓库 MUST 在仓库级 instruction 中定义 OpenSpec 与 superpowers 的角色边界，但这套边界必须兼容围绕 active change 的流动式协作，而不是强制所有入口采用单次线性阶段模型。
 
@@ -24,7 +20,7 @@
 - **AND** 在 active change 缺失或 artifacts 明显不足时 MUST NOT 脱离 change 长段实现新功能代码
 
 ### Requirement: 新功能开发必须围绕同一 change 协作并留下完成证据
-仓库 MUST 允许新功能开发围绕同一个 active change 进行流动式 apply，同时保留 validate、doc-sync、archive 的完成门槛。
+仓库 MUST 允许新功能开发围绕同一个 active change 进行流动式 apply，同时保留 validate、doc-sync 与 archive 的完成门槛。
 
 #### Scenario: apply 可以与 artifact 更新交错推进
 - **WHEN** agent 在已有 active change 上推进一个新功能请求
@@ -43,7 +39,7 @@
 - **AND** change MUST 被移动到 `openspec/changes/archive/YYYY-MM-DD-<change>/`
 - **AND** 归档后该 change MUST 不再出现在 active changes 列表中
 
-### Requirement: apply 入口说明必须与仓库级顺序兼容
+### Requirement: apply 入口说明必须与仓库级 guidance 兼容
 仓库 MUST 让 apply prompt/skill 的说明文本与仓库级 instruction 保持一致，允许 change-centric / fluid apply，而不是额外发明更硬的 phase-locked 入口规则。
 
 #### Scenario: apply 入口保留流动式 apply 语义

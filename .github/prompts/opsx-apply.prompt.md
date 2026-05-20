@@ -42,11 +42,6 @@ Implement tasks from an OpenSpec change.
    - If `state: "all_done"`: congratulate, suggest archive
    - Otherwise: proceed to implementation
 
-   **Repository workflow guardrails:**
-   - If the work is a new feature and the change does not yet have the required source-of-truth artifacts, stop and route back to `/opsx:propose` or `/opsx:continue` before coding
-   - If implementation reveals scope or design drift, update the change artifacts before continuing code changes
-   - When tasks are done, direct the next step to validate, doc-sync, and archive instead of ending at implementation
-
 4. **Read context files**
 
    Read every file path listed under `contextFiles` from the apply instructions output.
@@ -146,10 +141,9 @@ What would you like to do?
 - Pause on errors, blockers, or unclear requirements - don't guess
 - Use contextFiles from CLI output, don't assume specific file names
 
-**Repository Workflow Compatibility**
+**Fluid Workflow Integration**
 
-This prompt must follow the repository-level OpenSpec workflow contract:
+This prompt supports the "actions on a change" model:
 
-- Start implementation only after the active change has the required source-of-truth artifacts for the requested new feature
-- If implementation invalidates the plan, send the user back to artifact updates before continuing code work
-- Treat `validate -> doc-sync -> archive` as required follow-up steps after implementation, not optional cleanup
+- **Can be invoked anytime**: Before all artifacts are done (if tasks exist), after partial implementation, interleaved with other actions
+- **Allows artifact updates**: If implementation reveals design issues, suggest updating artifacts - not phase-locked, work fluidly
