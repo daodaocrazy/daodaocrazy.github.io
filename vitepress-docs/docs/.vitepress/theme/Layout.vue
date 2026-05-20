@@ -17,7 +17,6 @@ import MetalsMarketWorkbench from './components/MetalsMarketWorkbench.vue'
 import StudySidebar from './components/StudySidebar.vue'
 import StudySidebarToggle from './components/StudySidebarToggle.vue'
 import ForkedRepos from './components/ForkedRepos.vue'
-import PublicJsonPilotWorkbench from './components/PublicJsonPilotWorkbench.vue'
 
 const {
   isOpen: isSidebarOpen,
@@ -69,7 +68,6 @@ onBeforeUnmount(() => {
 
 const { frontmatter } = useVitePressData()
 const isHomePage = computed(() => frontmatter.value.layout === 'home')
-const isPublicJsonPilotPage = computed(() => route.path.startsWith('/tools/public-json-pilot'))
 
 const slots = useSlots()
 const heroImageSlotExists = computed(() => !!slots['home-hero-image'])
@@ -104,7 +102,6 @@ provide('study-close-sidebar', closeSidebar)
       <template #page-top><slot name="page-top" /></template>
       <template #page-bottom>
         <slot name="page-bottom" />
-        <PublicJsonPilotWorkbench v-if="isPublicJsonPilotPage" />
         <MetalsMarketWorkbench v-if="isMetalsMarketSnapshotPage" />
       </template>
 
@@ -126,7 +123,6 @@ provide('study-close-sidebar', closeSidebar)
       <template #doc-before><slot name="doc-before" /></template>
       <template #doc-after>
         <slot name="doc-after" />
-        <PublicJsonPilotWorkbench v-if="isPublicJsonPilotPage" />
         <MetalsMarketWorkbench v-if="isMetalsMarketSnapshotPage" />
       </template>
       <template #doc-top><slot name="doc-top" /></template>
