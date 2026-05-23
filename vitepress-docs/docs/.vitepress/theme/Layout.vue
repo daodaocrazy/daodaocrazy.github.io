@@ -18,6 +18,9 @@ import MetalsMarketWorkbench from './components/MetalsMarketWorkbench.vue'
 import StudySidebar from './components/StudySidebar.vue'
 import StudySidebarToggle from './components/StudySidebarToggle.vue'
 import ForkedRepos from './components/ForkedRepos.vue'
+import TravelWorkbench from './components/TravelWorkbench.vue'
+
+const isTravelPage = computed(() => frontmatter.value.layout === 'travel')
 
 const {
   isOpen: isSidebarOpen,
@@ -128,6 +131,7 @@ provide('study-close-sidebar', closeSidebar)
         <slot name="doc-after" />
         <JsonFormatterWorkbench v-if="isJsonFormatterPage" />
         <MetalsMarketWorkbench v-if="isMetalsMarketSnapshotPage" />
+        <TravelWorkbench v-if="isTravelPage" />
       </template>
       <template #doc-top><slot name="doc-top" /></template>
       <template #doc-bottom><slot name="doc-bottom" /></template>
