@@ -382,7 +382,8 @@ export default defineConfig({
       { text: 'Tool Box', link: '/tools/' },
       { text: 'Playground', link: '/playground/' },
       { text: 'Lab', link: '/lab/' },
-      { text: 'Experiments', link: '/experiments/' }
+      { text: 'Experiments', link: '/experiments/' },
+      { text: '🌍 旅游行程', link: '/travel/' }
     ],
 
     sidebar: {
@@ -419,6 +420,14 @@ export default defineConfig({
           text: 'Experiments',
           items: [
             { text: '总览', link: '/experiments/' }
+          ]
+        }
+      ],
+      '/travel/': [
+        {
+          text: '🌍 旅游行程',
+          items: [
+            { text: '行程管理', link: '/travel/' }
           ]
         }
       ]

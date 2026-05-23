@@ -1,10 +1,8 @@
 # 🌍 旅游行程管理
 
-欢迎来到我的旅游行程管理页面！在这里你可以添加、编辑和查看你的旅游行程，地图会自动展示你的旅行路线。
-
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<link rel="stylesheet" href="/travel/travel.css" />
+
+<link rel="stylesheet" href="/travel/travel.css">
 
 <div class="travel-container">
   <div class="travel-sidebar">
@@ -23,8 +21,7 @@
       </div>
     </div>
 
-    <div id="trip-list">
-    </div>
+    <div id="trip-list"></div>
   </div>
 
   <div class="travel-map">

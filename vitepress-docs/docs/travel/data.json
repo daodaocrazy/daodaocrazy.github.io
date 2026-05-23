@@ -1,0 +1,9 @@
+{
+  "trips": [
+    { "id": 1, "destination": "北京，中国", "location": { "lat": 39.9042, "lng": 116.4074 }, "startDate": "2024-04-15", "days": 5, "description": "首都之旅，感受历史文化与现代都市的完美融合", "status": "completed", "highlights": ["故宫", "长城", "天安门", "颐和园"] },
+    { "id": 2, "destination": "成都，中国", "location": { "lat": 30.5728, "lng": 104.0668 }, "startDate": "2024-07-20", "days": 6, "description": "天府之国，熊猫基地与美食天堂", "status": "completed", "highlights": ["大熊猫基地", "宽窄巷子", "锦里", "都江堰"] },
+    { "id": 3, "destination": "杭州，中国", "location": { "lat": 30.2741, "lng": 120.1552 }, "startDate": "2024-11-01", "days": 4, "description": "人间天堂，西湖美景与茶文化", "status": "completed", "highlights": ["西湖", "灵隐寺", "龙井村", "宋城"] },
+    { "id": 4, "destination": "乌鲁木齐，中国", "location": { "lat": 43.8256, "lng": 87.6168 }, "startDate": "2025-06-01", "days": 15, "description": "环新疆之旅，天山脚下的大美新疆", "status": "planned", "highlights": ["天山", "喀纳斯", "吐鲁番", "赛里木湖"] },
+    { "id": 5, "destination": "西安，中国", "location": { "lat": 34.3416, "lng": 108.9398 }, "startDate": "2025-09-15", "days": 7, "description": "千年古都，探索华夏文明的发源地", "status": "planning", "highlights": ["兵马俑", "大雁塔", "城墙", "华清池"] }
+  ]
+}
