@@ -379,6 +379,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '文档', link: '/study/' },
+      { text: '旅行', link: '/travel/' },
       { text: 'Tool Box', link: '/tools/' },
       { text: 'Playground', link: '/playground/' },
       { text: 'Lab', link: '/lab/' },
@@ -393,6 +394,14 @@ export default defineConfig({
           items: [
             { text: '总览', link: '/tools/' },
             { text: 'MCP Explorer', link: '/tools/mcp-explorer' }
+          ]
+        }
+      ],
+      '/travel/': [
+        {
+          text: 'Travel Atlas',
+          items: [
+            { text: '总览', link: '/travel/' }
           ]
         }
       ],

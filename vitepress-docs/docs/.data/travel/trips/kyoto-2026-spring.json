@@ -1,0 +1,203 @@
+{
+  "trip": {
+    "id": "kyoto-2026-spring",
+    "slug": "kyoto-2026-spring",
+    "title": "关西樱花 2 日",
+    "startDate": "2026-04-05",
+    "endDate": "2026-04-06",
+    "daysCount": 2,
+    "region": "日本",
+    "places": ["京都", "宇治", "大阪"],
+    "tags": ["城市漫游", "电车", "樱花季"],
+    "coverImage": "/travel/kyoto-2026-spring/cover.jpg",
+    "summary": "从京都东山步行到宇治，再转到大阪入住的两日春季路线。",
+    "intro": "这次路线以京都和宇治为主，节奏偏轻徒步与电车切换，最后一晚落在大阪，适合樱花季短途回放。",
+    "status": "published",
+    "publishedAt": "2026-04-20",
+    "routePreview": {
+      "bbox": [135.5, 34.67, 135.82, 34.99],
+      "center": [135.67, 34.84],
+      "line": {
+        "type": "LineString",
+        "coordinates": [
+          [135.7587, 34.9855],
+          [135.785, 34.9949],
+          [135.8077, 34.8895],
+          [135.4959, 34.7025]
+        ]
+      }
+    }
+  },
+  "days": [
+    {
+      "dayNumber": 1,
+      "date": "2026-04-05",
+      "title": "京都东山步行日",
+      "summary": "第一天以京都站落地后进入东山，路线紧凑但步行体验很好，晚上留在祇园附近收尾。",
+      "color": "#D96C6C",
+      "stopIds": ["stop-kyoto-station", "stop-kiyomizu", "stop-gion"],
+      "segmentIds": ["seg-kyoto-to-kiyomizu", "seg-kiyomizu-to-gion"]
+    },
+    {
+      "dayNumber": 2,
+      "date": "2026-04-06",
+      "title": "宇治半日与大阪入住",
+      "summary": "第二天从京都转宇治，节奏更松，下午直接转到大阪，适合作为跨城衔接日。",
+      "color": "#5C8D89",
+      "stopIds": ["stop-kyoto-station-day2", "stop-uji", "stop-osaka-station"],
+      "segmentIds": ["seg-kyoto-to-uji", "seg-uji-to-osaka"]
+    }
+  ],
+  "stops": [
+    {
+      "id": "stop-kyoto-station",
+      "dayNumber": 1,
+      "order": 1,
+      "name": "京都站",
+      "type": "transport_hub",
+      "coordinates": [135.7587, 34.9855],
+      "arrivalTime": "09:10",
+      "departureTime": "09:45",
+      "stayMinutes": 35,
+      "note": "到站后先寄存行李，补给完成再开始当天路线。"
+    },
+    {
+      "id": "stop-kiyomizu",
+      "dayNumber": 1,
+      "order": 2,
+      "name": "清水寺",
+      "type": "sightseeing",
+      "coordinates": [135.785, 34.9949],
+      "arrivalTime": "10:20",
+      "departureTime": "12:00",
+      "stayMinutes": 100,
+      "note": "上午人还可以接受，主视角适合做当天代表画面。"
+    },
+    {
+      "id": "stop-gion",
+      "dayNumber": 1,
+      "order": 3,
+      "name": "祇园",
+      "type": "sightseeing",
+      "coordinates": [135.7765, 35.0037],
+      "arrivalTime": "12:25",
+      "departureTime": "15:30",
+      "stayMinutes": 185,
+      "note": "这一站更适合慢走和吃饭，不需要密集安排行程。"
+    },
+    {
+      "id": "stop-kyoto-station-day2",
+      "dayNumber": 2,
+      "order": 1,
+      "name": "京都站",
+      "type": "transport_hub",
+      "coordinates": [135.7587, 34.9855],
+      "arrivalTime": "08:30",
+      "departureTime": "09:00",
+      "stayMinutes": 30,
+      "note": "第二天回到京都站换乘 JR 前往宇治。"
+    },
+    {
+      "id": "stop-uji",
+      "dayNumber": 2,
+      "order": 2,
+      "name": "宇治站",
+      "type": "sightseeing",
+      "coordinates": [135.8077, 34.8895],
+      "arrivalTime": "09:25",
+      "departureTime": "13:20",
+      "stayMinutes": 235,
+      "note": "宇治这一段更偏散步与轻休闲，适合半日停留。"
+    },
+    {
+      "id": "stop-osaka-station",
+      "dayNumber": 2,
+      "order": 3,
+      "name": "大阪站",
+      "type": "hotel",
+      "coordinates": [135.4959, 34.7025],
+      "arrivalTime": "14:30",
+      "departureTime": "18:00",
+      "stayMinutes": 210,
+      "note": "当晚以入住和周边活动为主，不再安排高强度移动。"
+    }
+  ],
+  "segments": [
+    {
+      "id": "seg-kyoto-to-kiyomizu",
+      "dayNumber": 1,
+      "order": 1,
+      "fromStopId": "stop-kyoto-station",
+      "toStopId": "stop-kiyomizu",
+      "mode": "bus_walk",
+      "distanceMeters": 3600,
+      "durationMinutes": 35,
+      "summary": "从京都站出发，公交加步行进入清水寺区域。",
+      "routeGeometry": {
+        "type": "LineString",
+        "coordinates": [
+          [135.7587, 34.9855],
+          [135.7718, 34.989],
+          [135.785, 34.9949]
+        ]
+      }
+    },
+    {
+      "id": "seg-kiyomizu-to-gion",
+      "dayNumber": 1,
+      "order": 2,
+      "fromStopId": "stop-kiyomizu",
+      "toStopId": "stop-gion",
+      "mode": "walk",
+      "distanceMeters": 1800,
+      "durationMinutes": 25,
+      "summary": "从清水寺一路步行进入祇园片区。",
+      "routeGeometry": {
+        "type": "LineString",
+        "coordinates": [
+          [135.785, 34.9949],
+          [135.7812, 34.999],
+          [135.7765, 35.0037]
+        ]
+      }
+    },
+    {
+      "id": "seg-kyoto-to-uji",
+      "dayNumber": 2,
+      "order": 1,
+      "fromStopId": "stop-kyoto-station-day2",
+      "toStopId": "stop-uji",
+      "mode": "train",
+      "distanceMeters": 16000,
+      "durationMinutes": 25,
+      "summary": "JR 奈良线从京都前往宇治。",
+      "routeGeometry": {
+        "type": "LineString",
+        "coordinates": [
+          [135.7587, 34.9855],
+          [135.7814, 34.9424],
+          [135.8077, 34.8895]
+        ]
+      }
+    },
+    {
+      "id": "seg-uji-to-osaka",
+      "dayNumber": 2,
+      "order": 2,
+      "fromStopId": "stop-uji",
+      "toStopId": "stop-osaka-station",
+      "mode": "train",
+      "distanceMeters": 43000,
+      "durationMinutes": 70,
+      "summary": "从宇治经京都中转后进入大阪站。",
+      "routeGeometry": {
+        "type": "LineString",
+        "coordinates": [
+          [135.8077, 34.8895],
+          [135.7587, 34.9855],
+          [135.4959, 34.7025]
+        ]
+      }
+    }
+  ]
+}

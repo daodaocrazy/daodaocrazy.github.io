@@ -18,6 +18,8 @@ import MetalsMarketWorkbench from './components/MetalsMarketWorkbench.vue'
 import StudySidebar from './components/StudySidebar.vue'
 import StudySidebarToggle from './components/StudySidebarToggle.vue'
 import ForkedRepos from './components/ForkedRepos.vue'
+import TravelIndexWorkbench from './components/travel/TravelIndexWorkbench.vue'
+import TravelTripWorkbench from './components/travel/TravelTripWorkbench.vue'
 
 const {
   isOpen: isSidebarOpen,
@@ -74,6 +76,8 @@ const slots = useSlots()
 const heroImageSlotExists = computed(() => !!slots['home-hero-image'])
 const isJsonFormatterPage = computed(() => route.path.startsWith('/tools/json-formatter'))
 const isMetalsMarketSnapshotPage = computed(() => route.path.startsWith('/tools/metals-market-snapshot'))
+const isTravelIndexPage = computed(() => frontmatter.value.pageClass === 'travel-memory-index-page')
+const isTravelTripPage = computed(() => frontmatter.value.pageClass === 'travel-memory-trip-page')
 
 provide('hero-image-slot-exists', heroImageSlotExists)
 provide('study-close-sidebar', closeSidebar)
@@ -129,7 +133,11 @@ provide('study-close-sidebar', closeSidebar)
         <JsonFormatterWorkbench v-if="isJsonFormatterPage" />
         <MetalsMarketWorkbench v-if="isMetalsMarketSnapshotPage" />
       </template>
-      <template #doc-top><slot name="doc-top" /></template>
+      <template #doc-top>
+        <slot name="doc-top" />
+        <TravelIndexWorkbench v-if="isTravelIndexPage" />
+        <TravelTripWorkbench v-if="isTravelTripPage" />
+      </template>
       <template #doc-bottom><slot name="doc-bottom" /></template>
 
       <template #aside-top><slot name="aside-top" /></template>
