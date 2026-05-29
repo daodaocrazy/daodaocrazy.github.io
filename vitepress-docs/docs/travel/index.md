@@ -6,5 +6,3 @@ outline: false
 aside: false
 pageClass: travel-memory-index-page
 ---
-
-旅行总索引由 travel-memory-atlas 页面工作台渲染。

@@ -74,6 +74,7 @@ test('syncTravelMemoryArtifacts writes derived index and markdown shell pages', 
     assert.match(generatedPage, /title: 关西樱花 2 日/)
     assert.match(generatedPage, /travelSlug: kyoto-2026-spring/)
     assert.match(generatedPage, /pageClass: travel-memory-trip-page/)
+    assert.doesNotMatch(generatedPage, /travel-memory-atlas 页面工作台渲染/)
 
     const derivedIndex = JSON.parse(fs.readFileSync(path.join(tempRoot, 'derived', 'travel-index.json'), 'utf8'))
     assert.equal(derivedIndex.length, 1)

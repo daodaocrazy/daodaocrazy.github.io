@@ -7,5 +7,3 @@ aside: false
 pageClass: travel-memory-trip-page
 travelSlug: kyoto-2026-spring
 ---
-
-旅行详情由 travel-memory-atlas 页面工作台渲染。

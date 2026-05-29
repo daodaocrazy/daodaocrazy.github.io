@@ -105,7 +105,11 @@ provide('study-close-sidebar', closeSidebar)
     </StudySidebar>
 
     <VPContent>
-      <template #page-top><slot name="page-top" /></template>
+      <template #page-top>
+        <slot name="page-top" />
+        <TravelIndexWorkbench v-if="isTravelIndexPage" />
+        <TravelTripWorkbench v-if="isTravelTripPage" />
+      </template>
       <template #page-bottom>
         <slot name="page-bottom" />
         <JsonFormatterWorkbench v-if="isJsonFormatterPage" />
@@ -135,8 +139,6 @@ provide('study-close-sidebar', closeSidebar)
       </template>
       <template #doc-top>
         <slot name="doc-top" />
-        <TravelIndexWorkbench v-if="isTravelIndexPage" />
-        <TravelTripWorkbench v-if="isTravelTripPage" />
       </template>
       <template #doc-bottom><slot name="doc-bottom" /></template>
 
