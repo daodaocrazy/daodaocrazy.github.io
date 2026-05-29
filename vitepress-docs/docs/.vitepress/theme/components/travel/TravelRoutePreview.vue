@@ -13,7 +13,7 @@ const props = defineProps({
   },
   accentColor: {
     type: String,
-    default: '#b5653f'
+    default: 'var(--travel-accent)'
   },
   width: {
     type: Number,
@@ -79,7 +79,8 @@ const horizontalGuides = [0.2, 0.4, 0.6, 0.8]
 
 <style scoped>
 .travel-route-preview {
-  background: linear-gradient(135deg, #f8ecd8 0%, #efe0c6 100%);
+  border: 1px solid var(--travel-line);
+  background: linear-gradient(135deg, var(--travel-surface) 0%, var(--travel-surface-alt) 100%);
   border-radius: 22px;
   overflow: hidden;
 }
@@ -95,17 +96,17 @@ const horizontalGuides = [0.2, 0.4, 0.6, 0.8]
 }
 
 .travel-route-preview__guides line {
-  stroke: rgba(91, 69, 42, 0.08);
+  stroke: color-mix(in srgb, var(--travel-line) 70%, transparent);
   stroke-width: 1;
 }
 
 .travel-route-preview__halo {
-  fill: rgba(181, 101, 63, 0.08);
+  fill: var(--travel-accent-soft);
 }
 
 .travel-route-preview__path-shadow {
   fill: none;
-  stroke: rgba(58, 39, 22, 0.12);
+  stroke: var(--travel-map-line-shadow);
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 12;
@@ -120,14 +121,14 @@ const horizontalGuides = [0.2, 0.4, 0.6, 0.8]
 }
 
 .travel-route-preview__start {
-  fill: #fff7ec;
-  stroke: #7f5237;
+  fill: var(--travel-surface-elevated);
+  stroke: color-mix(in srgb, var(--travel-route-color) 40%, var(--travel-ink));
   stroke-width: 3;
 }
 
 .travel-route-preview__end {
   fill: var(--travel-route-color);
-  stroke: #fff7ec;
+  stroke: var(--travel-surface-elevated);
   stroke-width: 3;
 }
 </style>

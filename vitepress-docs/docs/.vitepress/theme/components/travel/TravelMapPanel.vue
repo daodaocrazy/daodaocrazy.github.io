@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue'
+import { withBase } from 'vitepress'
 
 import {
   formatTravelDistance,
@@ -37,6 +38,10 @@ const mapPadding = 36
 const selectedDay = computed(() => props.viewModel.days.find((day) => day.dayNumber === props.selectedDayNumber) ?? props.viewModel.days[0] ?? null)
 const selectedStop = computed(() => props.viewModel.allStops.find((stop) => stop.id === props.selectedStopId) ?? null)
 const selectedSegment = computed(() => props.viewModel.allSegments.find((segment) => segment.id === props.selectedSegmentId) ?? null)
+const staticMapHref = computed(() => withBase(`/travel/${props.viewModel.trip.slug}/static-map.svg`))
+
+const activeStopIds = computed(() => new Set(selectedDay.value?.stops.map((stop) => stop.id) ?? []))
+const activeSegmentIds = computed(() => new Set(selectedDay.value?.segments.map((segment) => segment.id) ?? []))
 
 const stopPoints = computed(() => new Map(props.viewModel.allStops.map((stop) => [
   stop.id,
@@ -57,9 +62,6 @@ const segmentPaths = computed(() => new Map(props.viewModel.allSegments.map((seg
     bounds: props.viewModel.bounds
   })
 ])))
-
-const activeStopIds = computed(() => new Set(selectedDay.value?.stops.map((stop) => stop.id) ?? []))
-const activeSegmentIds = computed(() => new Set(selectedDay.value?.segments.map((segment) => segment.id) ?? []))
 
 const callout = computed(() => {
   if (selectedStop.value) {
@@ -91,7 +93,7 @@ const callout = computed(() => {
 })
 
 function dayColor(dayNumber) {
-  return props.viewModel.days.find((day) => day.dayNumber === dayNumber)?.color ?? '#3C8772'
+  return props.viewModel.days.find((day) => day.dayNumber === dayNumber)?.color ?? 'var(--travel-accent)'
 }
 
 function isStopHighlighted(stop) {
@@ -115,25 +117,33 @@ function isSegmentHighlighted(segment) {
   <section class="travel-map-panel">
     <div class="travel-map-panel__surface">
       <div class="travel-map-panel__chrome">
-        <p>Atlas View</p>
+        <p>Map View</p>
         <strong>{{ selectedDay ? `Day ${selectedDay.dayNumber}` : '全程' }}</strong>
       </div>
 
-      <svg viewBox="0 0 920 520" aria-label="旅行路线总图" class="travel-map-panel__svg">
-        <rect x="0" y="0" width="920" height="520" rx="30" class="travel-map-panel__paper" />
-        <g class="travel-map-panel__grid">
-          <line v-for="x in [90, 220, 350, 480, 610, 740, 870]" :key="`x-${x}`" :x1="x" :x2="x" y1="0" y2="520" />
-          <line v-for="y in [80, 160, 240, 320, 400, 480]" :key="`y-${y}`" x1="0" x2="920" :y1="y" :y2="y" />
-        </g>
+      <div class="travel-map-panel__legend">
+        <span>静态城市地图</span>
+        <span>{{ viewModel.trip.places.join(' · ') }}</span>
+      </div>
+
+      <svg viewBox="0 0 920 520" aria-label="旅行路线地图" class="travel-map-panel__svg">
+        <image :href="staticMapHref" x="0" y="0" width="920" height="520" preserveAspectRatio="xMidYMid slice" class="travel-map-panel__image" />
+        <rect x="0" y="0" width="920" height="520" rx="30" class="travel-map-panel__frame" />
 
         <g>
+          <path
+            v-for="segment in viewModel.allSegments"
+            :key="`${segment.id}-shadow`"
+            :d="segmentPaths.get(segment.id)?.path"
+            class="travel-map-panel__segment-shadow"
+          />
           <path
             v-for="segment in viewModel.allSegments"
             :key="segment.id"
             :d="segmentPaths.get(segment.id)?.path"
             class="travel-map-panel__segment"
-            :class="{ 'is-highlighted': isSegmentHighlighted(segment) }"
-            :style="{ '--travel-segment-color': dayColor(segment.dayNumber), '--travel-segment-opacity': activeSegmentIds.has(segment.id) ? 0.92 : 0.22 }"
+            :class="{ 'is-highlighted': isSegmentHighlighted(segment), 'is-walk': segment.mode === 'walk' }"
+            :style="{ '--travel-segment-color': dayColor(segment.dayNumber), '--travel-segment-opacity': activeSegmentIds.has(segment.id) ? 0.92 : 0.36 }"
             @click="emit('select-segment', segment.id)"
           />
         </g>
@@ -150,16 +160,26 @@ function isSegmentHighlighted(segment) {
               :cx="stopPoints.get(stop.id)?.x"
               :cy="stopPoints.get(stop.id)?.y"
               r="7"
-              :style="{ '--travel-stop-color': dayColor(stop.dayNumber), '--travel-stop-opacity': activeStopIds.has(stop.id) ? 1 : 0.34 }"
+              :style="{ '--travel-stop-color': dayColor(stop.dayNumber), '--travel-stop-opacity': activeStopIds.has(stop.id) ? 1 : 0.52 }"
             />
             <text
               v-if="activeStopIds.has(stop.id)"
-              :x="(stopPoints.get(stop.id)?.x ?? 0) + 10"
-              :y="(stopPoints.get(stop.id)?.y ?? 0) - 10"
+              :x="(stopPoints.get(stop.id)?.x ?? 0) + 12"
+              :y="(stopPoints.get(stop.id)?.y ?? 0) - 12"
             >
               {{ stop.name }}
             </text>
           </g>
+        </g>
+
+        <g class="travel-map-panel__scale">
+          <line x1="64" y1="478" x2="164" y2="478" />
+          <line x1="64" y1="472" x2="64" y2="484" />
+          <line x1="114" y1="472" x2="114" y2="484" />
+          <line x1="164" y1="472" x2="164" y2="484" />
+          <text x="64" y="466">0 km</text>
+          <text x="104" y="466">5 km</text>
+          <text x="154" y="466">10 km</text>
         </g>
       </svg>
 
@@ -181,9 +201,9 @@ function isSegmentHighlighted(segment) {
 .travel-map-panel__surface {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(89, 60, 37, 0.14);
+  border: 1px solid var(--travel-line);
   border-radius: 30px;
-  background: linear-gradient(135deg, #fff9ef 0%, #f4e2c9 100%);
+  background: linear-gradient(135deg, var(--travel-hero-start) 0%, var(--travel-hero-end) 100%);
 }
 
 .travel-map-panel__chrome {
@@ -192,9 +212,10 @@ function isSegmentHighlighted(segment) {
   left: 22px;
   z-index: 2;
   padding: 10px 14px;
-  border: 1px solid rgba(89, 60, 37, 0.14);
+  border: 1px solid var(--travel-line);
   border-radius: 18px;
-  background: rgba(255, 250, 241, 0.82);
+  background: var(--travel-surface-elevated);
+  box-shadow: var(--travel-shadow);
 }
 
 .travel-map-panel__chrome p,
@@ -207,69 +228,125 @@ function isSegmentHighlighted(segment) {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #b5653f;
+  color: var(--travel-accent);
+}
+
+.travel-map-panel__chrome strong {
+  color: var(--travel-ink);
+}
+
+.travel-map-panel__legend {
+  position: absolute;
+  top: 20px;
+  right: 22px;
+  z-index: 500;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  max-width: min(340px, calc(100% - 44px));
+}
+
+.travel-map-panel__legend span {
+  padding: 9px 12px;
+  border: 1px solid var(--travel-line);
+  border-radius: 999px;
+  background: var(--travel-surface-elevated);
+  color: var(--travel-muted);
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .travel-map-panel__svg {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
   height: auto;
 }
 
-.travel-map-panel__paper {
-  fill: transparent;
+.travel-map-panel__image {
+  opacity: 0.98;
+  filter: var(--travel-map-image-filter);
 }
 
-.travel-map-panel__grid line {
-  stroke: rgba(89, 60, 37, 0.08);
-  stroke-width: 1;
-}
-
-.travel-map-panel__segment {
+.travel-map-panel__frame {
   fill: none;
-  stroke: color-mix(in srgb, var(--travel-segment-color) 84%, #2c1d10);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 8;
-  opacity: var(--travel-segment-opacity);
-  cursor: pointer;
-  transition: opacity 0.18s ease, stroke-width 0.18s ease;
-}
-
-.travel-map-panel__segment.is-highlighted {
-  stroke-width: 10;
-  opacity: 1;
-}
-
-.travel-map-panel__stop circle {
-  fill: color-mix(in srgb, var(--travel-stop-color) 84%, #fff8ef);
-  stroke: #fffaf1;
-  stroke-width: 4;
-  opacity: var(--travel-stop-opacity);
-  cursor: pointer;
-}
-
-.travel-map-panel__stop text {
-  fill: #2c1d10;
-  font-size: 13px;
-  font-weight: 600;
-  paint-order: stroke;
-  stroke: #fff9ef;
-  stroke-width: 6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  stroke: var(--travel-map-frame);
+  stroke-width: 1.5;
 }
 
 .travel-map-panel__callout {
   position: absolute;
   right: 18px;
   bottom: 18px;
+  z-index: 2;
   max-width: min(320px, calc(100% - 36px));
   padding: 18px 20px;
-  border: 1px solid rgba(89, 60, 37, 0.14);
+  border: 1px solid var(--travel-line);
   border-radius: 22px;
-  background: rgba(255, 250, 241, 0.92);
+  background: var(--travel-surface-elevated);
   backdrop-filter: blur(12px);
+  box-shadow: var(--travel-shadow-strong);
+  color: var(--travel-ink);
+}
+
+.travel-map-panel__segment-shadow {
+  fill: none;
+  stroke: var(--travel-map-line-shadow);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 11;
+}
+
+.travel-map-panel__segment {
+  fill: none;
+  stroke: color-mix(in srgb, var(--travel-segment-color) 84%, var(--travel-ink));
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 7;
+  opacity: var(--travel-segment-opacity);
+  cursor: pointer;
+  transition: opacity 0.18s ease, stroke-width 0.18s ease;
+}
+
+.travel-map-panel__segment.is-highlighted {
+  stroke-width: 9;
+  opacity: 1;
+}
+
+.travel-map-panel__segment.is-walk {
+  stroke-dasharray: 10 10;
+}
+
+.travel-map-panel__stop circle {
+  fill: color-mix(in srgb, var(--travel-stop-color) 84%, var(--travel-surface-elevated));
+  stroke: var(--travel-surface-elevated);
+  stroke-width: 4;
+  opacity: var(--travel-stop-opacity);
+  cursor: pointer;
+}
+
+.travel-map-panel__stop text {
+  fill: var(--travel-ink);
+  font-size: 13px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: var(--travel-map-label-stroke);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.travel-map-panel__scale line {
+  stroke: var(--travel-map-scale);
+  stroke-width: 2.5;
+}
+
+.travel-map-panel__scale text {
+  fill: var(--travel-map-scale);
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .travel-map-panel__callout-eyebrow,
@@ -283,27 +360,35 @@ function isSegmentHighlighted(segment) {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #b5653f;
+  color: var(--travel-accent);
 }
 
 .travel-map-panel__callout h2 {
   margin-top: 8px;
   font-size: 20px;
   line-height: 1.2;
+  color: var(--travel-ink);
 }
 
 .travel-map-panel__callout-meta {
   margin-top: 8px !important;
-  color: #7f6956;
+  color: var(--travel-muted);
 }
 
 .travel-map-panel__callout p:last-child {
   margin-top: 10px;
   line-height: 1.68;
-  color: #5d4632;
+  color: var(--travel-muted);
 }
 
 @media (max-width: 768px) {
+  .travel-map-panel__legend {
+    position: static;
+    justify-content: flex-start;
+    padding: 16px 14px 0;
+    max-width: none;
+  }
+
   .travel-map-panel__callout {
     position: static;
     max-width: none;

@@ -71,9 +71,10 @@ const timelineItems = computed(() => props.dayModel?.timelineItems ?? [])
 <style scoped>
 .travel-timeline {
   padding: 22px;
-  border: 1px solid rgba(89, 60, 37, 0.14);
+  border: 1px solid var(--travel-line);
   border-radius: 24px;
-  background: rgba(255, 250, 241, 0.88);
+  background: var(--travel-surface);
+  color: var(--travel-ink);
 }
 
 .travel-timeline__header h2,
@@ -83,7 +84,7 @@ const timelineItems = computed(() => props.dayModel?.timelineItems ?? [])
 
 .travel-timeline__header p:last-child {
   margin-top: 8px;
-  color: #7f6956;
+  color: var(--travel-muted);
   line-height: 1.7;
 }
 
@@ -93,7 +94,7 @@ const timelineItems = computed(() => props.dayModel?.timelineItems ?? [])
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #b5653f;
+  color: var(--travel-accent);
 }
 
 .travel-timeline__list {
@@ -106,10 +107,10 @@ const timelineItems = computed(() => props.dayModel?.timelineItems ?? [])
   display: grid;
   gap: 6px;
   padding: 14px 16px;
-  border: 1px solid rgba(89, 60, 37, 0.14);
+  border: 1px solid var(--travel-line);
   border-radius: 18px;
-  background: #fffaf1;
-  color: #2c1d10;
+  background: var(--travel-surface-elevated);
+  color: var(--travel-ink);
   text-align: left;
   font: inherit;
   cursor: pointer;
@@ -118,12 +119,13 @@ const timelineItems = computed(() => props.dayModel?.timelineItems ?? [])
 
 .travel-timeline__item:hover {
   transform: translateY(-1px);
-  border-color: rgba(181, 101, 63, 0.28);
+  border-color: var(--travel-line-strong);
+  background: var(--travel-surface-alt);
 }
 
 .travel-timeline__item.is-active {
-  border-color: rgba(181, 101, 63, 0.42);
-  background: rgba(181, 101, 63, 0.08);
+  border-color: var(--travel-accent-strong);
+  background: var(--travel-accent-soft);
 }
 
 .travel-timeline__kind {
@@ -131,11 +133,11 @@ const timelineItems = computed(() => props.dayModel?.timelineItems ?? [])
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #b5653f;
+  color: var(--travel-accent);
 }
 
 .travel-timeline__empty {
   margin: 16px 0 0;
-  color: #7f6956;
+  color: var(--travel-muted);
 }
 </style>

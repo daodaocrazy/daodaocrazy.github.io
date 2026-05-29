@@ -143,15 +143,16 @@ watch(viewModel, (nextViewModel) => {
   display: grid;
   gap: 24px;
   padding: 16px 0 12px;
+  color: var(--travel-ink);
 }
 
 .travel-trip-workbench__hero {
   padding: 28px 30px;
-  border: 1px solid rgba(89, 60, 37, 0.14);
+  border: 1px solid var(--travel-line);
   border-radius: 28px;
   background:
-    radial-gradient(circle at top right, rgba(181, 101, 63, 0.18), transparent 34%),
-    linear-gradient(135deg, #fffaf1 0%, #f5e3cb 100%);
+    radial-gradient(circle at top right, color-mix(in srgb, var(--travel-accent) 20%, transparent), transparent 34%),
+    linear-gradient(135deg, var(--travel-hero-start) 0%, var(--travel-hero-end) 100%);
 }
 
 .travel-trip-workbench__eyebrow,
@@ -161,7 +162,7 @@ watch(viewModel, (nextViewModel) => {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #b5653f;
+  color: var(--travel-accent);
 }
 
 .travel-trip-workbench__hero h1,
@@ -179,21 +180,21 @@ watch(viewModel, (nextViewModel) => {
   display: flex;
   flex-wrap: wrap;
   gap: 10px 14px;
-  color: #7f6956;
+  color: var(--travel-muted);
 }
 
 .travel-trip-workbench__hero h1 {
   margin-top: 12px;
   font-size: clamp(34px, 4vw, 52px);
   line-height: 1.04;
-  color: #2c1d10;
+  color: var(--travel-ink);
 }
 
 .travel-trip-workbench__intro {
   margin-top: 14px !important;
   max-width: 62ch;
   line-height: 1.75;
-  color: #5d4632;
+  color: var(--travel-muted);
 }
 
 .travel-trip-workbench__tags {
@@ -208,8 +209,8 @@ watch(viewModel, (nextViewModel) => {
 .travel-trip-workbench__tags li {
   padding: 7px 11px;
   border-radius: 999px;
-  background: rgba(181, 101, 63, 0.1);
-  color: #b5653f;
+  background: var(--travel-accent-soft);
+  color: var(--travel-accent);
   font-size: 12px;
 }
 
@@ -224,9 +225,9 @@ watch(viewModel, (nextViewModel) => {
 .travel-trip-workbench__placeholder,
 .travel-trip-workbench__fallback {
   padding: 22px;
-  border: 1px solid rgba(89, 60, 37, 0.14);
+  border: 1px solid var(--travel-line);
   border-radius: 24px;
-  background: rgba(255, 250, 241, 0.88);
+  background: var(--travel-surface);
 }
 
 .travel-trip-workbench__summary-grid p:last-child,
@@ -234,7 +235,7 @@ watch(viewModel, (nextViewModel) => {
 .travel-trip-workbench__fallback p {
   margin-top: 10px;
   line-height: 1.72;
-  color: #5d4632;
+  color: var(--travel-muted);
 }
 
 .travel-trip-workbench__cards {

@@ -41,10 +41,10 @@ const emit = defineEmits(['select-day'])
 .travel-day-tabs__button {
   min-width: 180px;
   padding: 14px 16px;
-  border: 1px solid rgba(89, 60, 37, 0.14);
+  border: 1px solid var(--travel-line);
   border-radius: 18px;
-  background: rgba(255, 250, 241, 0.88);
-  color: #2c1d10;
+  background: var(--travel-surface);
+  color: var(--travel-ink);
   text-align: left;
   font: inherit;
   cursor: pointer;
@@ -53,12 +53,13 @@ const emit = defineEmits(['select-day'])
 
 .travel-day-tabs__button:hover {
   transform: translateY(-1px);
-  border-color: rgba(89, 60, 37, 0.28);
+  border-color: var(--travel-line-strong);
 }
 
 .travel-day-tabs__button.is-active {
-  border-color: color-mix(in srgb, var(--travel-day-color) 48%, #5b3c25);
-  box-shadow: 0 12px 26px rgba(44, 29, 16, 0.08);
+  border-color: color-mix(in srgb, var(--travel-day-color) 46%, var(--travel-line-strong));
+  background: color-mix(in srgb, var(--travel-surface-alt) 78%, var(--travel-day-color) 22%);
+  box-shadow: var(--travel-shadow);
 }
 
 .travel-day-tabs__button strong,
@@ -79,6 +80,6 @@ const emit = defineEmits(['select-day'])
 .travel-day-tabs__date {
   margin-top: 6px;
   font-size: 13px;
-  color: #7f6956;
+  color: var(--travel-muted);
 }
 </style>

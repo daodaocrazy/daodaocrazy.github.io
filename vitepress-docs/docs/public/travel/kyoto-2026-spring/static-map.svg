@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+  <title id="title">Kyoto Uji Osaka static city map</title>
+  <desc id="desc">Static travel map artwork for the Kyoto spring trip.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#faf2e6" />
+      <stop offset="100%" stop-color="#efe1c8" />
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#b8d4df" />
+      <stop offset="100%" stop-color="#86b7ca" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#3a2615" flood-opacity="0.12" />
+    </filter>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M 44 0 L 0 0 0 44" fill="none" stroke="#cdb89a" stroke-opacity="0.22" stroke-width="1" />
+    </pattern>
+    <style>
+      .district-label { font: 700 20px ui-sans-serif, system-ui, sans-serif; fill: #2d2118; }
+      .district-sub { font: 600 11px ui-sans-serif, system-ui, sans-serif; fill: #6f5947; letter-spacing: 0.08em; text-transform: uppercase; }
+      .minor-label { font: 700 12px ui-sans-serif, system-ui, sans-serif; fill: #765b46; }
+      .road { fill: none; stroke: #b59e83; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; opacity: 0.4; }
+      .road-thin { fill: none; stroke: #cdbba2; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; opacity: 0.56; }
+      .rail { fill: none; stroke: #8e7e6d; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 6 8; opacity: 0.55; }
+    </style>
+  </defs>
+
+  <rect width="920" height="520" rx="30" fill="url(#paper)" />
+  <rect width="920" height="520" rx="30" fill="url(#grid)" opacity="0.55" />
+
+  <path d="M 720 0 C 810 58 846 128 823 204 C 801 272 737 318 650 344 C 554 372 424 422 332 520 L 920 520 L 920 0 Z" fill="#f3e7d4" opacity="0.86" />
+  <path d="M 0 382 C 74 338 154 330 212 353 C 267 375 314 421 370 520 L 0 520 Z" fill="#f7eddf" opacity="0.92" />
+
+  <path d="M 706 143 C 676 167 647 208 616 255 C 586 299 545 340 483 381 C 421 423 334 457 236 499" fill="none" stroke="url(#water)" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" opacity="0.7" />
+  <path d="M 676 154 C 646 176 620 212 592 254 C 563 297 524 334 471 372 C 417 410 335 444 249 483" fill="none" stroke="#d7e9ef" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" />
+
+  <path class="road" d="M 78 438 C 164 428 250 398 324 338 C 390 284 474 228 556 194 C 627 165 696 154 777 158" />
+  <path class="road" d="M 138 504 C 228 470 301 423 361 356 C 424 285 496 205 603 122" />
+  <path class="road-thin" d="M 532 74 C 597 103 653 136 728 171" />
+  <path class="road-thin" d="M 598 91 C 561 132 538 177 518 225 C 496 281 455 334 389 395" />
+  <path class="road-thin" d="M 623 56 C 653 96 675 130 687 162 C 703 204 700 238 680 286" />
+  <path class="road-thin" d="M 171 451 C 232 443 291 427 353 398 C 422 365 470 329 535 259" />
+  <path class="road-thin" d="M 233 472 C 307 434 359 390 402 336 C 452 273 520 197 613 119" />
+  <path class="road-thin" d="M 639 188 C 614 230 589 271 558 308 C 523 349 483 382 424 416" />
+  <path class="road-thin" d="M 728 111 C 687 135 651 155 624 182 C 589 216 567 250 556 291" />
+
+  <path class="rail" d="M 236 484 C 350 432 423 360 503 268 C 575 184 625 129 703 73" />
+  <path class="rail" d="M 619 64 C 648 84 668 112 679 143 C 685 165 688 184 691 206" />
+
+  <g filter="url(#shadow)">
+    <path d="M 555 18 L 730 31 L 785 109 L 716 160 L 592 138 L 528 86 Z" fill="#e0c19d" fill-opacity="0.64" stroke="#9a7247" stroke-opacity="0.4" stroke-width="2" />
+    <path d="M 635 150 L 743 174 L 769 239 L 699 281 L 611 255 L 598 202 Z" fill="#aac7c0" fill-opacity="0.56" stroke="#5b7f78" stroke-opacity="0.38" stroke-width="2" />
+    <path d="M 120 377 L 303 395 L 364 468 L 311 520 L 129 520 L 84 448 Z" fill="#b6c9df" fill-opacity="0.54" stroke="#5b7390" stroke-opacity="0.34" stroke-width="2" />
+  </g>
+
+  <g>
+    <circle cx="619" cy="63" r="7" fill="#7a593d" />
+    <circle cx="692" cy="206" r="7" fill="#4e7a73" />
+    <circle cx="228" cy="484" r="7" fill="#4f6f91" />
+    <circle cx="645" cy="36" r="5" fill="#8f6746" opacity="0.7" />
+    <circle cx="658" cy="49" r="5" fill="#8f6746" opacity="0.7" />
+  </g>
+
+  <g>
+    <text x="594" y="56" class="district-label">Kyoto</text>
+    <text x="594" y="75" class="district-sub">Higashiyama Walk</text>
+
+    <text x="704" y="199" class="district-label">Uji</text>
+    <text x="704" y="218" class="district-sub">Tea Town Replay</text>
+
+    <text x="154" y="468" class="district-label">Osaka</text>
+    <text x="154" y="487" class="district-sub">Arrival Night</text>
+
+    <text x="674" y="57" class="minor-label">Kiyomizu</text>
+    <text x="664" y="27" class="minor-label">Gion</text>
+    <text x="586" y="105" class="minor-label">Kyoto Station</text>
+    <text x="708" y="241" class="minor-label">Uji Station</text>
+    <text x="124" y="510" class="minor-label">Osaka Station</text>
+  </g>
+
+  <g opacity="0.6">
+    <path d="M 819 54 l 15 0 l 0 38" fill="none" stroke="#5c4937" stroke-width="3" stroke-linecap="round" />
+    <path d="M 834 41 l -8 14 h 16 z" fill="#5c4937" />
+    <text x="826" y="112" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" fill="#5c4937">N</text>
+  </g>
+</svg>

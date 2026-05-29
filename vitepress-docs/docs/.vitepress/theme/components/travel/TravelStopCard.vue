@@ -34,9 +34,10 @@ defineProps({
 <style scoped>
 .travel-stop-card {
   padding: 22px;
-  border: 1px solid rgba(89, 60, 37, 0.14);
+  border: 1px solid var(--travel-line);
   border-radius: 24px;
-  background: linear-gradient(180deg, rgba(255, 250, 241, 0.98), rgba(248, 236, 216, 0.88));
+  background: linear-gradient(180deg, var(--travel-surface-elevated), var(--travel-surface-alt));
+  color: var(--travel-ink);
 }
 
 .travel-stop-card__eyebrow {
@@ -45,7 +46,7 @@ defineProps({
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #b5653f;
+  color: var(--travel-accent);
 }
 
 .travel-stop-card h2,
@@ -62,22 +63,22 @@ defineProps({
 
 .travel-stop-card dl div {
   padding-bottom: 12px;
-  border-bottom: 1px dashed rgba(89, 60, 37, 0.12);
+  border-bottom: 1px dashed var(--travel-line);
 }
 
 .travel-stop-card dt {
   font-size: 12px;
-  color: #7f6956;
+  color: var(--travel-soft);
 }
 
 .travel-stop-card dd {
   margin: 6px 0 0;
-  color: #2c1d10;
+  color: var(--travel-ink);
 }
 
 .travel-stop-card p:last-child {
   margin-top: 16px;
   line-height: 1.72;
-  color: #5d4632;
+  color: var(--travel-muted);
 }
 </style>

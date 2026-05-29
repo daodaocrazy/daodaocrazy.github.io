@@ -18,7 +18,11 @@
     "docs:preview:multi:stop": "node ./scripts/local-multi-env-stop.mjs --port 4175",
     "docs:preview:multi:status": "node ./scripts/local-multi-env-status.mjs --port 4175"
   },
-  "keywords": ["vitepress", "documentation", "notes"],
+  "keywords": [
+    "vitepress",
+    "documentation",
+    "notes"
+  ],
   "author": "Daodaocrazy",
   "license": "MIT",
   "dependencies": {
