@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>旅行路线规划 · Travel Route</title>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
+<style>
+  :root {
+    --bg: #f6f7fb;
+    --panel: #ffffff;
+    --border: #e3e6ef;
+    --text: #1f2430;
+    --muted: #6b7280;
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --danger: #ef4444;
+    --success: #16a34a;
+    --warn: #d97706;
+    --flight: #ef4444;
+    --transit: #2563eb;
+    --drive: #16a34a;
+    --walk: #d97706;
+    --train: #7c3aed;
+    --ship: #0891b2;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    height: 100vh;
+  }
+
+  .sidebar {
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .header {
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+  }
+
+  .header p {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 12.5px;
+  }
+
+  .toolbar {
+    padding: 12px 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .btn {
+    appearance: none;
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+  }
+  .btn:hover { background: #f0f2f9; }
+  .btn.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .btn.primary:hover { background: var(--primary-hover); }
+  .btn.danger { color: var(--danger); }
+  .btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .btn.ghost { background: transparent; }
+
+  .mode-hint {
+    padding: 8px 14px;
+    font-size: 12px;
+    color: var(--warn);
+    background: #fff7ed;
+    border-bottom: 1px solid var(--border);
+    display: none;
+  }
+  .mode-hint.on { display: block; }
+
+  .waypoints {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 6px 16px;
+  }
+
+  .empty {
+    padding: 20px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .wp-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin: 8px;
+    padding: 10px 12px;
+  }
+  .wp-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .wp-title {
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+  .wp-meta {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .wp-actions {
+    display: flex;
+    gap: 4px;
+  }
+  .wp-actions .btn {
+    padding: 4px 7px;
+    font-size: 11.5px;
+  }
+
+  .seg {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+  }
+  .seg label { color: var(--muted); }
+  .seg select {
+    flex: 1;
+    padding: 4px 6px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    font-size: 12px;
+    background: #fff;
+  }
+
+  .summary {
+    padding: 10px 14px;
+    border-top: 1px solid var(--border);
+    background: #fafbff;
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .summary strong { color: var(--text); }
+
+  .legend {
+    padding: 10px 14px 14px;
+    border-top: 1px solid var(--border);
+  }
+  .legend h3 {
+    margin: 0 0 6px;
+    font-size: 12.5px;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .legend-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 10px;
+    font-size: 12px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .legend-swatch {
+    width: 18px;
+    height: 4px;
+    border-radius: 2px;
+    flex: 0 0 auto;
+  }
+
+  .map-wrap { position: relative; }
+  #map { position: absolute; inset: 0; }
+
+  .file-input { display: none; }
+
+  @media (max-width: 780px) {
+    .app { grid-template-columns: 1fr; grid-template-rows: 45vh 1fr; }
+    .sidebar { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="header">
+      <h1>旅行路线规划</h1>
+      <p>点击地图添加途经点 · 选择交通方式 · 导出 JSON 同步到仓库</p>
+    </div>
+
+    <div class="toolbar">
+      <button class="btn primary" id="btn-add">添加途经点</button>
+      <button class="btn" id="btn-export">导出 JSON</button>
+      <button class="btn" id="btn-import">导入 JSON</button>
+      <button class="btn danger" id="btn-clear">清空</button>
+      <input type="file" class="file-input" id="file-input" accept="application/json,.json" />
+    </div>
+
+    <div class="mode-hint" id="mode-hint">
+      已启用「添加途经点」模式：在地图上点击即可新增一个点；再次点击按钮或点击此处退出。
+    </div>
+
+    <div class="waypoints" id="waypoints">
+      <div class="empty" id="empty-state">
+        还没有路线数据。<br />点击上方「添加途经点」然后在地图上点击，开始规划你的闭环旅行。
+      </div>
+    </div>
+
+    <div class="summary" id="summary">
+      <div>途经点：<strong id="count-points">0</strong> 个 · 路段：<strong id="count-segs">0</strong> 段</div>
+      <div>总距离：<strong id="total-distance">0.00 km</strong></div>
+    </div>
+
+    <div class="legend">
+      <h3>交通方式图例</h3>
+      <div class="legend-items" id="legend-items"></div>
+    </div>
+  </aside>
+
+  <main class="map-wrap">
+    <div id="map"></div>
+  </main>
+</div>
+
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+></script>
+<script>
+(function () {
+  const TRANSPORT = {
+    flight:  { label: "飞机",     color: "#ef4444", weight: 4, dash: "8,8",  icon: "✈️" },
+    transit: { label: "公共交通", color: "#2563eb", weight: 4, dash: null,   icon: "🚌" },
+    drive:   { label: "自驾",     color: "#16a34a", weight: 4, dash: null,   icon: "🚗" },
+    walk:    { label: "步行",     color: "#d97706", weight: 3, dash: "4,6",  icon: "🚶" },
+    train:   { label: "火车",     color: "#7c3aed", weight: 4, dash: "2,4",  icon: "🚆" },
+    ship:    { label: "轮船",     color: "#0891b2", weight: 4, dash: "10,6", icon: "⛴️" },
+  };
+
+  const STORAGE_KEY = "travel-route-data-v1";
+  const DEFAULT_VIEW = [34.5, 108.9];
+  const DEFAULT_ZOOM = 4;
+
+  let state = {
+    title: "我的旅行路线",
+    points: [],
+  };
+
+  let addMode = false;
+  let movingIndex = -1;
+
+  const map = L.map("map", {
+    center: DEFAULT_VIEW,
+    zoom: DEFAULT_ZOOM,
+    worldCopyJump: true,
+  });
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
+
+  const polylineLayer = L.layerGroup().addTo(map);
+  const markerLayer = L.layerGroup().addTo(map);
+
+  const el = {
+    btnAdd: document.getElementById("btn-add"),
+    btnExport: document.getElementById("btn-export"),
+    btnImport: document.getElementById("btn-import"),
+    btnClear: document.getElementById("btn-clear"),
+    fileInput: document.getElementById("file-input"),
+    waypoints: document.getElementById("waypoints"),
+    empty: document.getElementById("empty-state"),
+    modeHint: document.getElementById("mode-hint"),
+    countPoints: document.getElementById("count-points"),
+    countSegs: document.getElementById("count-segs"),
+    totalDistance: document.getElementById("total-distance"),
+    legendItems: document.getElementById("legend-items"),
+  };
+
+  function uid() {
+    return "p_" + Math.random().toString(36).slice(2, 8) + Date.now().toString(36).slice(-4);
+  }
+
+  function formatCoord(lat, lng) {
+    const p = (n) => (n >= 0 ? "" : "") + n.toFixed(4);
+    return `${p(lat)}, ${p(lng)}`;
+  }
+
+  function loadLocal() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return false;
+      const data = JSON.parse(raw);
+      if (!data || !Array.isArray(data.points)) return false;
+      state = data;
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function saveLocal() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) { /* ignore */ }
+  }
+
+  function haversine(a, b) {
+    const R = 6371;
+    const toRad = (x) => (x * Math.PI) / 180;
+    const dLat = toRad(b.lat - a.lat);
+    const dLng = toRad(b.lng - a.lng);
+    const lat1 = toRad(a.lat);
+    const lat2 = toRad(b.lat);
+    const h =
+      Math.sin(dLat / 2) ** 2 +
+      Math.sin(dLng / 2) ** 2 * Math.cos(lat1) * Math.cos(lat2);
+    return 2 * R * Math.asin(Math.sqrt(h));
+  }
+
+  function getSegments() {
+    const pts = state.points;
+    const segs = [];
+    const len = pts.length;
+    if (len < 2) return segs;
+    for (let i = 0; i < len; i++) {
+      const a = pts[i];
+      const b = pts[(i + 1) % len];
+      const mode = a.transport || "drive";
+      segs.push({ from: a, to: b, mode, closing: i === len - 1 });
+    }
+    return segs;
+  }
+
+  function renderMap() {
+    polylineLayer.clearLayers();
+    markerLayer.clearLayers();
+
+    const segs = getSegments();
+    segs.forEach((seg) => {
+      const t = TRANSPORT[seg.mode] || TRANSPORT.drive;
+      const line = L.polyline(
+        [[seg.from.lat, seg.from.lng], [seg.to.lat, seg.to.lng]],
+        {
+          color: t.color,
+          weight: t.weight,
+          opacity: 0.9,
+          dashArray: t.dash,
+          lineCap: "round",
+        }
+      );
+      const distKm = haversine(seg.from, seg.to).toFixed(2);
+      line.bindTooltip(
+        `${t.icon} ${t.label}${seg.closing ? "（闭环返程）" : ""} · ${distKm} km`,
+        { sticky: true, direction: "top" }
+      );
+      polylineLayer.addLayer(line);
+    });
+
+    state.points.forEach((p, idx) => {
+      const marker = L.marker([p.lat, p.lng], {
+        draggable: true,
+        title: p.name || `点 ${idx + 1}`,
+      }).addTo(markerLayer);
+      marker.bindPopup(buildPopup(p, idx));
+      marker.on("dragend", (e) => {
+        const ll = e.target.getLatLng();
+        state.points[idx].lat = ll.lat;
+        state.points[idx].lng = ll.lng;
+        saveLocal();
+        renderAll();
+        marker.setPopupContent(buildPopup(state.points[idx], idx));
+      });
+    });
+
+    if (state.points.length >= 2) {
+      const group = L.featureGroup([...polylineLayer.getLayers(), ...markerLayer.getLayers()]);
+      try {
+        map.fitBounds(group.getBounds().pad(0.15));
+      } catch (e) { /* ignore */ }
+    }
+  }
+
+  function buildPopup(p, idx) {
+    const t = TRANSPORT[p.transport] || TRANSPORT.drive;
+    return `
+      <div style="font-size:12px;min-width:160px">
+        <div style="font-weight:600;margin-bottom:4px">${idx + 1}. ${escapeHtml(p.name || "途经点")}</div>
+        <div style="color:#6b7280;margin-bottom:4px">${formatCoord(p.lat, p.lng)}</div>
+        <div>本段前往下一站：${t.icon} ${t.label}</div>
+      </div>
+    `;
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, (c) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+    }[c]));
+  }
+
+  function renderSidebar() {
+    el.waypoints.innerHTML = "";
+    if (!state.points.length) {
+      const div = document.createElement("div");
+      div.className = "empty";
+      div.textContent = "还没有路线数据。点击上方「添加途经点」然后在地图上点击，开始规划你的闭环旅行。";
+      el.waypoints.appendChild(div);
+    } else {
+      state.points.forEach((p, idx) => {
+        const card = document.createElement("div");
+        card.className = "wp-card";
+
+        const row = document.createElement("div");
+        row.className = "wp-row";
+
+        const titleBox = document.createElement("div");
+        const title = document.createElement("div");
+        title.className = "wp-title";
+        title.textContent = `${idx + 1}. ${p.name || "途经点"}`;
+        titleBox.appendChild(title);
+        const meta = document.createElement("div");
+        meta.className = "wp-meta";
+        meta.textContent = formatCoord(p.lat, p.lng);
+        titleBox.appendChild(meta);
+        row.appendChild(titleBox);
+
+        const actions = document.createElement("div");
+        actions.className = "wp-actions";
+        actions.appendChild(makeBtn("重命名", () => {
+          const v = prompt("输入该途经点的名称：", p.name || "");
+          if (v != null) {
+            p.name = v.trim() || `途经点 ${idx + 1}`;
+            saveLocal();
+            renderAll();
+          }
+        }));
+        actions.appendChild(makeBtn("上移", () => movePoint(idx, -1), idx === 0));
+        actions.appendChild(makeBtn("下移", () => movePoint(idx, 1), idx === state.points.length - 1));
+        actions.appendChild(makeBtn("删除", () => {
+          if (confirm(`删除「${p.name || "途经点"}」？`)) {
+            state.points.splice(idx, 1);
+            saveLocal();
+            renderAll();
+          }
+        }, false, true));
+        row.appendChild(actions);
+
+        card.appendChild(row);
+
+        const seg = document.createElement("div");
+        seg.className = "seg";
+        const label = document.createElement("label");
+        label.textContent = "本段前往下一站：";
+        const select = document.createElement("select");
+        Object.entries(TRANSPORT).forEach(([key, t]) => {
+          const opt = document.createElement("option");
+          opt.value = key;
+          opt.textContent = `${t.icon} ${t.label}`;
+          if (key === (p.transport || "drive")) opt.selected = true;
+          select.appendChild(opt);
+        });
+        select.addEventListener("change", () => {
+          p.transport = select.value;
+          saveLocal();
+          renderAll();
+        });
+        seg.appendChild(label);
+        seg.appendChild(select);
+        card.appendChild(seg);
+
+        el.waypoints.appendChild(card);
+      });
+    }
+
+    const pts = state.points.length;
+    const segs = pts < 2 ? 0 : pts;
+    el.countPoints.textContent = pts;
+    el.countSegs.textContent = segs;
+
+    const total = getSegments().reduce((s, seg) => s + haversine(seg.from, seg.to), 0);
+    el.totalDistance.textContent = `${total.toFixed(2)} km`;
+  }
+
+  function makeBtn(text, onClick, disabled, danger) {
+    const b = document.createElement("button");
+    b.className = "btn" + (danger ? " danger" : "");
+    b.textContent = text;
+    if (disabled) b.disabled = true;
+    b.addEventListener("click", onClick);
+    return b;
+  }
+
+  function movePoint(idx, delta) {
+    const n = state.points.length;
+    const to = (idx + delta + n) % n;
+    const [item] = state.points.splice(idx, 1);
+    state.points.splice(to, 0, item);
+    saveLocal();
+    renderAll();
+  }
+
+  function renderLegend() {
+    el.legendItems.innerHTML = "";
+    Object.entries(TRANSPORT).forEach(([key, t]) => {
+      const item = document.createElement("div");
+      item.className = "legend-item";
+      const sw = document.createElement("div");
+      sw.className = "legend-swatch";
+      sw.style.background = t.color;
+      if (t.dash) sw.style.background = "transparent";
+      if (t.dash) {
+        sw.style.height = "4px";
+        sw.style.borderTop = `4px dashed ${t.color}`;
+      }
+      const label = document.createElement("span");
+      label.textContent = `${t.icon} ${t.label}`;
+      item.appendChild(sw);
+      item.appendChild(label);
+      el.legendItems.appendChild(item);
+    });
+  }
+
+  function renderAll() {
+    renderMap();
+    renderSidebar();
+  }
+
+  function setAddMode(on) {
+    addMode = !!on;
+    el.btnAdd.classList.toggle("active", addMode);
+    el.modeHint.classList.toggle("on", addMode);
+    if (addMode) {
+      el.btnAdd.textContent = "取消添加";
+      map.getContainer().style.cursor = "crosshair";
+    } else {
+      el.btnAdd.textContent = "添加途经点";
+      map.getContainer().style.cursor = "";
+    }
+  }
+
+  el.btnAdd.addEventListener("click", () => {
+    setAddMode(!addMode);
+  });
+
+  el.modeHint.addEventListener("click", () => setAddMode(false));
+
+  map.on("click", (e) => {
+    if (!addMode) return;
+    const name = prompt("输入该途经点的名称（可留空）：", `途经点 ${state.points.length + 1}`);
+    state.points.push({
+      id: uid(),
+      name: (name || "").trim() || `途经点 ${state.points.length + 1}`,
+      lat: e.latlng.lat,
+      lng: e.latlng.lng,
+      transport: "drive",
+    });
+    saveLocal();
+    renderAll();
+  });
+
+  el.btnClear.addEventListener("click", () => {
+    if (!state.points.length) return;
+    if (!confirm("确认清空所有途经点和路线？此操作不可撤销。")) return;
+    state.points = [];
+    saveLocal();
+    renderAll();
+  });
+
+  el.btnExport.addEventListener("click", () => {
+    const blob = new Blob([JSON.stringify(state, null, 2)], {
+      type: "application/json;charset=utf-8",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    const stamp = new Date().toISOString().slice(0, 10);
+    a.href = url;
+    a.download = `travel-route-${stamp}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  el.btnImport.addEventListener("click", () => el.fileInput.click());
+
+  el.fileInput.addEventListener("change", (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try {
+        const data = JSON.parse(ev.target.result);
+        if (!data || !Array.isArray(data.points)) {
+          alert("JSON 格式不正确，应为 { title, points: [...] } 结构。");
+          return;
+        }
+        data.points.forEach((p, i) => {
+          if (typeof p.lat !== "number" || typeof p.lng !== "number") {
+            throw new Error(`第 ${i + 1} 个途经点缺少 lat/lng`);
+          }
+        });
+        state = {
+          title: data.title || "我的旅行路线",
+          points: data.points.map((p, i) => ({
+            id: p.id || uid(),
+            name: p.name || `途经点 ${i + 1}`,
+            lat: p.lat,
+            lng: p.lng,
+            transport: p.transport || "drive",
+          })),
+        };
+        saveLocal();
+        renderAll();
+        alert(`已导入 ${state.points.length} 个途经点。`);
+      } catch (err) {
+        alert("导入失败：" + err.message);
+      } finally {
+        el.fileInput.value = "";
+      }
+    };
+    reader.readAsText(file, "utf-8");
+  });
+
+  // 初始化
+  renderLegend();
+  if (!loadLocal()) {
+    // 首次进入，给一个简短的演示闭环
+    state.points = [
+      { id: uid(), name: "北京",   lat: 39.9042, lng: 116.4074, transport: "flight" },
+      { id: uid(), name: "上海",   lat: 31.2304, lng: 121.4737, transport: "transit" },
+      { id: uid(), name: "成都",   lat: 30.5728, lng: 104.0668, transport: "drive" },
+      { id: uid(), name: "西安",   lat: 34.3416, lng: 108.9398, transport: "train" },
+    ];
+  }
+  renderAll();
+
+  // 修复容器尺寸为 0 的问题：首次切换 tab / 移动端旋转时
+  window.addEventListener("resize", () => map.invalidateSize());
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") map.invalidateSize();
+  });
+})();
+</script>
+</body>
+</html>
