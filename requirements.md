@@ -56,9 +56,19 @@
 
 - R4.1 支持导出：点击"导出 JSON"将当前路线下载为 `travel-route-YYYY-MM-DD.json` 文件。
 - R4.2 支持导入：点击"导入 JSON"可选择本地 `.json` 文件并加载；格式错误时给出明确提示。
-- R4.3 用户需将导出的 JSON 文件手动加入 GitHub Pages 仓库（如 `data/travel-route.json`），
-  以便跨设备访问（当前版本 **不实现** 公开分享链接功能）。
-- R4.4 本地浏览器自动通过 `localStorage` 记忆当前路线，刷新页面后仍可看到。
+- R4.3 页面打开时按以下优先级自动加载路线数据：
+  1. **URL 参数优先**：若地址形如 `travel-route.html?data=data/my-trip.json`，从该路径（相对页面目录或绝对 URL）fetch JSON。
+  2. **默认仓库路径**：自动尝试加载 `data/travel-route.json`（相对页面所在目录）。
+  3. **本地缓存**：回退到浏览器 `localStorage` 中的最近一次数据。
+  4. **示例数据**：三者都不可用时展示一条包含 4 个示例点的示例闭环。
+- R4.4 侧栏顶部显示"当前数据来源"提示条，内容包括：
+  - 来源标识（URL 参数 / 默认路径 / 本地缓存 / 本地文件 / 示例）
+  - 指向源 JSON 文件的链接（可直接在新标签页查看）
+  - URL 参数加载时额外提供"复制分享链接"按钮
+- R4.5 提供"重新加载"按钮，按 R4.3 顺序再次 fetch 仓库中的 JSON。
+- R4.6 用户需将导出的 JSON 文件手动加入 GitHub Pages 仓库的 `data/` 目录，文件名推荐为 `travel-route.json`；
+  或将文件放在任意路径，然后通过 `?data=path/to/file.json` 参数分享给他人。
+- R4.7 当默认路径的 JSON 未加载到（例如首次使用，仓库中尚未放置），提示条以温和颜色提示"尚未发现 data/travel-route.json，导出 JSON 后保存到此路径即可自动加载"。
 
 ### 3.5 可访问性与体验
 
@@ -121,9 +131,12 @@
 
 ### 6.1 部署步骤
 
-1. 将 `travel-route.html` 上传至 GitHub Pages 仓库根目录或子目录。
-2. （可选）将导出的 JSON 数据文件保存到仓库的 `data/` 目录，便于未来自动化加载。
-3. 提交并推送后，访问 `https://<username>.github.io/<repo>/travel-route.html`。
+1. 将 `travel-route.html` 上传至 GitHub Pages 仓库根目录（或其它子目录均可）。
+2. 在仓库中创建目录 `data/`，把导出的 JSON 命名为 `data/travel-route.json` 提交到仓库；
+   页面打开时会自动按 R4.3 的优先级尝试加载此文件。
+3. 若需要分享给他人查看"指定路线"，可以使用 URL：
+   `https://<username>.github.io/<repo>/travel-route.html?data=data/my-trip.json`
+4. 提交并推送后，GitHub Pages 将在数分钟内更新生效。
 
 ## 7. 交互流程图（简化）
 
@@ -150,7 +163,7 @@
 
 ## 9. 后续可扩展方向
 
-- 在页面加载时自动从仓库内固定路径（如 `data/travel-route.json`）拉取数据。
-- 为每条路线增加日期、备注字段，并以时间轴方式展示。
+- 为每个途经点增加日期、备注字段，并以时间轴方式展示。
 - 使用 Leaflet 插件（如 `leaflet-routing-machine`）接入真实道路导航。
-- 增加公开分享 URL（需后端或 GitHub Pages + Actions 生成静态 JSON）。
+- 支持在 `data/` 目录下发现多个 JSON 文件，以下拉菜单切换不同路线。
+- 提供"一键生成提交到仓库的 PR / issue body"快捷入口（需要 GitHub Token）。

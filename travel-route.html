@@ -110,6 +110,26 @@
   }
   .mode-hint.on { display: block; }
 
+  .data-hint {
+    padding: 10px 14px;
+    font-size: 12px;
+    background: #eef4ff;
+    color: #1f3a7a;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.6;
+    word-break: break-all;
+  }
+  .data-hint.ok strong { color: #15803d; }
+  .data-hint.warn strong { color: #b45309; }
+  .data-hint.err strong { color: #b91c1c; }
+  .data-hint a { color: #1d4ed8; text-decoration: underline; }
+  .data-hint .btn {
+    font-size: 11px;
+    padding: 2px 6px;
+    margin-left: 6px;
+    background: #fff;
+  }
+
   .waypoints {
     flex: 1;
     overflow-y: auto;
@@ -235,9 +255,12 @@
       <button class="btn primary" id="btn-add">添加途经点</button>
       <button class="btn" id="btn-export">导出 JSON</button>
       <button class="btn" id="btn-import">导入 JSON</button>
+      <button class="btn" id="btn-reload">重新加载</button>
       <button class="btn danger" id="btn-clear">清空</button>
       <input type="file" class="file-input" id="file-input" accept="application/json,.json" />
     </div>
+
+    <div class="data-hint" id="data-hint"></div>
 
     <div class="mode-hint" id="mode-hint">
       已启用「添加途经点」模式：在地图上点击即可新增一个点；再次点击按钮或点击此处退出。
@@ -284,11 +307,14 @@
   const STORAGE_KEY = "travel-route-data-v1";
   const DEFAULT_VIEW = [34.5, 108.9];
   const DEFAULT_ZOOM = 4;
+  const DEFAULT_JSON_PATH = "data/travel-route.json";
+  const URL_PARAM = "data";
 
   let state = {
     title: "我的旅行路线",
     points: [],
   };
+  let loadedFrom = null;   // 记录当前数据来源：local / url / default / demo / file
 
   let addMode = false;
   let movingIndex = -1;
@@ -312,10 +338,12 @@
     btnAdd: document.getElementById("btn-add"),
     btnExport: document.getElementById("btn-export"),
     btnImport: document.getElementById("btn-import"),
+    btnReload: document.getElementById("btn-reload"),
     btnClear: document.getElementById("btn-clear"),
     fileInput: document.getElementById("file-input"),
     waypoints: document.getElementById("waypoints"),
     empty: document.getElementById("empty-state"),
+    dataHint: document.getElementById("data-hint"),
     modeHint: document.getElementById("mode-hint"),
     countPoints: document.getElementById("count-points"),
     countSegs: document.getElementById("count-segs"),
@@ -349,6 +377,102 @@
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch (e) { /* ignore */ }
+  }
+
+  function applyData(data, source) {
+    if (!data || !Array.isArray(data.points)) {
+      throw new Error("缺少 points 数组");
+    }
+    data.points.forEach((p, i) => {
+      if (typeof p.lat !== "number" || typeof p.lng !== "number") {
+        throw new Error(`第 ${i + 1} 个途经点缺少 lat/lng`);
+      }
+    });
+    state = {
+      title: data.title || "我的旅行路线",
+      points: data.points.map((p, i) => ({
+        id: p.id || uid(),
+        name: p.name || `途经点 ${i + 1}`,
+        lat: p.lat,
+        lng: p.lng,
+        transport: p.transport || "drive",
+      })),
+    };
+    loadedFrom = source;
+    saveLocal();
+    renderAll();
+    renderDataHint();
+  }
+
+  function resolveUrl(path) {
+    // 支持绝对 URL、相对路径；相对路径以当前 HTML 页面所在目录为基准
+    if (/^https?:\/\//i.test(path)) return path;
+    const base = window.location.pathname.replace(/[^/]*$/, "");
+    return base + (path.startsWith("/") ? path.slice(1) : path);
+  }
+
+  function getParamFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const v = params.get(URL_PARAM);
+    return v ? v.trim() : null;
+  }
+
+  function fetchJson(path) {
+    return fetch(path, { cache: "no-store" })
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status} ${r.statusText}`);
+        return r.json();
+      });
+  }
+
+  function renderDataHint() {
+    const hint = el.dataHint;
+    if (!hint) return;
+    let html = "";
+    if (loadedFrom === "url") {
+      hint.className = "data-hint ok";
+      const param = getParamFromUrl();
+      const full = resolveUrl(param);
+      html = `当前路线来自 URL 参数：<strong>${escapeHtml(param)}</strong>` +
+        `&nbsp;<a href="${escapeHtml(full)}" target="_blank" rel="noopener">查看 JSON</a>` +
+        `<button class="btn" id="btn-copy-url">复制分享链接</button>`;
+    } else if (loadedFrom === "default") {
+      hint.className = "data-hint ok";
+      const full = resolveUrl(DEFAULT_JSON_PATH);
+      html = `已自动加载仓库中的 <strong>${escapeHtml(DEFAULT_JSON_PATH)}</strong>` +
+        `&nbsp;<a href="${escapeHtml(full)}" target="_blank" rel="noopener">查看 JSON</a>`;
+    } else if (loadedFrom === "default-missing") {
+      hint.className = "data-hint warn";
+      html = `仓库中未发现 <strong>${escapeHtml(DEFAULT_JSON_PATH)}</strong>，已使用本地 / 示例数据。` +
+        `&nbsp;导出 JSON 后保存到仓库此路径即可自动加载。`;
+    } else if (loadedFrom === "local") {
+      hint.className = "data-hint";
+      html = `当前路线来自 <strong>本地缓存</strong>（localStorage）。` +
+        `&nbsp;想分享？导出 JSON 提交到仓库，或使用 URL 参数 <code>?data=path/to/file.json</code>。`;
+    } else if (loadedFrom === "file") {
+      hint.className = "data-hint";
+      html = `当前路线来自 <strong>本地文件导入</strong>。`;
+    } else if (loadedFrom === "demo") {
+      hint.className = "data-hint warn";
+      html = `当前使用 <strong>示例路线</strong>。添加途经点或导入 JSON 来规划你自己的旅行。`;
+    } else {
+      hint.className = "data-hint";
+      html = "";
+    }
+    hint.innerHTML = html;
+
+    const copyBtn = document.getElementById("btn-copy-url");
+    if (copyBtn) {
+      copyBtn.addEventListener("click", () => {
+        const shareUrl = window.location.href.split("#")[0];
+        navigator.clipboard.writeText(shareUrl).then(() => {
+          copyBtn.textContent = "已复制 ✓";
+          setTimeout(() => (copyBtn.textContent = "复制分享链接"), 1600);
+        }).catch(() => {
+          prompt("复制以下链接分享：", shareUrl);
+        });
+      });
+    }
   }
 
   function haversine(a, b) {
@@ -667,20 +791,65 @@
     reader.readAsText(file, "utf-8");
   });
 
-  // 初始化
-  renderLegend();
-  if (!loadLocal()) {
-    // 首次进入，给一个简短的演示闭环
+  function loadDemo() {
     state.points = [
-      { id: uid(), name: "北京",   lat: 39.9042, lng: 116.4074, transport: "flight" },
-      { id: uid(), name: "上海",   lat: 31.2304, lng: 121.4737, transport: "transit" },
-      { id: uid(), name: "成都",   lat: 30.5728, lng: 104.0668, transport: "drive" },
-      { id: uid(), name: "西安",   lat: 34.3416, lng: 108.9398, transport: "train" },
+      { id: uid(), name: "北京", lat: 39.9042, lng: 116.4074, transport: "flight" },
+      { id: uid(), name: "上海", lat: 31.2304, lng: 121.4737, transport: "transit" },
+      { id: uid(), name: "成都", lat: 30.5728, lng: 104.0668, transport: "drive" },
+      { id: uid(), name: "西安", lat: 34.3416, lng: 108.9398, transport: "train" },
     ];
+    loadedFrom = "demo";
+    saveLocal();
+    renderAll();
+    renderDataHint();
   }
-  renderAll();
 
-  // 修复容器尺寸为 0 的问题：首次切换 tab / 移动端旋转时
+  async function initialLoad() {
+    renderLegend();
+
+    // 1) URL 参数优先：?data=path/to/file.json
+    const param = getParamFromUrl();
+    if (param) {
+      try {
+        const data = await fetchJson(resolveUrl(param));
+        applyData(data, "url");
+        return;
+      } catch (err) {
+        alert("无法加载 URL 中指定的 JSON：" + err.message);
+        // 失败后继续走默认路径
+      }
+    }
+
+    // 2) 默认仓库路径 data/travel-route.json
+    try {
+      const data = await fetchJson(resolveUrl(DEFAULT_JSON_PATH));
+      applyData(data, "default");
+      return;
+    } catch (err) {
+      // file:// 或本地开发 server 可能抛错是正常的，这里静默降级
+      loadedFrom = "default-missing";
+    }
+
+    // 3) 回退到本地缓存
+    if (loadLocal()) {
+      loadedFrom = "local";
+      renderAll();
+      renderDataHint();
+      return;
+    }
+
+    // 4) 都没有，给示例路线
+    loadDemo();
+  }
+
+  el.btnReload.addEventListener("click", () => {
+    initialLoad();
+  });
+
+  // 首次渲染（注意：localStorage 在 initialLoad 内部已处理）
+  initialLoad();
+  renderDataHint();
+
   window.addEventListener("resize", () => map.invalidateSize());
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") map.invalidateSize();
