@@ -1,0 +1,40 @@
+{
+  "title": "关西樱花 2 日",
+  "points": [
+    {
+      "id": "p_kyoto_station",
+      "name": "京都站",
+      "lat": 34.9855,
+      "lng": 135.7587,
+      "transport": "transit"
+    },
+    {
+      "id": "p_kiyomizu",
+      "name": "清水寺",
+      "lat": 34.9949,
+      "lng": 135.7850,
+      "transport": "walk"
+    },
+    {
+      "id": "p_gion",
+      "name": "祇园",
+      "lat": 35.0037,
+      "lng": 135.7765,
+      "transport": "train"
+    },
+    {
+      "id": "p_uji",
+      "name": "宇治站",
+      "lat": 34.8895,
+      "lng": 135.8077,
+      "transport": "train"
+    },
+    {
+      "id": "p_osaka",
+      "name": "大阪站",
+      "lat": 34.7025,
+      "lng": 135.4959,
+      "transport": "walk"
+    }
+  ]
+}

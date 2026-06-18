@@ -69,6 +69,7 @@
 - R4.6 用户需将导出的 JSON 文件手动加入 GitHub Pages 仓库的 `data/` 目录，文件名推荐为 `travel-route.json`；
   或将文件放在任意路径，然后通过 `?data=path/to/file.json` 参数分享给他人。
 - R4.7 当默认路径的 JSON 未加载到（例如首次使用，仓库中尚未放置），提示条以温和颜色提示"尚未发现 data/travel-route.json，导出 JSON 后保存到此路径即可自动加载"。
+- R4.8 支持导入圆周旅迹（Pitravel）分享链接：点击"导入圆周旅迹"后输入分享 URL（如 `https://www.pitravel.cn/web/journey/detail/20668103`），系统自动抓取该页面 HTML、解析出所有景点名称与 DAY 分组，再通过 Nominatim（OpenStreetMap）地理编码服务将地点名称转换为 GPS 坐标，最终在地图上渲染为带序号标注的路线。解析过程全程在浏览器内完成；若因 CORS 限制无法直接 fetch，弹窗内提供手动导出 JSON 的替代方案提示。
 
 ### 3.5 可访问性与体验
 
