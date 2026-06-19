@@ -7,46 +7,282 @@
     "endDate": "2026-06-07",
     "daysCount": 3,
     "region": "日本 东京",
-    "places": ["浅草", "涩谷", "新宿", "明治神宫", "原宿", "台场"],
-    "tags": ["城市漫游", "步行", "电车"],
+    "places": [
+      "浅草",
+      "涩谷",
+      "新宿",
+      "明治神宫",
+      "原宿",
+      "台场"
+    ],
+    "tags": [
+      "城市漫游",
+      "电车",
+      "购物"
+    ],
     "coverImage": "/travel/tokyo-3day-walk/cover.svg",
     "summary": "浅草起步、涩谷与原宿穿插、新宿御苑收尾的三日城市漫游路线。",
-    "intro": "东京三日适合搭配地铁与步行切换，白天神社与公园，晚上霓虹街景，整体节奏偏城市轻探索。",
+    "intro": "东京市内以电车步行为主，重点放在有代表性的街区体验，不安排远距离移动。",
     "status": "published",
     "publishedAt": "2026-06-15",
     "routePreview": {
-      "bbox": [139.68, 35.65, 139.79, 35.72],
-      "center": [139.73, 35.68],
+      "bbox": [
+        139.68,
+        35.66,
+        139.78,
+        35.73
+      ],
+      "center": [
+        139.73,
+        35.69
+      ],
       "line": {
         "type": "LineString",
         "coordinates": [
-          [139.7944, 35.7148],
-          [139.7704, 35.6756],
-          [139.7028, 35.6696],
-          [139.7181, 35.6938],
-          [139.6823, 35.6586]
+          [
+            139.7947,
+            35.7148
+          ],
+          [
+            139.7058,
+            35.6927
+          ],
+          [
+            139.7102,
+            35.6893
+          ],
+          [
+            139.6994,
+            35.6894
+          ],
+          [
+            139.7745,
+            35.6271
+          ]
         ]
       }
     }
   },
   "days": [
-    {"dayNumber":1,"date":"2026-06-05","title":"浅草与晴空塔","summary":"从浅草寺出发，步行穿越雷门仲见世通，傍晚登晴空塔俯瞰夜景。","color":"#8b5cf6","stopIds":["tk-asakusa","tk-sumida"],"segmentIds":["seg-asakusa-to-sumida"]},
-    {"dayNumber":2,"date":"2026-06-06","title":"原宿表参道与涩谷","summary":"明治神宫与表参道慢走，傍晚涩谷十字路口与观景台。","color":"#ec4899","stopIds":["tk-meiji","tk-harajuku","tk-shibuya"],"segmentIds":["seg-meiji-to-harajuku","seg-harajuku-to-shibuya"]},
-    {"dayNumber":3,"date":"2026-06-07","title":"新宿御苑与台场","summary":"上午新宿御苑散步，下午百合海鸥线赴台场看彩虹桥。","color":"#a855f7","stopIds":["tk-shinjuku-gyoen","tk-odaiba"],"segmentIds":["seg-shinjuku-to-odaiba"]}
+    {
+      "dayNumber": 1,
+      "date": "2026-06-05",
+      "title": "浅草与台场",
+      "summary": "第一天从浅草出发，下午过海到台场。",
+      "color": "#D96C6C",
+      "stopIds": [
+        "tk-asakusa",
+        "tk-odaiba"
+      ],
+      "segmentIds": [
+        "tk-asakusa-odaiba"
+      ]
+    },
+    {
+      "dayNumber": 2,
+      "date": "2026-06-06",
+      "title": "涩谷与原宿",
+      "summary": "第二天以涩谷为中心，在原宿一带穿插。",
+      "color": "#C68E5B",
+      "stopIds": [
+        "tk-shibuya",
+        "tk-harajuku"
+      ],
+      "segmentIds": [
+        "tk-shibuya-harajuku"
+      ]
+    },
+    {
+      "dayNumber": 3,
+      "date": "2026-06-07",
+      "title": "明治神宫与新宿御苑",
+      "summary": "第三天以明治神宫作为早间行程，下午在新宿御苑结束。",
+      "color": "#5C8D89",
+      "stopIds": [
+        "tk-meiji",
+        "tk-shinjuku-gyoen"
+      ],
+      "segmentIds": [
+        "tk-meiji-shinjuku"
+      ]
+    }
   ],
   "stops": [
-    {"id":"tk-asakusa","name":"浅草寺","lat":35.7148,"lng":139.7944,"kind":"sight","description":"雷门与仲见世通，最经典的江户风情起点。"},
-    {"id":"tk-sumida","name":"晴空塔","lat":35.7101,"lng":139.8107,"kind":"sight","description":"傍晚登顶俯瞰东京湾夜景，霓虹灯光层次极佳。"},
-    {"id":"tk-meiji","name":"明治神宫","lat":35.6756,"lng":139.7004,"kind":"sight","description":"原宿站旁都市森林，参拜路径适合慢走。"},
-    {"id":"tk-harajuku","name":"表参道","lat":35.6714,"lng":139.7181,"kind":"walk","description":"表参道与竹下通穿插，午餐与购物皆宜。"},
-    {"id":"tk-shibuya","name":"涩谷十字路口","lat":35.6596,"lng":139.7004,"kind":"sight","description":"Magnet by Shibuya109 屋顶与 Scramble 广场双视角。"},
-    {"id":"tk-shinjuku-gyoen","name":"新宿御苑","lat":35.6848,"lng":139.7181,"kind":"sight","description":"日式庭园与英式草坪并陈，晨光线条柔和。"},
-    {"id":"tk-odaiba","name":"台场彩虹桥","lat":35.6313,"lng":139.7815,"kind":"sight","description":"百合海鸥线直达，傍晚彩虹桥点灯时刻最美。"}
+    {
+      "id": "tk-asakusa",
+      "dayNumber": 1,
+      "order": 1,
+      "name": "浅草寺",
+      "type": "sightseeing",
+      "coordinates": [
+        139.7947,
+        35.7148
+      ],
+      "arrivalTime": "09:30",
+      "departureTime": "12:30",
+      "stayMinutes": 180,
+      "note": "上午人潮比较克制，雷门前适合拍摄。"
+    },
+    {
+      "id": "tk-odaiba",
+      "dayNumber": 1,
+      "order": 2,
+      "name": "台场",
+      "type": "sightseeing",
+      "coordinates": [
+        139.7745,
+        35.6271
+      ],
+      "arrivalTime": "14:00",
+      "departureTime": "19:00",
+      "stayMinutes": 300,
+      "note": "下午到台场，步行海滨步道。"
+    },
+    {
+      "id": "tk-shibuya",
+      "dayNumber": 2,
+      "order": 1,
+      "name": "涩谷",
+      "type": "sightseeing",
+      "coordinates": [
+        139.7058,
+        35.6927
+      ],
+      "arrivalTime": "10:00",
+      "departureTime": "14:00",
+      "stayMinutes": 240,
+      "note": "涩谷十字路口与周边街区可以慢慢走。"
+    },
+    {
+      "id": "tk-harajuku",
+      "dayNumber": 2,
+      "order": 2,
+      "name": "原宿",
+      "type": "sightseeing",
+      "coordinates": [
+        139.7102,
+        35.6893
+      ],
+      "arrivalTime": "14:30",
+      "departureTime": "19:00",
+      "stayMinutes": 270,
+      "note": "原宿表参道适合午后慢慢逛。"
+    },
+    {
+      "id": "tk-meiji",
+      "dayNumber": 3,
+      "order": 1,
+      "name": "明治神宫",
+      "type": "sightseeing",
+      "coordinates": [
+        139.6994,
+        35.6894
+      ],
+      "arrivalTime": "09:00",
+      "departureTime": "12:00",
+      "stayMinutes": 180,
+      "note": "早上神宫内部非常安静，适合作为第三日开头。"
+    },
+    {
+      "id": "tk-shinjuku-gyoen",
+      "dayNumber": 3,
+      "order": 2,
+      "name": "新宿御苑",
+      "type": "sightseeing",
+      "coordinates": [
+        139.718,
+        35.6827
+      ],
+      "arrivalTime": "13:00",
+      "departureTime": "17:00",
+      "stayMinutes": 240,
+      "note": "新宿御苑适合在午后慢慢散步收尾。"
+    }
   ],
   "segments": [
-    {"id":"seg-asakusa-to-sumida","fromStop":"tk-asakusa","toStop":"tk-sumida","transport":"walk","distanceKm":2,"durationMin":30},
-    {"id":"seg-meiji-to-harajuku","fromStop":"tk-meiji","toStop":"tk-harajuku","transport":"walk","distanceKm":1.5,"durationMin":20},
-    {"id":"seg-harajuku-to-shibuya","fromStop":"tk-harajuku","toStop":"tk-shibuya","transport":"train","distanceKm":3,"durationMin":15},
-    {"id":"seg-shinjuku-to-odaiba","fromStop":"tk-shinjuku-gyoen","toStop":"tk-odaiba","transport":"train","distanceKm":12,"durationMin":45}
+    {
+      "id": "tk-asakusa-odaiba",
+      "dayNumber": 1,
+      "order": 1,
+      "fromStopId": "tk-asakusa",
+      "toStopId": "tk-odaiba",
+      "mode": "train",
+      "distanceMeters": 12000,
+      "durationMinutes": 30,
+      "summary": "从浅草经百合海鸥线前往台场。",
+      "routeGeometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            139.7947,
+            35.7148
+          ],
+          [
+            139.78,
+            35.67
+          ],
+          [
+            139.7745,
+            35.6271
+          ]
+        ]
+      }
+    },
+    {
+      "id": "tk-shibuya-harajuku",
+      "dayNumber": 2,
+      "order": 1,
+      "fromStopId": "tk-shibuya",
+      "toStopId": "tk-harajuku",
+      "mode": "walk",
+      "distanceMeters": 1200,
+      "durationMinutes": 20,
+      "summary": "涩谷到原宿步行即可，沿途有很多小店。",
+      "routeGeometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            139.7058,
+            35.6927
+          ],
+          [
+            139.708,
+            35.69
+          ],
+          [
+            139.7102,
+            35.6893
+          ]
+        ]
+      }
+    },
+    {
+      "id": "tk-meiji-shinjuku",
+      "dayNumber": 3,
+      "order": 1,
+      "fromStopId": "tk-meiji",
+      "toStopId": "tk-shinjuku-gyoen",
+      "mode": "walk",
+      "distanceMeters": 2200,
+      "durationMinutes": 35,
+      "summary": "从明治神宫步行到新宿御苑。",
+      "routeGeometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            139.6994,
+            35.6894
+          ],
+          [
+            139.71,
+            35.685
+          ],
+          [
+            139.718,
+            35.6827
+          ]
+        ]
+      }
+    }
   ]
 }
