@@ -399,7 +399,11 @@ export default defineConfig({
         {
           text: 'Travel Atlas',
           items: [
-            { text: '总览', link: '/travel/' }
+            { text: '总览', link: '/travel/' },
+            { text: '北疆七日经典环线', link: '/travel/_generated/xinjiang-7d-ring-road' },
+            { text: '关西樱花 2 日', link: '/travel/_generated/kyoto-2026-spring' },
+            { text: '东京 3 日漫游', link: '/travel/_generated/tokyo-3day-walk' },
+            { text: '路线规划工具', link: '/travel-route.html' }
           ]
         }
       ],

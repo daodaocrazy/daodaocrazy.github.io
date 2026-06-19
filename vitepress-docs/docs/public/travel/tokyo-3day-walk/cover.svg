@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="skyTokyo" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="55%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+    <linearGradient id="neonPink" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fbcfe8"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+    <linearGradient id="neonPurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ddd6fe"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <radialGradient id="moonGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fdf4ff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="400" fill="url(#skyTokyo)"/>
+
+  <!-- Moon glow -->
+  <circle cx="150" cy="110" r="90" fill="url(#moonGrad)"/>
+  <circle cx="150" cy="110" r="28" fill="#fdf4ff" opacity="0.92"/>
+
+  <!-- Stars -->
+  <g fill="#fdf4ff">
+    <circle cx="280" cy="60" r="1.4"/>
+    <circle cx="340" cy="90" r="1.1"/>
+    <circle cx="420" cy="40" r="1.5"/>
+    <circle cx="520" cy="70" r="1.2"/>
+    <circle cx="620" cy="50" r="1.4"/>
+    <circle cx="700" cy="90" r="1.1"/>
+    <circle cx="760" cy="60" r="1.3"/>
+    <circle cx="60" cy="70" r="1.2"/>
+  </g>
+
+  <!-- Far skyline silhouette -->
+  <g fill="#312e81" opacity="0.9">
+    <rect x="0" y="240" width="40" height="160"/>
+    <rect x="40" y="260" width="35" height="140"/>
+    <rect x="75" y="230" width="45" height="170"/>
+    <rect x="120" y="255" width="38" height="145"/>
+    <rect x="158" y="225" width="42" height="175"/>
+    <rect x="200" y="260" width="36" height="140"/>
+    <rect x="236" y="240" width="48" height="160"/>
+    <rect x="284" y="260" width="36" height="140"/>
+    <rect x="320" y="230" width="50" height="170"/>
+    <rect x="370" y="255" width="40" height="145"/>
+    <rect x="410" y="240" width="44" height="160"/>
+    <rect x="454" y="260" width="38" height="140"/>
+    <rect x="492" y="230" width="46" height="170"/>
+    <rect x="538" y="255" width="38" height="145"/>
+    <rect x="576" y="240" width="46" height="160"/>
+    <rect x="622" y="260" width="40" height="140"/>
+    <rect x="662" y="230" width="48" height="170"/>
+    <rect x="710" y="255" width="42" height="145"/>
+    <rect x="752" y="240" width="48" height="160"/>
+  </g>
+
+  <!-- Tokyo Tower (red/orange iconic) -->
+  <g>
+    <polygon points="432,90 446,90 455,110 423,110" fill="#f43f5e"/>
+    <rect x="426" y="110" width="20" height="30" fill="#fb7185"/>
+    <rect x="424" y="140" width="24" height="20" fill="#f43f5e"/>
+    <polygon points="418,160 454,160 460,260 412,260" fill="#fb7185"/>
+    <rect x="410" y="260" width="52" height="140" fill="#f43f5e"/>
+    <!-- lattice lines -->
+    <g stroke="#fce7f3" stroke-width="0.8" opacity="0.5" fill="none">
+      <line x1="426" y1="115" x2="446" y2="135"/>
+      <line x1="446" y1="115" x2="426" y2="135"/>
+      <line x1="422" y1="145" x2="450" y2="175"/>
+      <line x1="450" y1="145" x2="422" y2="175"/>
+      <line x1="416" y1="180" x2="456" y2="255"/>
+      <line x1="456" y1="180" x2="416" y2="255"/>
+    </g>
+    <!-- antenna -->
+    <line x1="439" y1="90" x2="439" y2="55" stroke="#f43f5e" stroke-width="2"/>
+    <circle cx="439" cy="55" r="3" fill="#fecaca"/>
+  </g>
+
+  <!-- Mid buildings with neon lights -->
+  <g>
+    <rect x="180" y="195" width="70" height="205" fill="#4c1d95"/>
+    <rect x="380" y="180" width="85" height="220" fill="#5b21b6"/>
+    <rect x="580" y="200" width="75" height="200" fill="#4c1d95"/>
+    <rect x="680" y="175" width="60" height="225" fill="#5b21b6"/>
+  </g>
+
+  <!-- Window lights -->
+  <g fill="#fde68a" opacity="0.9">
+    <!-- Building 180 -->
+    <rect x="188" y="210" width="6" height="8"/><rect x="200" y="210" width="6" height="8"/><rect x="212" y="210" width="6" height="8"/><rect x="224" y="210" width="6" height="8"/><rect x="236" y="210" width="6" height="8"/>
+    <rect x="188" y="228" width="6" height="8"/><rect x="200" y="228" width="6" height="8"/><rect x="212" y="228" width="6" height="8"/><rect x="224" y="228" width="6" height="8"/>
+    <rect x="188" y="246" width="6" height="8"/><rect x="212" y="246" width="6" height="8"/><rect x="236" y="246" width="6" height="8"/>
+    <rect x="200" y="264" width="6" height="8"/><rect x="224" y="264" width="6" height="8"/>
+    <rect x="188" y="282" width="6" height="8"/><rect x="212" y="282" width="6" height="8"/><rect x="236" y="282" width="6" height="8"/>
+    <rect x="200" y="300" width="6" height="8"/><rect x="224" y="300" width="6" height="8"/>
+    <rect x="188" y="318" width="6" height="8"/><rect x="212" y="318" width="6" height="8"/><rect x="236" y="318" width="6" height="8"/>
+    <rect x="200" y="336" width="6" height="8"/><rect x="224" y="336" width="6" height="8"/>
+    <rect x="188" y="354" width="6" height="8"/><rect x="236" y="354" width="6" height="8"/>
+
+    <!-- Building 380 -->
+    <rect x="388" y="195" width="7" height="9"/><rect x="403" y="195" width="7" height="9"/><rect x="418" y="195" width="7" height="9"/><rect x="433" y="195" width="7" height="9"/><rect x="448" y="195" width="7" height="9"/>
+    <rect x="388" y="215" width="7" height="9"/><rect x="418" y="215" width="7" height="9"/><rect x="448" y="215" width="7" height="9"/>
+    <rect x="403" y="235" width="7" height="9"/><rect x="433" y="235" width="7" height="9"/>
+    <rect x="388" y="255" width="7" height="9"/><rect x="418" y="255" width="7" height="9"/><rect x="448" y="255" width="7" height="9"/>
+    <rect x="403" y="275" width="7" height="9"/><rect x="433" y="275" width="7" height="9"/>
+    <rect x="388" y="295" width="7" height="9"/><rect x="418" y="295" width="7" height="9"/><rect x="448" y="295" width="7" height="9"/>
+    <rect x="403" y="315" width="7" height="9"/><rect x="433" y="315" width="7" height="9"/>
+    <rect x="388" y="335" width="7" height="9"/><rect x="418" y="335" width="7" height="9"/><rect x="448" y="335" width="7" height="9"/>
+    <rect x="403" y="355" width="7" height="9"/><rect x="433" y="355" width="7" height="9"/>
+    <rect x="388" y="375" width="7" height="9"/><rect x="448" y="375" width="7" height="9"/>
+
+    <!-- Building 580 -->
+    <rect x="588" y="215" width="7" height="9"/><rect x="603" y="215" width="7" height="9"/><rect x="618" y="215" width="7" height="9"/><rect x="633" y="215" width="7" height="9"/>
+    <rect x="588" y="235" width="7" height="9"/><rect x="618" y="235" width="7" height="9"/>
+    <rect x="603" y="255" width="7" height="9"/><rect x="633" y="255" width="7" height="9"/>
+    <rect x="588" y="275" width="7" height="9"/><rect x="618" y="275" width="7" height="9"/>
+    <rect x="603" y="295" width="7" height="9"/><rect x="633" y="295" width="7" height="9"/>
+    <rect x="588" y="315" width="7" height="9"/><rect x="618" y="315" width="7" height="9"/>
+    <rect x="603" y="335" width="7" height="9"/><rect x="633" y="335" width="7" height="9"/>
+    <rect x="588" y="355" width="7" height="9"/><rect x="618" y="355" width="7" height="9"/>
+    <rect x="603" y="375" width="7" height="9"/><rect x="633" y="375" width="7" height="9"/>
+
+    <!-- Building 680 -->
+    <rect x="688" y="190" width="7" height="9"/><rect x="703" y="190" width="7" height="9"/><rect x="718" y="190" width="7" height="9"/><rect x="733" y="190" width="7" height="9"/>
+    <rect x="688" y="210" width="7" height="9"/><rect x="718" y="210" width="7" height="9"/>
+    <rect x="703" y="230" width="7" height="9"/><rect x="733" y="230" width="7" height="9"/>
+    <rect x="688" y="250" width="7" height="9"/><rect x="718" y="250" width="7" height="9"/>
+    <rect x="703" y="270" width="7" height="9"/><rect x="733" y="270" width="7" height="9"/>
+    <rect x="688" y="290" width="7" height="9"/><rect x="718" y="290" width="7" height="9"/>
+    <rect x="703" y="310" width="7" height="9"/><rect x="733" y="310" width="7" height="9"/>
+    <rect x="688" y="330" width="7" height="9"/><rect x="718" y="330" width="7" height="9"/>
+    <rect x="703" y="350" width="7" height="9"/><rect x="733" y="350" width="7" height="9"/>
+    <rect x="688" y="370" width="7" height="9"/><rect x="733" y="370" width="7" height="9"/>
+  </g>
+
+  <!-- Neon signs on facades -->
+  <g>
+    <rect x="188" y="198" width="54" height="6" fill="url(#neonPink)" opacity="0.95"/>
+    <rect x="388" y="183" width="69" height="6" fill="url(#neonPurple)" opacity="0.95"/>
+    <rect x="588" y="203" width="59" height="6" fill="url(#neonPink)" opacity="0.95"/>
+    <rect x="688" y="178" width="44" height="6" fill="url(#neonPurple)" opacity="0.95"/>
+  </g>
+
+  <!-- Ground reflection line -->
+  <rect x="0" y="390" width="800" height="10" fill="#0f0a2e" opacity="0.8"/>
+  <g opacity="0.35">
+    <rect x="0" y="388" width="800" height="1" fill="#ec4899"/>
+  </g>
+
+  <!-- Text label -->
+  <g transform="translate(55 105)">
+    <text x="0" y="0" font-family="'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="52" font-weight="900" fill="#fdf4ff" letter-spacing="4">东京漫游</text>
+    <text x="2" y="42" font-family="'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#fbcfe8" letter-spacing="2">TOKYO · 3 DAYS</text>
+    <line x1="0" y1="60" x2="310" y2="60" stroke="#fbcfe8" stroke-width="1.5" opacity="0.6"/>
+    <text x="0" y="82" font-family="'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" font-weight="400" fill="#f5d0fe" letter-spacing="1.5" opacity="0.9">浅草 · 原宿 · 涩谷 · 新宿 · 台场</text>
+  </g>
+</svg>
