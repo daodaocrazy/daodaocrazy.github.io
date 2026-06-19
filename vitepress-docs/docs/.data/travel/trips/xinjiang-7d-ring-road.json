@@ -7,62 +7,498 @@
     "endDate": "2026-05-16",
     "daysCount": 7,
     "region": "中国 新疆",
-    "places": ["乌鲁木齐", "天山天池", "独山子", "魔鬼城", "禾木", "喀纳斯", "布尔津"],
-    "tags": ["公路旅行", "环线", "自然景观"],
+    "places": [
+      "乌鲁木齐",
+      "天山天池",
+      "独山子",
+      "魔鬼城",
+      "布尔津",
+      "禾木",
+      "喀纳斯"
+    ],
+    "tags": [
+      "自驾",
+      "环线",
+      "自然风景"
+    ],
     "coverImage": "/travel/xinjiang-7d-ring-road/cover.svg",
-    "summary": "乌鲁木齐出发经天山天池、独山子大峡谷、世界魔鬼城至禾木与喀纳斯的七天地级风景环线。",
-    "intro": "北疆环线以天山与阿尔泰山脉间的巨型纵剖面为主体，适合 5-10 月出行，建议从乌鲁木齐出发顺时针完成。",
+    "summary": "乌鲁木齐出发，经天山天池、独山子大峡谷、世界魔鬼城至禾木与喀纳斯的七天地级风景环线。",
+    "intro": "北疆环线以自驾为主，每日车程较长但沿途地貌变化丰富，适合重视风景体验的旅行。",
     "status": "published",
     "publishedAt": "2026-05-20",
     "routePreview": {
-      "bbox": [84.8, 43.7, 88.2, 48.6],
-      "center": [86.8, 46.2],
+      "bbox": [
+        85.5,
+        43,
+        91.2,
+        49.2
+      ],
+      "center": [
+        88.2,
+        46.2
+      ],
       "line": {
         "type": "LineString",
         "coordinates": [
-          [87.6168, 43.8256],
-          [88.1164, 43.8936],
-          [84.8474, 44.3189],
-          [85.8511, 46.2147],
-          [87.0164, 48.5392],
-          [87.0583, 48.5106],
-          [87.5111, 47.9944]
+          [
+            87.6168,
+            43.8256
+          ],
+          [
+            88.1184,
+            43.8718
+          ],
+          [
+            84.8467,
+            44.2227
+          ],
+          [
+            85.5857,
+            45.1914
+          ],
+          [
+            87.0221,
+            47.7241
+          ],
+          [
+            87.4251,
+            48.5375
+          ],
+          [
+            87.0556,
+            48.6801
+          ]
         ]
       }
     }
   },
   "days": [
-    {"dayNumber":1,"date":"2026-05-10","title":"乌鲁木齐初见西域","summary":"抵达乌鲁木齐后步行游览市区主要景点，作为高海拔前的适应日。","color":"#D96C6C","stopIds":["xj-museum","xj-bazaar"],"segmentIds":["seg-urmqi-1"]},
-    {"dayNumber":2,"date":"2026-05-11","title":"天池碧水映雪峰","summary":"驱车前往天山天池风景区，沿湖徒步与索道观景。","color":"#5C8D89","stopIds":["xj-tianchi"],"segmentIds":["seg-urmqi-to-tianchi"]},
-    {"dayNumber":3,"date":"2026-05-12","title":"大峡谷与魔鬼城","summary":"经独山子大峡谷转至世界魔鬼城，日落时分雅丹地貌最为壮丽。","color":"#B9772C","stopIds":["xj-dushanzi","xj-devil-city"],"segmentIds":["seg-tianchi-to-dushanzi"]},
-    {"dayNumber":4,"date":"2026-05-13","title":"奔赴禾木神的自留地","summary":"一整天沿国道向北，下午抵达禾木村入住木屋。","color":"#6A9F7A","stopIds":["xj-hemu"],"segmentIds":["seg-devil-city-to-hemu"]},
-    {"dayNumber":5,"date":"2026-05-14","title":"禾木晨雾与喀纳斯","summary":"清晨登禾木观景台后转场喀纳斯，三湾徒步依次呈现。","color":"#5C8CA8","stopIds":["xj-hemu-platform","xj-kanas-shenxianwan","xj-kanas-yueliangwan","xj-kanas-wolongwan"],"segmentIds":["seg-hemu-to-kanas"]},
-    {"dayNumber":6,"date":"2026-05-15","title":"观鱼台揽胜与布尔津","summary":"登观鱼台俯瞰喀纳斯湖全景，下午驱车至布尔津，老码头风情街日落漫步。","color":"#A86C7D","stopIds":["xj-guanyutai","xj-kanas-lake","xj-buerjin"],"segmentIds":["seg-kanas-to-buerjin"]},
-    {"dayNumber":7,"date":"2026-05-16","title":"返程乌鲁木齐","summary":"经 G3014 高速返回乌鲁木齐，晚上大巴扎采购。","color":"#9E7E5B","stopIds":["xj-bazaar-return"],"segmentIds":["seg-buerjin-to-urmqi"]}
+    {
+      "dayNumber": 1,
+      "date": "2026-05-10",
+      "title": "乌鲁木齐集结",
+      "summary": "抵达乌鲁木齐后调整，附近熟悉环境。",
+      "color": "#D96C6C",
+      "stopIds": [
+        "xj-urumqi-hotel"
+      ],
+      "segmentIds": []
+    },
+    {
+      "dayNumber": 2,
+      "date": "2026-05-11",
+      "title": "天山天池一日",
+      "summary": "从乌鲁木齐往返天山天池，当天车程适中。",
+      "color": "#C68E5B",
+      "stopIds": [
+        "xj-urumqi-departure",
+        "xj-tianchi"
+      ],
+      "segmentIds": [
+        "xj-urumqi-tianchi"
+      ]
+    },
+    {
+      "dayNumber": 3,
+      "date": "2026-05-12",
+      "title": "独山子大峡谷与百里丹霞",
+      "summary": "沿 G217 南下，途经独山子大峡谷与百里丹霞路段。",
+      "color": "#A47148",
+      "stopIds": [
+        "xj-dushanzi-canyon"
+      ],
+      "segmentIds": [
+        "xj-tianchi-dushanzi"
+      ]
+    },
+    {
+      "dayNumber": 4,
+      "date": "2026-05-13",
+      "title": "世界魔鬼城与戈壁日落",
+      "summary": "往西进入魔鬼城一带，适合傍晚拍摄。",
+      "color": "#5C8D89",
+      "stopIds": [
+        "xj-devils-city"
+      ],
+      "segmentIds": [
+        "xj-dushanzi-devils"
+      ]
+    },
+    {
+      "dayNumber": 5,
+      "date": "2026-05-14",
+      "title": "布尔津与额尔齐斯河",
+      "summary": "向北前往布尔津，经额尔齐斯河作为过渡日。",
+      "color": "#4A6FA5",
+      "stopIds": [
+        "xj-burqin"
+      ],
+      "segmentIds": [
+        "xj-devils-burqin"
+      ]
+    },
+    {
+      "dayNumber": 6,
+      "date": "2026-05-15",
+      "title": "禾木徒步日",
+      "summary": "从布尔津进入禾木，当天以轻徒步为主。",
+      "color": "#6B8E23",
+      "stopIds": [
+        "xj-hemu"
+      ],
+      "segmentIds": [
+        "xj-burqin-hemu"
+      ]
+    },
+    {
+      "dayNumber": 7,
+      "date": "2026-05-16",
+      "title": "喀纳斯湖与返程",
+      "summary": "早上进入喀纳斯景区，晚上返回乌鲁木齐结束。",
+      "color": "#556B2F",
+      "stopIds": [
+        "xj-kanas",
+        "xj-urumqi-return"
+      ],
+      "segmentIds": [
+        "xj-hemu-kanas",
+        "xj-kanas-urumqi"
+      ]
+    }
   ],
   "stops": [
-    {"id":"xj-museum","name":"新疆维吾尔自治区博物馆","lat":43.8256,"lng":87.6168,"kind":"sight","description":"镇馆之宝楼兰美女干尸与五星出东方利中国锦护臂。"},
-    {"id":"xj-bazaar","name":"新疆国际大巴扎","lat":43.7867,"lng":87.6139,"kind":"market","description":"浓郁民族风情，干果与手工艺品集中区。"},
-    {"id":"xj-tianchi","name":"天山天池风景区","lat":43.8936,"lng":88.1164,"kind":"sight","description":"高山冰碛湖碧蓝如镜，雪峰倒映湖面。"},
-    {"id":"xj-dushanzi","name":"独山子大峡谷","lat":44.3189,"lng":84.8474,"kind":"sight","description":"天山雪水亿万年冲刷而成，独库公路起点附近。"},
-    {"id":"xj-devil-city","name":"世界魔鬼城","lat":46.2147,"lng":85.8511,"kind":"sight","description":"5A 级雅丹地貌奇观，乘小火车游览数站。"},
-    {"id":"xj-hemu","name":"禾木风景区","lat":48.5392,"lng":87.0164,"kind":"stay","description":"图瓦人木屋错落山谷，傍晚沿禾木河漫步。"},
-    {"id":"xj-hemu-platform","name":"禾木观景台","lat":48.5415,"lng":87.0215,"kind":"sight","description":"哈登观景台俯瞰禾木全景，清晨晨雾仙境。"},
-    {"id":"xj-kanas-shenxianwan","name":"喀纳斯景区-神仙湾","lat":48.5106,"lng":87.0583,"kind":"sight","description":"清晨薄雾弥漫水面，三湾中最具仙气。"},
-    {"id":"xj-kanas-yueliangwan","name":"喀纳斯景区-月亮湾","lat":48.5056,"lng":87.0556,"kind":"sight","description":"S 形河湾蜿蜒如新月，色彩层次极佳。"},
-    {"id":"xj-kanas-wolongwan","name":"喀纳斯景区-卧龙湾","lat":48.5006,"lng":87.0533,"kind":"sight","description":"河心滩酷似巨型翼龙，秋季金叶镶边尤佳。"},
-    {"id":"xj-guanyutai","name":"观鱼台","lat":48.5183,"lng":87.0667,"kind":"sight","description":"登 1068 级台阶俯瞰喀纳斯湖全景，远眺阿尔泰山友谊峰。"},
-    {"id":"xj-kanas-lake","name":"喀纳斯湖","lat":48.515,"lng":87.0564,"kind":"sight","description":"中国最深冰碛堰塞湖，可沿湖栈道或乘船游览。"},
-    {"id":"xj-buerjin","name":"中俄老码头风情街景区","lat":47.9944,"lng":87.5111,"kind":"sight","description":"俄式彩色尖顶与套娃装饰，河堤夜市可尝冷水鱼。"},
-    {"id":"xj-bazaar-return","name":"新疆国际大巴扎","lat":43.7867,"lng":87.6139,"kind":"market","description":"返程前采购，干果香料物美价廉。"}
+    {
+      "id": "xj-urumqi-hotel",
+      "dayNumber": 1,
+      "order": 1,
+      "name": "乌鲁木齐酒店",
+      "type": "hotel",
+      "coordinates": [
+        87.6168,
+        43.8256
+      ],
+      "arrivalTime": "15:00",
+      "departureTime": "20:00",
+      "stayMinutes": 300,
+      "note": "抵达后熟悉周边，准备第二天早起出发。"
+    },
+    {
+      "id": "xj-urumqi-departure",
+      "dayNumber": 2,
+      "order": 1,
+      "name": "乌鲁木齐出发",
+      "type": "transport_hub",
+      "coordinates": [
+        87.6168,
+        43.8256
+      ],
+      "arrivalTime": "08:00",
+      "departureTime": "08:30",
+      "stayMinutes": 30,
+      "note": "从酒店出发，一路沿山路向东。"
+    },
+    {
+      "id": "xj-tianchi",
+      "dayNumber": 2,
+      "order": 2,
+      "name": "天山天池",
+      "type": "sightseeing",
+      "coordinates": [
+        88.1184,
+        43.8718
+      ],
+      "arrivalTime": "10:30",
+      "departureTime": "16:00",
+      "stayMinutes": 330,
+      "note": "天池湖与博格达峰同框是此行代表画面。"
+    },
+    {
+      "id": "xj-dushanzi-canyon",
+      "dayNumber": 3,
+      "order": 1,
+      "name": "独山子大峡谷",
+      "type": "sightseeing",
+      "coordinates": [
+        84.8467,
+        44.2227
+      ],
+      "arrivalTime": "11:00",
+      "departureTime": "16:30",
+      "stayMinutes": 330,
+      "note": "峡谷俯瞰视角非常壮观，需要预留足够体力。"
+    },
+    {
+      "id": "xj-devils-city",
+      "dayNumber": 4,
+      "order": 1,
+      "name": "世界魔鬼城",
+      "type": "sightseeing",
+      "coordinates": [
+        85.5857,
+        45.1914
+      ],
+      "arrivalTime": "14:00",
+      "departureTime": "19:30",
+      "stayMinutes": 330,
+      "note": "建议傍晚到达，雅丹地貌在日落光线下最有层次。"
+    },
+    {
+      "id": "xj-burqin",
+      "dayNumber": 5,
+      "order": 1,
+      "name": "布尔津",
+      "type": "hotel",
+      "coordinates": [
+        87.0221,
+        47.7241
+      ],
+      "arrivalTime": "16:00",
+      "departureTime": "21:00",
+      "stayMinutes": 300,
+      "note": "这一晚作为进入禾木前的休整。"
+    },
+    {
+      "id": "xj-hemu",
+      "dayNumber": 6,
+      "order": 1,
+      "name": "禾木村",
+      "type": "sightseeing",
+      "coordinates": [
+        87.4251,
+        48.5375
+      ],
+      "arrivalTime": "10:00",
+      "departureTime": "18:30",
+      "stayMinutes": 510,
+      "note": "禾木徒步路线成熟，可以安排观景台与村落两条路线。"
+    },
+    {
+      "id": "xj-kanas",
+      "dayNumber": 7,
+      "order": 1,
+      "name": "喀纳斯湖",
+      "type": "sightseeing",
+      "coordinates": [
+        87.0556,
+        48.6801
+      ],
+      "arrivalTime": "08:30",
+      "departureTime": "13:00",
+      "stayMinutes": 270,
+      "note": "早上的湖面光线最稳定，先做湖景再出发。"
+    },
+    {
+      "id": "xj-urumqi-return",
+      "dayNumber": 7,
+      "order": 2,
+      "name": "返回乌鲁木齐",
+      "type": "hotel",
+      "coordinates": [
+        87.6168,
+        43.8256
+      ],
+      "arrivalTime": "21:30",
+      "departureTime": "22:00",
+      "stayMinutes": 30,
+      "note": "行程收尾，当晚结束。"
+    }
   ],
   "segments": [
-    {"id":"seg-urmqi-1","fromStop":"xj-museum","toStop":"xj-bazaar","transport":"walk","distanceKm":4,"durationMin":40},
-    {"id":"seg-urmqi-to-tianchi","fromStop":"xj-bazaar","toStop":"xj-tianchi","transport":"drive","distanceKm":68,"durationMin":90},
-    {"id":"seg-tianchi-to-dushanzi","fromStop":"xj-tianchi","toStop":"xj-dushanzi","transport":"drive","distanceKm":260,"durationMin":300},
-    {"id":"seg-devil-city-to-hemu","fromStop":"xj-devil-city","toStop":"xj-hemu","transport":"drive","distanceKm":310,"durationMin":360},
-    {"id":"seg-hemu-to-kanas","fromStop":"xj-hemu","toStop":"xj-kanas-shenxianwan","transport":"drive","distanceKm":70,"durationMin":120},
-    {"id":"seg-kanas-to-buerjin","fromStop":"xj-kanas-lake","toStop":"xj-buerjin","transport":"drive","distanceKm":160,"durationMin":240},
-    {"id":"seg-buerjin-to-urmqi","fromStop":"xj-buerjin","toStop":"xj-bazaar-return","transport":"drive","distanceKm":700,"durationMin":720}
+    {
+      "id": "xj-urumqi-tianchi",
+      "dayNumber": 2,
+      "order": 1,
+      "fromStopId": "xj-urumqi-departure",
+      "toStopId": "xj-tianchi",
+      "mode": "drive",
+      "distanceMeters": 110000,
+      "durationMinutes": 120,
+      "summary": "从乌鲁木齐沿山路向东前往天山天池。",
+      "routeGeometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            87.6168,
+            43.8256
+          ],
+          [
+            87.9,
+            43.85
+          ],
+          [
+            88.1184,
+            43.8718
+          ]
+        ]
+      }
+    },
+    {
+      "id": "xj-tianchi-dushanzi",
+      "dayNumber": 3,
+      "order": 1,
+      "fromStopId": "xj-tianchi",
+      "toStopId": "xj-dushanzi-canyon",
+      "mode": "drive",
+      "distanceMeters": 260000,
+      "durationMinutes": 240,
+      "summary": "沿 G217 转往独山子方向。",
+      "routeGeometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.1184,
+            43.8718
+          ],
+          [
+            86.5,
+            44
+          ],
+          [
+            84.8467,
+            44.2227
+          ]
+        ]
+      }
+    },
+    {
+      "id": "xj-dushanzi-devils",
+      "dayNumber": 4,
+      "order": 1,
+      "fromStopId": "xj-dushanzi-canyon",
+      "toStopId": "xj-devils-city",
+      "mode": "drive",
+      "distanceMeters": 180000,
+      "durationMinutes": 180,
+      "summary": "向西前往魔鬼城。",
+      "routeGeometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            84.8467,
+            44.2227
+          ],
+          [
+            85.2,
+            44.7
+          ],
+          [
+            85.5857,
+            45.1914
+          ]
+        ]
+      }
+    },
+    {
+      "id": "xj-devils-burqin",
+      "dayNumber": 5,
+      "order": 1,
+      "fromStopId": "xj-devils-city",
+      "toStopId": "xj-burqin",
+      "mode": "drive",
+      "distanceMeters": 310000,
+      "durationMinutes": 300,
+      "summary": "一路向北到布尔津。",
+      "routeGeometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            85.5857,
+            45.1914
+          ],
+          [
+            86.2,
+            46.5
+          ],
+          [
+            87.0221,
+            47.7241
+          ]
+        ]
+      }
+    },
+    {
+      "id": "xj-burqin-hemu",
+      "dayNumber": 6,
+      "order": 1,
+      "fromStopId": "xj-burqin",
+      "toStopId": "xj-hemu",
+      "mode": "drive",
+      "distanceMeters": 170000,
+      "durationMinutes": 210,
+      "summary": "山路进入禾木村。",
+      "routeGeometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            87.0221,
+            47.7241
+          ],
+          [
+            87.2,
+            48.2
+          ],
+          [
+            87.4251,
+            48.5375
+          ]
+        ]
+      }
+    },
+    {
+      "id": "xj-hemu-kanas",
+      "dayNumber": 7,
+      "order": 1,
+      "fromStopId": "xj-hemu",
+      "toStopId": "xj-kanas",
+      "mode": "drive",
+      "distanceMeters": 70000,
+      "durationMinutes": 120,
+      "summary": "禾木到喀纳斯的山路距离较短。",
+      "routeGeometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            87.4251,
+            48.5375
+          ],
+          [
+            87.2,
+            48.65
+          ],
+          [
+            87.0556,
+            48.6801
+          ]
+        ]
+      }
+    },
+    {
+      "id": "xj-kanas-urumqi",
+      "dayNumber": 7,
+      "order": 2,
+      "fromStopId": "xj-kanas",
+      "toStopId": "xj-urumqi-return",
+      "mode": "drive",
+      "distanceMeters": 860000,
+      "durationMinutes": 720,
+      "summary": "从喀纳斯返回乌鲁木齐结束全程。",
+      "routeGeometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            87.0556,
+            48.6801
+          ],
+          [
+            87.5,
+            46.5
+          ],
+          [
+            87.6168,
+            43.8256
+          ]
+        ]
+      }
+    }
   ]
 }
