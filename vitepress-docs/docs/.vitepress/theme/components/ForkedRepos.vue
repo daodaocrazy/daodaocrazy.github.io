@@ -11,60 +11,44 @@ interface Repository {
   updated_at: string
 }
 
-interface CategorizedRepos {
-  [key: string]: Repository[]
-}
-
 const repos = ref<Repository[]>([])
 const loading = ref(true)
 const error = ref('')
-const isCollapsed = ref(true)
 
 const GITHUB_USERNAME = 'daodaocrazy'
 const API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`
 
-const LANGUAGE_CATEGORIES: Record<string, string> = {
-  'JavaScript': '前端开发',
-  'TypeScript': '前端开发',
-  'HTML': '前端开发',
-  'CSS': '前端开发',
-  'Vue': '前端开发',
-  'React': '前端开发',
-  'Java': 'Java开发',
-  'Scala': 'Java开发',
-  'Python': 'Python开发',
-  'Go': 'Go开发',
-  'Rust': 'Rust开发',
-  'C': '系统编程',
-  'C++': '系统编程',
-  'Shell': '脚本工具',
-  'Dockerfile': '容器技术',
-  'Makefile': '构建工具'
+const LANGUAGE_COLORS: Record<string, string> = {
+  JavaScript: '#f1e05a',
+  TypeScript: '#3178c6',
+  Python: '#3572A5',
+  Java: '#b07219',
+  Scala: '#c22d40',
+  Go: '#00ADD8',
+  Rust: '#dea584',
+  Shell: '#89e051',
+  C: '#555555',
+  'C++': '#f34b7d',
+  Vue: '#41b883',
+  HTML: '#e34c26',
+  CSS: '#563d7c',
+  Dockerfile: '#384d54',
+  Makefile: '#427819'
 }
 
-const categorizedRepos = computed<CategorizedRepos>(() => {
-  const result: CategorizedRepos = {}
-  
-  repos.value.forEach(repo => {
-    const language = repo.language || '其他'
-    const category = LANGUAGE_CATEGORIES[language] || '其他'
-    
-    if (!result[category]) {
-      result[category] = []
-    }
-    
-    result[category].push(repo)
-  })
-  
-  return result
+const visibleRepos = computed<Repository[]>(() => {
+  return repos.value
+    .filter((repo) => repo.fork)
+    .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
 })
-
-const toggleCollapse = () => {
-  isCollapsed.value = !isCollapsed.value
-}
 
 const formatDate = (dateString: string): string => {
   return new Date(dateString).toLocaleDateString('zh-CN')
+}
+
+const getLanguageColor = (language: string | null): string => {
+  if (!language) return 'var(--vp-c-text-3)'
+  return LANGUAGE_COLORS[language] || 'var(--vp-c-text-3)'
 }
 
 const fetchRepos = async () => {
@@ -74,7 +58,7 @@ const fetchRepos = async () => {
       throw new Error('Failed to fetch repositories')
     }
     const data = await response.json()
-    repos.value = data.filter((repo: Repository) => repo.fork)
+    repos.value = data
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Failed to load repositories'
   } finally {
@@ -89,206 +73,203 @@ onMounted(() => {
 
 <template>
   <div class="forked-repos">
-    <h2 class="forked-repos-title" @click="toggleCollapse">
-      <span class="toggle-icon">{{ isCollapsed ? '▶' : '▼' }}</span>
-      🍴 Forks
-    </h2>
-    
-    <div v-if="loading" class="loading">
+    <h2 class="forked-repos-title">🍴 Forks</h2>
+    <p class="forked-repos-subtitle">近期关注与学习中的仓库 · 按更新时间排序</p>
+
+    <div v-if="loading" class="state-panel">
+      <div class="spinner" />
       <span>加载中...</span>
     </div>
-    
-    <div v-else-if="error" class="error">
-      <span>{{ error }}</span>
+
+    <div v-else-if="error" class="state-panel">
+      <span>⚠️ {{ error }}</span>
     </div>
-    
-    <div v-else-if="Object.keys(categorizedRepos).length === 0" class="empty">
-      <span>暂无 forks</span>
+
+    <div v-else-if="visibleRepos.length === 0" class="state-panel">
+      <span>暂无 fork</span>
     </div>
-    
-    <template v-else>
-      <transition name="collapse">
-        <div v-show="!isCollapsed" class="repo-categories">
-          <div v-for="(categoryRepos, category) in categorizedRepos" :key="category" class="repo-category">
-            <h3 class="category-title">📁 {{ category }}</h3>
-            <div class="repo-list">
-              <div v-for="repo in categoryRepos" :key="repo.html_url" class="repo-item">
-                <a :href="repo.html_url" target="_blank" rel="noopener" class="repo-name">
-                  {{ repo.name }}
-                </a>
-                <p class="repo-description">{{ repo.description || '暂无描述' }}</p>
-                <div class="repo-meta">
-                  <span v-if="repo.language" class="repo-language">{{ repo.language }}</span>
-                  <span class="repo-stars">⭐ {{ repo.stargazers_count }}</span>
-                  <span class="repo-forks">🔀 {{ repo.forks_count }}</span>
-                  <span class="repo-updated">📅 {{ formatDate(repo.updated_at) }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
+
+    <div v-else class="repo-grid">
+      <a
+        v-for="repo in visibleRepos"
+        :key="repo.html_url"
+        :href="repo.html_url"
+        target="_blank"
+        rel="noopener"
+        class="repo-card"
+      >
+        <div class="repo-card-header">
+          <span class="repo-card-name">📂 {{ repo.name }}</span>
         </div>
-      </transition>
-    </template>
+
+        <p class="repo-card-description">
+          {{ repo.description || '暂无描述' }}
+        </p>
+
+        <div class="repo-card-meta">
+          <span v-if="repo.language" class="repo-meta-item">
+            <span class="lang-dot" :style="{ background: getLanguageColor(repo.language) }" />
+            <span>{{ repo.language }}</span>
+          </span>
+          <span class="repo-meta-item">⭐ {{ repo.stargazers_count }}</span>
+          <span class="repo-meta-item">🔀 {{ repo.forks_count }}</span>
+          <span class="repo-meta-item repo-updated">更新于 {{ formatDate(repo.updated_at) }}</span>
+        </div>
+      </a>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .forked-repos {
   margin-top: 3rem;
-  padding-top: 2rem;
+  padding-top: 2.5rem;
   border-top: 1px solid var(--vp-c-divider);
 }
 
 .forked-repos-title {
   font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: opacity 0.3s ease;
-  user-select: none;
-}
-
-.forked-repos-title:hover {
-  opacity: 0.8;
-}
-
-.toggle-icon {
-  display: inline-block;
-  transition: transform 0.3s ease;
-  font-size: 1.2rem;
-}
-
-.loading,
-.error,
-.empty {
-  text-align: center;
-  padding: 2rem;
-  color: var(--vp-c-text-2);
-}
-
-.repo-categories {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.repo-category {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.category-title {
-  font-size: 1.3rem;
+  font-weight: 700;
   color: var(--vp-c-text-1);
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.01em;
 }
 
-.repo-list {
-  display: grid;
-  gap: 1rem;
+.forked-repos-subtitle {
+  font-size: 0.95rem;
+  color: var(--vp-c-text-2);
+  margin: 0 0 2rem;
 }
 
-.repo-item {
+.state-panel {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--vp-c-text-2);
   background: var(--vp-c-bg-soft);
   border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
-  padding: 1.25rem;
-  transition: all 0.3s ease;
-}
-
-.repo-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
-  border-color: rgba(102, 126, 234, 0.5);
-}
-
-.repo-name {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #667eea;
-  text-decoration: none;
-  display: inline-block;
-  margin-bottom: 0.5rem;
-  transition: color 0.3s ease;
-}
-
-.repo-name:hover {
-  color: #764ba2;
-  text-decoration: underline;
-}
-
-.repo-description {
-  color: var(--vp-c-text-2);
-  font-size: 0.95rem;
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
-}
-
-.repo-meta {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--vp-c-divider);
+  border-top-color: var(--vp-c-brand);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  font-size: 0.85rem;
-  color: var(--vp-c-text-2);
 }
 
-.repo-meta span {
+.repo-card {
   display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background-color: var(--vp-c-bg-soft);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.25s, background-color 0.25s, transform 0.25s;
+  min-height: 140px;
+}
+
+.repo-card:hover {
+  border-color: var(--vp-c-brand);
+  background-color: var(--vp-c-bg-soft-up);
+  transform: translateY(-2px);
+}
+
+.repo-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.repo-card-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--vp-c-brand);
+  letter-spacing: -0.01em;
+  transition: color 0.25s;
+}
+
+.repo-card:hover .repo-card-name {
+  color: var(--vp-c-brand-1);
+}
+
+.repo-card-description {
+  flex: 1;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--vp-c-text-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.repo-card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--vp-c-divider);
+  font-size: 0.82rem;
+  color: var(--vp-c-text-3);
+}
+
+.repo-meta-item {
+  display: inline-flex;
   align-items: center;
   gap: 0.3rem;
 }
 
-.repo-language {
-  background: rgba(102, 126, 234, 0.1);
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  color: #667eea;
-  font-weight: 500;
+.lang-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
 }
 
-.collapse-enter-active,
-.collapse-leave-active {
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-.collapse-enter-from,
-.collapse-leave-to {
-  opacity: 0;
-  max-height: 0;
-  transform: translateY(-10px);
-}
-
-.collapse-enter-to,
-.collapse-leave-from {
-  opacity: 1;
-  max-height: 2000px;
-  transform: translateY(0);
+.repo-updated {
+  margin-left: auto;
+  color: var(--vp-c-text-3);
+  font-size: 0.78rem;
 }
 
 @media (max-width: 768px) {
   .forked-repos-title {
     font-size: 1.5rem;
   }
-  
-  .category-title {
-    font-size: 1.2rem;
+
+  .repo-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
-  
-  .repo-item {
-    padding: 1rem;
+
+  .repo-card {
+    padding: 1rem 1.1rem;
+    min-height: auto;
   }
-  
-  .repo-meta {
-    gap: 0.5rem;
+
+  .repo-card-name {
+    font-size: 1rem;
   }
 }
 </style>

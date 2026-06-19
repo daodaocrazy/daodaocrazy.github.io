@@ -380,10 +380,8 @@ export default defineConfig({
       { text: '首页', link: '/' },
       { text: '文档', link: '/study/' },
       { text: '旅行', link: '/travel/' },
-      { text: 'Tool Box', link: '/tools/' },
-      { text: 'Playground', link: '/playground/' },
-      { text: 'Lab', link: '/lab/' },
-      { text: 'Experiments', link: '/experiments/' }
+      { text: '工具', link: '/tools/' },
+      { text: 'Playground', link: '/playground/' }
     ],
 
     sidebar: {

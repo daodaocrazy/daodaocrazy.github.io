@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>旅行路线规划 · Travel Route</title>
+<meta name="description" content="交互式旅行路线规划地图 - 可视化你的旅行路线，支持多种交通方式、JSON 导入导出、圆周旅迹分享链接导入" />
+<meta name="theme-color" content="#2563eb" />
+<title>旅行路线地图 · Travel Route Map</title>
 <link
   rel="stylesheet"
   href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -232,7 +234,7 @@
     flex: 0 0 auto;
   }
 
-  .map-wrap { position: relative; }
+  .map-wrap { position: relative; height: 100%; width: 100%; min-height: 0; }
   #map { position: absolute; inset: 0; }
 
   .file-input { display: none; }
@@ -379,8 +381,17 @@
   }
 
   @media (max-width: 780px) {
-    .app { grid-template-columns: 1fr; grid-template-rows: 45vh 1fr; }
+    .app {
+      grid-template-columns: 1fr;
+      grid-template-rows: 45vh 1fr;
+      height: 100vh;
+      height: 100dvh;
+    }
     .sidebar { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+
+  @media (min-width: 781px) {
+    .app { height: 100vh; }
   }
 </style>
 </head>
