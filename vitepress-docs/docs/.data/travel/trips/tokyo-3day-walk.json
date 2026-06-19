@@ -1,0 +1,52 @@
+{
+  "trip": {
+    "id": "tokyo-3day-walk",
+    "slug": "tokyo-3day-walk",
+    "title": "东京三日漫游",
+    "startDate": "2026-06-05",
+    "endDate": "2026-06-07",
+    "daysCount": 3,
+    "region": "日本 东京",
+    "places": ["浅草", "涩谷", "新宿", "明治神宫", "原宿", "台场"],
+    "tags": ["城市漫游", "步行", "电车"],
+    "coverImage": "/travel/tokyo-3day-walk/cover.svg",
+    "summary": "浅草起步、涩谷与原宿穿插、新宿御苑收尾的三日城市漫游路线。",
+    "intro": "东京三日适合搭配地铁与步行切换，白天神社与公园，晚上霓虹街景，整体节奏偏城市轻探索。",
+    "status": "published",
+    "publishedAt": "2026-06-15",
+    "routePreview": {
+      "bbox": [139.68, 35.65, 139.79, 35.72],
+      "center": [139.73, 35.68],
+      "line": {
+        "type": "LineString",
+        "coordinates": [
+          [139.7944, 35.7148],
+          [139.7704, 35.6756],
+          [139.7028, 35.6696],
+          [139.7181, 35.6938],
+          [139.6823, 35.6586]
+        ]
+      }
+    }
+  },
+  "days": [
+    {"dayNumber":1,"date":"2026-06-05","title":"浅草与晴空塔","summary":"从浅草寺出发，步行穿越雷门仲见世通，傍晚登晴空塔俯瞰夜景。","color":"#8b5cf6","stopIds":["tk-asakusa","tk-sumida"],"segmentIds":["seg-asakusa-to-sumida"]},
+    {"dayNumber":2,"date":"2026-06-06","title":"原宿表参道与涩谷","summary":"明治神宫与表参道慢走，傍晚涩谷十字路口与观景台。","color":"#ec4899","stopIds":["tk-meiji","tk-harajuku","tk-shibuya"],"segmentIds":["seg-meiji-to-harajuku","seg-harajuku-to-shibuya"]},
+    {"dayNumber":3,"date":"2026-06-07","title":"新宿御苑与台场","summary":"上午新宿御苑散步，下午百合海鸥线赴台场看彩虹桥。","color":"#a855f7","stopIds":["tk-shinjuku-gyoen","tk-odaiba"],"segmentIds":["seg-shinjuku-to-odaiba"]}
+  ],
+  "stops": [
+    {"id":"tk-asakusa","name":"浅草寺","lat":35.7148,"lng":139.7944,"kind":"sight","description":"雷门与仲见世通，最经典的江户风情起点。"},
+    {"id":"tk-sumida","name":"晴空塔","lat":35.7101,"lng":139.8107,"kind":"sight","description":"傍晚登顶俯瞰东京湾夜景，霓虹灯光层次极佳。"},
+    {"id":"tk-meiji","name":"明治神宫","lat":35.6756,"lng":139.7004,"kind":"sight","description":"原宿站旁都市森林，参拜路径适合慢走。"},
+    {"id":"tk-harajuku","name":"表参道","lat":35.6714,"lng":139.7181,"kind":"walk","description":"表参道与竹下通穿插，午餐与购物皆宜。"},
+    {"id":"tk-shibuya","name":"涩谷十字路口","lat":35.6596,"lng":139.7004,"kind":"sight","description":"Magnet by Shibuya109 屋顶与 Scramble 广场双视角。"},
+    {"id":"tk-shinjuku-gyoen","name":"新宿御苑","lat":35.6848,"lng":139.7181,"kind":"sight","description":"日式庭园与英式草坪并陈，晨光线条柔和。"},
+    {"id":"tk-odaiba","name":"台场彩虹桥","lat":35.6313,"lng":139.7815,"kind":"sight","description":"百合海鸥线直达，傍晚彩虹桥点灯时刻最美。"}
+  ],
+  "segments": [
+    {"id":"seg-asakusa-to-sumida","fromStop":"tk-asakusa","toStop":"tk-sumida","transport":"walk","distanceKm":2,"durationMin":30},
+    {"id":"seg-meiji-to-harajuku","fromStop":"tk-meiji","toStop":"tk-harajuku","transport":"walk","distanceKm":1.5,"durationMin":20},
+    {"id":"seg-harajuku-to-shibuya","fromStop":"tk-harajuku","toStop":"tk-shibuya","transport":"train","distanceKm":3,"durationMin":15},
+    {"id":"seg-shinjuku-to-odaiba","fromStop":"tk-shinjuku-gyoen","toStop":"tk-odaiba","transport":"train","distanceKm":12,"durationMin":45}
+  ]
+}

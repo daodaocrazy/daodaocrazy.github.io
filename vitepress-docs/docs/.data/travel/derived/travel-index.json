@@ -1,5 +1,75 @@
 [
   {
+    "slug": "xinjiang-7d-ring-road",
+    "title": "北疆七日经典环线",
+    "startDate": "2026-05-10",
+    "endDate": "2026-05-16",
+    "daysCount": 7,
+    "region": "中国 新疆",
+    "places": [
+      "乌鲁木齐",
+      "天山天池",
+      "独山子",
+      "魔鬼城",
+      "禾木",
+      "喀纳斯",
+      "布尔津"
+    ],
+    "tags": [
+      "公路旅行",
+      "环线",
+      "自然景观"
+    ],
+    "coverImage": "/travel/xinjiang-7d-ring-road/cover.svg",
+    "summary": "乌鲁木齐出发经天山天池、独山子大峡谷、世界魔鬼城至禾木与喀纳斯的七天地级风景环线。",
+    "publishedAt": "2026-05-20",
+    "routePreview": {
+      "bbox": [
+        84.8,
+        43.7,
+        88.2,
+        48.6
+      ],
+      "center": [
+        86.8,
+        46.2
+      ],
+      "line": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            87.6168,
+            43.8256
+          ],
+          [
+            88.1164,
+            43.8936
+          ],
+          [
+            84.8474,
+            44.3189
+          ],
+          [
+            85.8511,
+            46.2147
+          ],
+          [
+            87.0164,
+            48.5392
+          ],
+          [
+            87.0583,
+            48.5106
+          ],
+          [
+            87.5111,
+            47.9944
+          ]
+        ]
+      }
+    }
+  },
+  {
     "slug": "kyoto-2026-spring",
     "title": "关西樱花 2 日",
     "startDate": "2026-04-05",
@@ -16,7 +86,7 @@
       "电车",
       "樱花季"
     ],
-    "coverImage": "/travel/kyoto-2026-spring/cover.jpg",
+    "coverImage": "/travel/kyoto-2026-spring/cover.svg",
     "summary": "从京都东山步行到宇治，再转到大阪入住的两日春季路线。",
     "publishedAt": "2026-04-20",
     "routePreview": {
@@ -52,5 +122,91 @@
         ]
       }
     }
+  },
+  {
+    "slug": "tokyo-3day-walk",
+    "title": "东京 3 日漫游",
+    "startDate": "2026-03-15",
+    "endDate": "2026-03-17",
+    "daysCount": 3,
+    "region": "日本 东京",
+    "places": [
+      "浅草",
+      "涩谷",
+      "新宿",
+      "秋叶原"
+    ],
+    "tags": [
+      "城市漫游",
+      "步行",
+      "地铁"
+    ],
+    "coverImage": "/travel/tokyo-3day-walk/cover.svg",
+    "summary": "以浅草老街、涩谷表参道、明治神宫与秋叶原为锚点的三日都市步行与电车游览线。",
+    "publishedAt": "2026-03-22",
+    "routePreview": {
+      "bbox": [
+        139.68,
+        35.65,
+        139.82,
+        35.72
+      ],
+      "center": [
+        139.74,
+        35.69
+      ],
+      "line": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            139.7967,
+            35.7148
+          ],
+          [
+            139.8107,
+            35.7101
+          ],
+          [
+            139.7004,
+            35.6595
+          ],
+          [
+            139.6993,
+            35.6764
+          ],
+          [
+            139.7707,
+            35.6655
+          ],
+          [
+            139.7739,
+            35.6986
+          ],
+          [
+            139.6917,
+            35.6895
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "slug": "route-planner",
+    "title": "路线规划工具",
+    "startDate": "2026-01-01",
+    "endDate": "2026-01-01",
+    "daysCount": 0,
+    "region": "工具",
+    "places": [],
+    "tags": [
+      "交互式",
+      "地理编码"
+    ],
+    "coverImage": "/travel/route-planner/cover.svg",
+    "summary": "导入 JSON 或粘贴圆周旅迹行程，自动地理编码并在地图上回放与编辑。",
+    "publishedAt": "2026-01-01",
+    "routePreview": null,
+    "isTool": true,
+    "externalLink": "/travel-route.html"
   }
 ]

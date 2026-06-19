@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fde68a"/>
+      <stop offset="45%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="mtnBack" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7c2d12"/>
+      <stop offset="100%" stop-color="#431407"/>
+    </linearGradient>
+    <linearGradient id="mtnMid" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#9a3412"/>
+      <stop offset="100%" stop-color="#5b2108"/>
+    </linearGradient>
+    <linearGradient id="mtnFront" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+    <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff7ed" stop-opacity="1"/>
+      <stop offset="60%" stop-color="#fcd34d" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="snowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="400" fill="url(#skyGrad)"/>
+
+  <!-- Sun glow -->
+  <circle cx="620" cy="110" r="180" fill="url(#sunGrad)"/>
+  <circle cx="620" cy="110" r="42" fill="#fff7ed" opacity="0.95"/>
+
+  <!-- Distant birds -->
+  <g fill="none" stroke="#7c2d12" stroke-width="2" stroke-linecap="round" opacity="0.55">
+    <path d="M130 95 q8 -8 16 0 q8 -8 16 0"/>
+    <path d="M180 115 q6 -6 12 0 q6 -6 12 0"/>
+    <path d="M220 80 q5 -5 10 0 q5 -5 10 0"/>
+  </g>
+
+  <!-- Distant small mountains -->
+  <path d="M0 280 L60 240 L120 270 L180 230 L240 260 L310 220 L380 255 L450 215 L520 250 L590 220 L660 250 L730 225 L800 260 L800 400 L0 400 Z" fill="url(#mtnBack)" opacity="0.7"/>
+
+  <!-- Mid mountain range -->
+  <path d="M0 320 L80 270 L150 300 L220 240 L290 290 L360 260 L430 300 L500 250 L580 295 L650 255 L720 290 L800 270 L800 400 L0 400 Z" fill="url(#mtnMid)"/>
+
+  <!-- Snow caps on mid peaks -->
+  <path d="M205 255 L220 240 L235 255 L228 260 L220 252 L212 260 Z" fill="url(#snowGrad)"/>
+  <path d="M490 265 L500 250 L515 265 L505 270 L500 262 L495 270 Z" fill="url(#snowGrad)"/>
+  <path d="M345 275 L360 260 L375 275 L368 278 L360 272 L352 278 Z" fill="url(#snowGrad)"/>
+  <path d="M640 270 L650 255 L665 270 L655 275 L650 268 L645 275 Z" fill="url(#snowGrad)"/>
+
+  <!-- Foreground mountain ridge -->
+  <path d="M-20 380 L60 310 L130 355 L210 290 L290 350 L370 300 L450 355 L530 305 L610 350 L690 310 L770 355 L820 330 L820 400 L-20 400 Z" fill="url(#mtnFront)"/>
+
+  <!-- Ridge highlights -->
+  <path d="M210 290 L230 305 L260 330" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity="0.4"/>
+  <path d="M370 300 L390 315 L420 340" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity="0.4"/>
+  <path d="M530 305 L550 320 L580 345" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Dry desert ground -->
+  <rect x="0" y="370" width="800" height="30" fill="#7c2d12" opacity="0.85"/>
+
+  <!-- Subtle stars/dots -->
+  <g fill="#fff7ed" opacity="0.85">
+    <circle cx="80" cy="60" r="1.5"/>
+    <circle cx="250" cy="40" r="1.2"/>
+    <circle cx="380" cy="70" r="1.5"/>
+    <circle cx="500" cy="50" r="1.2"/>
+    <circle cx="700" cy="60" r="1.5"/>
+  </g>
+
+  <!-- Text label -->
+  <g transform="translate(40 200)">
+    <text x="0" y="0" font-family="'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="48" font-weight="900" fill="#fff7ed" letter-spacing="4">北疆环线</text>
+    <text x="2" y="40" font-family="'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#fed7aa" letter-spacing="2">XINJIANG · 7 DAYS</text>
+    <line x1="0" y1="58" x2="280" y2="58" stroke="#fed7aa" stroke-width="1.5" opacity="0.6"/>
+    <text x="0" y="80" font-family="'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" font-weight="400" fill="#fed7aa" letter-spacing="1.5" opacity="0.9">天山 · 禾木 · 喀纳斯 · 布尔津</text>
+  </g>
+</svg>

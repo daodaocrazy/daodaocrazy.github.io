@@ -11,7 +11,18 @@ const totalDays = computed(() => allEntries.reduce((sum, entry) => sum + entry.d
 const regionsCount = computed(() => new Set(allEntries.map((entry) => entry.region)).size)
 
 function travelLink(slug) {
-  return withBase(`/travel/_generated/${slug}`)
+  return withBase(`/travel/_generated/${slug}`);
+}
+
+function cardLink(entry) {
+  if (entry.isTool && entry.externalLink) {
+    return withBase(entry.externalLink);
+  }
+  return travelLink(entry.slug);
+}
+
+function isExternalCard(entry) {
+  return !!(entry.isTool && entry.externalLink);
 }
 
 function coverStyle(coverImage) {
@@ -40,19 +51,26 @@ function coverStyle(coverImage) {
     <p class="travel-index-workbench__result">共 {{ allEntries.length }} 条旅行记忆</p>
 
     <div v-if="allEntries.length > 0" class="travel-index-workbench__grid">
-      <article v-for="entry in allEntries" :key="entry.slug" class="travel-card">
-        <a :href="travelLink(entry.slug)" class="travel-card__link">
+      <article v-for="entry in allEntries" :key="entry.slug" class="travel-card" :class="{ 'travel-card--tool': entry.isTool }">
+        <a :href="cardLink(entry)" class="travel-card__link" :target="isExternalCard(entry) ? '_blank' : undefined" :rel="isExternalCard(entry) ? 'noopener' : undefined">
           <div class="travel-card__cover" :style="coverStyle(entry.coverImage)">
             <div class="travel-card__cover-meta">
               <span>{{ entry.region }}</span>
-              <span>{{ entry.daysCount }} 天</span>
+              <span v-if="entry.daysCount > 0">{{ entry.daysCount }} 天</span>
+              <span v-else-if="entry.isTool">工具</span>
             </div>
           </div>
 
           <div class="travel-card__body">
             <div class="travel-card__meta">
-              <span>{{ formatTravelDateRange(entry.startDate, entry.endDate) }}</span>
-              <span>{{ entry.places.join(' · ') }}</span>
+              <template v-if="entry.daysCount > 0">
+                <span>{{ formatTravelDateRange(entry.startDate, entry.endDate) }}</span>
+              </template>
+              <template v-else>
+                <span>永久可用</span>
+              </template>
+              <span v-if="entry.places && entry.places.length > 0">{{ entry.places.join(' · ') }}</span>
+              <span v-else-if="entry.isTool">JSON · 文本导入 · 地理编码</span>
             </div>
             <h2>{{ entry.title }}</h2>
             <p class="travel-card__summary">{{ entry.summary }}</p>
@@ -61,7 +79,7 @@ function coverStyle(coverImage) {
               <li v-for="tag in entry.tags" :key="tag">{{ tag }}</li>
             </ul>
 
-            <div class="travel-card__preview">
+            <div v-if="entry.routePreview" class="travel-card__preview">
               <TravelRoutePreview :route-preview="entry.routePreview" :width="280" :height="108" />
             </div>
           </div>

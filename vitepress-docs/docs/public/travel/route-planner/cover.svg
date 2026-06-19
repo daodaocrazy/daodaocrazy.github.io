@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bgRP" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="gridGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e0f2fe" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#bfdbfe" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="pinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+    <linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="50%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <radialGradient id="compassGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bgRP)"/>
+
+  <!-- Grid pattern -->
+  <g stroke="#e0f2fe" stroke-width="0.5" opacity="0.35">
+    <line x1="0" y1="50" x2="800" y2="50"/>
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="150" x2="800" y2="150"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="250" x2="800" y2="250"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="350" x2="800" y2="350"/>
+    <line x1="100" y1="0" x2="100" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="400"/>
+    <line x1="300" y1="0" x2="300" y2="400"/>
+    <line x1="400" y1="0" x2="400" y2="400"/>
+    <line x1="500" y1="0" x2="500" y2="400"/>
+    <line x1="600" y1="0" x2="600" y2="400"/>
+    <line x1="700" y1="0" x2="700" y2="400"/>
+  </g>
+
+  <!-- Abstract map shapes (continents) -->
+  <g fill="#ffffff" opacity="0.18">
+    <path d="M100 220 q30 -30 70 -20 q40 10 60 -10 q30 -20 60 0 q40 20 80 -5 q30 -15 60 15 q40 30 70 10 l0 40 q-30 30 -70 15 q-40 -15 -70 5 q-40 25 -70 5 q-40 -20 -70 -5 q-30 15 -60 -5 q-30 -20 -60 -10 l0 -25 Z"/>
+    <path d="M150 320 q40 -15 80 -5 q50 15 100 0 q40 -10 80 5 q40 15 80 -5 l0 50 l-340 0 Z" opacity="0.12"/>
+  </g>
+
+  <!-- Compass glow -->
+  <circle cx="640" cy="110" r="120" fill="url(#compassGrad)"/>
+
+  <!-- Compass rose -->
+  <g transform="translate(640 110)">
+    <circle cx="0" cy="0" r="60" fill="none" stroke="#f0f9ff" stroke-width="2" opacity="0.8"/>
+    <circle cx="0" cy="0" r="45" fill="none" stroke="#f0f9ff" stroke-width="1" opacity="0.5"/>
+    <polygon points="0,-55 10,0 0,10 -10,0" fill="#fef08a"/>
+    <polygon points="0,55 10,0 0,-10 -10,0" fill="#ffffff" opacity="0.7"/>
+    <polygon points="-55,0 0,10 0,-10" fill="#fb923c"/>
+    <polygon points="55,0 0,10 0,-10" fill="#ffffff" opacity="0.7"/>
+    <circle cx="0" cy="0" r="6" fill="#fef08a"/>
+    <g font-family="sans-serif" font-size="11" font-weight="700" fill="#f0f9ff" text-anchor="middle">
+      <text x="0" y="-65">N</text>
+      <text x="0" y="76">S</text>
+      <text x="-72" y="4">W</text>
+      <text x="72" y="4">E</text>
+    </g>
+  </g>
+
+  <!-- Route path (winding line) -->
+  <path d="M 120 330 Q 200 260 280 300 T 420 240 Q 500 180 580 230 T 720 180" fill="none" stroke="url(#routeGrad)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M 120 330 Q 200 260 280 300 T 420 240 Q 500 180 580 230 T 720 180" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="6 8" opacity="0.6"/>
+
+  <!-- Route pins -->
+  <g>
+    <!-- Pin 1 -->
+    <circle cx="120" cy="330" r="18" fill="url(#pinGrad)"/>
+    <circle cx="120" cy="330" r="8" fill="#ffffff"/>
+    <circle cx="120" cy="330" r="3" fill="#f97316"/>
+
+    <!-- Pin 2 -->
+    <circle cx="280" cy="300" r="16" fill="url(#pinGrad)"/>
+    <circle cx="280" cy="300" r="7" fill="#ffffff"/>
+    <circle cx="280" cy="300" r="3" fill="#f97316"/>
+
+    <!-- Pin 3 -->
+    <circle cx="420" cy="240" r="16" fill="url(#pinGrad)"/>
+    <circle cx="420" cy="240" r="7" fill="#ffffff"/>
+    <circle cx="420" cy="240" r="3" fill="#f97316"/>
+
+    <!-- Pin 4 -->
+    <circle cx="580" cy="230" r="16" fill="url(#pinGrad)"/>
+    <circle cx="580" cy="230" r="7" fill="#ffffff"/>
+    <circle cx="580" cy="230" r="3" fill="#f97316"/>
+
+    <!-- Pin 5 (destination) -->
+    <circle cx="720" cy="180" r="22" fill="#f97316"/>
+    <circle cx="720" cy="180" r="10" fill="#ffffff"/>
+    <path d="M 715 180 l 6 6 l 12 -12" fill="none" stroke="#f97316" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Navigation arrow -->
+  <g transform="translate(720 180)" opacity="0">
+    <polygon points="0,-10 20,0 0,10" fill="#f97316"/>
+  </g>
+
+  <!-- Text label -->
+  <g transform="translate(55 75)">
+    <text x="0" y="0" font-family="'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="52" font-weight="900" fill="#ffffff" letter-spacing="4">路线规划</text>
+    <text x="2" y="42" font-family="'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#e0f2fe" letter-spacing="2">ROUTE PLANNER</text>
+    <line x1="0" y1="60" x2="280" y2="60" stroke="#e0f2fe" stroke-width="1.5" opacity="0.6"/>
+    <text x="0" y="82" font-family="'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" font-weight="400" fill="#bae6fd" letter-spacing="1.5" opacity="0.95">按日拆分 · 路径可视化 · 多模式交通</text>
+  </g>
+</svg>
