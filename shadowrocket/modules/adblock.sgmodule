@@ -1,7 +1,7 @@
 #!name=Ultimate iOS AdBlock
 #!desc=AntiAD + AWAvenue + AdGuard + EasyList + Custom CN AdBlock
 #!author=custom
-#!version=3.1
+#!version=3.2
 
 ########################################
 # Remote AdBlock Rules (Auto Update)
@@ -9,9 +9,8 @@
 
 [Rule]
 
-# T3 Code: keep first so they never fall through to DIRECT
-DOMAIN,relay.t3.codes,PROXY
-DOMAIN,clerk.t3.codes,PROXY
+# T3 Code: all *.t3.codes subdomains (keep first so they never fall through to DIRECT)
+DOMAIN-SUFFIX,t3.codes,PROXY
 
 # Anti-AD 国内最强广告规则
 RULE-SET,https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-sr.txt,REJECT
