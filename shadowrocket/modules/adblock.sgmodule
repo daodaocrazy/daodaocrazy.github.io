@@ -1,7 +1,7 @@
 #!name=Ultimate iOS AdBlock
 #!desc=AntiAD + AWAvenue + AdGuard + EasyList + Custom CN AdBlock
 #!author=custom
-#!version=3.3
+#!version=3.4
 
 ########################################
 # Remote AdBlock Rules (Auto Update)
@@ -47,8 +47,8 @@ DOMAIN-SUFFIX,adsmind.qq.com,REJECT
 # ========== 通配域名后缀 ==========
 # 腾讯广告素材与分发
 DOMAIN-SUFFIX,ugdtimg.com,REJECT
-DOMAIN-SUFFIX,gtimg.cn,REJECT
-DOMAIN-SUFFIX,l.qq.com,REJECT
+# DOMAIN-SUFFIX,gtimg.cn,REJECT
+# DOMAIN-SUFFIX,l.qq.com,REJECT
 
 # 腾讯音乐广告系统 (TME AD)
 DOMAIN-SUFFIX,tmead.y.qq.com,REJECT
