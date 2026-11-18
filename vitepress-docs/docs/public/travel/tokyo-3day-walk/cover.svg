@@ -153,11 +153,4 @@
     <rect x="0" y="388" width="800" height="1" fill="#ec4899"/>
   </g>
 
-  <!-- Text label -->
-  <g transform="translate(55 105)">
-    <text x="0" y="0" font-family="'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="52" font-weight="900" fill="#fdf4ff" letter-spacing="4">东京漫游</text>
-    <text x="2" y="42" font-family="'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#fbcfe8" letter-spacing="2">TOKYO · 3 DAYS</text>
-    <line x1="0" y1="60" x2="310" y2="60" stroke="#fbcfe8" stroke-width="1.5" opacity="0.6"/>
-    <text x="0" y="82" font-family="'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" font-weight="400" fill="#f5d0fe" letter-spacing="1.5" opacity="0.9">浅草 · 原宿 · 涩谷 · 新宿 · 台场</text>
-  </g>
 </svg>

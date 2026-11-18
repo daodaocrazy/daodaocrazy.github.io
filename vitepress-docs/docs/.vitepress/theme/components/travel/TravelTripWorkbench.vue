@@ -4,12 +4,12 @@ import { useData } from 'vitepress'
 
 import TravelDayTabs from './TravelDayTabs.vue'
 import TravelMapPanel from './TravelMapPanel.vue'
-import TravelSegmentCard from './TravelSegmentCard.vue'
-import TravelStopCard from './TravelStopCard.vue'
 import TravelTimeline from './TravelTimeline.vue'
 import {
   buildTravelTripViewModel,
-  formatTravelDateRange
+  formatTravelDateRange,
+  formatTravelDistance,
+  formatTravelDuration
 } from '../../utils/travel-memory-view-model.mjs'
 import { getTravelTripBySlug } from '../../utils/travel-memory-source.mjs'
 
@@ -26,11 +26,23 @@ const tripEnvelope = computed(() => {
 
 const viewModel = computed(() => tripEnvelope.value ? buildTravelTripViewModel(tripEnvelope.value) : null)
 const selectedDay = computed(() => viewModel.value?.days.find((day) => day.dayNumber === selectedDayNumber.value) ?? viewModel.value?.days[0] ?? null)
-const selectedStop = computed(() => viewModel.value?.allStops.find((stop) => stop.id === selectedStopId.value) ?? null)
-const selectedSegment = computed(() => viewModel.value?.allSegments.find((segment) => segment.id === selectedSegmentId.value) ?? null)
 
-const selectedSegmentFromStop = computed(() => viewModel.value?.allStops.find((stop) => stop.id === selectedSegment.value?.fromStopId) ?? null)
-const selectedSegmentToStop = computed(() => viewModel.value?.allStops.find((stop) => stop.id === selectedSegment.value?.toStopId) ?? null)
+function sumBy(items, selector) {
+  return items.reduce((total, item) => total + (Number.isFinite(selector(item)) ? selector(item) : 0), 0)
+}
+
+const tripStats = computed(() => {
+  if (!viewModel.value) {
+    return null
+  }
+
+  return {
+    distance: formatTravelDistance(sumBy(viewModel.value.allSegments, (segment) => segment.distanceMeters)),
+    stopCount: viewModel.value.allStops.length,
+    moving: formatTravelDuration(sumBy(viewModel.value.allSegments, (segment) => segment.durationMinutes)),
+    staying: formatTravelDuration(sumBy(viewModel.value.allStops, (stop) => stop.stayMinutes))
+  }
+})
 
 function selectDay(dayNumber) {
   const day = viewModel.value?.days.find((item) => item.dayNumber === dayNumber) ?? viewModel.value?.days[0] ?? null
@@ -68,45 +80,57 @@ watch(viewModel, (nextViewModel) => {
 <template>
   <section v-if="viewModel" class="travel-trip-workbench">
     <header class="travel-trip-workbench__hero">
-      <p class="travel-trip-workbench__eyebrow">Travel Memory Atlas</p>
-      <div class="travel-trip-workbench__meta">
-        <span>{{ formatTravelDateRange(viewModel.trip.startDate, viewModel.trip.endDate) }}</span>
-        <span>{{ viewModel.trip.region }}</span>
-        <span>{{ viewModel.trip.daysCount }} 天</span>
+      <div class="travel-trip-workbench__hero-main">
+        <p class="travel-trip-workbench__eyebrow">Travel Memory Atlas</p>
+        <h1>{{ viewModel.trip.title }}</h1>
+        <p class="travel-trip-workbench__intro">{{ viewModel.trip.intro }}</p>
+        <ul class="travel-trip-workbench__tags">
+          <li v-for="tag in viewModel.trip.tags" :key="tag">{{ tag }}</li>
+        </ul>
       </div>
-      <h1>{{ viewModel.trip.title }}</h1>
-      <p class="travel-trip-workbench__intro">{{ viewModel.trip.intro }}</p>
-      <ul class="travel-trip-workbench__tags">
-        <li v-for="tag in viewModel.trip.tags" :key="tag">{{ tag }}</li>
-      </ul>
-    </header>
 
-    <TravelMapPanel
-      :view-model="viewModel"
-      :selected-day-number="selectedDayNumber"
-      :selected-stop-id="selectedStopId"
-      :selected-segment-id="selectedSegmentId"
-      @select-stop="selectStop"
-      @select-segment="selectSegment"
-    />
+      <dl class="travel-trip-workbench__stats">
+        <div>
+          <dt>行程</dt>
+          <dd>{{ formatTravelDateRange(viewModel.trip.startDate, viewModel.trip.endDate) }}</dd>
+        </div>
+        <div>
+          <dt>地区</dt>
+          <dd>{{ viewModel.trip.region }}</dd>
+        </div>
+        <div>
+          <dt>天数</dt>
+          <dd>{{ viewModel.trip.daysCount }} 天</dd>
+        </div>
+        <div>
+          <dt>总里程</dt>
+          <dd>{{ tripStats.distance }}</dd>
+        </div>
+        <div>
+          <dt>在路上</dt>
+          <dd>{{ tripStats.moving }}</dd>
+        </div>
+        <div>
+          <dt>停留</dt>
+          <dd>{{ tripStats.staying }}</dd>
+        </div>
+      </dl>
+    </header>
 
     <TravelDayTabs :days="viewModel.days" :selected-day-number="selectedDayNumber" @select-day="selectDay" />
 
-    <section class="travel-trip-workbench__summary-grid">
-      <article>
-        <p class="travel-trip-workbench__section-eyebrow">当天回放</p>
-        <h2>{{ selectedDay?.title }}</h2>
-        <p>{{ selectedDay?.summary }}</p>
-      </article>
-
-      <article>
-        <p class="travel-trip-workbench__section-eyebrow">整趟复盘</p>
-        <h2>{{ viewModel.trip.places.join(' → ') }}</h2>
-        <p>{{ viewModel.trip.summary }}</p>
-      </article>
-    </section>
-
     <section class="travel-trip-workbench__detail-grid">
+      <div class="travel-trip-workbench__map-column">
+        <TravelMapPanel
+          :view-model="viewModel"
+          :selected-day-number="selectedDayNumber"
+          :selected-stop-id="selectedStopId"
+          :selected-segment-id="selectedSegmentId"
+          @select-stop="selectStop"
+          @select-segment="selectSegment"
+        />
+      </div>
+
       <TravelTimeline
         :day-model="selectedDay"
         :selected-stop-id="selectedStopId"
@@ -114,21 +138,14 @@ watch(viewModel, (nextViewModel) => {
         @select-stop="selectStop"
         @select-segment="selectSegment"
       />
+    </section>
 
-      <div class="travel-trip-workbench__cards">
-        <TravelStopCard v-if="selectedStop" :stop="selectedStop" />
-        <TravelSegmentCard
-          v-else-if="selectedSegment"
-          :segment="selectedSegment"
-          :from-stop="selectedSegmentFromStop"
-          :to-stop="selectedSegmentToStop"
-        />
-        <article v-else class="travel-trip-workbench__placeholder">
-          <p class="travel-trip-workbench__section-eyebrow">点击地图或时间轴</p>
-          <h2>等待聚焦一个记忆片段</h2>
-          <p>点一个站点可以看备注和停留信息，点一段移动可以看交通方式、距离、耗时和路段摘要。</p>
-        </article>
-      </div>
+    <section class="travel-trip-workbench__recap">
+      <p class="travel-trip-workbench__section-eyebrow">整趟复盘</p>
+      <ol class="travel-trip-workbench__route">
+        <li v-for="place in viewModel.trip.places" :key="place">{{ place }}</li>
+      </ol>
+      <p class="travel-trip-workbench__recap-text">{{ viewModel.trip.summary }}</p>
     </section>
   </section>
 
@@ -141,17 +158,21 @@ watch(viewModel, (nextViewModel) => {
 <style scoped>
 .travel-trip-workbench {
   display: grid;
-  gap: 24px;
-  padding: 16px 0 12px;
+  gap: 22px;
+  padding: 8px 0 12px;
   color: var(--travel-ink);
 }
 
 .travel-trip-workbench__hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: end;
   padding: 28px 30px;
   border: 1px solid var(--travel-line);
-  border-radius: 28px;
+  border-radius: 26px;
   background:
-    radial-gradient(circle at top right, color-mix(in srgb, var(--travel-accent) 20%, transparent), transparent 34%),
+    radial-gradient(circle at top right, color-mix(in srgb, var(--travel-accent) 18%, transparent), transparent 42%),
     linear-gradient(135deg, var(--travel-hero-start) 0%, var(--travel-hero-end) 100%);
 }
 
@@ -165,35 +186,17 @@ watch(viewModel, (nextViewModel) => {
   color: var(--travel-accent);
 }
 
-.travel-trip-workbench__hero h1,
-.travel-trip-workbench__hero p,
-.travel-trip-workbench__summary-grid h2,
-.travel-trip-workbench__summary-grid p,
-.travel-trip-workbench__fallback h1,
-.travel-trip-workbench__fallback p,
-.travel-trip-workbench__placeholder h2,
-.travel-trip-workbench__placeholder p {
-  margin: 0;
-}
-
-.travel-trip-workbench__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 14px;
-  color: var(--travel-muted);
-}
-
 .travel-trip-workbench__hero h1 {
-  margin-top: 12px;
-  font-size: clamp(34px, 4vw, 52px);
-  line-height: 1.04;
+  margin: 0;
+  font-size: clamp(28px, 3.2vw, 42px);
+  line-height: 1.08;
   color: var(--travel-ink);
 }
 
 .travel-trip-workbench__intro {
-  margin-top: 14px !important;
-  max-width: 62ch;
-  line-height: 1.75;
+  max-width: 56ch;
+  margin: 12px 0 0;
+  line-height: 1.72;
   color: var(--travel-muted);
 }
 
@@ -201,51 +204,139 @@ watch(viewModel, (nextViewModel) => {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 18px 0 0;
+  margin: 16px 0 0;
   padding: 0;
   list-style: none;
 }
 
 .travel-trip-workbench__tags li {
-  padding: 7px 11px;
+  padding: 6px 11px;
   border-radius: 999px;
   background: var(--travel-accent-soft);
   color: var(--travel-accent);
   font-size: 12px;
+  font-weight: 600;
 }
 
-.travel-trip-workbench__summary-grid,
+.travel-trip-workbench__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px 18px;
+  margin: 0;
+}
+
+.travel-trip-workbench__stats dt {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--travel-soft);
+}
+
+.travel-trip-workbench__stats dd {
+  margin: 5px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--travel-ink);
+}
+
 .travel-trip-workbench__detail-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px;
+  align-items: start;
 }
 
-.travel-trip-workbench__summary-grid article,
-.travel-trip-workbench__placeholder,
-.travel-trip-workbench__fallback {
-  padding: 22px;
+.travel-trip-workbench__map-column {
+  position: sticky;
+  top: calc(var(--vp-nav-height) + 18px);
+}
+
+.travel-trip-workbench__recap {
+  padding: 24px 26px;
   border: 1px solid var(--travel-line);
-  border-radius: 24px;
+  border-radius: 22px;
   background: var(--travel-surface);
 }
 
-.travel-trip-workbench__summary-grid p:last-child,
-.travel-trip-workbench__placeholder p:last-child,
-.travel-trip-workbench__fallback p {
-  margin-top: 10px;
+.travel-trip-workbench__route {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: place;
+}
+
+.travel-trip-workbench__route li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 13px 7px 9px;
+  border: 1px solid var(--travel-line);
+  border-radius: 999px;
+  background: var(--travel-surface-elevated);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.travel-trip-workbench__route li::before {
+  counter-increment: place;
+  content: counter(place);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--travel-accent-soft);
+  color: var(--travel-accent);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.travel-trip-workbench__recap-text {
+  margin: 16px 0 0;
   line-height: 1.72;
   color: var(--travel-muted);
 }
 
-.travel-trip-workbench__cards {
-  display: grid;
+.travel-trip-workbench__fallback {
+  padding: 28px;
+  border: 1px solid var(--travel-line);
+  border-radius: 22px;
+  background: var(--travel-surface);
 }
 
-@media (max-width: 960px) {
-  .travel-trip-workbench__summary-grid,
+.travel-trip-workbench__fallback h1 {
+  margin: 0;
+}
+
+.travel-trip-workbench__fallback p {
+  margin: 10px 0 0;
+  color: var(--travel-muted);
+}
+
+@media (max-width: 1023px) {
+  .travel-trip-workbench__hero,
   .travel-trip-workbench__detail-grid {
     grid-template-columns: 1fr;
+  }
+
+  .travel-trip-workbench__map-column {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .travel-trip-workbench__hero {
+    padding: 22px 20px;
+  }
+
+  .travel-trip-workbench__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 </style>

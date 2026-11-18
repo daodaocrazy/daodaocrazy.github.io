@@ -1,13 +1,11 @@
 <script setup>
-import { computed } from 'vue'
-import { withBase } from 'vitepress'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
+import { useData } from 'vitepress'
 
 import {
   formatTravelDistance,
   formatTravelDuration,
-  formatTravelMode,
-  projectCoordinateToViewport,
-  projectTravelLineToViewport
+  formatTravelMode
 } from '../../utils/travel-memory-view-model.mjs'
 
 const props = defineProps({
@@ -31,43 +29,49 @@ const props = defineProps({
 
 const emit = defineEmits(['select-stop', 'select-segment'])
 
-const mapWidth = 920
-const mapHeight = 520
-const mapPadding = 36
+const { isDark } = useData()
+
+const mapContainer = ref(null)
+const interactionEnabled = ref(false)
+const mapReady = ref(false)
+const tileStatus = ref('loading')
+
+const leaflet = shallowRef(null)
+const map = shallowRef(null)
+const layerGroup = shallowRef(null)
+const markerRegistry = new Map()
+const polylineRegistry = new Map()
+
+let resizeObserver = null
+let tileLoadCount = 0
+let tileErrorCount = 0
 
 const selectedDay = computed(() => props.viewModel.days.find((day) => day.dayNumber === props.selectedDayNumber) ?? props.viewModel.days[0] ?? null)
 const selectedStop = computed(() => props.viewModel.allStops.find((stop) => stop.id === props.selectedStopId) ?? null)
 const selectedSegment = computed(() => props.viewModel.allSegments.find((segment) => segment.id === props.selectedSegmentId) ?? null)
-const staticMapHref = computed(() => withBase(`/travel/${props.viewModel.trip.slug}/static-map.svg`))
 
 const activeStopIds = computed(() => new Set(selectedDay.value?.stops.map((stop) => stop.id) ?? []))
 const activeSegmentIds = computed(() => new Set(selectedDay.value?.segments.map((segment) => segment.id) ?? []))
 
-const stopPoints = computed(() => new Map(props.viewModel.allStops.map((stop) => [
-  stop.id,
-  projectCoordinateToViewport(stop.coordinates, {
-    width: mapWidth,
-    height: mapHeight,
-    padding: mapPadding,
-    bounds: props.viewModel.bounds
-  })
-])))
+const stopTypeLabels = {
+  transport_hub: '交通枢纽',
+  sightseeing: '景点',
+  food: '餐饮',
+  stay: '住宿',
+  shopping: '购物',
+  nature: '自然景观'
+}
 
-const segmentPaths = computed(() => new Map(props.viewModel.allSegments.map((segment) => [
-  segment.id,
-  projectTravelLineToViewport(segment.routeGeometry.coordinates, {
-    width: mapWidth,
-    height: mapHeight,
-    padding: mapPadding,
-    bounds: props.viewModel.bounds
-  })
-])))
+function formatStopType(type) {
+  return stopTypeLabels[type] ?? type
+}
 
 const callout = computed(() => {
   if (selectedStop.value) {
     return {
+      eyebrow: `Day ${selectedStop.value.dayNumber} · 站点`,
       title: selectedStop.value.name,
-      meta: `${selectedStop.value.arrivalTime} - ${selectedStop.value.departureTime} · ${formatTravelDuration(selectedStop.value.stayMinutes)}`,
+      meta: `${formatStopType(selectedStop.value.type)} · ${selectedStop.value.arrivalTime} - ${selectedStop.value.departureTime} · 停留 ${formatTravelDuration(selectedStop.value.stayMinutes)}`,
       body: selectedStop.value.note
     }
   }
@@ -77,6 +81,7 @@ const callout = computed(() => {
     const toStop = props.viewModel.allStops.find((stop) => stop.id === selectedSegment.value.toStopId)
 
     return {
+      eyebrow: `Day ${selectedSegment.value.dayNumber} · 移动`,
       title: `${fromStop?.name ?? '起点'} → ${toStop?.name ?? '终点'}`,
       meta: `${formatTravelMode(selectedSegment.value.mode)} · ${formatTravelDistance(selectedSegment.value.distanceMeters)} · ${formatTravelDuration(selectedSegment.value.durationMinutes)}`,
       body: selectedSegment.value.summary
@@ -85,18 +90,21 @@ const callout = computed(() => {
 
   return selectedDay.value
     ? {
-        title: `Day ${selectedDay.value.dayNumber} · ${selectedDay.value.title}`,
-        meta: `${selectedDay.value.stops.length} 个站点 · ${selectedDay.value.segments.length} 段移动`,
+        eyebrow: `Day ${selectedDay.value.dayNumber}`,
+        title: selectedDay.value.title,
+        meta: `${selectedDay.value.stops.length} 个站点 · ${selectedDay.value.segments.length} 段移动 · ${selectedDay.value.date}`,
         body: selectedDay.value.summary
       }
     : null
 })
 
+const dayColors = computed(() => new Map(props.viewModel.days.map((day) => [day.dayNumber, day.color])))
+
 function dayColor(dayNumber) {
-  return props.viewModel.days.find((day) => day.dayNumber === dayNumber)?.color ?? 'var(--travel-accent)'
+  return dayColors.value.get(dayNumber) ?? 'var(--travel-accent)'
 }
 
-function isStopHighlighted(stop) {
+function isStopActive(stop) {
   if (props.selectedStopId) {
     return stop.id === props.selectedStopId
   }
@@ -104,126 +112,516 @@ function isStopHighlighted(stop) {
   return activeStopIds.value.has(stop.id)
 }
 
-function isSegmentHighlighted(segment) {
+function isSegmentActive(segment) {
   if (props.selectedSegmentId) {
     return segment.id === props.selectedSegmentId
   }
 
   return activeSegmentIds.value.has(segment.id)
 }
+
+function shouldShowStopLabel(stop) {
+  return isStopActive(stop) || activeStopIds.value.has(stop.id)
+}
+
+const LABEL_HEIGHT = 24
+const LABEL_GAP = 6
+
+function estimateLabelWidth(text) {
+  let width = 16
+
+  for (const char of String(text)) {
+    width += /[\u2e80-\u9fff\uff00-\uffef]/.test(char) ? 12.5 : 7.2
+  }
+
+  return width
+}
+
+function labelBox(point, slot, width) {
+  const cy = point.y
+  const cx = point.x
+
+  switch (slot) {
+    case 'left':
+      return { left: cx - LABEL_GAP - width, top: cy - LABEL_HEIGHT / 2, width, height: LABEL_HEIGHT }
+    case 'top':
+      return { left: cx - width / 2, top: cy - LABEL_GAP - LABEL_HEIGHT, width, height: LABEL_HEIGHT }
+    case 'bottom':
+      return { left: cx - width / 2, top: cy + LABEL_GAP, width, height: LABEL_HEIGHT }
+    case 'right':
+    default:
+      return { left: cx + LABEL_GAP, top: cy - LABEL_HEIGHT / 2, width, height: LABEL_HEIGHT }
+  }
+}
+
+function boxesOverlap(left, right) {
+  return !(
+    left.left + left.width + 4 < right.left
+    || right.left + right.width + 4 < left.left
+    || left.top + left.height + 4 < right.top
+    || right.top + right.height + 4 < left.top
+  )
+}
+
+function layoutLabels() {
+  if (!map.value) {
+    return
+  }
+
+  const candidates = props.viewModel.allStops
+    .filter((stop) => shouldShowStopLabel(stop))
+    .map((stop) => ({
+      stop,
+      point: map.value.latLngToLayerPoint(toLatLng(stop.coordinates)),
+      width: estimateLabelWidth(stop.name)
+    }))
+    .sort((left, right) => {
+      const leftPriority = left.stop.id === props.selectedStopId ? 0 : 1
+      const rightPriority = right.stop.id === props.selectedStopId ? 0 : 1
+      return leftPriority - rightPriority
+    })
+
+  const placed = []
+  const slotOrder = ['right', 'left', 'top', 'bottom']
+
+  for (const candidate of candidates) {
+    let chosenSlot = 'right'
+    let chosenBox = labelBox(candidate.point, chosenSlot, candidate.width)
+
+    for (const slot of slotOrder) {
+      const box = labelBox(candidate.point, slot, candidate.width)
+
+      if (!placed.some((other) => boxesOverlap(box, other))) {
+        chosenSlot = slot
+        chosenBox = box
+        break
+      }
+    }
+
+    placed.push(chosenBox)
+
+    const element = markerRegistry.get(candidate.stop.id)?.marker.getElement()
+
+    if (element) {
+      element.dataset.labelSlot = chosenSlot
+      element.style.setProperty('--travel-map-label-x', `${Math.round(chosenBox.left - candidate.point.x)}px`)
+      element.style.setProperty('--travel-map-label-y', `${Math.round(chosenBox.top - candidate.point.y)}px`)
+    }
+  }
+}
+
+function toLatLng(coordinate) {
+  return [coordinate[1], coordinate[0]]
+}
+
+function boundsToLeaflet(bounds, L) {
+  return L.latLngBounds(
+    [bounds.minLat, bounds.minLng],
+    [bounds.maxLat, bounds.maxLng]
+  )
+}
+
+function computeFocusBounds() {
+  const day = selectedDay.value
+
+  if (!day || day.stops.length === 0) {
+    return props.viewModel.bounds
+  }
+
+  const coordinates = [
+    ...day.stops.map((stop) => stop.coordinates),
+    ...day.segments.flatMap((segment) => segment.routeGeometry.coordinates ?? [])
+  ]
+
+  if (coordinates.length === 0) {
+    return props.viewModel.bounds
+  }
+
+  let minLng = Number.POSITIVE_INFINITY
+  let minLat = Number.POSITIVE_INFINITY
+  let maxLng = Number.NEGATIVE_INFINITY
+  let maxLat = Number.NEGATIVE_INFINITY
+
+  for (const [lng, lat] of coordinates) {
+    minLng = Math.min(minLng, lng)
+    minLat = Math.min(minLat, lat)
+    maxLng = Math.max(maxLng, lng)
+    maxLat = Math.max(maxLat, lat)
+  }
+
+  // 单点或近似单点的当天，需要一个最小的取景跨度，否则会被拉到最大缩放。
+  const minimumSpan = 0.06
+
+  if (maxLng - minLng < minimumSpan) {
+    const center = (minLng + maxLng) / 2
+    minLng = center - minimumSpan / 2
+    maxLng = center + minimumSpan / 2
+  }
+
+  if (maxLat - minLat < minimumSpan) {
+    const center = (minLat + maxLat) / 2
+    minLat = center - minimumSpan / 2
+    maxLat = center + minimumSpan / 2
+  }
+
+  return { minLng, minLat, maxLng, maxLat }
+}
+
+function fitToBounds(bounds, options = {}) {
+  if (!map.value || !leaflet.value || !bounds) {
+    return
+  }
+
+  map.value.fitBounds(boundsToLeaflet(bounds, leaflet.value), {
+    padding: [48, 48],
+    animate: options.animate !== false,
+    maxZoom: 13
+  })
+}
+
+function buildMarker(stop) {
+  const L = leaflet.value
+  const active = shouldShowStopLabel(stop)
+  const icon = L.divIcon({
+    className: 'travel-map-marker',
+    html: `<span class="travel-map-marker__dot"></span><span class="travel-map-marker__label">${escapeHtml(stop.name)}</span>`,
+    iconSize: [0, 0],
+    iconAnchor: [0, 0]
+  })
+  const marker = L.marker(toLatLng(stop.coordinates), {
+    icon,
+    keyboard: false,
+    title: stop.name,
+    riseOnHover: true
+  })
+
+  marker.on('click', () => emit('select-stop', stop.id))
+  marker.on('mouseover', () => {
+    const element = marker.getElement()
+    element?.classList.add('is-hovered')
+  })
+  marker.on('mouseout', () => {
+    const element = marker.getElement()
+    element?.classList.remove('is-hovered')
+  })
+
+  markerRegistry.set(stop.id, { marker, stop, layer: marker })
+
+  return { marker, active }
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
+
+function buildPolyline(segment) {
+  const L = leaflet.value
+  const coordinates = segment.routeGeometry?.coordinates ?? []
+
+  if (coordinates.length < 2) {
+    return null
+  }
+
+  const polyline = L.polyline(coordinates.map(toLatLng), {
+    color: dayColor(segment.dayNumber),
+    weight: 4,
+    opacity: 0.9,
+    lineCap: 'round',
+    lineJoin: 'round',
+    className: 'travel-map-line'
+  })
+
+  polyline.on('click', () => emit('select-segment', segment.id))
+
+  polylineRegistry.set(segment.id, { polyline, segment, layer: polyline })
+
+  return polyline
+}
+
+function renderLayers() {
+  if (!map.value || !leaflet.value || !layerGroup.value) {
+    return
+  }
+
+  layerGroup.value.clearLayers()
+  markerRegistry.clear()
+  polylineRegistry.clear()
+
+  const lines = []
+
+  for (const segment of props.viewModel.allSegments) {
+    const polyline = buildPolyline(segment)
+
+    if (polyline) {
+      lines.push(polyline)
+    }
+  }
+
+  for (const stop of props.viewModel.allStops) {
+    const { marker } = buildMarker(stop)
+    marker.addTo(layerGroup.value)
+  }
+
+  for (const polyline of lines) {
+    polyline.addTo(layerGroup.value)
+  }
+
+  applyStyles()
+}
+
+function applyStyles() {
+  for (const { marker, stop } of markerRegistry.values()) {
+    const highlighted = isStopActive(stop)
+    const inActiveDay = activeStopIds.value.has(stop.id)
+    const element = marker.getElement()
+
+    marker.setZIndexOffset(highlighted ? 1000 : inActiveDay ? 500 : 0)
+
+    if (!element) {
+      continue
+    }
+
+    element.classList.toggle('is-highlighted', highlighted)
+    element.classList.toggle('is-dimmed', !inActiveDay && !highlighted)
+    element.classList.toggle('is-revealed', shouldShowStopLabel(stop))
+    element.style.setProperty('--travel-map-marker-color', dayColor(stop.dayNumber))
+  }
+
+  for (const { polyline, segment } of polylineRegistry.values()) {
+    const highlighted = isSegmentActive(segment)
+    const inActiveDay = activeSegmentIds.value.has(segment.id)
+
+    polyline.setStyle({
+      weight: highlighted ? 7 : 4,
+      opacity: highlighted ? 1 : inActiveDay ? 0.86 : 0.24,
+      dashArray: segment.mode === 'walk' ? '2 9' : null
+    })
+    polyline.bringToFront()
+  }
+
+  layoutLabels()
+}
+
+function focusSelection() {
+  if (!map.value || !selectedStop.value) {
+    return
+  }
+
+  map.value.panTo(toLatLng(selectedStop.value.coordinates), { animate: true })
+}
+
+async function mountMap() {
+  if (map.value || !mapContainer.value) {
+    return
+  }
+
+  const L = await import('leaflet')
+  await import('leaflet/dist/leaflet.css')
+
+  leaflet.value = L
+
+  map.value = L.map(mapContainer.value, {
+    zoomControl: false,
+    scrollWheelZoom: false,
+    attributionControl: true,
+    minZoom: 2,
+    worldCopyJump: true
+  })
+
+  L.control.zoom({ position: 'topright' }).addTo(map.value)
+  L.control.scale({ position: 'bottomleft', imperial: false, maxWidth: 160 }).addTo(map.value)
+
+  map.value.attributionControl.setPrefix('')
+
+  const tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> 贡献者'
+  })
+
+  tileLayer.on('tileload', () => {
+    tileLoadCount += 1
+    tileStatus.value = 'ready'
+  })
+
+  tileLayer.on('tileerror', () => {
+    tileErrorCount += 1
+
+    if (tileErrorCount >= 4 && tileLoadCount === 0) {
+      tileStatus.value = 'unavailable'
+    }
+  })
+
+  tileLayer.addTo(map.value)
+  layerGroup.value = L.layerGroup().addTo(map.value)
+
+  mapContainer.value.addEventListener('click', enableInteraction, { once: true })
+  mapContainer.value.addEventListener('focusin', enableInteraction, { once: true })
+
+  // 必须先确定视图，Leaflet 才会真正把图层挂到 DOM 上（否则 whenReady 会排队）。
+  fitToBounds(computeFocusBounds(), { animate: false })
+  renderLayers()
+  mapReady.value = true
+
+  map.value.on('zoomend moveend', () => {
+    layoutLabels()
+  })
+
+  resizeObserver = new ResizeObserver(() => {
+    map.value?.invalidateSize({ animate: false })
+  })
+  resizeObserver.observe(mapContainer.value)
+}
+
+function enableInteraction() {
+  interactionEnabled.value = true
+
+  if (map.value) {
+    map.value.scrollWheelZoom.enable()
+  }
+}
+
+onMounted(() => {
+  mountMap().catch(() => {
+    tileStatus.value = 'unavailable'
+  })
+})
+
+onBeforeUnmount(() => {
+  resizeObserver?.disconnect()
+  resizeObserver = null
+  mapContainer.value?.removeEventListener('click', enableInteraction)
+  mapContainer.value?.removeEventListener('focusin', enableInteraction)
+  markerRegistry.clear()
+  polylineRegistry.clear()
+  map.value?.remove()
+  map.value = null
+  layerGroup.value = null
+})
+
+watch(() => props.viewModel, () => {
+  renderLayers()
+  fitToBounds(props.viewModel.bounds)
+}, { deep: false })
+
+watch(() => [props.selectedStopId, props.selectedSegmentId, props.selectedDayNumber], () => {
+  applyStyles()
+})
+
+watch(() => props.selectedDayNumber, () => {
+  nextTick(() => {
+    fitToBounds(computeFocusBounds())
+  })
+}, { immediate: false })
+
+watch(() => props.selectedStopId, (nextId, previousId) => {
+  if (nextId && nextId !== previousId) {
+    focusSelection()
+  }
+})
+
+watch(isDark, () => {
+  map.value?.invalidateSize({ animate: false })
+})
 </script>
 
 <template>
   <section class="travel-map-panel">
-    <div class="travel-map-panel__surface">
-      <div class="travel-map-panel__chrome">
-        <p>Map View</p>
-        <strong>{{ selectedDay ? `Day ${selectedDay.dayNumber}` : '全程' }}</strong>
+    <div class="travel-map-panel__frame">
+      <div ref="mapContainer" class="travel-map-panel__canvas" role="application" aria-label="旅行路线地图">
+        <p v-if="!mapReady" class="travel-map-panel__loading">正在加载地图…</p>
       </div>
 
-      <div class="travel-map-panel__legend">
-        <span>静态城市地图</span>
-        <span>{{ viewModel.trip.places.join(' · ') }}</span>
+      <div class="travel-map-panel__overlay-stack">
+        <div class="travel-map-panel__hud">
+          <p class="travel-map-panel__hud-day">{{ selectedDay ? `Day ${selectedDay.dayNumber}` : '全程' }}</p>
+          <p class="travel-map-panel__hud-title">{{ selectedDay ? selectedDay.title : viewModel.trip.title }}</p>
+        </div>
+
+        <p v-if="tileStatus === 'unavailable'" class="travel-map-panel__offline">
+          底图瓦片未加载，路线仍按真实经纬度绘制
+        </p>
       </div>
 
-      <svg viewBox="0 0 920 520" aria-label="旅行路线地图" class="travel-map-panel__svg">
-        <image :href="staticMapHref" x="0" y="0" width="920" height="520" preserveAspectRatio="xMidYMid slice" class="travel-map-panel__image" />
-        <rect x="0" y="0" width="920" height="520" rx="30" class="travel-map-panel__frame" />
-
-        <g>
-          <path
-            v-for="segment in viewModel.allSegments"
-            :key="`${segment.id}-shadow`"
-            :d="segmentPaths.get(segment.id)?.path"
-            class="travel-map-panel__segment-shadow"
-          />
-          <path
-            v-for="segment in viewModel.allSegments"
-            :key="segment.id"
-            :d="segmentPaths.get(segment.id)?.path"
-            class="travel-map-panel__segment"
-            :class="{ 'is-highlighted': isSegmentHighlighted(segment), 'is-walk': segment.mode === 'walk' }"
-            :style="{ '--travel-segment-color': dayColor(segment.dayNumber), '--travel-segment-opacity': activeSegmentIds.has(segment.id) ? 0.92 : 0.36 }"
-            @click="emit('select-segment', segment.id)"
-          />
-        </g>
-
-        <g>
-          <g
-            v-for="stop in viewModel.allStops"
-            :key="stop.id"
-            class="travel-map-panel__stop"
-            :class="{ 'is-highlighted': isStopHighlighted(stop) }"
-            @click="emit('select-stop', stop.id)"
-          >
-            <circle
-              :cx="stopPoints.get(stop.id)?.x"
-              :cy="stopPoints.get(stop.id)?.y"
-              r="7"
-              :style="{ '--travel-stop-color': dayColor(stop.dayNumber), '--travel-stop-opacity': activeStopIds.has(stop.id) ? 1 : 0.52 }"
-            />
-            <text
-              v-if="activeStopIds.has(stop.id)"
-              :x="(stopPoints.get(stop.id)?.x ?? 0) + 12"
-              :y="(stopPoints.get(stop.id)?.y ?? 0) - 12"
-            >
-              {{ stop.name }}
-            </text>
-          </g>
-        </g>
-
-        <g class="travel-map-panel__scale">
-          <line x1="64" y1="478" x2="164" y2="478" />
-          <line x1="64" y1="472" x2="64" y2="484" />
-          <line x1="114" y1="472" x2="114" y2="484" />
-          <line x1="164" y1="472" x2="164" y2="484" />
-          <text x="64" y="466">0 km</text>
-          <text x="104" y="466">5 km</text>
-          <text x="154" y="466">10 km</text>
-        </g>
-      </svg>
-
-      <aside v-if="callout" class="travel-map-panel__callout">
-        <p class="travel-map-panel__callout-eyebrow">当前聚焦</p>
-        <h2>{{ callout.title }}</h2>
-        <p class="travel-map-panel__callout-meta">{{ callout.meta }}</p>
-        <p>{{ callout.body }}</p>
-      </aside>
+      <p v-if="!interactionEnabled" class="travel-map-panel__hint">点击地图后可用滚轮缩放</p>
     </div>
+
+    <footer v-if="callout" class="travel-map-panel__callout">
+      <p class="travel-map-panel__callout-eyebrow">{{ callout.eyebrow }}</p>
+      <div class="travel-map-panel__callout-body">
+        <h3>{{ callout.title }}</h3>
+        <p class="travel-map-panel__callout-meta">{{ callout.meta }}</p>
+        <p class="travel-map-panel__callout-text">{{ callout.body }}</p>
+      </div>
+    </footer>
   </section>
 </template>
 
 <style scoped>
 .travel-map-panel {
-  position: relative;
+  display: grid;
+  gap: 14px;
 }
 
-.travel-map-panel__surface {
+.travel-map-panel__frame {
   position: relative;
   overflow: hidden;
   border: 1px solid var(--travel-line);
-  border-radius: 30px;
-  background: linear-gradient(135deg, var(--travel-hero-start) 0%, var(--travel-hero-end) 100%);
+  border-radius: 24px;
+  background: linear-gradient(135deg, var(--travel-surface) 0%, var(--travel-surface-alt) 100%);
 }
 
-.travel-map-panel__chrome {
+.travel-map-panel__canvas {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: clamp(320px, 46vh, 520px);
+  background: var(--travel-map-canvas-bg);
+}
+
+.travel-map-panel__loading {
   position: absolute;
-  top: 20px;
-  left: 22px;
-  z-index: 2;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  color: var(--travel-soft);
+  font-size: 13px;
+}
+
+.travel-map-panel__overlay-stack {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: min(300px, calc(100% - 120px));
+  pointer-events: none;
+}
+
+.travel-map-panel__hud {
   padding: 10px 14px;
   border: 1px solid var(--travel-line);
-  border-radius: 18px;
-  background: var(--travel-surface-elevated);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--travel-surface-elevated) 92%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   box-shadow: var(--travel-shadow);
 }
 
-.travel-map-panel__chrome p,
-.travel-map-panel__chrome strong {
+.travel-map-panel__hud-day,
+.travel-map-panel__hud-title {
   margin: 0;
 }
 
-.travel-map-panel__chrome p {
+.travel-map-panel__hud-day {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -231,168 +629,225 @@ function isSegmentHighlighted(segment) {
   color: var(--travel-accent);
 }
 
-.travel-map-panel__chrome strong {
+.travel-map-panel__hud-title {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
   color: var(--travel-ink);
 }
 
-.travel-map-panel__legend {
+.travel-map-panel__hint {
   position: absolute;
-  top: 20px;
-  right: 22px;
   z-index: 500;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 8px;
-  max-width: min(340px, calc(100% - 44px));
-}
-
-.travel-map-panel__legend span {
-  padding: 9px 12px;
-  border: 1px solid var(--travel-line);
+  margin: 0;
   border-radius: 999px;
-  background: var(--travel-surface-elevated);
-  color: var(--travel-muted);
   font-size: 12px;
   font-weight: 600;
+  pointer-events: none;
+  bottom: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 7px 14px;
+  background: color-mix(in srgb, var(--travel-surface-elevated) 92%, transparent);
+  border: 1px solid var(--travel-line);
+  color: var(--travel-muted);
+  white-space: nowrap;
 }
 
-.travel-map-panel__svg {
-  position: relative;
-  z-index: 1;
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.travel-map-panel__image {
-  opacity: 0.98;
-  filter: var(--travel-map-image-filter);
-}
-
-.travel-map-panel__frame {
-  fill: none;
-  stroke: var(--travel-map-frame);
-  stroke-width: 1.5;
+.travel-map-panel__offline {
+  margin: 0;
+  padding: 7px 14px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--travel-surface-elevated) 92%, transparent);
+  border: 1px solid var(--travel-line);
+  color: var(--travel-warn);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.45;
 }
 
 .travel-map-panel__callout {
-  position: absolute;
-  right: 18px;
-  bottom: 18px;
-  z-index: 2;
-  max-width: min(320px, calc(100% - 36px));
+  display: flex;
+  gap: 16px;
   padding: 18px 20px;
   border: 1px solid var(--travel-line);
-  border-radius: 22px;
-  background: var(--travel-surface-elevated);
-  backdrop-filter: blur(12px);
-  box-shadow: var(--travel-shadow-strong);
-  color: var(--travel-ink);
+  border-radius: 20px;
+  background: var(--travel-surface);
 }
 
-.travel-map-panel__segment-shadow {
-  fill: none;
-  stroke: var(--travel-map-line-shadow);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 11;
-}
-
-.travel-map-panel__segment {
-  fill: none;
-  stroke: color-mix(in srgb, var(--travel-segment-color) 84%, var(--travel-ink));
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 7;
-  opacity: var(--travel-segment-opacity);
-  cursor: pointer;
-  transition: opacity 0.18s ease, stroke-width 0.18s ease;
-}
-
-.travel-map-panel__segment.is-highlighted {
-  stroke-width: 9;
-  opacity: 1;
-}
-
-.travel-map-panel__segment.is-walk {
-  stroke-dasharray: 10 10;
-}
-
-.travel-map-panel__stop circle {
-  fill: color-mix(in srgb, var(--travel-stop-color) 84%, var(--travel-surface-elevated));
-  stroke: var(--travel-surface-elevated);
-  stroke-width: 4;
-  opacity: var(--travel-stop-opacity);
-  cursor: pointer;
-}
-
-.travel-map-panel__stop text {
-  fill: var(--travel-ink);
-  font-size: 13px;
+.travel-map-panel__callout-eyebrow {
+  flex: none;
+  margin: 0;
+  padding-top: 2px;
+  font-size: 11px;
   font-weight: 700;
-  paint-order: stroke;
-  stroke: var(--travel-map-label-stroke);
-  stroke-width: 7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--travel-accent);
 }
 
-.travel-map-panel__scale line {
-  stroke: var(--travel-map-scale);
-  stroke-width: 2.5;
+.travel-map-panel__callout-body {
+  min-width: 0;
 }
 
-.travel-map-panel__scale text {
-  fill: var(--travel-map-scale);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.travel-map-panel__callout-eyebrow,
-.travel-map-panel__callout h2,
+.travel-map-panel__callout h3,
 .travel-map-panel__callout p {
   margin: 0;
 }
 
-.travel-map-panel__callout-eyebrow {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--travel-accent);
-}
-
-.travel-map-panel__callout h2 {
-  margin-top: 8px;
-  font-size: 20px;
-  line-height: 1.2;
+.travel-map-panel__callout h3 {
+  font-size: 17px;
+  line-height: 1.3;
   color: var(--travel-ink);
 }
 
 .travel-map-panel__callout-meta {
-  margin-top: 8px !important;
-  color: var(--travel-muted);
+  margin-top: 4px !important;
+  font-size: 13px;
+  color: var(--travel-soft);
 }
 
-.travel-map-panel__callout p:last-child {
-  margin-top: 10px;
+.travel-map-panel__callout-text {
+  margin-top: 8px !important;
   line-height: 1.68;
   color: var(--travel-muted);
 }
 
 @media (max-width: 768px) {
-  .travel-map-panel__legend {
-    position: static;
-    justify-content: flex-start;
-    padding: 16px 14px 0;
-    max-width: none;
+  .travel-map-panel__canvas {
+    height: clamp(280px, 52vh, 420px);
   }
 
   .travel-map-panel__callout {
-    position: static;
-    max-width: none;
-    margin: 0 14px 14px;
+    flex-direction: column;
+    gap: 8px;
   }
+}
+</style>
+
+<style>
+.travel-map-panel__canvas .leaflet-container {
+  width: 100%;
+  height: 100%;
+  background-color: var(--travel-map-canvas-bg);
+  background-image:
+    linear-gradient(var(--travel-map-canvas-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--travel-map-canvas-grid) 1px, transparent 1px);
+  background-size: 44px 44px, 44px 44px;
+  font-family: inherit;
+}
+
+.travel-map-panel__canvas .leaflet-tile-pane {
+  filter: var(--travel-map-tile-filter);
+}
+
+.travel-map-panel__canvas .leaflet-control-zoom a {
+  border-radius: 10px;
+  border-color: var(--travel-line);
+  background: var(--travel-surface-elevated);
+  color: var(--travel-ink);
+}
+
+.travel-map-panel__canvas .leaflet-control-zoom a:hover {
+  background: var(--travel-surface-alt);
+  color: var(--travel-ink);
+}
+
+.travel-map-panel__canvas .leaflet-bar {
+  border: 1px solid var(--travel-line);
+  border-radius: 12px;
+  box-shadow: var(--travel-shadow);
+  overflow: hidden;
+}
+
+.travel-map-panel__canvas .leaflet-control-scale-line {
+  border: 1px solid var(--travel-line);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  background: color-mix(in srgb, var(--travel-surface-elevated) 88%, transparent);
+  color: var(--travel-muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.travel-map-panel__canvas .leaflet-control-attribution {
+  margin: 0 8px 6px 0;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--travel-surface-elevated) 86%, transparent);
+  color: var(--travel-soft);
+  font-size: 10px;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.travel-map-panel__canvas .leaflet-control-attribution a {
+  color: var(--travel-muted);
+}
+
+.travel-map-panel__canvas .leaflet-control-attribution svg {
+  display: none;
+}
+
+.travel-map-panel__canvas .travel-map-line {
+  cursor: pointer;
+}
+
+.travel-map-marker {
+  position: relative;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  background: none;
+  border: none;
+}
+
+.travel-map-marker__dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  margin: -7.5px 0 0 -7.5px;
+  border-radius: 50%;
+  border: 2.5px solid var(--travel-map-marker-ring);
+  background: var(--travel-map-marker-color, var(--travel-accent));
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.28);
+  transition: transform 0.16s ease, opacity 0.16s ease;
+}
+
+.travel-map-marker__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 3px 8px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--travel-surface-elevated) 92%, transparent);
+  border: 1px solid var(--travel-line);
+  color: var(--travel-ink);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(var(--travel-map-label-x, 6px), var(--travel-map-label-y, -12px)) translateY(2px);
+  transition: opacity 0.16s ease, transform 0.16s ease;
+  pointer-events: none;
+}
+
+.travel-map-marker.is-revealed .travel-map-marker__label,
+.travel-map-marker.is-hovered .travel-map-marker__label {
+  opacity: 1;
+  transform: translate(var(--travel-map-label-x, 6px), var(--travel-map-label-y, -12px));
+}
+
+.travel-map-marker.is-dimmed .travel-map-marker__dot {
+  opacity: 0.4;
+  transform: scale(0.78);
+}
+
+.travel-map-marker.is-highlighted .travel-map-marker__dot {
+  transform: scale(1.35);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--travel-map-marker-color) 26%, transparent), 0 2px 10px rgba(15, 23, 42, 0.32);
 }
 </style>

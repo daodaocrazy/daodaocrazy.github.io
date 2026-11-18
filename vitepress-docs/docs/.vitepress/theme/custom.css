@@ -35,11 +35,12 @@
   --travel-cover-text: rgba(255, 255, 255, 0.94);
   --travel-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
   --travel-shadow-strong: 0 18px 42px rgba(15, 23, 42, 0.12);
-  --travel-map-frame: color-mix(in srgb, var(--vp-c-divider) 72%, var(--vp-c-brand-1) 28%);
   --travel-map-line-shadow: rgba(15, 23, 42, 0.16);
-  --travel-map-label-stroke: rgba(255, 255, 255, 0.94);
-  --travel-map-scale: color-mix(in srgb, var(--vp-c-text-2) 84%, var(--vp-c-text-1) 16%);
-  --travel-map-image-filter: none;
+  --travel-map-canvas-bg: color-mix(in srgb, var(--vp-c-bg-soft) 92%, var(--vp-c-brand-1) 8%);
+  --travel-map-canvas-grid: color-mix(in srgb, var(--vp-c-divider) 74%, transparent);
+  --travel-map-tile-filter: saturate(0.88) contrast(1.02);
+  --travel-map-marker-ring: rgba(255, 255, 255, 0.96);
+  --travel-warn: #b45309;
 }
 
 .dark .Layout.travel-memory-index-page,
@@ -57,11 +58,12 @@
   --travel-cover-overlay-end: rgba(5, 10, 18, 0.64);
   --travel-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
   --travel-shadow-strong: 0 20px 44px rgba(0, 0, 0, 0.34);
-  --travel-map-frame: color-mix(in srgb, var(--vp-c-divider) 54%, var(--vp-c-brand-1) 46%);
   --travel-map-line-shadow: rgba(0, 0, 0, 0.28);
-  --travel-map-label-stroke: rgba(8, 12, 18, 0.92);
-  --travel-map-scale: color-mix(in srgb, var(--vp-c-text-2) 76%, var(--vp-c-text-1) 24%);
-  --travel-map-image-filter: saturate(0.92) brightness(0.8) contrast(1.08);
+  --travel-map-canvas-bg: color-mix(in srgb, var(--vp-c-bg-soft) 88%, var(--vp-c-brand-1) 12%);
+  --travel-map-canvas-grid: color-mix(in srgb, var(--vp-c-divider) 60%, transparent);
+  --travel-map-tile-filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.86) saturate(0.68);
+  --travel-map-marker-ring: rgba(12, 16, 22, 0.92);
+  --travel-warn: #fbbf24;
 }
 
 .VPHomeHero .heading {

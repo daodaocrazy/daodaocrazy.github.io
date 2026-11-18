@@ -231,7 +231,7 @@ export function loadTravelTripsFromDir(tripsDir) {
 export function deriveTravelIndexEntries(trips) {
   return sortTripsByPublishedDate(trips)
     .filter((item) => item.trip.status === 'published')
-    .map(({ trip }) => ({
+    .map(({ trip, stops, segments }) => ({
       slug: trip.slug,
       title: trip.title,
       startDate: trip.startDate,
@@ -243,7 +243,9 @@ export function deriveTravelIndexEntries(trips) {
       coverImage: trip.coverImage,
       summary: trip.summary,
       publishedAt: trip.publishedAt ?? null,
-      routePreview: trip.routePreview
+      routePreview: trip.routePreview,
+      stopCount: stops.length,
+      totalDistanceMeters: segments.reduce((total, segment) => total + (segment.distanceMeters ?? 0), 0)
     }))
 }
 

@@ -58,7 +58,9 @@
           ]
         ]
       }
-    }
+    },
+    "stopCount": 6,
+    "totalDistanceMeters": 15400
   },
   {
     "slug": "xinjiang-7d-ring-road",
@@ -128,7 +130,9 @@
           ]
         ]
       }
-    }
+    },
+    "stopCount": 9,
+    "totalDistanceMeters": 1960000
   },
   {
     "slug": "kyoto-2026-spring",
@@ -182,26 +186,8 @@
           ]
         ]
       }
-    }
-  },
-  {
-    "isTool": true,
-    "slug": "route-planner",
-    "title": "路线规划工具",
-    "externalLink": "/travel-route.html",
-    "region": "在线工具",
-    "daysCount": 0,
-    "places": [
-      "任意地点",
-      "支持导入导出"
-    ],
-    "tags": [
-      "工具",
-      "Leaflet地图",
-      "JSON数据"
-    ],
-    "coverImage": "/travel/route-planner/cover.svg",
-    "summary": "用 Leaflet 构建的可交互路线规划页，支持 JSON 导入导出与地理编码。",
-    "publishedAt": null
+    },
+    "stopCount": 6,
+    "totalDistanceMeters": 64400
   }
 ]

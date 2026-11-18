@@ -74,11 +74,4 @@
     <circle cx="700" cy="60" r="1.5"/>
   </g>
 
-  <!-- Text label -->
-  <g transform="translate(40 200)">
-    <text x="0" y="0" font-family="'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="48" font-weight="900" fill="#fff7ed" letter-spacing="4">北疆环线</text>
-    <text x="2" y="40" font-family="'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#fed7aa" letter-spacing="2">XINJIANG · 7 DAYS</text>
-    <line x1="0" y1="58" x2="280" y2="58" stroke="#fed7aa" stroke-width="1.5" opacity="0.6"/>
-    <text x="0" y="80" font-family="'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" font-weight="400" fill="#fed7aa" letter-spacing="1.5" opacity="0.9">天山 · 禾木 · 喀纳斯 · 布尔津</text>
-  </g>
 </svg>
