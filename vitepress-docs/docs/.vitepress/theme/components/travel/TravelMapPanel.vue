@@ -43,8 +43,20 @@ const markerRegistry = new Map()
 const polylineRegistry = new Map()
 
 let resizeObserver = null
+let tileTimeoutId = null
 let tileLoadCount = 0
 let tileErrorCount = 0
+
+// 底图瓦片源。换源只改这一处。
+// 注意：中国大陆可达的瓦片服务（高德、腾讯、天地图）使用 GCJ-02 坐标，
+// 直接叠加 WGS-84 路线数据会有数百米偏移，换源时需一并做坐标纠偏。
+const TILE_SOURCE = {
+  url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  maxZoom: 19,
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> 贡献者'
+}
+
+const TILE_LOAD_TIMEOUT_MS = 8000
 
 const selectedDay = computed(() => props.viewModel.days.find((day) => day.dayNumber === props.selectedDayNumber) ?? props.viewModel.days[0] ?? null)
 const selectedStop = computed(() => props.viewModel.allStops.find((stop) => stop.id === props.selectedStopId) ?? null)
@@ -437,23 +449,43 @@ async function mountMap() {
 
   map.value.attributionControl.setPrefix('')
 
-  const tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> 贡献者'
+  const clearTileTimeout = () => {
+    if (tileTimeoutId !== null) {
+      window.clearTimeout(tileTimeoutId)
+      tileTimeoutId = null
+    }
+  }
+
+  const markTilesUnavailable = () => {
+    if (tileLoadCount === 0) {
+      tileStatus.value = 'unavailable'
+    }
+
+    clearTileTimeout()
+  }
+
+  const tileLayer = L.tileLayer(TILE_SOURCE.url, {
+    maxZoom: TILE_SOURCE.maxZoom,
+    subdomains: TILE_SOURCE.subdomains ?? 'abc',
+    attribution: TILE_SOURCE.attribution
   })
 
   tileLayer.on('tileload', () => {
     tileLoadCount += 1
     tileStatus.value = 'ready'
+    clearTileTimeout()
   })
 
   tileLayer.on('tileerror', () => {
     tileErrorCount += 1
 
-    if (tileErrorCount >= 4 && tileLoadCount === 0) {
-      tileStatus.value = 'unavailable'
+    if (tileErrorCount >= 4) {
+      markTilesUnavailable()
     }
   })
+
+  // 被拦截的瓦片既不触发 load 也不触发 error，会一直挂起，必须用超时兜底。
+  tileTimeoutId = window.setTimeout(markTilesUnavailable, TILE_LOAD_TIMEOUT_MS)
 
   tileLayer.addTo(map.value)
   layerGroup.value = L.layerGroup().addTo(map.value)
@@ -493,6 +525,12 @@ onMounted(() => {
 onBeforeUnmount(() => {
   resizeObserver?.disconnect()
   resizeObserver = null
+
+  if (tileTimeoutId !== null) {
+    window.clearTimeout(tileTimeoutId)
+    tileTimeoutId = null
+  }
+
   mapContainer.value?.removeEventListener('click', enableInteraction)
   mapContainer.value?.removeEventListener('focusin', enableInteraction)
   markerRegistry.clear()
@@ -542,7 +580,7 @@ watch(isDark, () => {
         </div>
 
         <p v-if="tileStatus === 'unavailable'" class="travel-map-panel__offline">
-          底图瓦片未加载，路线仍按真实经纬度绘制
+          底图暂不可达，路线、距离与比例尺仍按真实经纬度绘制
         </p>
       </div>
 
