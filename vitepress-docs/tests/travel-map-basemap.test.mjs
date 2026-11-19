@@ -3,7 +3,9 @@ import test from 'node:test'
 
 import {
   TRAVEL_BASEMAPS,
+  basemapScopeKey,
   isOutsideChina,
+  orderBasemapChain,
   selectBasemapChain,
   toBasemapCoordinate,
   wgs84ToGcj02
@@ -133,4 +135,37 @@ test('toBasemapCoordinate only converts for GCJ-02 basemaps', () => {
   assert.deepEqual(toBasemapCoordinate(samples.kyotoStation, osm), samples.kyotoStation)
   assert.deepEqual(toBasemapCoordinate(samples.london, amap), samples.london)
   assert.deepEqual(toBasemapCoordinate(samples.urumqi, undefined), samples.urumqi)
+})
+
+test('orderBasemapChain promotes the remembered basemap without dropping candidates', () => {
+  const chain = selectBasemapChain('日本 东京')
+  const ordered = orderBasemapChain(chain, 'esri')
+
+  assert.equal(ordered[0].id, 'esri', '记住的底图应排到最前')
+  assert.equal(ordered.length, chain.length, '不能丢掉任何候选，否则换网络后无法降级')
+  assert.deepEqual(
+    [...ordered].map((basemap) => basemap.id).sort(),
+    [...chain].map((basemap) => basemap.id).sort(),
+    '顺序变化不应该增删候选'
+  )
+})
+
+test('orderBasemapChain ignores a remembered basemap that the trip cannot use', () => {
+  const japanChain = selectBasemapChain('日本 东京')
+  const ordered = orderBasemapChain(japanChain, 'amap')
+
+  assert.deepEqual(ordered, japanChain, '日本行程里没有高德，应原样返回')
+  assert.deepEqual(orderBasemapChain(japanChain, undefined), japanChain, '没有记忆时应原样返回')
+  assert.deepEqual(orderBasemapChain(japanChain, 'unknown-id'), japanChain, '未知 id 应原样返回')
+})
+
+// 如果中国行程和境外行程共用一份记忆，在日本页面记住的全球底图会被带进新疆页面，
+// 于是新疆就再也拿不到高德的中文标注。
+test('basemapScopeKey keeps China and overseas trips in separate memory slots', () => {
+  assert.equal(basemapScopeKey('中国 新疆'), 'china')
+  assert.equal(basemapScopeKey('日本 东京'), 'global')
+  assert.equal(basemapScopeKey('日本'), 'global')
+  assert.equal(basemapScopeKey(''), 'global')
+  assert.equal(basemapScopeKey(undefined), 'global')
+  assert.notEqual(basemapScopeKey('中国 新疆'), basemapScopeKey('日本 东京'))
 })

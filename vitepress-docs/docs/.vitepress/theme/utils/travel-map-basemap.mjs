@@ -48,6 +48,25 @@ export function selectBasemapChain(tripRegion) {
   return TRAVEL_BASEMAPS.filter((basemap) => basemap.scope !== 'china' || isChinaTrip)
 }
 
+// 把上次成功出图的底图提到最前，避免每次访问都先等首选底图超时。
+// 其余候选保持原顺序，所以换了网络环境仍然能逐级降级。
+// 传入的 id 不在当前链里时（例如日本行程遇到上次记下的高德）原样返回。
+export function orderBasemapChain(chain, preferredId) {
+  const preferred = chain.find((basemap) => basemap.id === preferredId)
+
+  if (!preferred) {
+    return chain
+  }
+
+  return [preferred, ...chain.filter((basemap) => basemap !== preferred)]
+}
+
+// 记忆要按行程范围分开存。否则在日本行程上记住的全球底图会被带进中国行程，
+// 让新疆页面丢掉高德的中文标注。
+export function basemapScopeKey(tripRegion) {
+  return /中国|china/i.test(tripRegion ?? '') ? 'china' : 'global'
+}
+
 export function isOutsideChina(longitude, latitude) {
   return longitude < 72.004 || longitude > 137.8347 || latitude < 0.8293 || latitude > 55.8271
 }

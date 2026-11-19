@@ -8,6 +8,8 @@ import {
   formatTravelMode
 } from '../../utils/travel-memory-view-model.mjs'
 import {
+  basemapScopeKey,
+  orderBasemapChain,
   selectBasemapChain,
   toBasemapCoordinate
 } from '../../utils/travel-map-basemap.mjs'
@@ -54,9 +56,48 @@ let tileLoadCount = 0
 let tileErrorCount = 0
 
 // 瓦片被网络丢弃时既不触发 tileload 也不触发 tileerror，只能用超时判定。
-const TILE_LOAD_TIMEOUT_MS = 8000
+// 健康的底图单瓦片通常 0.3～1.5s 返回，3s 足够区分「慢」和「被挡」。
+const TILE_LOAD_TIMEOUT_MS = 3000
+const BASEMAP_STORAGE_PREFIX = 'travel-atlas-basemap'
 
-const basemapChain = computed(() => selectBasemapChain(props.viewModel.trip.region))
+function storageKey(scope) {
+  return `${BASEMAP_STORAGE_PREFIX}:${scope}`
+}
+
+function readRememberedBasemapId(scope) {
+  if (typeof window === 'undefined') {
+    return null
+  }
+
+  try {
+    return window.localStorage.getItem(storageKey(scope))
+  } catch {
+    return null
+  }
+}
+
+function rememberBasemapId(scope, id) {
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  try {
+    window.localStorage.setItem(storageKey(scope), id)
+  } catch {
+    // 隐私模式下 localStorage 可能不可写，静默忽略即可。
+  }
+}
+
+// 记忆在 computed 里惰性读取，这样站内切行程时会连同新地区一起重新取值，
+// 不会出现「先按旧行程的记忆排序，再发现地区变了」的时序问题。
+const basemapChain = computed(() => {
+  const region = props.viewModel.trip.region
+
+  return orderBasemapChain(
+    selectBasemapChain(region),
+    readRememberedBasemapId(basemapScopeKey(region))
+  )
+})
 const activeBasemap = computed(() => basemapChain.value[basemapIndex.value] ?? basemapChain.value[0] ?? null)
 
 const selectedDay = computed(() => props.viewModel.days.find((day) => day.dayNumber === props.selectedDayNumber) ?? props.viewModel.days[0] ?? null)
@@ -479,6 +520,9 @@ function activateBasemap(index) {
   tileErrorCount = 0
   tileStatus.value = 'loading'
 
+  // 记下本次挂载对应的范围：站内切行程时 props 会先变，不能等到回调里再读。
+  const scope = basemapScopeKey(props.viewModel.trip.region)
+
   const layer = L.tileLayer(source.url, {
     maxZoom: source.maxZoom,
     subdomains: source.subdomains ?? 'abc',
@@ -489,6 +533,7 @@ function activateBasemap(index) {
     tileLoadCount += 1
     tileStatus.value = 'ready'
     clearTileTimeout()
+    rememberBasemapId(scope, source.id)
   })
 
   layer.on('tileerror', () => {
@@ -586,8 +631,18 @@ onBeforeUnmount(() => {
 
 watch(() => props.viewModel, () => {
   renderLayers()
-  fitToBounds(props.viewModel.bounds)
+  fitToBounds(computeFocusBounds())
 }, { deep: false })
+
+// 站内从一条行程跳到另一条时组件不会重建，底图链却随行程地区变化，
+// 所以要从头重新挑一次底图，否则会把中国的高德瓦片留在日本页面上。
+watch(() => props.viewModel?.trip?.slug, (nextSlug, previousSlug) => {
+  if (!nextSlug || !previousSlug || nextSlug === previousSlug || !map.value) {
+    return
+  }
+
+  activateBasemap(0)
+})
 
 watch(() => [props.selectedStopId, props.selectedSegmentId, props.selectedDayNumber], () => {
   applyStyles()
