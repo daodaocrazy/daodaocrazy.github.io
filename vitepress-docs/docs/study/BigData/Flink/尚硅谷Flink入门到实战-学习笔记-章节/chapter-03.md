@@ -43,7 +43,7 @@ parallelism.default: 1
 
 > [Flink Savepoint简单介绍](https://blog.csdn.net/qq_37142346/article/details/91385333)
 
-启动Flink后，可以在[Web UI](lcoalhost:8081)的`Submit New Job`提交jar包，然后指定Job参数。
+启动Flink后，可以在[Web UI](localhost:8081)的`Submit New Job`提交jar包，然后指定Job参数。
 
 + Entry Class
 
@@ -186,7 +186,7 @@ eg：这里我配置文件设置`taskmanager.numberOfTaskSlots: 4`，实际Job�
 3. 执行任务
 
    ```shell
-   ./flink run -c com.atguigu.wc.StreamWordCount FlinkTutorial-1.0-SNAPSHOT-jar-with-dependencies.jar --host lcoalhost –port 7777
+   ./flink run -c com.atguigu.wc.StreamWordCount FlinkTutorial-1.0-SNAPSHOT-jar-with-dependencies.jar --host localhost –port 7777
    ```
 
 4. 去 yarn 控制台查看任务状态
@@ -206,7 +206,7 @@ eg：这里我配置文件设置`taskmanager.numberOfTaskSlots: 4`，实际Job�
 2. 不启动**yarn-session**，直接执行*job*
 
    ```shell
-   ./flink run –m yarn-cluster -c com.atguigu.wc.StreamWordCount FlinkTutorial-1.0-SNAPSHOT-jar-with-dependencies.jar --host lcoalhost –port 7777
+   ./flink run –m yarn-cluster -c com.atguigu.wc.StreamWordCount FlinkTutorial-1.0-SNAPSHOT-jar-with-dependencies.jar --host localhost –port 7777
    ```
 
 ## 3.3 Kubernetes部署

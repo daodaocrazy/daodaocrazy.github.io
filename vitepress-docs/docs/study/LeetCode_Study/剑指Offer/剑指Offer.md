@@ -881,7 +881,7 @@ class Solution {
 
 参考代码3（二叉搜索树，这里同时是红黑树，34ms,18.85%）：同样巨慢
 
-> [4种解法秒杀TopK（快排/堆/二叉搜索树/计数排序）]([https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/3chong-jie-fa-miao-sha-topkkuai-pai-dui-er-cha-sou/#%E4%B8%89%E3%80%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B9%9F%E5%8F%AF%E4%BB%A5-%E8%A7%A3%E5%86%B3-topk-%E9%97%AE%E9%A2%98%E5%93%A6](https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/3chong-jie-fa-miao-sha-topkkuai-pai-dui-er-cha-sou/#三、二叉搜索树也可以-解决-topk-问题哦))
+> [4种解法秒杀TopK（快排/堆/二叉搜索树/计数排序）](https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/3chong-jie-fa-miao-sha-topkkuai-pai-dui-er-cha-sou/#三、二叉搜索树也可以-解决-topk-问题哦)
 
 ```java
 class Solution {
