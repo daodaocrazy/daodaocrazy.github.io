@@ -7,6 +7,10 @@ import {
   formatTravelDuration,
   formatTravelMode
 } from '../../utils/travel-memory-view-model.mjs'
+import {
+  selectBasemapChain,
+  toBasemapCoordinate
+} from '../../utils/travel-map-basemap.mjs'
 
 const props = defineProps({
   viewModel: {
@@ -35,10 +39,12 @@ const mapContainer = ref(null)
 const interactionEnabled = ref(false)
 const mapReady = ref(false)
 const tileStatus = ref('loading')
+const basemapIndex = ref(0)
 
 const leaflet = shallowRef(null)
 const map = shallowRef(null)
 const layerGroup = shallowRef(null)
+const tileLayer = shallowRef(null)
 const markerRegistry = new Map()
 const polylineRegistry = new Map()
 
@@ -47,16 +53,11 @@ let tileTimeoutId = null
 let tileLoadCount = 0
 let tileErrorCount = 0
 
-// 底图瓦片源。换源只改这一处。
-// 注意：中国大陆可达的瓦片服务（高德、腾讯、天地图）使用 GCJ-02 坐标，
-// 直接叠加 WGS-84 路线数据会有数百米偏移，换源时需一并做坐标纠偏。
-const TILE_SOURCE = {
-  url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-  maxZoom: 19,
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> 贡献者'
-}
-
+// 瓦片被网络丢弃时既不触发 tileload 也不触发 tileerror，只能用超时判定。
 const TILE_LOAD_TIMEOUT_MS = 8000
+
+const basemapChain = computed(() => selectBasemapChain(props.viewModel.trip.region))
+const activeBasemap = computed(() => basemapChain.value[basemapIndex.value] ?? basemapChain.value[0] ?? null)
 
 const selectedDay = computed(() => props.viewModel.days.find((day) => day.dayNumber === props.selectedDayNumber) ?? props.viewModel.days[0] ?? null)
 const selectedStop = computed(() => props.viewModel.allStops.find((stop) => stop.id === props.selectedStopId) ?? null)
@@ -223,7 +224,8 @@ function layoutLabels() {
 }
 
 function toLatLng(coordinate) {
-  return [coordinate[1], coordinate[0]]
+  const [lng, lat] = toBasemapCoordinate(coordinate, activeBasemap.value)
+  return [lat, lng]
 }
 
 function boundsToLeaflet(bounds, L) {
@@ -233,11 +235,18 @@ function boundsToLeaflet(bounds, L) {
   )
 }
 
+function toDisplayBounds(bounds) {
+  const [minLng, minLat] = toBasemapCoordinate([bounds.minLng, bounds.minLat], activeBasemap.value)
+  const [maxLng, maxLat] = toBasemapCoordinate([bounds.maxLng, bounds.maxLat], activeBasemap.value)
+
+  return { minLng, minLat, maxLng, maxLat }
+}
+
 function computeFocusBounds() {
   const day = selectedDay.value
 
   if (!day || day.stops.length === 0) {
-    return props.viewModel.bounds
+    return toDisplayBounds(props.viewModel.bounds)
   }
 
   const coordinates = [
@@ -246,7 +255,7 @@ function computeFocusBounds() {
   ]
 
   if (coordinates.length === 0) {
-    return props.viewModel.bounds
+    return toDisplayBounds(props.viewModel.bounds)
   }
 
   let minLng = Number.POSITIVE_INFINITY
@@ -255,10 +264,11 @@ function computeFocusBounds() {
   let maxLat = Number.NEGATIVE_INFINITY
 
   for (const [lng, lat] of coordinates) {
-    minLng = Math.min(minLng, lng)
-    minLat = Math.min(minLat, lat)
-    maxLng = Math.max(maxLng, lng)
-    maxLat = Math.max(maxLat, lat)
+    const [displayLng, displayLat] = toBasemapCoordinate([lng, lat], activeBasemap.value)
+    minLng = Math.min(minLng, displayLng)
+    minLat = Math.min(minLat, displayLat)
+    maxLng = Math.max(maxLng, displayLng)
+    maxLat = Math.max(maxLat, displayLat)
   }
 
   // 单点或近似单点的当天，需要一个最小的取景跨度，否则会被拉到最大缩放。
@@ -426,6 +436,80 @@ function focusSelection() {
   map.value.panTo(toLatLng(selectedStop.value.coordinates), { animate: true })
 }
 
+function clearTileTimeout() {
+  if (tileTimeoutId !== null) {
+    window.clearTimeout(tileTimeoutId)
+    tileTimeoutId = null
+  }
+}
+
+function advanceBasemap() {
+  clearTileTimeout()
+
+  if (tileLoadCount > 0) {
+    return
+  }
+
+  if (basemapIndex.value + 1 < basemapChain.value.length) {
+    activateBasemap(basemapIndex.value + 1)
+    return
+  }
+
+  tileStatus.value = 'unavailable'
+}
+
+function activateBasemap(index) {
+  const L = leaflet.value
+  const source = basemapChain.value[index]
+
+  if (!L || !map.value || !source) {
+    tileStatus.value = 'unavailable'
+    return
+  }
+
+  clearTileTimeout()
+
+  if (tileLayer.value) {
+    map.value.removeLayer(tileLayer.value)
+    tileLayer.value = null
+  }
+
+  basemapIndex.value = index
+  tileLoadCount = 0
+  tileErrorCount = 0
+  tileStatus.value = 'loading'
+
+  const layer = L.tileLayer(source.url, {
+    maxZoom: source.maxZoom,
+    subdomains: source.subdomains ?? 'abc',
+    attribution: source.attribution
+  })
+
+  layer.on('tileload', () => {
+    tileLoadCount += 1
+    tileStatus.value = 'ready'
+    clearTileTimeout()
+  })
+
+  layer.on('tileerror', () => {
+    tileErrorCount += 1
+
+    if (tileErrorCount >= 4) {
+      advanceBasemap()
+    }
+  })
+
+  layer.addTo(map.value)
+  tileLayer.value = layer
+
+  // 被拦截的瓦片既不触发 load 也不触发 error，会一直挂起，必须用超时兜底。
+  tileTimeoutId = window.setTimeout(advanceBasemap, TILE_LOAD_TIMEOUT_MS)
+
+  // 换了底图就可能换了坐标系（WGS-84 / GCJ-02），所有几何都要重画、重新取景。
+  renderLayers()
+  fitToBounds(computeFocusBounds(), { animate: false })
+}
+
 async function mountMap() {
   if (map.value || !mapContainer.value) {
     return
@@ -448,46 +532,6 @@ async function mountMap() {
   L.control.scale({ position: 'bottomleft', imperial: false, maxWidth: 160 }).addTo(map.value)
 
   map.value.attributionControl.setPrefix('')
-
-  const clearTileTimeout = () => {
-    if (tileTimeoutId !== null) {
-      window.clearTimeout(tileTimeoutId)
-      tileTimeoutId = null
-    }
-  }
-
-  const markTilesUnavailable = () => {
-    if (tileLoadCount === 0) {
-      tileStatus.value = 'unavailable'
-    }
-
-    clearTileTimeout()
-  }
-
-  const tileLayer = L.tileLayer(TILE_SOURCE.url, {
-    maxZoom: TILE_SOURCE.maxZoom,
-    subdomains: TILE_SOURCE.subdomains ?? 'abc',
-    attribution: TILE_SOURCE.attribution
-  })
-
-  tileLayer.on('tileload', () => {
-    tileLoadCount += 1
-    tileStatus.value = 'ready'
-    clearTileTimeout()
-  })
-
-  tileLayer.on('tileerror', () => {
-    tileErrorCount += 1
-
-    if (tileErrorCount >= 4) {
-      markTilesUnavailable()
-    }
-  })
-
-  // 被拦截的瓦片既不触发 load 也不触发 error，会一直挂起，必须用超时兜底。
-  tileTimeoutId = window.setTimeout(markTilesUnavailable, TILE_LOAD_TIMEOUT_MS)
-
-  tileLayer.addTo(map.value)
   layerGroup.value = L.layerGroup().addTo(map.value)
 
   mapContainer.value.addEventListener('click', enableInteraction, { once: true })
@@ -495,7 +539,7 @@ async function mountMap() {
 
   // 必须先确定视图，Leaflet 才会真正把图层挂到 DOM 上（否则 whenReady 会排队）。
   fitToBounds(computeFocusBounds(), { animate: false })
-  renderLayers()
+  activateBasemap(0)
   mapReady.value = true
 
   map.value.on('zoomend moveend', () => {
