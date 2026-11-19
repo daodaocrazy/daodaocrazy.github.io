@@ -4,6 +4,7 @@
   "description": "Daodaocrazy的个人MD笔记 - 使用VitePress重构",
   "type": "module",
   "scripts": {
+    "test": "node --test tests/*.test.mjs",
     "docs:dev": "node ./scripts/sync-travel-memory-pages.mjs && vitepress dev docs",
     "docs:build": "node ./scripts/run-build.mjs",
     "docs:build:ci": "node ./scripts/run-build.mjs",

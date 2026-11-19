@@ -1,5 +1,7 @@
 # 仓库工作说明
 
+本文件是 GitHub Copilot 侧的仓库指令。Codex 侧同一份约定的副本是仓库根的 `AGENTS.md`。改动仓库约定时两处同步：Copilot 侧改本文件，Codex 侧改 `AGENTS.md`。不要只改一处。
+
 - 当前站点的真实构建入口在 `vitepress-docs/`。涉及站点内容、构建脚本或发布逻辑时，优先从 `vitepress-docs/package.json`、`vitepress-docs/docs/` 和 `vitepress-docs/scripts/` 出发，不要默认把仓库根目录当成当前站点入口。
 - `vitepress-docs/docs/` 是当前 VitePress 文档源。仓库根目录的 `docs/` 和 `study-old/` 主要视为历史内容或归档，除非任务明确要求，否则不要把它们当成新的 VitePress 页面源。
 - 当前 VitePress 配置将 `markdown.html` 设为关闭状态。需要交互式工具页时，不要在 Markdown 正文里直接写 Vue 组件标签；优先通过主题 `Layout` 按路由注入，或使用自定义页面组件承载交互区。
@@ -12,7 +14,8 @@
 - 本仓库的 GitHub Pages 仓库设置必须保持 `build_type=workflow`；如果发现 Pages 仍处于 legacy branch source 模式，优先修复仓库 Settings > Pages，而不是继续修改 `.github/workflows/` 试图绕过平台限制。
 - 本仓库的 GitHub Pages environment branch policy 必须与分支映射保持一致：`github-pages` 至少允许 `main` 与 `lab`，`github-pages-preview` 至少允许 `feature/*`。修改 Pages workflow、环境名或分支映射时，同时检查这些仓库级设置与 `vitepress-docs/scripts/resolve-pages-target.mjs` 保持一致。
 - 修改 VitePress 配置、内容生成脚本或工作流后，优先运行最相关的本地校验；通常在 `vitepress-docs/` 下使用 `npm run docs:build:ci`。
+- 改动数据、脚本或测试后运行 `npm test`（等价于在 `vitepress-docs/` 下执行 `node --test tests/*.test.mjs`）。CI 会在部署前跑同一命令，测试失败会挡住发布。
 - 当当前任务依赖本地预览或开发服务时，修改后若现有进程未可靠拾取变更，或出现旧资源、旧页面、旧路由等陈旧状态，默认自动重启对应服务后再继续验证，无需等待额外提示。
-- 仓库内的 AI 自定义内容统一放在 `.github/` 下维护。新增 prompts、skills 或 instructions 时，优先复用 `.github/prompts/`、`.github/skills/` 和本文件，不要重新生成 `.agents/`、`.claude/` 或 `.trae/` 目录副本，除非用户明确要求。
+- 仓库内的 AI 自定义内容按工具各放各的标准位置：Copilot 用 `.github/prompts/`、`.github/skills/` 和本文件；Codex 用仓库根的 `AGENTS.md` 和 `.agents/skills/<name>/SKILL.md`。两侧不要互相复制，也不要把 Codex skill 放进 `.github/skills/`（Codex 不扫描该目录）。不要新建 `.claude/` 或 `.trae/` 目录副本。
 - 修改 `.github/workflows/` 时，保持 GitHub Pages 官方 Actions 链路与现有仓库结构兼容，不要引入本地部署步骤。
 - `shadowrocket/` 是独立内容域；除非任务明确涉及该目录，否则不要把它和 VitePress 主站内容混为一体。

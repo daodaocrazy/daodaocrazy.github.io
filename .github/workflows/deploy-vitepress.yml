@@ -58,6 +58,11 @@ jobs:
         working-directory: ./vitepress-docs
         run: npm ci
 
+      # Node 20 的 --test 不支持 glob，这里靠 shell 展开。
+      - name: Run unit tests
+        working-directory: ./vitepress-docs
+        run: npm test
+
       # 首页的 fork 列表来自构建期快照。刷新失败不能挡住站点发布，
       # 沿用已提交的那份快照即可。
       - name: Refresh forked repos snapshot
