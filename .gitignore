@@ -25,3 +25,6 @@ __pycache__/
 .temp/
 .tmp/
 vitepress-docs/docs/.vitepress/cache/
+# 从 vitepress-docs/ 作为 CWD 跑构建时，Vite 会把 optimizeDeps 的临时缓存
+# 落到这里（正常收尾会重命名成 deps，构建中断则留下 deps_temp_*）。
+vitepress-docs/.vitepress/

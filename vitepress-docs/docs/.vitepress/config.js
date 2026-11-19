@@ -352,7 +352,14 @@ export default defineConfig({
   appearance: 'dark',
   base: siteBase,
   srcDir: '.',
+  // docsify 时代的 `_sidebar.md` 是导航片段，不是页面。本站的侧栏由 buildStudySidebar()
+  // 从文件系统直接生成，本来就跳过它们，站内没有任何链接指向这些页面。
+  // 不排除的话会被渲染成 46 个薄页面，在 dist 里占 60MB。
+  srcExclude: ['**/_sidebar.md'],
   ignoreDeadLinks: true,
+  // sitemap 只给 production 生成。lab 与 preview 部署在 /lab/、/preview/ 子路径下，
+  // 同一份 hostname 会让它们发出与生产冲突的 URL 集合。
+  ...(siteBase === '/' ? { sitemap: { hostname: 'https://daodaocrazy.github.io' } } : {}),
   vite: {
     plugins: [
       {

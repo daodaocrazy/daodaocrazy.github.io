@@ -8,7 +8,7 @@
 
 - 真实构建入口在 `vitepress-docs/`。涉及站点内容、构建脚本或发布逻辑时，从 `vitepress-docs/package.json`、`vitepress-docs/docs/` 和 `vitepress-docs/scripts/` 出发，不要把仓库根目录当成站点入口。
 - `vitepress-docs/docs/` 是当前 VitePress 文档源。
-- 仓库根的 `docs/` 与 `study-old/` 是历史归档。除非任务明确要求，不要把它们当成新的 VitePress 页面源，也不要为了让它们构建通过而改动构建链路。
+- 仓库根的 `docs/` 是历史归档（docsify 时代的旧站，不参与构建、不进入 `dist/`）。除非任务明确要求，不要把它当成新的 VitePress 页面源，也不要为了让它们构建通过而改动构建链路。
 - `shadowrocket/` 是独立内容域。除非任务明确涉及该目录，不要把它和 VitePress 主站内容混为一体。
 
 ## 构建与校验

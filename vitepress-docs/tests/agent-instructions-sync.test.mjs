@@ -16,7 +16,7 @@ const SHARED_FACTS = [
   ['本地校验命令', 'npm run docs:build:ci'],
   ['单元测试命令', 'npm test'],
   ['VitePress 文档源', 'vitepress-docs/docs/'],
-  ['历史归档目录', 'study-old/'],
+  ['历史归档目录', 'docsify'],
   ['交互页注入方式', 'markdown.html'],
   ['Pages 构建模式', 'build_type=workflow'],
   ['预览环境分支策略', 'github-pages-preview'],

@@ -7,7 +7,8 @@ on:
       - lab
       - 'feature/**'
   schedule:
-    # 每天重建一次，让首页 fork 快照跟上 GitHub 上的变化。
+    # 每天重建一次。这一趟同时刷新 fork 列表和金属市场两个快照，
+    # 所以原来那个只刷金属快照的独立 workflow 已经并入本文件。
     - cron: '23 2 * * *'
   workflow_dispatch:
 
@@ -62,6 +63,13 @@ jobs:
       - name: Run unit tests
         working-directory: ./vitepress-docs
         run: npm test
+
+      # 站点有两处构建期数据快照。两个刷新都失败不阻塞发布：
+      # 对应的 JSON 已提交在仓库里，刷新失败就用上一版，页面自己会显示快照日期。
+      - name: Refresh metals market snapshot
+        working-directory: ./vitepress-docs
+        continue-on-error: true
+        run: node ./scripts/refresh-metals-market-snapshot.mjs
 
       # 首页的 fork 列表来自构建期快照。刷新失败不能挡住站点发布，
       # 沿用已提交的那份快照即可。

@@ -3,7 +3,7 @@
 本文件是 GitHub Copilot 侧的仓库指令。Codex 侧同一份约定的副本是仓库根的 `AGENTS.md`。改动仓库约定时两处同步：Copilot 侧改本文件，Codex 侧改 `AGENTS.md`。不要只改一处。
 
 - 当前站点的真实构建入口在 `vitepress-docs/`。涉及站点内容、构建脚本或发布逻辑时，优先从 `vitepress-docs/package.json`、`vitepress-docs/docs/` 和 `vitepress-docs/scripts/` 出发，不要默认把仓库根目录当成当前站点入口。
-- `vitepress-docs/docs/` 是当前 VitePress 文档源。仓库根目录的 `docs/` 和 `study-old/` 主要视为历史内容或归档，除非任务明确要求，否则不要把它们当成新的 VitePress 页面源。
+- `vitepress-docs/docs/` 是当前 VitePress 文档源。仓库根目录的 `docs/` 视为历史归档（docsify 时代的旧站，不参与构建、不进入 `dist/`），除非任务明确要求，否则不要把它当成新的 VitePress 页面源。
 - 当前 VitePress 配置将 `markdown.html` 设为关闭状态。需要交互式工具页时，不要在 Markdown 正文里直接写 Vue 组件标签；优先通过主题 `Layout` 按路由注入，或使用自定义页面组件承载交互区。
 - 变更 GitHub Pages、预览环境或 base path 相关逻辑时，同时检查 `.github/workflows/` 与 `vitepress-docs/scripts/`，保持 production、lab、preview 三类路径规则一致。
 - 本仓库中的文档、计划和工作区 AI 指令默认使用中文；只有用户明确要求时才使用英文。
