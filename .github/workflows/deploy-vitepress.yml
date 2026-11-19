@@ -6,6 +6,9 @@ on:
       - main
       - lab
       - 'feature/**'
+  schedule:
+    # 每天重建一次，让首页 fork 快照跟上 GitHub 上的变化。
+    - cron: '23 2 * * *'
   workflow_dispatch:
 
 permissions:
@@ -54,6 +57,15 @@ jobs:
       - name: Install dependencies
         working-directory: ./vitepress-docs
         run: npm ci
+
+      # 首页的 fork 列表来自构建期快照。刷新失败不能挡住站点发布，
+      # 沿用已提交的那份快照即可。
+      - name: Refresh forked repos snapshot
+        working-directory: ./vitepress-docs
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node ./scripts/refresh-forked-repos.mjs
 
       - name: Restore live Pages snapshot
         id: snapshot

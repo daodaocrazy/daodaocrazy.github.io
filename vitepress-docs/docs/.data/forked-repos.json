@@ -1,0 +1,448 @@
+{
+  "username": "daodaocrazy",
+  "generatedAt": "2026-11-19T02:19:07.364Z",
+  "totalForks": 49,
+  "repos": [
+    {
+      "name": "cfapex",
+      "description": "项目是可部署在 Cloudflare 上的代理面板，支持 VLESS/WS、Trojan/WS 和 VLESS/XHTTP。用户可在面板中管理优选 IP、按地区设置 Proxy IP、自定义真实出站和节点 UUID，并获取 Clash YAML、通用 URI 或 sing-box JSON 订阅。项目提供 KV 设置存储、订阅访问控制及短时读取缓存。",
+      "url": "https://github.com/daodaocrazy/cfapex",
+      "language": "JavaScript",
+      "stars": 1,
+      "forks": 1,
+      "updatedAt": "2026-11-17T06:18:09Z"
+    },
+    {
+      "name": "ai-agent-book",
+      "description": "《深入理解 AI Agent：设计原理与工程实践》（李博杰 著）开源主仓库：全书正文、编译版 PDF 与按章配套代码",
+      "url": "https://github.com/daodaocrazy/ai-agent-book",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-11-13T02:30:14Z"
+    },
+    {
+      "name": "edgetunnel",
+      "description": "edgetunnel2 VLESS/Trojan 多功能面板",
+      "url": "https://github.com/daodaocrazy/edgetunnel",
+      "language": "JavaScript",
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-11-12T07:52:47Z"
+    },
+    {
+      "name": "floci",
+      "description": "Light, fluffy, and always free - The AWS Local Emulator alternative",
+      "url": "https://github.com/daodaocrazy/floci",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-11-05T03:23:53Z"
+    },
+    {
+      "name": "agent-desktop",
+      "description": "Computer use CLI for AI agents",
+      "url": "https://github.com/daodaocrazy/agent-desktop",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-11-05T03:23:44Z"
+    },
+    {
+      "name": "deepseek-harness",
+      "description": "DeepSeek Harness: Everything is a Plugin.",
+      "url": "https://github.com/daodaocrazy/deepseek-harness",
+      "language": "TypeScript",
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-09-24T00:59:47Z"
+    },
+    {
+      "name": "servers",
+      "description": "Model Context Protocol Servers",
+      "url": "https://github.com/daodaocrazy/servers",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-09-23T05:28:42Z"
+    },
+    {
+      "name": "bloub",
+      "description": "SVG recreation of the x.ai bot avatar. One shape morphing through 14 states, measured off the reference video frame by frame.",
+      "url": "https://github.com/daodaocrazy/bloub",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-09-23T01:41:16Z"
+    },
+    {
+      "name": "stagehand",
+      "description": "The SDK to extract data and interact with any site on the web. Get started with Claude Code, Codex, Eve, Mastra, and more.",
+      "url": "https://github.com/daodaocrazy/stagehand",
+      "language": "TypeScript",
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-09-23T00:50:52Z"
+    },
+    {
+      "name": "hermes-studio",
+      "description": "Web dashboard for Hermes Agent — multi-platform AI chat, session management, scheduled jobs, usage analytics",
+      "url": "https://github.com/daodaocrazy/hermes-studio",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-08-08T07:24:48Z"
+    },
+    {
+      "name": "opensre",
+      "description": "Build your own AI SRE agents. The open source toolkit for the AI era.",
+      "url": "https://github.com/daodaocrazy/opensre",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-07-21T11:48:21Z"
+    },
+    {
+      "name": "Understand-Anything",
+      "description": "Graphs that teach > graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more.",
+      "url": "https://github.com/daodaocrazy/Understand-Anything",
+      "language": "TypeScript",
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-07-21T03:25:06Z"
+    },
+    {
+      "name": "skills",
+      "description": "Public repository for Agent Skills",
+      "url": "https://github.com/daodaocrazy/skills",
+      "language": "Python",
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-07-18T12:58:39Z"
+    },
+    {
+      "name": "orca",
+      "description": "Orca is the ADE for working with a fleet of parallel agents. Run any coding agent with your own subscription. Available on desktop and mobile.",
+      "url": "https://github.com/daodaocrazy/orca",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-07-17T13:45:49Z"
+    },
+    {
+      "name": "loopany-platform",
+      "description": "Run your company in loops, Loop Anything",
+      "url": "https://github.com/daodaocrazy/loopany-platform",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-07-17T12:33:45Z"
+    },
+    {
+      "name": "FreeDomain",
+      "description": "DigitalPlat FreeDomain: Free Domain For Everyone",
+      "url": "https://github.com/daodaocrazy/FreeDomain",
+      "language": "HTML",
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-06-07T07:32:12Z"
+    },
+    {
+      "name": "ian-xiaohei-illustrations",
+      "description": "中文小黑怪诞正文配图生成 Skill | 16:9 白底手绘 | 少量红橙蓝批注 | Codex Skill",
+      "url": "https://github.com/daodaocrazy/ian-xiaohei-illustrations",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-06-04T14:26:03Z"
+    },
+    {
+      "name": "hermes-agent",
+      "description": "The agent that grows with you",
+      "url": "https://github.com/daodaocrazy/hermes-agent",
+      "language": "Python",
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-05-27T02:58:00Z"
+    },
+    {
+      "name": "smux",
+      "description": "tmux config with built-in terminal automation and agent-to-agent communication.",
+      "url": "https://github.com/daodaocrazy/smux",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-05-19T08:03:01Z"
+    },
+    {
+      "name": "openclaw",
+      "description": "Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞",
+      "url": "https://github.com/daodaocrazy/openclaw",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-05-07T02:20:01Z"
+    },
+    {
+      "name": "openspec",
+      "description": "Spec-driven development (SDD) for AI coding assistants.",
+      "url": "https://github.com/daodaocrazy/openspec",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-04-27T14:22:54Z"
+    },
+    {
+      "name": "superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "url": "https://github.com/daodaocrazy/superpowers",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-04-27T14:21:26Z"
+    },
+    {
+      "name": "awesome-agent-skills",
+      "description": "A curated collection of 1000+ agent skills from official dev teams and the community, compatible with Claude Code, Codex, Gemini CLI, Cursor, and more.",
+      "url": "https://github.com/daodaocrazy/awesome-agent-skills",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-04-24T01:42:44Z"
+    },
+    {
+      "name": "awesome-copilot",
+      "description": "Community-contributed instructions, agents, skills, and configurations to help you make the most of GitHub Copilot.",
+      "url": "https://github.com/daodaocrazy/awesome-copilot",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-04-23T05:57:20Z"
+    },
+    {
+      "name": "harness",
+      "description": "Harness Open Source is an end-to-end developer platform with Source Control Management, CI/CD Pipelines, Hosted Developer Environments, and Artifact Registries.",
+      "url": "https://github.com/daodaocrazy/harness",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-04-22T05:21:19Z"
+    },
+    {
+      "name": "openai-agents-python",
+      "description": "A lightweight, powerful framework for multi-agent workflows",
+      "url": "https://github.com/daodaocrazy/openai-agents-python",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-04-21T23:34:19Z"
+    },
+    {
+      "name": "Cloudflare-vless-trojan",
+      "description": "CF-workers/pages代理脚本【Vless与Trojan】：支持nat64自动生成proxyip，一键自建proxyip与CF反代IP，CF优选官方IP三地区应用脚本，自动输出美、亚、欧最佳优选IP",
+      "url": "https://github.com/daodaocrazy/Cloudflare-vless-trojan",
+      "language": "JavaScript",
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-03-31T14:38:40Z"
+    },
+    {
+      "name": "Shadowrocket-ADBlock-Rules-Forever",
+      "description": "提供多款 Shadowrocket 规则，拥有强劲的广告过滤功能。每日 8 时重新构建规则。",
+      "url": "https://github.com/daodaocrazy/Shadowrocket-ADBlock-Rules-Forever",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-03-13T15:54:04Z"
+    },
+    {
+      "name": "mcp",
+      "description": "Official MCP Servers for AWS",
+      "url": "https://github.com/daodaocrazy/mcp",
+      "language": "Python",
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-03-12T01:47:27Z"
+    },
+    {
+      "name": "terraform-mcp-server",
+      "description": "The Terraform MCP Server provides seamless integration with Terraform ecosystem, enabling advanced automation and interaction capabilities for Infrastructure as Code (IaC) development.",
+      "url": "https://github.com/daodaocrazy/terraform-mcp-server",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-03-06T09:35:26Z"
+    },
+    {
+      "name": "github-mcp-server",
+      "description": "GitHub's official MCP Server",
+      "url": "https://github.com/daodaocrazy/github-mcp-server",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-03-06T09:22:29Z"
+    },
+    {
+      "name": "ddgksf2013",
+      "description": "墨鱼去广告计划 | QuantumultX 去广告 | 去开屏广告 | 应用净化 | 会员解锁 | 墨鱼配置 | 应用增强 | 网页优化 | 网盘资源 | 模块去广告 | 圈 X 配置 | Shadowrocket配置 | 墨鱼规则 | Clash配置 | 小火箭去广告 | 资源库 | AdBlock | 网页广告 | 不完全指北",
+      "url": "https://github.com/daodaocrazy/ddgksf2013",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-03-04T12:52:37Z"
+    },
+    {
+      "name": "ollama",
+      "description": "Get up and running with Kimi-K2.5, GLM-5, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.",
+      "url": "https://github.com/daodaocrazy/ollama",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-03-04T02:55:42Z"
+    },
+    {
+      "name": "Langchain-Chatchat",
+      "description": "Langchain-Chatchat（原Langchain-ChatGLM）基于 Langchain 与 ChatGLM, Qwen 与 Llama 等语言模型的 RAG 与 Agent 应用 | Langchain-Chatchat (formerly langchain-ChatGLM), local knowledge based LLM (like ChatGLM, Qwen and Llama) RAG and Agent …",
+      "url": "https://github.com/daodaocrazy/Langchain-Chatchat",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-03-04T02:55:31Z"
+    },
+    {
+      "name": "better-genshin-impact",
+      "description": "📦BetterGI · 更好的原神 - 自动拾取 | 自动剧情 | 全自动钓鱼(AI) | 全自动七圣召唤 | 自动伐木 | 自动刷本 | 自动采集/挖矿/锄地 | 一条龙 | 全连音游 - UI Automation Testing Tools For Genshin Impact",
+      "url": "https://github.com/daodaocrazy/better-genshin-impact",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-02-28T01:02:36Z"
+    },
+    {
+      "name": "HelloGitHub",
+      "description": ":octocat: 分享 GitHub 上有趣、入门级的开源项目。Share interesting, entry-level open source projects on GitHub.",
+      "url": "https://github.com/daodaocrazy/HelloGitHub",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-02-14T23:45:44Z"
+    },
+    {
+      "name": "eclipse-tractusx.github.io",
+      "description": null,
+      "url": "https://github.com/daodaocrazy/eclipse-tractusx.github.io",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-01-09T06:57:39Z"
+    },
+    {
+      "name": "tractusx-edc",
+      "description": null,
+      "url": "https://github.com/daodaocrazy/tractusx-edc",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-01-09T06:48:38Z"
+    },
+    {
+      "name": "Mos",
+      "description": "一个用于在 macOS 上平滑你的鼠标滚动效果或单独设置滚动方向的小工具, 让你的滚轮爽如触控板 | A lightweight tool used to smooth scrolling and set scroll direction independently for your mouse on macOS",
+      "url": "https://github.com/daodaocrazy/Mos",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-01-09T01:14:32Z"
+    },
+    {
+      "name": "catenax-ev.github.io",
+      "description": null,
+      "url": "https://github.com/daodaocrazy/catenax-ev.github.io",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2026-01-08T10:11:59Z"
+    },
+    {
+      "name": "ConvertX",
+      "description": "💾 Self-hosted online file converter. Supports 1000+ formats ⚙️",
+      "url": "https://github.com/daodaocrazy/ConvertX",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2025-12-16T08:09:20Z"
+    },
+    {
+      "name": "hello-algo",
+      "description": "《Hello 算法》：动画图解、一键运行的数据结构与算法教程。支持 Python, Java, C++, C, C#, JS, Go, Swift, Rust, Ruby, Kotlin, TS, Dart 代码。简体版和繁体版同步更新，English version in translation",
+      "url": "https://github.com/daodaocrazy/hello-algo",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2025-12-16T02:12:06Z"
+    },
+    {
+      "name": "gopeed",
+      "description": "A modern download manager that supports all platforms. Built with Golang and Flutter.",
+      "url": "https://github.com/daodaocrazy/gopeed",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2025-12-10T06:52:10Z"
+    },
+    {
+      "name": "aas-specs-api",
+      "description": "Repository of the Asset Administration Shell Specification DTA-01002 API",
+      "url": "https://github.com/daodaocrazy/aas-specs-api",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2025-12-05T01:21:32Z"
+    },
+    {
+      "name": "cursor-free-vip",
+      "description": "[Support 0.49.x]（Reset Cursor AI MachineID & Bypass Higher Token Limit） Cursor Ai ，自动重置机器ID ， 免费升级使用Pro功能: You've reached your trial request limit. / Too many free trial accounts used on this machine. Please upgrade to …",
+      "url": "https://github.com/daodaocrazy/cursor-free-vip",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2025-12-04T06:02:20Z"
+    },
+    {
+      "name": "mihomo",
+      "description": "A simple Python Pydantic model for Honkai: Star Rail parsed data from the Mihomo API.",
+      "url": "https://github.com/daodaocrazy/mihomo",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2025-08-27T01:14:51Z"
+    },
+    {
+      "name": "Bills-save",
+      "description": "基于 Notion API + Python 实现支付宝与微信账单聚合",
+      "url": "https://github.com/daodaocrazy/Bills-save",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2025-02-11T01:43:23Z"
+    },
+    {
+      "name": "Movie_Data_Capture",
+      "description": "Local Movies Organizer",
+      "url": "https://github.com/daodaocrazy/Movie_Data_Capture",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2023-05-27T10:13:59Z"
+    },
+    {
+      "name": "docsify-notes",
+      "description": "目前涵盖的笔记有(Android | LeetCode | React | Vue | GoLang | Java | Python | Scala | Rust | BigData | SpringBoot | SpringCloud | MQ | Netty | Linux | 操作系统和硬件 | 计算机网络 | 网络安全 | 推荐系统 | 设计模式 | 计算广告 | 文件管理 | DataBase | Elastic-Stack…",
+      "url": "https://github.com/daodaocrazy/docsify-notes",
+      "language": null,
+      "stars": 0,
+      "forks": 0,
+      "updatedAt": "2023-04-04T06:40:47Z"
+    }
+  ]
+}
