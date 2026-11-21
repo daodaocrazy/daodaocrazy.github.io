@@ -1,7 +1,7 @@
 #!name=Ultimate iOS AdBlock
 #!desc=AntiAD + AWAvenue + AdGuard + EasyList + Custom CN AdBlock
 #!author=custom
-#!version=3.5
+#!version=3.6
 
 ########################################
 # Remote AdBlock Rules (Auto Update)
@@ -13,6 +13,7 @@
 DOMAIN-SUFFIX,copilot.tencent.com,PROXY
 DOMAIN,oth.eve.mdt.qq.com,DIRECT
 DOMAIN,rmonitor.qq.com,DIRECT
+DOMAIN-SUFFIX,ts.net,PROXY
 
 # T3 Code: all *.t3.codes subdomains (keep first so they never fall through to DIRECT)
 # DOMAIN-SUFFIX,t3.codes,PROXY
